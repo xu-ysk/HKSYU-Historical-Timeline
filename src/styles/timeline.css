@@ -47,9 +47,13 @@ button {
   border-radius: 3px;
 }
 .institution {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: Georgia, serif;
   font-size: 22px;
   letter-spacing: 3px;
+  white-space: nowrap;
 }
 .institution span {
   font:
@@ -167,6 +171,9 @@ h1 {
 .theme-heading {
   transition: color 0.5s;
 }
+.theme-heading > span {
+  display: none;
+}
 .timeline-scene[data-mode='browse'] .photo-card:not([data-extracted='true']) {
   box-shadow:
     2px 2px 0 #b6b0a4,
@@ -278,7 +285,8 @@ h1 {
 .view-switch {
   position: absolute;
   left: 42px;
-  bottom: 210px;
+  top: 216px;
+  bottom: auto;
   z-index: 2000;
   display: flex;
   border-bottom: 1px solid #cfc8bd;
@@ -294,6 +302,9 @@ h1 {
 .view-switch button[aria-pressed='true'] {
   color: var(--ink);
   border-bottom: 1px solid var(--ink);
+}
+.museum-app[data-detail-active='true'] .view-switch {
+  pointer-events: none;
 }
 .bottom-panel {
   position: absolute;
@@ -443,6 +454,11 @@ h1 {
   box-shadow: 0 -20px 0 20px #f7f5f2ed;
 }
 .navigation-panel {
+  position: absolute;
+  left: 42px;
+  top: 260px;
+  bottom: auto;
+  opacity: 0;
   background: #f7f5f2ed;
   padding: 12px 12px 0 0;
 }
@@ -469,7 +485,7 @@ h1 {
     bottom: 20px;
   }
   .view-switch {
-    bottom: 193px;
+    top: 198px;
   }
 }
 @media (max-width: 1320px) {

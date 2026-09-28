@@ -56,28 +56,20 @@ export default function App() {
     return () => abort.abort();
   }, [endYear, loadAttempt]);
   return (
-    <main className="museum-app">
+    <main className="museum-app" data-detail-active={detailActive}>
       <header className="masthead">
         <div className="header-top">
           <LanguageSwitcher locale={locale} onChange={setLocale} />
-          <div className="institution">
-            HKSYU <span>UNIVERSITY ARCHIVE</span>
-          </div>
+          <div className="institution" data-testid="institution-title">HKSYU Museum Timeline</div>
         </div>
         <div className="title-block">
-          <div className="eyebrow">
-            {m.university} <span> / 1949 — {endYear}</span>
-          </div>
           <h1>
             {m.title}
             <span className="title-mark" aria-hidden="true">
               *
             </span>
           </h1>
-          <p>{m.subtitle}</p>
-        </div>
-        <div className="edition">
-          THE LIVING ARCHIVE<span>VOL. 01 — {endYear}</span>
+          <p data-testid="subtitle">{m.subtitle}</p>
         </div>
       </header>
       {data ? (
@@ -101,7 +93,7 @@ export default function App() {
       {selected && (
         <EventDetail event={selected} locale={locale} phase={detail.phase} onClose={closeDetail} />
       )}
-      <div className="view-switch">
+      <div className="view-switch" data-testid="view-switch">
         <button
           disabled={detailActive}
           data-testid="view-overview"
@@ -120,7 +112,7 @@ export default function App() {
         </button>
       </div>
       <footer className="bottom-panel">
-        <div className="navigation-panel">
+        <div className="navigation-panel" data-testid="navigation-panel">
           <div className="current-year" data-testid="current-year">
             {year}
             <span>— {endYear}</span>

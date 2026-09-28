@@ -20,6 +20,10 @@ export interface Pose {
   scale: number;
   z: number;
 }
+/** Keep the event nearest the browsing focus on the top visual layer. */
+export function browseStackZ(card: DisplayCard, focusYear: number) {
+  return 1800 - Math.round(Math.abs(card.event.year - focusYear) * 10) - card.slot;
+}
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 export const direction = { x: Math.cos(config.angle), y: Math.sin(config.angle) };
 export const normal = { x: -direction.y, y: direction.x };

@@ -86,3 +86,31 @@ test('both photographs of a pair have an exposed mouse target', async ({ page })
     await expect(page.getByRole('dialog')).toHaveCount(0);
   }
 });
+test('browsing keeps the focused photo above adjacent photos during a slide', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByTestId('scene')).toBeVisible();
+  await page.getByTestId('year-slider').fill('1997');
+  await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
+  await expect.poll(() => page.getByTestId('focused-event').textContent()).toBe('school-1997-0');
+  const zIndexes = await page.evaluate(() => {
+    const z = (id: string) => Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex);
+    return { focused: z('school-1997-0'), previous: z('school-1996-0'), next: z('school-1998-0') };
+  });
+  expect(zIndexes.focused).toBeGreaterThan(zIndexes.previous);
+  expect(zIndexes.focused).toBeGreaterThan(zIndexes.next);
+  const scene = page.getByTestId('scene');
+  await scene.hover({ position: { x: 720, y: 400 } });
+  await page.mouse.wheel(0, 360);
+  await expect.poll(async () => Number(await scene.getAttribute('data-focus'))).toBeGreaterThan(0.45);
+  const afterSlide = await page.evaluate(() => {
+    const id = document.querySelector('[data-testid="focused-event"]')?.textContent;
+    const focused = id
+      ? Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex)
+      : 0;
+    const visible = [...document.querySelectorAll<HTMLElement>('.photo-card')]
+      .filter((el) => getComputedStyle(el).visibility !== 'hidden' && el.dataset.eventId !== id)
+      .map((el) => Number(getComputedStyle(el).zIndex));
+    return { focused, maxOther: Math.max(...visible) };
+  });
+  expect(afterSlide.focused).toBeGreaterThan(afterSlide.maxOther);
+});

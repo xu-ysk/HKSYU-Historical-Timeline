@@ -12,11 +12,11 @@ test('all themes change photo scale without changing time or hiding other events
     await page.getByTestId('theme-' + theme).click();
     await expect(page.locator('.photo-card[data-theme="' + theme + '"]').first()).toHaveAttribute(
       'style',
-      /scale\(1.65\)/,
+      /scale\(1\)/,
     );
     await expect(
       page.locator('.photo-card:not([data-theme="' + theme + '"])').first(),
-    ).toHaveAttribute('style', /scale\(0.2\)/);
+    ).toHaveAttribute('style', /scale\(0.35\)/);
     await expect(cards).toHaveCount(total);
     await expect(scene).toHaveAttribute('data-focus', '0.000000');
     expect(await page.locator('[data-education-year="1997"]').getAttribute('style')).toBe(anchor);
@@ -24,7 +24,7 @@ test('all themes change photo scale without changing time or hiding other events
   await page.getByTestId('theme-A').click();
   await expect(page.locator('.photo-card[data-theme="A"]').first()).toHaveAttribute(
     'style',
-    /scale\(1.65\)/,
+    /scale\(1\)/,
   );
   await page.screenshot({ path: 'docs/screenshots/stage4-theme-A.png' });
   await page.getByTestId('theme-all').click();
@@ -45,7 +45,7 @@ test('language and rapid theme changes preserve current browsing position', asyn
   await expect(page.getByTestId('theme-E')).toHaveAttribute('aria-pressed', 'true');
   await expect(
     page.locator('.photo-card[data-theme="E"]').filter({ visible: true }).first(),
-  ).toHaveAttribute('style', /scale\(1.65\)/);
+  ).toHaveAttribute('style', /scale\(1\)/);
   await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
   await page.getByTestId('language-en').click();
   await page.screenshot({ path: 'docs/screenshots/stage4-english.png' });

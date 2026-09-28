@@ -4,6 +4,7 @@ import { themes, themeIds } from '../config/themes';
 import { sceneConfig } from '../config/scene';
 import {
   anchor,
+  browseStackZ,
   cardPose,
   direction,
   isOnscreen,
@@ -325,6 +326,7 @@ export class TimelineController {
     if (scrim) scrim.hidden = !this.blocked;
     for (const { card, el } of this.nodes) {
       let p = cardPose(card, this.view, this.values);
+      const focusYear = timeScale(this.values.endYear).toYear(this.values.focus);
       const proximity = Math.exp(
         -Math.pow(
           (card.event.year - timeScale(this.values.endYear).toYear(this.values.focus)) / 0.7,
@@ -349,6 +351,7 @@ export class TimelineController {
         extracted = selectedIndex >= 0;
       const visible = extracted || isOnscreen(p, this.view);
       p.scale = this.themeScales[card.event.themeId];
+      if (this.values.zoom > 0.01) p.z = browseStackZ(card, focusYear);
       const visibility = visible ? 'visible' : 'hidden',
         tabIndex = visible && !this.blocked ? 0 : -1,
         pointer = this.blocked ? 'none' : '';
@@ -362,7 +365,7 @@ export class TimelineController {
       if (!visible) continue;
       if (card.event.id === this.focusedId && this.values.zoom > 0.01) {
         p.ry *= 1 - this.values.zoom * 0.28;
-        p.z = 1500;
+        p.z = Math.max(p.z, 1850);
       }
       if (extracted) p = mixPose(p, detailPose(rects[selectedIndex]), this.detail.progress);
       const width = Number(p.width.toFixed(2)) + 'px',
