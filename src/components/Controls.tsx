@@ -1,0 +1,61 @@
+import type { Locale, ThemeId } from '../domain/timeline';
+import { themes, themeIds } from '../config/themes';
+import { messages } from '../i18n/messages';
+export function LanguageSwitcher({
+  locale,
+  onChange,
+}: {
+  locale: Locale;
+  onChange: (locale: Locale) => void;
+}) {
+  return (
+    <nav className="languages" aria-label={messages[locale].language}>
+      {(['zh-Hant', 'zh-Hans', 'en'] as Locale[]).map((l, i) => (
+        <button
+          key={l}
+          data-testid={'language-' + l}
+          aria-pressed={locale === l}
+          onClick={() => onChange(l)}
+        >
+          {['繁', '简', '英'][i]}
+        </button>
+      ))}
+    </nav>
+  );
+}
+export function ThemeSwitcher({
+  locale,
+  active,
+  onChange,
+}: {
+  locale: Locale;
+  active: ThemeId | null;
+  onChange: (id: ThemeId | null) => void;
+}) {
+  const m = messages[locale];
+  return (
+    <section className="theme-panel" data-testid="theme-panel" aria-label={m.themes}>
+      <div className="theme-heading">
+        <span>{m.themes}</span>
+        <button data-testid="theme-all" aria-pressed={!active} onClick={() => onChange(null)}>
+          {m.all} <span>↗</span>
+        </button>
+      </div>
+      <div className="theme-list">
+        {themeIds.map((id) => (
+          <button
+            key={id}
+            className="theme-button"
+            data-testid={'theme-' + id}
+            aria-pressed={active === id}
+            onClick={() => onChange(id)}
+            style={{ '--swatch': themes[id].color } as React.CSSProperties}
+          >
+            <span className="theme-letter">{id}</span>
+            <span>{themes[id].label[locale]}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}

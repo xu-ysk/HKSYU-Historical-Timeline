@@ -1,0 +1,13 @@
+{
+  "browser": "chromium",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "frames": 1439,
+  "meanMs": 20.849965253648108,
+  "p95Ms": 33.399999999999636,
+  "over50ms": 1,
+  "activeCards": 89,
+  "operations": 109
+}

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.log
+
+# Local source materials; the first version runs entirely on mock data.
+/HKSYU Timeline.xlsx
+/style1.png
+/style2.png
+/style3.png
+/style4.png
+
+# Local environment files must not be published.
+.env
+.env.*
+!.env.example
