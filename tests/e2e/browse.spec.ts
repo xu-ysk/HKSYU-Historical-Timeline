@@ -24,7 +24,7 @@ test('wheel and drag move both lanes and stop at the end', async ({ page }) => {
   await page.getByTestId('year-slider').fill('1997');
   await expect(page.getByTestId('current-year')).toContainText('1997');
   await expect(scene).toHaveAttribute('data-zoom', '1.0000');
-  await page.screenshot({ path: 'docs/screenshots/stage3-browse.png' });
+  await page.screenshot({ path: test.info().outputPath('stage3-browse.png') });
   const jumped = Number(await scene.getAttribute('data-focus'));
   await scene.hover({ position: { x: 720, y: 400 } });
   await page.mouse.wheel(0, 100);

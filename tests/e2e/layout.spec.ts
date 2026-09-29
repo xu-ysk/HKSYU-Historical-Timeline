@@ -18,5 +18,7 @@ for (const size of [
     const navigation = await page.locator('.navigation-panel').boundingBox();
     expect(firstPhoto!.y + firstPhoto!.height).toBeLessThan(navigation!.y);
     await expect(page.locator('.museum-app')).toHaveCSS('background-color', 'rgb(247, 245, 242)');
-    await page.screenshot({ path: 'docs/screenshots/stage2-overview-' + size.width + '.png' });
+    await page.screenshot({
+      path: test.info().outputPath('stage2-overview-' + size.width + '.png'),
+    });
   });

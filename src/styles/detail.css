@@ -1,7 +1,7 @@
 .detail-scrim {
   position: absolute;
   inset: 0;
-  background: #f7f5f2ed;
+  background: #f7f5f255;
   z-index: 1600;
   pointer-events: none;
   opacity: var(--detail-progress, 0);
@@ -14,24 +14,6 @@
   inset: 0;
   pointer-events: none;
   z-index: 1800;
-}
-.event-detail[data-phase='opening'] .detail-text {
-  animation: detail-appear 0.8s both;
-}
-@keyframes detail-appear {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .event-detail[data-phase='opening'] .detail-text {
-    animation: none;
-  }
 }
 .close-detail {
   position: absolute;
@@ -58,6 +40,8 @@
   color: #a89f91;
 }
 .detail-text {
+  opacity: clamp(0, calc((var(--detail-progress, 0) - 0.62) * 2.632), 1);
+  transform: translateY(calc((1 - var(--detail-progress, 0)) * 8px));
   position: absolute;
   left: 68%;
   top: 240px;
@@ -130,7 +114,7 @@
 }
 .photo-card[data-extracted='true'] .photo-top,
 .photo-card[data-extracted='true'] .photo-bottom {
-  font-size: 9px;
+  font-size: clamp(2px, calc(var(--letter-size, 12px) * 0.086), 9px);
 }
 .timeline-scene[data-phase='opening'] .education-panel,
 .timeline-scene[data-phase='detail'] .education-panel,

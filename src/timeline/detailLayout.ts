@@ -1,5 +1,7 @@
 import type { DisplayCard } from '../domain/timeline';
 import type { Pose, Viewport } from './layout';
+import { normal } from './layout';
+import { clamp } from './timeScale';
 export interface Rect {
   x: number;
   y: number;
@@ -66,6 +68,7 @@ export function detailPose(rect: Rect): Pose {
     rz: 0,
     scale: 1,
     z: 1701,
+    skew: 0,
   };
 }
 export function mixPose(a: Pose, b: Pose, t: number): Pose {
@@ -73,5 +76,31 @@ export function mixPose(a: Pose, b: Pose, t: number): Pose {
   for (const key of ['x', 'y', 'width', 'height', 'ry', 'rz', 'scale'] as const)
     result[key] = a[key] + (b[key] - a[key]) * t;
   result.z = t > 0 ? b.z : a.z;
+  result.skew = (a.skew ?? 0) + ((b.skew ?? 0) - (a.skew ?? 0)) * t;
+  return result;
+}
+
+export function smoothStep(value: number) {
+  const t = clamp(value);
+  return t * t * t * (t * (t * 6 - 15) + 10);
+}
+
+/** A reversible lift, turn and approach, with zero velocity at both ends. */
+export function extractPose(source: Pose, destination: Pose, progress: number): Pose {
+  if (progress <= 0) return { ...source };
+  if (progress >= 1) return { ...destination };
+  const travel = smoothStep((progress - 0.14) / 0.86);
+  const turn = smoothStep((progress - 0.06) / 0.8);
+  const grow = smoothStep((progress - 0.2) / 0.8);
+  const lift = 32 * smoothStep(progress / 0.24) * (1 - smoothStep((progress - 0.24) / 0.76));
+  const result = mixPose(source, destination, travel);
+  result.x -= normal.x * lift;
+  result.y -= normal.y * lift;
+  result.ry = source.ry + (destination.ry - source.ry) * turn;
+  result.rz = source.rz + (destination.rz - source.rz) * turn;
+  result.skew = (source.skew ?? 0) + ((destination.skew ?? 0) - (source.skew ?? 0)) * turn;
+  for (const key of ['width', 'height', 'scale'] as const)
+    result[key] = source[key] + (destination[key] - source[key]) * grow;
+  result.z = Math.round(source.z + (destination.z - source.z) * smoothStep(progress / 0.3));
   return result;
 }

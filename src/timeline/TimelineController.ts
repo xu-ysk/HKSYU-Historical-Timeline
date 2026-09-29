@@ -11,12 +11,15 @@ import {
   lengths,
   normal,
   transform,
+  themeStackZ,
   type Viewport,
+  type Pose,
 } from './layout';
 import { clamp, timeScale, rebaseFocus } from './timeScale';
 import { wheelPixels, dragProjection } from './input';
 import { detailReducer, initialDetail, type DetailState } from './timelineReducer';
-import { detailPhotoRects, detailPose, mixPose } from './detailLayout';
+import { detailPhotoRects, detailPose, extractPose, smoothStep } from './detailLayout';
+import { eventPositions } from './albumTrack';
 
 export class TimelineController {
   values: { focus: number; zoom: number; endYear: number };
@@ -39,8 +42,12 @@ export class TimelineController {
   private returnFocus: HTMLElement | null = null;
   private lastEventId = '';
   private restoreFrame = 0;
-  private spot = { ordinal: 0 };
-  private eventOrdinals = new Map<string, number>();
+  private positions = new Map<string, number>();
+  private wheelTarget: number | null = null;
+  private rendered = new Map<string, Pose>();
+  private openingSources = new Map<string, Pose>();
+  private closingSources = new Map<string, Pose>();
+  private closeStart = 1;
   constructor(
     private root: HTMLDivElement,
     cards: DisplayCard[],
@@ -52,7 +59,7 @@ export class TimelineController {
     this.values = { focus: 0, zoom: 0, endYear };
     this.view = { width: root.clientWidth, height: root.clientHeight };
     this.events = [...new Map(cards.map((c) => [c.event.id, c.event])).values()];
-    this.eventOrdinals = new Map(this.events.map((e, i) => [e.id, i]));
+    this.positions = eventPositions(this.events, endYear);
     this.focusedId = this.events[0].id;
     const elements = new Map(
       Array.from(root.querySelectorAll<HTMLButtonElement>('[data-card-id]')).map((el) => [
@@ -104,7 +111,7 @@ export class TimelineController {
     );
     gsap.to(this.themeScales, {
       ...target,
-      duration: this.reduced.matches ? 0 : 0.5,
+      duration: this.reduced.matches ? 0 : 0.7,
       ease: 'power2.inOut',
       overwrite: true,
       onUpdate: () => {
@@ -118,7 +125,7 @@ export class TimelineController {
   updateData(cards: DisplayCard[], endYear: number) {
     if (this.values.endYear !== endYear) this.rebase(endYear);
     this.events = [...new Map(cards.map((c) => [c.event.id, c.event])).values()];
-    this.eventOrdinals = new Map(this.events.map((e, i) => [e.id, i]));
+    this.positions = eventPositions(this.events, endYear);
     const elements = new Map(
       Array.from(this.root.querySelectorAll<HTMLButtonElement>('[data-card-id]')).map((el) => [
         el.dataset.cardId,
@@ -128,26 +135,20 @@ export class TimelineController {
     this.nodes = cards.map((card) => ({ card, el: elements.get(card.id)! }));
     this.dirty = true;
   }
-  private setFocused(id: string) {
-    this.focusedId = id;
-    gsap.to(this.spot, {
-      ordinal: this.eventOrdinals.get(id) ?? 0,
-      duration: this.reduced.matches ? 0 : 0.4,
-      ease: 'power2.out',
-      overwrite: true,
-      onUpdate: () => {
-        this.dirty = true;
-      },
-    });
-  }
   open(eventId: string) {
     if (this.blocked || this.drag?.moved || !this.events.some((e) => e.id === eventId)) return;
     const next = detailReducer(this.detailState, { type: 'open', eventId });
     if (next === this.detailState) return;
     this.returnFocus = document.activeElement as HTMLElement;
     gsap.killTweensOf(this.values);
-    gsap.killTweensOf(this.spot);
+    this.wheelTarget = null;
     this.root.dataset.targetFocus = String(this.values.focus);
+    this.openingSources = new Map(
+      this.nodes
+        .filter((node) => node.card.event.id === eventId)
+        .map(({ card }) => [card.id, { ...(this.rendered.get(card.id) ?? this.albumPose(card)) }]),
+    );
+    this.closingSources.clear();
     this.blocked = true;
     this.detailState = next;
     this.root.dataset.phase = next.phase;
@@ -155,8 +156,8 @@ export class TimelineController {
     const token = next.token;
     gsap.to(this.detail, {
       progress: 1,
-      duration: this.reduced.matches ? 0 : 0.8,
-      ease: 'power3.inOut',
+      duration: this.reduced.matches ? 0 : 1.05,
+      ease: 'none',
       overwrite: true,
       onUpdate: () => {
         this.dirty = true;
@@ -173,14 +174,20 @@ export class TimelineController {
   close() {
     const next = detailReducer(this.detailState, { type: 'close' });
     if (next === this.detailState) return;
+    this.closeStart = this.detail.progress;
+    this.closingSources = new Map(
+      this.nodes
+        .filter((node) => node.card.event.id === this.detailState.eventId)
+        .map(({ card }) => [card.id, { ...(this.rendered.get(card.id) ?? this.albumPose(card)) }]),
+    );
     this.detailState = next;
     this.root.dataset.phase = next.phase;
     this.onDetail(next);
     const token = next.token;
     gsap.to(this.detail, {
       progress: 0,
-      duration: this.reduced.matches ? 0 : 0.7,
-      ease: 'power3.inOut',
+      duration: this.reduced.matches ? 0 : 0.85,
+      ease: 'none',
       overwrite: true,
       onUpdate: () => {
         this.dirty = true;
@@ -207,16 +214,20 @@ export class TimelineController {
   }
   setMode(mode: 'overview' | 'browse') {
     if (this.blocked) return;
+    if (mode === this.mode && this.values.zoom === (mode === 'browse' ? 1 : 0)) return;
     this.mode = mode;
     this.onMode(mode);
     this.animate({ zoom: mode === 'browse' ? 1 : 0 }, 0.8);
   }
   navigate(unit: number, id?: string) {
     if (this.blocked) return;
+    this.wheelTarget = null;
     this.setMode('browse');
-    this.setFocused(id ?? this.nearest(unit).id);
-    this.root.dataset.targetFocus = String(clamp(unit));
-    this.animate({ focus: clamp(unit) });
+    const target = id
+      ? timeScale(this.values.endYear).toUnit(this.positions.get(id)!)
+      : clamp(unit);
+    this.root.dataset.targetFocus = String(target);
+    this.animate({ focus: target });
     this.lastYear = -1;
   }
   goYear(year: number) {
@@ -232,26 +243,33 @@ export class TimelineController {
     this.values.focus = rebaseFocus(this.values.focus, this.values.endYear, endYear);
     this.values.endYear = endYear;
     this.root.dataset.targetFocus = String(this.values.focus);
+    this.wheelTarget = null;
     this.dirty = true;
   }
   private nearest(unit: number) {
     const year = timeScale(this.values.endYear).toYear(unit);
     return this.events.reduce((best, event) =>
-      Math.abs(event.year - year) < Math.abs(best.year - year) ? event : best,
+      Math.abs(this.positions.get(event.id)! - year) < Math.abs(this.positions.get(best.id)! - year)
+        ? event
+        : best,
     );
   }
   private wheel = (e: WheelEvent) => {
     if (this.blocked || (e.target as HTMLElement).closest('.education-panel')) return;
     e.preventDefault();
     this.setMode('browse');
-    const current = Number(this.root.dataset.targetFocus ?? this.values.focus);
-    const target = clamp(
+    const current = this.wheelTarget ?? Number(this.root.dataset.targetFocus ?? this.values.focus);
+    this.wheelTarget = clamp(
       current +
-        wheelPixels(e.deltaX, e.deltaY, e.deltaMode, this.view.height) / lengths(this.view).browse,
+        (wheelPixels(e.deltaX, e.deltaY, e.deltaMode, this.view.height) *
+          sceneConfig.wheelSensitivity) /
+          lengths(this.view).browse,
+    );
+    const target = timeScale(this.values.endYear).toUnit(
+      this.positions.get(this.nearest(this.wheelTarget).id)!,
     );
     this.root.dataset.targetFocus = String(target);
-    this.setFocused(this.nearest(target).id);
-    this.animate({ focus: target }, 0.45);
+    this.animate({ focus: target }, 0.65);
   };
   private down = (e: PointerEvent) => {
     if (
@@ -261,6 +279,7 @@ export class TimelineController {
     )
       return;
     this.suppressClick = false;
+    this.wheelTarget = null;
     this.drag = {
       id: e.pointerId,
       x: e.clientX,
@@ -284,7 +303,6 @@ export class TimelineController {
     gsap.killTweensOf(this.values, 'focus');
     this.values.focus = clamp(drag.focus - dragProjection(dx, dy) / lengths(this.view).browse);
     this.root.dataset.targetFocus = String(this.values.focus);
-    this.setFocused(this.nearest(this.values.focus).id);
     this.dirty = true;
   };
   private up = () => {
@@ -305,18 +323,40 @@ export class TimelineController {
       this.suppressClick = false;
     }
   };
+  private albumPose(card: DisplayCard): Pose {
+    const position = this.positions.get(card.event.id)!;
+    const p = cardPose(card, this.view, this.values, position);
+    p.scale = this.themeScales[card.event.themeId];
+    if (card.event.photos.length > 1 && card.photo) {
+      const index = card.event.photos.findIndex((photo) => photo.id === card.photo!.id);
+      const offset = (index - 0.5) * (18 + 26 * this.values.zoom) * p.scale;
+      p.x += normal.x * offset;
+      p.y += normal.y * offset;
+    }
+    if (this.values.zoom > 0.01) {
+      p.z = browseStackZ(card, timeScale(this.values.endYear).toYear(this.values.focus), position);
+      if (card.event.id === this.focusedId) p.z = 1550;
+    }
+    p.z = themeStackZ(p.z, p.scale);
+    return p;
+  }
   private tick = () => {
     if (!this.dirty || this.disposed) return;
     this.dirty = false;
     this.root.dataset.focus = this.values.focus.toFixed(6);
     this.root.dataset.zoom = this.values.zoom.toFixed(4);
+    this.focusedId = this.nearest(this.values.focus).id;
+    this.root.dataset.focusedEvent = this.focusedId;
     const year = Math.round(timeScale(this.values.endYear).toYear(this.values.focus));
     if (year !== this.lastYear || this.focusedId !== this.lastEventId) {
       this.lastYear = year;
       this.lastEventId = this.focusedId;
       this.onChange(year, this.focusedId);
     }
-    this.root.style.setProperty('--detail-progress', String(this.detail.progress));
+    this.root
+      .closest<HTMLElement>('.museum-app')
+      ?.style.setProperty('--detail-progress', String(this.detail.progress));
+    this.root.dataset.detailProgress = this.detail.progress.toFixed(4);
     const selected = this.nodes.filter((n) => n.card.event.id === this.detailState.eventId),
       rects = detailPhotoRects(
         selected.map((n) => n.card),
@@ -325,33 +365,30 @@ export class TimelineController {
     const scrim = this.root.querySelector<HTMLElement>('.detail-scrim');
     if (scrim) scrim.hidden = !this.blocked;
     for (const { card, el } of this.nodes) {
-      let p = cardPose(card, this.view, this.values);
-      const focusYear = timeScale(this.values.endYear).toYear(this.values.focus);
-      const proximity = Math.exp(
-        -Math.pow(
-          (card.event.year - timeScale(this.values.endYear).toYear(this.values.focus)) / 0.7,
-          2,
-        ),
-      );
-      const separation =
-        Math.tanh(((this.eventOrdinals.get(card.event.id) ?? 0) - this.spot.ordinal) * 3) *
-        300 *
-        proximity *
-        this.values.zoom;
-      p.x += direction.x * separation;
-      p.y += direction.y * separation;
-      // Fan linked photographs slightly apart so each has a usable mouse target.
-      if (card.event.photos.length > 1 && card.photo) {
-        const photoIndex = card.event.photos.findIndex((photo) => photo.id === card.photo!.id);
-        const pairOffset = (photoIndex - 0.5) * 44 * this.values.zoom;
-        p.x += normal.x * pairOffset;
-        p.y += normal.y * pairOffset;
-      }
+      let p = this.albumPose(card);
       const selectedIndex = selected.findIndex((n) => n.card.id === card.id),
         extracted = selectedIndex >= 0;
+      if (extracted) {
+        if (this.detailState.phase === 'closing') {
+          const progress = this.closeStart > 0 ? this.detail.progress / this.closeStart : 0;
+          p = extractPose(p, this.closingSources.get(card.id)!, progress);
+        } else {
+          p = extractPose(
+            this.openingSources.get(card.id)!,
+            detailPose(rects[selectedIndex]),
+            this.detail.progress,
+          );
+        }
+      } else if (selected.length) {
+        const side = Math.sign(
+          this.positions.get(card.event.id)! - this.positions.get(selected[0].card.event.id)!,
+        );
+        const retreat =
+          side * Math.min(190, this.view.width * 0.13) * smoothStep(this.detail.progress);
+        p.x += direction.x * retreat;
+        p.y += direction.y * retreat;
+      }
       const visible = extracted || isOnscreen(p, this.view);
-      p.scale = this.themeScales[card.event.themeId];
-      if (this.values.zoom > 0.01) p.z = browseStackZ(card, focusYear);
       const visibility = visible ? 'visible' : 'hidden',
         tabIndex = visible && !this.blocked ? 0 : -1,
         pointer = this.blocked ? 'none' : '';
@@ -363,17 +400,13 @@ export class TimelineController {
       if (el.style.pointerEvents !== pointer) el.style.pointerEvents = pointer;
       if (el.dataset.extracted !== String(extracted)) el.dataset.extracted = String(extracted);
       if (!visible) continue;
-      if (card.event.id === this.focusedId && this.values.zoom > 0.01) {
-        p.ry *= 1 - this.values.zoom * 0.28;
-        p.z = Math.max(p.z, 1850);
-      }
-      if (extracted) p = mixPose(p, detailPose(rects[selectedIndex]), this.detail.progress);
       const width = Number(p.width.toFixed(2)) + 'px',
         height = Number(p.height.toFixed(2)) + 'px',
         letter = Number((p.width * 0.34).toFixed(2)) + 'px';
       if (el.style.width !== width) el.style.width = width;
       if (el.style.height !== height) el.style.height = height;
       el.style.transform = transform(p);
+      this.rendered.set(card.id, { ...p });
       if (el.style.zIndex !== String(p.z)) el.style.zIndex = String(p.z);
       if (el.style.getPropertyValue('--letter-size') !== letter)
         el.style.setProperty('--letter-size', letter);
@@ -403,7 +436,6 @@ export class TimelineController {
     this.disposed = true;
     cancelAnimationFrame(this.restoreFrame);
     gsap.killTweensOf(this.view);
-    gsap.killTweensOf(this.spot);
     gsap.killTweensOf(this.detail);
     gsap.killTweensOf(this.values);
     gsap.killTweensOf(this.themeScales);

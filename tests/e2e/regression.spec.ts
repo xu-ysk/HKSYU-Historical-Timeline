@@ -31,6 +31,7 @@ test('reduced motion keeps every operation available and restores keyboard focus
   await expect(page.getByTestId('scene')).toBeVisible();
   await page.getByTestId('year-slider').fill('1997');
   await page.getByTestId('theme-C').click();
+  await expect(page.locator('.photo-card').first()).toHaveCSS('transition-duration', '0s');
   await page.getByTestId('open-focused').click();
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   await expect(page.getByTestId('close-detail')).toBeFocused();
@@ -85,5 +86,5 @@ test('central focused event is visually separated from both adjacent event group
       );
     })
     .toBeGreaterThan(250);
-  await page.screenshot({ path: 'docs/screenshots/final-central-separation.png' });
+  await page.screenshot({ path: test.info().outputPath('final-central-separation.png') });
 });

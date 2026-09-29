@@ -8,6 +8,18 @@ async function selectEvent(page: Page, year: number, order: number) {
     await page.getByTestId('next-event').click();
     await expect(page.getByTestId('focused-event')).toHaveText(`school-${year}-${i + 1}`);
   }
+  // The nearest event changes before its travel ends; capture the return position
+  // only once navigation has reached the requested slot.
+  await expect
+    .poll(() =>
+      page.getByTestId('scene').evaluate((el) => {
+        const scene = el as HTMLElement;
+        return Math.abs(
+          Number(scene.dataset.focus) - Number(scene.dataset.targetFocus ?? scene.dataset.focus),
+        );
+      }),
+    )
+    .toBeLessThan(0.000001);
 }
 for (const sample of [
   { year: 1949, order: 0, count: 1, name: 'text-only' },
@@ -42,7 +54,7 @@ for (const sample of [
       expect(box!.x + box!.width).toBeLessThan(text!.x);
       expect(box!.y + box!.height).toBeLessThan(710);
     }
-    await page.screenshot({ path: 'docs/screenshots/stage5-' + sample.name + '.png' });
+    await page.screenshot({ path: test.info().outputPath('stage5-' + sample.name + '.png') });
     await page.getByTestId('language-en').click();
     await page.getByTestId('theme-E').click();
     await expect(page.getByRole('dialog')).toBeVisible();
@@ -74,7 +86,7 @@ test('either photograph opens the same pair and long text scroll does not move t
     .poll(() => page.getByTestId('detail-body').evaluate((el) => el.scrollTop))
     .toBeGreaterThan(0);
   await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
-  await page.screenshot({ path: 'docs/screenshots/stage5-compact-english-pair.png' });
+  await page.screenshot({ path: test.info().outputPath('stage5-compact-english-pair.png') });
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(source).toBeFocused();

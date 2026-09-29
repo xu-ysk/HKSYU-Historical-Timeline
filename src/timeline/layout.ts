@@ -19,10 +19,15 @@ export interface Pose {
   rz: number;
   scale: number;
   z: number;
+  skew?: number;
 }
 /** Keep the event nearest the browsing focus on the top visual layer. */
-export function browseStackZ(card: DisplayCard, focusYear: number) {
-  return 1800 - Math.round(Math.abs(card.event.year - focusYear) * 10) - card.slot;
+export function browseStackZ(card: DisplayCard, focusYear: number, position = card.event.year) {
+  return Math.max(200, 1500 - Math.round(Math.abs(position - focusYear) * 40) - card.slot);
+}
+/** Smaller sleeves recede behind full-size sleeves, never across their faces. */
+export function themeStackZ(depth: number, scale: number) {
+  return Math.round(scale * 1000 + (depth / 1550) * 400);
 }
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 export const direction = { x: Math.cos(config.angle), y: Math.sin(config.angle) };
@@ -50,24 +55,31 @@ export function anchor(
     y: view.height * 0.49 + direction.y * q + normal.y * offset,
   };
 }
-export function cardPose(card: DisplayCard, view: Viewport, values: SceneValues): Pose {
-  const base = anchor(card.event.year, 'school', view, values);
+export function cardPose(
+  card: DisplayCard,
+  view: Viewport,
+  values: SceneValues,
+  position = card.event.year,
+): Pose {
   const length = lengths(view),
     span = timeScale(values.endYear).span;
   const slot = card.countInYear > 1 ? card.slot / (card.countInYear - 1) - 0.5 : 0;
   let delta = slot * 0.7;
   if (card.event.year === 1949) delta += 0.35;
   if (card.event.year === values.endYear) delta -= 0.35;
-  const offset = (delta * lerp(length.overview, length.browse, values.zoom)) / span;
+  const offset = (delta * length.overview) / span;
+  const overview = anchor(card.event.year, 'school', view, { ...values, zoom: 0 });
+  const browse = anchor(position, 'school', view, { ...values, zoom: 1 });
   const width = lerp(config.overviewCardWidth, config.browseCardWidth, values.zoom);
   const ratio = 1.5; // Uniform album sleeves; the detail view uses each photograph's own aspect ratio.
   return {
-    x: base.x + direction.x * offset,
-    y: base.y + direction.y * offset,
+    x: lerp(overview.x + direction.x * offset, browse.x, values.zoom),
+    y: lerp(overview.y + direction.y * offset, browse.y, values.zoom),
     width,
     height: width / ratio,
     ry: -52,
-    rz: 18,
+    rz: 18 * (1 - values.zoom),
+    skew: 18 * values.zoom,
     scale: 1,
     z: Math.round(1000 - timeScale(values.endYear).toUnit(card.event.year) * 500 - card.slot),
   };
@@ -82,6 +94,8 @@ export function transform(p: Pose) {
     p.ry +
     'deg) rotateZ(' +
     p.rz +
+    'deg) skewY(' +
+    (p.skew ?? 0) +
     'deg) scale(' +
     p.scale +
     ')'

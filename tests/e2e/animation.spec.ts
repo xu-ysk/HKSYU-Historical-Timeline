@@ -93,15 +93,29 @@ test('browsing keeps the focused photo above adjacent photos during a slide', as
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
   await expect.poll(() => page.getByTestId('focused-event').textContent()).toBe('school-1997-0');
   const zIndexes = await page.evaluate(() => {
-    const z = (id: string) => Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex);
+    const z = (id: string) =>
+      Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex);
     return { focused: z('school-1997-0'), previous: z('school-1996-0'), next: z('school-1998-0') };
   });
   expect(zIndexes.focused).toBeGreaterThan(zIndexes.previous);
   expect(zIndexes.focused).toBeGreaterThan(zIndexes.next);
   const scene = page.getByTestId('scene');
   await scene.hover({ position: { x: 720, y: 400 } });
+  const beforeSlide = Number(await scene.getAttribute('data-focus'));
   await page.mouse.wheel(0, 360);
-  await expect.poll(async () => Number(await scene.getAttribute('data-focus'))).toBeGreaterThan(0.45);
+  await expect
+    .poll(async () => Number(await scene.getAttribute('data-focus')))
+    .toBeGreaterThan(beforeSlide);
+  await expect
+    .poll(() =>
+      scene.evaluate((el) =>
+        Math.abs(
+          Number((el as HTMLElement).dataset.focus) -
+            Number((el as HTMLElement).dataset.targetFocus),
+        ),
+      ),
+    )
+    .toBeLessThan(0.000001);
   const afterSlide = await page.evaluate(() => {
     const id = document.querySelector('[data-testid="focused-event"]')?.textContent;
     const focused = id

@@ -26,7 +26,7 @@ test('all themes change photo scale without changing time or hiding other events
     'style',
     /scale\(1\)/,
   );
-  await page.screenshot({ path: 'docs/screenshots/stage4-theme-A.png' });
+  await page.screenshot({ path: test.info().outputPath('stage4-theme-A.png') });
   await page.getByTestId('theme-all').click();
   await expect(cards.first()).toHaveAttribute('style', /scale\(1\)/);
 });
@@ -48,5 +48,5 @@ test('language and rapid theme changes preserve current browsing position', asyn
   ).toHaveAttribute('style', /scale\(1\)/);
   await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
   await page.getByTestId('language-en').click();
-  await page.screenshot({ path: 'docs/screenshots/stage4-english.png' });
+  await page.screenshot({ path: test.info().outputPath('stage4-english.png') });
 });
