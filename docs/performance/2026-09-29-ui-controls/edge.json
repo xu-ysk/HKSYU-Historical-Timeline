@@ -1,0 +1,13 @@
+{
+  "browser": "edge",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "frames": 1797,
+  "meanMs": 16.70311630495353,
+  "p95Ms": 17,
+  "over50ms": 0,
+  "activeCards": 62,
+  "operations": 113
+}

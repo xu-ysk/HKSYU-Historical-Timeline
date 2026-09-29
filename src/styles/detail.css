@@ -12,32 +12,10 @@
 .event-detail {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  z-index: 1800;
-}
-.close-detail {
-  position: absolute;
-  top: 211px;
-  left: 65px;
-  height: 23px;
-  background: none;
-  border: none;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  font-size: 11px;
-  color: #81796b;
-  padding: 0;
   pointer-events: auto;
-}
-.close-detail > span:first-child {
-  font-size: 20px;
-}
-.esc-hint {
-  font-size: 8px;
-  border: 1px solid #d8d2c7;
-  padding: 2px 4px;
-  color: #a89f91;
+  z-index: 2100;
+  cursor: zoom-out;
+  outline: none;
 }
 .detail-text {
   opacity: clamp(0, calc((var(--detail-progress, 0) - 0.62) * 2.632), 1);

@@ -60,7 +60,6 @@ export default function App() {
       <header className="masthead">
         <div className="header-top">
           <LanguageSwitcher locale={locale} onChange={setLocale} />
-          <div className="institution" data-testid="institution-title">HKSYU Museum Timeline</div>
         </div>
         <div className="title-block">
           <h1>

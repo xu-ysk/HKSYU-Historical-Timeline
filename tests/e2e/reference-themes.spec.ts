@@ -75,7 +75,7 @@ for (const mode of ['overview', 'browse'])
       ).toEqual(original);
     }
     await page.screenshot({ path: test.info().outputPath(`T2-${mode}.png`) });
-    await page.getByTestId('theme-all').click();
+    await page.getByTestId('theme-E').click();
     await expect(page.locator('.photo-card').filter({ visible: true }).first()).toHaveAttribute(
       'style',
       /scale\(1\)/,

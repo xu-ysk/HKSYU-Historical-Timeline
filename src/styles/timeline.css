@@ -46,24 +46,6 @@ button {
   background: #e9e5df;
   border-radius: 3px;
 }
-.institution {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: Georgia, serif;
-  font-size: 22px;
-  letter-spacing: 3px;
-  white-space: nowrap;
-}
-.institution span {
-  font:
-    9px 'Segoe UI',
-    sans-serif;
-  letter-spacing: 2px;
-  border-left: 1px solid #c9c4ba;
-  padding-left: 18px;
-  margin-left: 12px;
-}
 .title-block {
   margin-top: 37px;
 }
@@ -173,12 +155,8 @@ h1 {
 .photo-card {
   contain: layout style;
 }
-.title-mark,
-.theme-heading {
+.title-mark {
   transition: color 0.5s;
-}
-.theme-heading > span {
-  display: none;
 }
 .timeline-scene[data-mode='browse'] .photo-card:not([data-extracted='true']) {
   box-shadow:
@@ -370,23 +348,8 @@ h1 {
   border-radius: 50%;
   background: #b8aa90;
 }
-.theme-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 13px;
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: #7e776a;
-}
-.theme-heading button {
-  font-size: 10px;
-  border: 0;
-  background: none;
-  padding: 3px 0 3px 12px;
-}
-.theme-heading button span {
-  margin-left: 12px;
+.theme-panel {
+  grid-column: 2;
 }
 .theme-list {
   display: grid;
@@ -397,6 +360,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   gap: 10px;
   padding: 10px 10px 12px;
   min-height: 89px;
@@ -413,12 +377,6 @@ h1 {
 .theme-button[aria-pressed='true'] {
   background: color-mix(in srgb, var(--swatch) 12%, var(--paper));
   border-color: var(--swatch);
-}
-.theme-letter {
-  font:
-    19px Georgia,
-    serif;
-  color: var(--swatch);
 }
 .loading {
   position: absolute;

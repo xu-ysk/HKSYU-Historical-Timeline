@@ -15,14 +15,18 @@ export function EventDetail({
   phase: DetailPhase;
   onClose: () => void;
 }) {
-  const closeRef = useRef<HTMLButtonElement>(null),
+  const dialogRef = useRef<HTMLElement>(null),
+    bodyRef = useRef<HTMLDivElement>(null),
     m = messages[locale];
   useEffect(() => {
-    closeRef.current?.focus();
+    dialogRef.current?.focus();
     const key = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault();
         onClose();
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        bodyRef.current?.focus({ preventScroll: true });
       }
     };
     window.addEventListener('keydown', key);
@@ -30,18 +34,24 @@ export function EventDetail({
   }, [onClose]);
   return (
     <section
+      ref={dialogRef}
       className="event-detail"
       role="dialog"
+      aria-modal="true"
+      tabIndex={-1}
       aria-labelledby="event-title"
-      aria-describedby="detail-body"
+      aria-describedby="detail-body detail-dismiss-hint"
       data-testid="event-detail"
       data-event={event.id}
       data-phase={phase}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
     >
-      <button ref={closeRef} className="close-detail" onClick={onClose} data-testid="close-detail">
-        <span>←</span> {m.close}
-        <span className="esc-hint">ESC</span>
-      </button>
+      <span className="sr-only" id="detail-dismiss-hint">
+        {m.dismissDetail}
+      </span>
       <div className="detail-text" data-testid="detail-text">
         <div className="eyebrow">
           {m.sample} / {event.year}
@@ -55,7 +65,13 @@ export function EventDetail({
           {themes[event.themeId].label[locale]}
         </div>
         <h2 id="event-title">{localized(event.title, locale)}</h2>
-        <div id="detail-body" className="detail-body" data-testid="detail-body" tabIndex={0}>
+        <div
+          ref={bodyRef}
+          id="detail-body"
+          className="detail-body"
+          data-testid="detail-body"
+          tabIndex={0}
+        >
           {localized(event.body, locale)}
         </div>
         <div className="detail-caption">

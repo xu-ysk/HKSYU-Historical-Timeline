@@ -35,12 +35,6 @@ export function ThemeSwitcher({
   const m = messages[locale];
   return (
     <section className="theme-panel" data-testid="theme-panel" aria-label={m.themes}>
-      <div className="theme-heading">
-        <span>{m.themes}</span>
-        <button data-testid="theme-all" aria-pressed={!active} onClick={() => onChange(null)}>
-          {m.all} <span>↗</span>
-        </button>
-      </div>
       <div className="theme-list">
         {themeIds.map((id) => (
           <button
@@ -48,10 +42,9 @@ export function ThemeSwitcher({
             className="theme-button"
             data-testid={'theme-' + id}
             aria-pressed={active === id}
-            onClick={() => onChange(id)}
+            onClick={() => onChange(active === id ? null : id)}
             style={{ '--swatch': themes[id].color } as React.CSSProperties}
           >
-            <span className="theme-letter">{id}</span>
             <span>{themes[id].label[locale]}</span>
           </button>
         ))}

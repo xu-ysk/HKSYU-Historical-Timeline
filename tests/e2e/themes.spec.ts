@@ -27,7 +27,7 @@ test('all themes change photo scale without changing time or hiding other events
     /scale\(1\)/,
   );
   await page.screenshot({ path: test.info().outputPath('stage4-theme-A.png') });
-  await page.getByTestId('theme-all').click();
+  await page.getByTestId('theme-A').click();
   await expect(cards.first()).toHaveAttribute('style', /scale\(1\)/);
 });
 test('language and rapid theme changes preserve current browsing position', async ({ page }) => {

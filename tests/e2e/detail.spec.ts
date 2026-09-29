@@ -32,6 +32,9 @@ for (const sample of [
     await expect(page.getByTestId('scene')).toBeVisible();
     const initialCount = await page.locator('.photo-card').count();
     await selectEvent(page, sample.year, sample.order);
+    // Any detail click now dismisses it; choose language and theme before opening.
+    await page.getByTestId('language-en').click();
+    await page.getByTestId('theme-E').click();
     const focus = await page.getByTestId('scene').getAttribute('data-focus');
     const eventId = `school-${sample.year}-${sample.order}`;
     const source = page.locator(`.photo-card[data-event-id="${eventId}"]`).first();
@@ -45,8 +48,9 @@ for (const sample of [
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', eventId);
     const text = await page.getByTestId('detail-text').boundingBox();
     const subtitle = await page.locator('.title-block').boundingBox(),
-      close = await page.getByTestId('close-detail').boundingBox();
-    expect(close!.y).toBeGreaterThan(subtitle!.y + subtitle!.height);
+      viewSwitch = await page.getByTestId('view-switch').boundingBox();
+    await expect(page.getByTestId('close-detail')).toHaveCount(0);
+    expect(viewSwitch!.y).toBeGreaterThan(subtitle!.y + subtitle!.height);
     await expect(page.getByTestId('education-panel')).toBeHidden();
     for (const photo of await page.locator('[data-extracted=true]').all()) {
       const box = await photo.boundingBox();
@@ -55,11 +59,9 @@ for (const sample of [
       expect(box!.y + box!.height).toBeLessThan(710);
     }
     await page.screenshot({ path: test.info().outputPath('stage5-' + sample.name + '.png') });
-    await page.getByTestId('language-en').click();
-    await page.getByTestId('theme-E').click();
     await expect(page.getByRole('dialog')).toBeVisible();
     await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
-    await page.getByTestId('close-detail').click();
+    await page.mouse.click(1400, 100);
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(page.locator('[data-extracted=true]')).toHaveCount(0);
     await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
@@ -72,13 +74,13 @@ test('either photograph opens the same pair and long text scroll does not move t
   await page.goto('/');
   await expect(page.getByTestId('scene')).toBeVisible();
   await selectEvent(page, 1953, 3);
+  await page.getByTestId('language-en').click();
   const source = page.locator('.photo-card[data-event-id="school-1953-3"]').nth(1);
   await source.focus();
   await source.press('Enter');
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   await expect(page.locator('[data-extracted=true]')).toHaveCount(2);
   await page.setViewportSize({ width: 1280, height: 720 });
-  await page.getByTestId('language-en').click();
   const focus = await page.getByTestId('scene').getAttribute('data-focus');
   await page.getByTestId('detail-body').hover();
   await page.mouse.wheel(0, 500);

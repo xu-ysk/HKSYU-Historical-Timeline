@@ -34,7 +34,8 @@ test('reduced motion keeps every operation available and restores keyboard focus
   await expect(page.locator('.photo-card').first()).toHaveCSS('transition-duration', '0s');
   await page.getByTestId('open-focused').click();
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
-  await expect(page.getByTestId('close-detail')).toBeFocused();
+  await expect(page.getByRole('dialog')).toBeFocused();
+  await expect(page.getByTestId('close-detail')).toHaveCount(0);
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.getByTestId('open-focused')).toBeFocused();
@@ -54,13 +55,13 @@ test('mouse can select a photo and repeated mixed operations keep returning corr
     await page.getByTestId('year-slider').fill(String(year));
     await expect(page.getByTestId('current-year')).toContainText(String(year));
     await page.getByTestId('theme-A').click();
+    await page.getByTestId('language-en').click();
     await page.getByTestId('open-focused').click();
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
-    await page.getByTestId('language-en').click();
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toHaveCount(0);
-    await page.getByTestId('theme-all').click();
+    await page.getByTestId('theme-A').click();
     await page.setViewportSize({ width: 1440, height: 900 });
   }
   await page.getByTestId('view-overview').click();
