@@ -17,6 +17,7 @@ npm run dev
 ## 操作
 
 - 初次進入為立體相冊全覽。滾動鼠標、拖曳相冊或點選「瀏覽」即可近距離探索。
+- 瀏覽時左下照片按較早年代在上方的順序層疊，右上維持原有前後順序；拖曳與滾輪採用較慢的移動速度，方便逐張觀看。
 - 使用副標題下的「全覽／瀏覽」切換相冊視圖。
 - 點相片將其抽出；同事件兩張相片會一起展示。點擊頁面任意位置或按 Esc 歸位。
 - 右下五個主題框保留名稱與主題色；再次點擊已選中的主題可恢復全部照片。左上繁／簡／英切換界面語言。
@@ -40,6 +41,8 @@ npm run test:e2e
 `npm run test:e2e -- tests/e2e/detail.spec.ts --project=chromium` 可針對開發中的詳情功能復測，但交付前仍須執行完整矩陣。報告見 `playwright-report/index.html`，已記錄的結果見 [docs/validation.md](./docs/validation.md)。
 
 最新標題、主題按鈕與點擊返回操作的驗證見 [docs/ui-controls-validation.md](./docs/ui-controls-validation.md)。
+
+瀏覽層疊順序與滑動減速的驗證見 [docs/browse-refinement-validation.md](./docs/browse-refinement-validation.md)。
 
 ## 內容與調校位置
 

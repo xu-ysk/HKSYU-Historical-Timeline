@@ -86,7 +86,9 @@ test('both photographs of a pair have an exposed mouse target', async ({ page })
     await expect(page.getByRole('dialog')).toHaveCount(0);
   }
 });
-test('browsing keeps the focused photo above adjacent photos during a slide', async ({ page }) => {
+test('browsing keeps earlier photos above later photos during a left-down slide', async ({
+  page,
+}) => {
   await page.goto('/');
   await expect(page.getByTestId('scene')).toBeVisible();
   await page.getByTestId('year-slider').fill('1997');
@@ -97,7 +99,7 @@ test('browsing keeps the focused photo above adjacent photos during a slide', as
       Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex);
     return { focused: z('school-1997-0'), previous: z('school-1996-0'), next: z('school-1998-0') };
   });
-  expect(zIndexes.focused).toBeGreaterThan(zIndexes.previous);
+  expect(zIndexes.previous).toBeGreaterThan(zIndexes.focused);
   expect(zIndexes.focused).toBeGreaterThan(zIndexes.next);
   const scene = page.getByTestId('scene');
   await scene.hover({ position: { x: 720, y: 400 } });
@@ -117,14 +119,34 @@ test('browsing keeps the focused photo above adjacent photos during a slide', as
     )
     .toBeLessThan(0.000001);
   const afterSlide = await page.evaluate(() => {
-    const id = document.querySelector('[data-testid="focused-event"]')?.textContent;
-    const focused = id
-      ? Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex)
-      : 0;
-    const visible = [...document.querySelectorAll<HTMLElement>('.photo-card')]
-      .filter((el) => getComputedStyle(el).visibility !== 'hidden' && el.dataset.eventId !== id)
-      .map((el) => Number(getComputedStyle(el).zIndex));
-    return { focused, maxOther: Math.max(...visible) };
+    const z = (id: string) =>
+      Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex);
+    return { previous: z('school-1997-0'), next: z('school-1998-0') };
   });
-  expect(afterSlide.focused).toBeGreaterThan(afterSlide.maxOther);
+  expect(afterSlide.previous).toBeGreaterThan(afterSlide.next);
+});
+
+test('a left-down drag preserves the chronological cover order', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByTestId('scene')).toBeVisible();
+  await page.getByTestId('year-slider').fill('1997');
+  await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
+  const scene = page.getByTestId('scene');
+  await scene.hover({ position: { x: 800, y: 390 } });
+  await page.mouse.move(800, 390);
+  await page.mouse.down();
+  await page.mouse.move(620, 520, { steps: 12 });
+  await page.mouse.up();
+  await expect.poll(() => page.getByTestId('scene').getAttribute('data-phase')).toBe('idle');
+  const zIndexes = await page.evaluate(() => {
+    const z = (id: string) =>
+      Number(getComputedStyle(document.querySelector(`[data-event-id="${id}"]`)!).zIndex);
+    return {
+      older: z('school-1996-0'),
+      middle: z('school-1997-0'),
+      newer: z('school-1998-0'),
+    };
+  });
+  expect(zIndexes.older).toBeGreaterThan(zIndexes.middle);
+  expect(zIndexes.middle).toBeGreaterThan(zIndexes.newer);
 });

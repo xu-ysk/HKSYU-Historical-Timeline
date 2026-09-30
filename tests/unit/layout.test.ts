@@ -2,6 +2,7 @@ import { test, expect } from 'vitest';
 import { anchor, direction, cardPose, browseStackZ } from '../../src/timeline/layout';
 import { createMockTimeline } from '../../src/data/mockTimeline';
 import { toCards } from '../../src/domain/normalizeTimeline';
+import { eventPositions } from '../../src/timeline/albumTrack';
 test('both lanes project each year onto exactly the same time axis at every zoom', () => {
   for (const zoom of [0, 0.25, 0.5, 1])
     for (const year of [1949, 1952, 1997, 2026]) {
@@ -34,11 +35,34 @@ test('overview cards remain inside desktop windows including portrait cards', ()
       expect(p.y).toBeLessThan(view.height - p.height / 2);
     }
 });
-test('browsing stack places the nearest year above cards behind the focus', () => {
+test('browsing stack puts earlier years above later years along the left-down axis', () => {
   const cards = toCards(createMockTimeline(2026));
   const focused = cards.find((card) => card.event.id === 'school-1997-0')!;
   const previous = cards.find((card) => card.event.id === 'school-1996-0')!;
   const next = cards.find((card) => card.event.id === 'school-1998-0')!;
-  expect(browseStackZ(focused, 1997)).toBeGreaterThan(browseStackZ(previous, 1997));
+  expect(browseStackZ(previous, 1997)).toBeGreaterThan(browseStackZ(focused, 1997));
   expect(browseStackZ(focused, 1997)).toBeGreaterThan(browseStackZ(next, 1997));
+  expect(browseStackZ(previous, 1997)).toBeGreaterThan(browseStackZ(next, 1997));
+});
+
+test('left and right browse stacks keep chronological order across adjacent events and years', () => {
+  const data = createMockTimeline(2026);
+  const cards = toCards(data);
+  const positions = eventPositions(data.schoolEvents, 2026);
+  for (const focus of [1953, 1997, 2025.64]) {
+    const nearby = cards.filter((card) => Math.abs(positions.get(card.event.id)! - focus) < 4);
+    for (let i = 1; i < nearby.length; i++) {
+      const earlier = nearby[i - 1],
+        later = nearby[i];
+      expect(browseStackZ(earlier, focus, positions.get(earlier.event.id))).toBeGreaterThan(
+        browseStackZ(later, focus, positions.get(later.event.id)),
+      );
+    }
+  }
+  for (const focus of [1949, 1997, 2026])
+    for (const card of cards) {
+      const z = browseStackZ(card, focus, positions.get(card.event.id));
+      expect(z).toBeGreaterThanOrEqual(200);
+      expect(z).toBeLessThanOrEqual(1550);
+    }
 });

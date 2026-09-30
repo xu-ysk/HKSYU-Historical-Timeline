@@ -1,4 +1,5 @@
 import { test, expect } from './fixtures';
+import { sceneConfig } from '../../src/config/scene';
 
 test('T1: real wheel input visits same-year events in sequence in both directions', async ({
   page,
@@ -9,7 +10,7 @@ test('T1: real wheel input visits same-year events in sequence in both direction
   const scene = page.getByTestId('scene');
   await expect(scene).toHaveAttribute('data-zoom', '1.0000');
   await page.mouse.move(720, 410);
-  const wheelPerEvent = ((0.12 / 77) * 6500) / 0.35;
+  const wheelPerEvent = ((0.12 / 77) * sceneConfig.browseLength) / sceneConfig.wheelSensitivity;
   let previousOrder = 0;
   for (const order of [1, 2, 3, 2, 1, 0]) {
     await page.mouse.wheel(0, wheelPerEvent * Math.sign(order - previousOrder));

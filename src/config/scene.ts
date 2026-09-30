@@ -6,7 +6,10 @@ export const sceneConfig = {
   browseLength: 6500,
   gap: 300,
   gapSoftness: 8,
-  wheelSensitivity: 0.35,
+  // Move 25% less for the same gesture while retaining precise direct dragging.
+  wheelSensitivity: 0.2625,
+  dragSensitivity: 0.75,
+  wheelDuration: 0.8,
   // A selected theme keeps the normal photo size; other themes recede without disappearing.
   themeLarge: 1,
   themeSmall: 0.35,

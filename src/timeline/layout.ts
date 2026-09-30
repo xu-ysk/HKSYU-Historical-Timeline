@@ -21,9 +21,15 @@ export interface Pose {
   z: number;
   skew?: number;
 }
-/** Keep the event nearest the browsing focus on the top visual layer. */
+/**
+ * Keep the chronological procession layered from old to new.
+ *
+ * The browse axis runs from the lower-left (earlier years) to the upper-right
+ * (later years). Older sleeves therefore receive the higher stack level and
+ * cover later sleeves as they pass across one another during a drag.
+ */
 export function browseStackZ(card: DisplayCard, focusYear: number, position = card.event.year) {
-  return Math.max(200, 1500 - Math.round(Math.abs(position - focusYear) * 40) - card.slot);
+  return clamp(1250 + Math.round((focusYear - position) * 40) - card.slot, 200, 1550);
 }
 /** Smaller sleeves recede behind full-size sleeves, never across their faces. */
 export function themeStackZ(depth: number, scale: number) {

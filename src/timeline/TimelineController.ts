@@ -91,7 +91,7 @@ export class TimelineController {
     gsap.ticker.add(this.tick);
     this.tick();
   }
-  private animate(values: Partial<typeof this.values>, duration = 0.65) {
+  private animate(values: Partial<typeof this.values>, duration = sceneConfig.wheelDuration) {
     gsap.to(this.values, {
       ...values,
       duration: this.reduced.matches ? 0 : duration,
@@ -269,7 +269,7 @@ export class TimelineController {
       this.positions.get(this.nearest(this.wheelTarget).id)!,
     );
     this.root.dataset.targetFocus = String(target);
-    this.animate({ focus: target }, 0.65);
+    this.animate({ focus: target }, sceneConfig.wheelDuration);
   };
   private down = (e: PointerEvent) => {
     if (
@@ -301,7 +301,10 @@ export class TimelineController {
       this.root.dataset.phase = 'dragging';
     }
     gsap.killTweensOf(this.values, 'focus');
-    this.values.focus = clamp(drag.focus - dragProjection(dx, dy) / lengths(this.view).browse);
+    this.values.focus = clamp(
+      drag.focus -
+        (dragProjection(dx, dy) * sceneConfig.dragSensitivity) / lengths(this.view).browse,
+    );
     this.root.dataset.targetFocus = String(this.values.focus);
     this.dirty = true;
   };
@@ -335,7 +338,6 @@ export class TimelineController {
     }
     if (this.values.zoom > 0.01) {
       p.z = browseStackZ(card, timeScale(this.values.endYear).toYear(this.values.focus), position);
-      if (card.event.id === this.focusedId) p.z = 1550;
     }
     p.z = themeStackZ(p.z, p.scale);
     return p;
