@@ -47,10 +47,11 @@ for (const sample of [
     await expect(source).toHaveAttribute('data-original-node', 'yes');
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', eventId);
     const text = await page.getByTestId('detail-text').boundingBox();
-    const subtitle = await page.locator('.title-block').boundingBox(),
+    const languages = await page.locator('.languages').boundingBox(),
       viewSwitch = await page.getByTestId('view-switch').boundingBox();
     await expect(page.getByTestId('close-detail')).toHaveCount(0);
-    expect(viewSwitch!.y).toBeGreaterThan(subtitle!.y + subtitle!.height);
+    expect(viewSwitch!.y).toBeGreaterThanOrEqual(languages!.y + languages!.height);
+    expect(viewSwitch!.y).toBeLessThan(150);
     await expect(page.getByTestId('education-panel')).toBeHidden();
     for (const photo of await page.locator('[data-extracted=true]').all()) {
       const box = await photo.boundingBox();

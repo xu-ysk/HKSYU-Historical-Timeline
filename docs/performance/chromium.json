@@ -4,10 +4,10 @@
     "width": 1440,
     "height": 900
   },
-  "frames": 1439,
-  "meanMs": 20.849965253648108,
-  "p95Ms": 33.399999999999636,
-  "over50ms": 1,
-  "activeCards": 89,
-  "operations": 109
+  "frames": 1796,
+  "meanMs": 16.70807349665862,
+  "p95Ms": 16.799999999999272,
+  "over50ms": 0,
+  "activeCards": 63,
+  "operations": 115
 }

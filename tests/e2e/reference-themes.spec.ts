@@ -89,24 +89,39 @@ test('T2: rapid retargeting scales continuously and leaves every photograph avai
   await expect(page.getByTestId('scene')).toBeVisible();
   const cards = page.locator('.photo-card');
   const count = await cards.count();
-  const samples = cards.first().evaluate(
-    (el) =>
-      new Promise<number[]>((resolve) => {
-        const values: number[] = [];
-        const start = performance.now();
-        const frame = () => {
-          values.push(Number((el as HTMLElement).style.transform.match(/scale\(([^)]+)\)/)?.[1]));
-          if (performance.now() - start < 1500) requestAnimationFrame(frame);
-          else resolve(values);
-        };
-        requestAnimationFrame(frame);
-      }),
-  );
+  // Confirm the recorder is armed before clicking; an unresolved evaluate
+  // races its locator lookup against the first theme change and can miss frames.
+  await cards.first().evaluate((el) => {
+    const capture = { values: [] as number[], done: false };
+    (el as HTMLElement & { themeCapture: typeof capture }).themeCapture = capture;
+    const start = performance.now();
+    const frame = () => {
+      capture.values.push(
+        Number((el as HTMLElement).style.transform.match(/scale\(([^)]+)\)/)?.[1]),
+      );
+      if (performance.now() - start < 1500) requestAnimationFrame(frame);
+      else capture.done = true;
+    };
+    requestAnimationFrame(frame);
+  });
   for (const id of ['B', 'E', 'C']) {
     await page.getByTestId('theme-' + id).click();
     await page.waitForTimeout(120);
   }
-  const scales = await samples;
+  await expect
+    .poll(() =>
+      cards
+        .first()
+        .evaluate(
+          (el) => (el as HTMLElement & { themeCapture: { done: boolean } }).themeCapture.done,
+        ),
+    )
+    .toBe(true);
+  const scales = await cards
+    .first()
+    .evaluate(
+      (el) => (el as HTMLElement & { themeCapture: { values: number[] } }).themeCapture.values,
+    );
   expect(scales.filter((s) => s > 0.4 && s < 0.95).length).toBeGreaterThan(5);
   expect(Math.max(...scales.slice(1).map((s, i) => Math.abs(s - scales[i])))).toBeLessThan(0.2);
   await expect(cards).toHaveCount(count);

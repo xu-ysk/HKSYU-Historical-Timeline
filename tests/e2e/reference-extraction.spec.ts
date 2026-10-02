@@ -11,6 +11,15 @@ type MotionFrame = {
 type CapturedCard = HTMLElement & {
   motionCapture: { frames: MotionFrame[]; done: boolean };
 };
+type ScrollInterruption = {
+  focus: number;
+  pendingTarget: number;
+  origin: string;
+  id: string;
+};
+type CapturedScene = HTMLElement & {
+  scrollInterruption: ScrollInterruption | null;
+};
 
 for (const sample of [
   { year: 1997, id: 'school-1995-1', count: 1 },
@@ -162,38 +171,35 @@ test('T3: opening during a live scroll freezes the drawn origin and resumes from
   });
   await page.mouse.move(720, 410);
   const beforeScroll = Number(await scene.getAttribute('data-focus'));
-  await page.mouse.wheel(0, 2000);
-  // Activate a card as the next moving frame is drawn. Locator.click deliberately
-  // waits for stability, so use the native click handler for this interrupt case.
-  const interrupted = await scene.evaluate(
-    (el) =>
-      new Promise<{
-        focus: number;
-        pendingTarget: number;
-        origin: string;
-        id: string;
-      }>((resolve) => {
-        const root = el as HTMLElement;
-        const first = root.dataset.focus;
-        const frame = () => {
-          if (root.dataset.focus === first) {
-            requestAnimationFrame(frame);
-            return;
-          }
-          const id = root.dataset.focusedEvent!;
-          const card = root.querySelector<HTMLButtonElement>(`.photo-card[data-event-id="${id}"]`)!;
-          const result = {
-            focus: Number(root.dataset.focus),
-            pendingTarget: Number(root.dataset.targetFocus),
-            origin: card.style.transform,
-            id,
-          };
-          card.click();
-          resolve(result);
-        };
+  // Arm the observer before wheel input: waiting for mouse.wheel's protocol
+  // response can consume most of the tween before the first observed frame.
+  // Locator.click waits for stability, so use the native handler to interrupt.
+  await scene.evaluate((el) => {
+    const root = el as CapturedScene;
+    root.scrollInterruption = null;
+    const first = root.dataset.focus;
+    const frame = () => {
+      if (root.dataset.focus === first) {
         requestAnimationFrame(frame);
-      }),
-  );
+        return;
+      }
+      const id = root.dataset.focusedEvent!;
+      const card = root.querySelector<HTMLButtonElement>(`.photo-card[data-event-id="${id}"]`)!;
+      root.scrollInterruption = {
+        focus: Number(root.dataset.focus),
+        pendingTarget: Number(root.dataset.targetFocus),
+        origin: card.style.transform,
+        id,
+      };
+      card.click();
+    };
+    requestAnimationFrame(frame);
+  });
+  await page.mouse.wheel(0, 2000);
+  await expect
+    .poll(() => scene.evaluate((el) => (el as CapturedScene).scrollInterruption))
+    .not.toBeNull();
+  const interrupted = (await scene.evaluate((el) => (el as CapturedScene).scrollInterruption))!;
   expect(interrupted.focus).toBeGreaterThan(beforeScroll);
   expect(interrupted.pendingTarget - interrupted.focus).toBeGreaterThan(0.01);
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');

@@ -61,15 +61,6 @@ export default function App() {
         <div className="header-top">
           <LanguageSwitcher locale={locale} onChange={setLocale} />
         </div>
-        <div className="title-block">
-          <h1>
-            {m.title}
-            <span className="title-mark" aria-hidden="true">
-              *
-            </span>
-          </h1>
-          <p data-testid="subtitle">{m.subtitle}</p>
-        </div>
       </header>
       {data ? (
         <TimelineScene

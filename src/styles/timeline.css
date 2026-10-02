@@ -109,17 +109,17 @@ h1 {
 .school-label {
   position: absolute;
   left: 42px;
-  top: 37%;
+  top: 35%;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   color: #757166;
-  font-size: 11px;
-  letter-spacing: 2px;
+  font-size: 14px;
+  letter-spacing: 2.5px;
 }
 .lane-number {
   font:
-    10px Georgia,
+    12px Georgia,
     serif;
   color: #a69e90;
 }
@@ -229,15 +229,17 @@ h1 {
 }
 .education-panel {
   position: absolute;
-  width: 340px;
+  width: 380px;
   right: 48px;
-  bottom: 205px;
+  bottom: 225px;
   z-index: 1200;
 }
 .education-panel .eyebrow {
   display: flex;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  letter-spacing: 2.5px;
 }
 .education-panel .eyebrow span {
   margin: 0;
@@ -269,18 +271,19 @@ h1 {
 .view-switch {
   position: absolute;
   left: 42px;
-  top: 216px;
+  top: 92px;
   bottom: auto;
   z-index: 2000;
   display: flex;
   border-bottom: 1px solid #cfc8bd;
-  gap: 20px;
+  gap: 24px;
 }
 .view-switch button {
   border: 0;
   background: none;
-  font-size: 11px;
-  padding: 8px 0;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 9px 0 10px;
   color: #9b9488;
 }
 .view-switch button[aria-pressed='true'] {
@@ -447,9 +450,6 @@ h1 {
   }
   .bottom-panel {
     bottom: 20px;
-  }
-  .view-switch {
-    top: 198px;
   }
 }
 @media (max-width: 1320px) {
