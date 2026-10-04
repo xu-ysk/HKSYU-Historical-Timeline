@@ -28,6 +28,18 @@ test('three lanes project each year onto exactly the same time axis at every zoo
       expect((a.x - upper.x) * direction.x + (a.y - upper.y) * direction.y).toBeCloseTo(0);
     }
 });
+test('upper rail, photo rail and education rail use equal perpendicular spacing', () => {
+  for (const zoom of [0, 0.5, 1])
+    for (const year of [1949, 1997, 2026]) {
+      const values = { focus: 0.55, zoom, endYear: 2026 };
+      const upper = anchor(year, 'upper', { width: 1440, height: 900 }, values);
+      const school = anchor(year, 'school', { width: 1440, height: 900 }, values);
+      const education = anchor(year, 'education', { width: 1440, height: 900 }, values);
+      const upperToSchool = Math.hypot(upper.x - school.x, upper.y - school.y);
+      const schoolToEducation = Math.hypot(school.x - education.x, school.y - education.y);
+      expect(upperToSchool).toBeCloseTo(schoolToEducation, 6);
+    }
+});
 test('overview cards remain inside desktop windows including portrait cards', () => {
   for (const view of [
     { width: 1280, height: 720 },

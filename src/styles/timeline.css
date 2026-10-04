@@ -201,7 +201,7 @@ h1 {
 }
 .year-tick {
   position: absolute;
-  transform: translate(4px, 6px);
+  transform: translate(4px, 10px);
   font:
     10px Georgia,
     serif;

@@ -433,21 +433,26 @@ export class TimelineController {
     if (trackPoseKey !== this.lastTrackPoseKey) {
       this.lastTrackPoseKey = trackPoseKey;
       this.root
-        .querySelectorAll<HTMLElement>('[data-year],[data-education-year],[data-upper-year]')
+        .querySelectorAll<HTMLElement>(
+          '[data-education-label],[data-education-year],[data-upper-year]',
+        )
         .forEach((el) => {
           const lane = el.dataset.upperYear
               ? 'upper'
-              : el.dataset.educationYear
+              : el.dataset.educationYear || el.dataset.educationLabel
                 ? 'education'
                 : 'axis',
-            year = Number(el.dataset.upperYear ?? el.dataset.educationYear ?? el.dataset.year),
+            year = Number(
+              el.dataset.upperYear ?? el.dataset.educationYear ?? el.dataset.educationLabel,
+            ),
             p = anchor(year, lane, this.view, this.values);
           el.style.left = p.x + 'px';
           el.style.top = p.y + 'px';
           const visible =
             p.x > 0 && p.x < this.view.width && p.y > 70 && p.y < this.view.height - 160;
           el.style.visibility = visible ? 'visible' : 'hidden';
-          el.tabIndex = lane !== 'axis' && visible && !this.blocked ? 0 : -1;
+          const interactive = Boolean(el.dataset.upperYear || el.dataset.educationYear);
+          el.tabIndex = interactive && visible && !this.blocked ? 0 : -1;
           el.style.pointerEvents = this.blocked ? 'none' : '';
         });
       this.root.querySelectorAll<SVGLineElement>('[data-track]').forEach((el) => {

@@ -122,9 +122,14 @@ export function TimelineScene({
       ))}
       <div className="detail-scrim" hidden />
       {[1949, 1960, 1980, 2000, endYear].map((year) => {
-        const p = anchor(year, 'axis', view, values);
+        const p = anchor(year, 'education', view, values);
         return (
-          <span key={year} className="year-tick" style={{ left: p.x, top: p.y }} data-year={year}>
+          <span
+            key={year}
+            className="year-tick"
+            style={{ left: p.x, top: p.y }}
+            data-education-label={year}
+          >
             {year}
           </span>
         );
