@@ -96,8 +96,14 @@
 }
 .timeline-scene[data-phase='opening'] .education-panel,
 .timeline-scene[data-phase='detail'] .education-panel,
-.timeline-scene[data-phase='closing'] .education-panel {
-  visibility: hidden;
+.timeline-scene[data-phase='closing'] .education-panel,
+.timeline-scene[data-phase='opening'] .upper-rail-panel,
+.timeline-scene[data-phase='detail'] .upper-rail-panel,
+.timeline-scene[data-phase='closing'] .upper-rail-panel,
+.timeline-scene[data-phase='opening'] .upper-rail-marker,
+.timeline-scene[data-phase='detail'] .upper-rail-marker,
+.timeline-scene[data-phase='closing'] .upper-rail-marker {
+  visibility: hidden !important;
 }
 .event-navigation {
   display: flex;

@@ -48,6 +48,7 @@ export class TimelineController {
   private openingSources = new Map<string, Pose>();
   private closingSources = new Map<string, Pose>();
   private closeStart = 1;
+  private lastTrackPoseKey = '';
   private groupForEvent(eventId: string | null) {
     return this.events.find((event) => event.id === eventId)?.photoGroupId;
   }
@@ -136,6 +137,7 @@ export class TimelineController {
       ]),
     );
     this.nodes = cards.map((card) => ({ card, el: elements.get(card.id)! }));
+    this.lastTrackPoseKey = '';
     this.dirty = true;
   }
   open(eventId: string) {
@@ -280,7 +282,7 @@ export class TimelineController {
     if (
       this.blocked ||
       e.button !== 0 ||
-      (e.target as HTMLElement).closest('.education-panel,.education-dot')
+      (e.target as HTMLElement).closest('.education-panel,.education-dot,.upper-rail-marker')
     )
       return;
     this.suppressClick = false;
@@ -420,26 +422,44 @@ export class TimelineController {
       if (el.style.getPropertyValue('--letter-size') !== letter)
         el.style.setProperty('--letter-size', letter);
     }
-    this.root.querySelectorAll<HTMLElement>('[data-year],[data-education-year]').forEach((el) => {
-      const lane = el.dataset.educationYear ? 'education' : 'axis',
-        year = Number(el.dataset.educationYear ?? el.dataset.year),
-        p = anchor(year, lane, this.view, this.values);
-      el.style.left = p.x + 'px';
-      el.style.top = p.y + 'px';
-      const visible = p.x > 0 && p.x < this.view.width && p.y > 70 && p.y < this.view.height - 160;
-      el.style.visibility = visible ? 'visible' : 'hidden';
-      el.tabIndex = lane === 'education' && visible && !this.blocked ? 0 : -1;
-      el.style.pointerEvents = this.blocked ? 'none' : '';
-    });
-    this.root.querySelectorAll<SVGLineElement>('[data-track]').forEach((el) => {
-      const lane = el.dataset.track as 'axis' | 'upper' | 'education',
-        a = anchor(1949, lane, this.view, this.values),
-        b = anchor(this.values.endYear, lane, this.view, this.values);
-      el.setAttribute('x1', String(a.x));
-      el.setAttribute('y1', String(a.y));
-      el.setAttribute('x2', String(b.x));
-      el.setAttribute('y2', String(b.y));
-    });
+    const trackPoseKey = [
+      this.values.focus,
+      this.values.zoom,
+      this.values.endYear,
+      this.view.width,
+      this.view.height,
+      this.blocked,
+    ].join(':');
+    if (trackPoseKey !== this.lastTrackPoseKey) {
+      this.lastTrackPoseKey = trackPoseKey;
+      this.root
+        .querySelectorAll<HTMLElement>('[data-year],[data-education-year],[data-upper-year]')
+        .forEach((el) => {
+          const lane = el.dataset.upperYear
+              ? 'upper'
+              : el.dataset.educationYear
+                ? 'education'
+                : 'axis',
+            year = Number(el.dataset.upperYear ?? el.dataset.educationYear ?? el.dataset.year),
+            p = anchor(year, lane, this.view, this.values);
+          el.style.left = p.x + 'px';
+          el.style.top = p.y + 'px';
+          const visible =
+            p.x > 0 && p.x < this.view.width && p.y > 70 && p.y < this.view.height - 160;
+          el.style.visibility = visible ? 'visible' : 'hidden';
+          el.tabIndex = lane !== 'axis' && visible && !this.blocked ? 0 : -1;
+          el.style.pointerEvents = this.blocked ? 'none' : '';
+        });
+      this.root.querySelectorAll<SVGLineElement>('[data-track]').forEach((el) => {
+        const lane = el.dataset.track as 'axis' | 'upper' | 'education',
+          a = anchor(1949, lane, this.view, this.values),
+          b = anchor(this.values.endYear, lane, this.view, this.values);
+        el.setAttribute('x1', String(a.x));
+        el.setAttribute('y1', String(a.y));
+        el.setAttribute('x2', String(b.x));
+        el.setAttribute('y2', String(b.y));
+      });
+    }
   };
   destroy() {
     this.disposed = true;

@@ -55,6 +55,8 @@ for (const sample of [
     expect(viewSwitch!.y).toBeGreaterThanOrEqual(languages!.y + languages!.height);
     expect(viewSwitch!.y).toBeLessThan(150);
     await expect(page.getByTestId('education-panel')).toBeHidden();
+    await expect(page.getByTestId('upper-rail-panel')).toBeHidden();
+    await expect(page.locator('[data-upper-year]:visible')).toHaveCount(0);
     for (const photo of await page.locator('[data-extracted=true]').all()) {
       const box = await photo.boundingBox();
       expect(box!.x).toBeGreaterThan(0);

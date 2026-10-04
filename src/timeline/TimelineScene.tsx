@@ -129,6 +129,23 @@ export function TimelineScene({
           </span>
         );
       })}
+      {data.upperRailEvents.map((event) => {
+        const p = anchor(event.year, 'upper', view, values);
+        return (
+          <button
+            key={event.id}
+            className="upper-rail-marker"
+            style={{ left: p.x, top: p.y }}
+            aria-label={`${event.year} · ${localized(event.title, locale)}`}
+            data-testid={`upper-year-${event.year}`}
+            data-upper-year={event.year}
+            onClick={() => controllerRef.current?.goYear(event.year)}
+          >
+            <span className="upper-year-label">{event.year}</span>
+            <span className="upper-year-dot" aria-hidden="true" />
+          </button>
+        );
+      })}
       {data.educationEvents.map((event) => {
         const p = anchor(event.year, 'education', view, values);
         return (

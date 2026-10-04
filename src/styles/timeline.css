@@ -109,7 +109,8 @@ h1 {
 .school-label {
   position: absolute;
   left: 42px;
-  top: 35%;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -207,6 +208,41 @@ h1 {
   color: #8f877a;
   pointer-events: none;
 }
+.upper-rail-marker {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background: transparent;
+  z-index: 1500;
+}
+.upper-year-label {
+  position: absolute;
+  bottom: calc(50% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  font:
+    10px Georgia,
+    serif;
+  color: #8f877a;
+  white-space: nowrap;
+}
+.upper-year-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #bcb3a4;
+}
+.upper-rail-marker:hover .upper-year-dot,
+.upper-rail-marker:focus-visible .upper-year-dot {
+  background: var(--theme-accent);
+}
 .education-dot {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -237,8 +273,8 @@ h1 {
 .upper-rail-panel {
   position: absolute;
   width: min(360px, 32vw);
-  left: 42px;
-  top: 145px;
+  left: max(250px, calc(47vw - 435px));
+  top: max(145px, calc(25vh - 80px));
   z-index: 1200;
   background: #f7f5f2ed;
   padding: 12px;

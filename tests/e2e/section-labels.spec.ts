@@ -30,8 +30,9 @@ for (const size of [
     const educationLabelBox = (await educationLabel.boundingBox())!;
     const themeBox = (await themePanel.boundingBox())!;
     expect(schoolBox.x).toBeCloseTo(42, 0);
-    expect(schoolBox.y).toBeGreaterThan(size.height * 0.3);
-    expect(schoolBox.y).toBeLessThan(size.height * 0.45);
+    const schoolCenterY = schoolBox.y + schoolBox.height / 2;
+    expect(schoolCenterY).toBeGreaterThan(size.height * 0.48);
+    expect(schoolCenterY).toBeLessThan(size.height * 0.53);
     expect(educationLabelBox.x).toBeGreaterThan(size.width * 0.7);
     expect(educationBox.y).toBeLessThan(themeBox.y);
     expect(educationBox.y + educationBox.height).toBeLessThan(themeBox.y);
