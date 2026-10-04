@@ -1,5 +1,6 @@
 export type Locale = 'zh-Hant' | 'zh-Hans' | 'en';
 export type ThemeId = 'A' | 'B' | 'C' | 'D' | 'E';
+export type TimelineLane = 'upper' | 'school' | 'education' | 'axis';
 export type LocalizedText = Partial<Record<Locale, string>>;
 export interface EventText {
   title: LocalizedText;
@@ -18,7 +19,13 @@ export interface SchoolEvent extends EventText {
   year: number;
   orderInYear: number;
   themeId: ThemeId;
+  photoGroupId: string;
   photos: EventPhoto[];
+}
+export interface UpperRailEvent extends EventText {
+  id: string;
+  year: number;
+  orderInYear: number;
 }
 export interface EducationEvent extends EventText {
   id: string;
@@ -28,6 +35,7 @@ export interface EducationEvent extends EventText {
 export interface TimelineDataset {
   schemaVersion: 1;
   revision: string;
+  upperRailEvents: UpperRailEvent[];
   schoolEvents: SchoolEvent[];
   educationEvents: EducationEvent[];
 }

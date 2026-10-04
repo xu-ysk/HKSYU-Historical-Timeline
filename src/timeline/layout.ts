@@ -1,4 +1,4 @@
-import type { DisplayCard } from '../domain/timeline';
+import type { DisplayCard, TimelineLane } from '../domain/timeline';
 import { sceneConfig as config } from '../config/scene';
 import { clamp, timeScale } from './timeScale';
 export interface Viewport {
@@ -44,18 +44,13 @@ export function lengths(view: Viewport) {
     browse: config.browseLength * Math.max(0.8, view.width / 1440),
   };
 }
-export function anchor(
-  year: number,
-  lane: 'school' | 'education' | 'axis',
-  view: Viewport,
-  values: SceneValues,
-) {
+export function anchor(year: number, lane: TimelineLane, view: Viewport, values: SceneValues) {
   const u = timeScale(values.endYear).toUnit(year),
     length = lengths(view);
   const a = length.overview * (u - 0.5),
     b = length.browse * (u - values.focus);
   const q = lerp(a, b + config.gap * Math.tanh(b / config.gapSoftness), values.zoom);
-  const offset = lane === 'school' ? -20 : lane === 'education' ? 70 : 25;
+  const offset = lane === 'upper' ? -100 : lane === 'school' ? -20 : lane === 'education' ? 70 : 25;
   return {
     x: view.width * 0.47 + direction.x * q + normal.x * offset,
     y: view.height * 0.49 + direction.y * q + normal.y * offset,

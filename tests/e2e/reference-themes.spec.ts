@@ -4,6 +4,7 @@ for (const mode of ['overview', 'browse'])
   test(`T2: ${mode} keeps selected sleeves exposed above small ones for all five themes`, async ({
     page,
   }) => {
+    test.setTimeout(60_000);
     await page.goto('/');
     await expect(page.getByTestId('scene')).toBeVisible();
     if (mode === 'browse') {
@@ -85,6 +86,7 @@ for (const mode of ['overview', 'browse'])
 test('T2: rapid retargeting scales continuously and leaves every photograph available', async ({
   page,
 }) => {
+  test.setTimeout(60_000);
   await page.goto('/');
   await expect(page.getByTestId('scene')).toBeVisible();
   const cards = page.locator('.photo-card');
@@ -99,14 +101,14 @@ test('T2: rapid retargeting scales continuously and leaves every photograph avai
       capture.values.push(
         Number((el as HTMLElement).style.transform.match(/scale\(([^)]+)\)/)?.[1]),
       );
-      if (performance.now() - start < 1500) requestAnimationFrame(frame);
+      if (performance.now() - start < 2500) requestAnimationFrame(frame);
       else capture.done = true;
     };
     requestAnimationFrame(frame);
   });
-  for (const id of ['B', 'E', 'C']) {
+  for (const id of ['B', 'A', 'E', 'A', 'C']) {
     await page.getByTestId('theme-' + id).click();
-    await page.waitForTimeout(120);
+    await page.waitForTimeout(220);
   }
   await expect
     .poll(() =>

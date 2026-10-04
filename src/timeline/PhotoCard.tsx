@@ -47,7 +47,9 @@ export const PhotoCard = memo(
           <span className="photo-letter">
             {card.event.themeId}
             {card.photo && card.event.photos.length > 1 && (
-              <small>{card.photo.id.endsWith('-0') ? '1' : '2'}</small>
+              <small>
+                {card.event.photos.findIndex((photo) => photo.id === card.photo?.id) + 1}
+              </small>
             )}
           </span>
           <span className="photo-bottom">

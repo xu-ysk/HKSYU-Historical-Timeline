@@ -234,6 +234,50 @@ h1 {
   bottom: 225px;
   z-index: 1200;
 }
+.upper-rail-panel {
+  position: absolute;
+  width: min(360px, 32vw);
+  left: 42px;
+  top: 145px;
+  z-index: 1200;
+  background: #f7f5f2ed;
+  padding: 12px;
+  margin: -12px;
+}
+.upper-rail-panel .eyebrow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  letter-spacing: 2.5px;
+}
+.upper-rail-panel .eyebrow span {
+  margin: 0;
+}
+.upper-rail-copy {
+  display: flex;
+  gap: 20px;
+  border-top: 1px solid #d8d2c7;
+  padding-top: 12px;
+}
+.upper-rail-year {
+  font:
+    26px Georgia,
+    serif;
+  color: #7d7669;
+}
+.upper-rail-copy h2 {
+  font:
+    15px Georgia,
+    serif;
+  margin: 2px 0 8px;
+}
+.upper-rail-copy p {
+  font-size: 11px;
+  line-height: 1.7;
+  color: #89857a;
+  margin: 0;
+}
 .education-panel .eyebrow {
   display: flex;
   gap: 12px;
@@ -447,6 +491,29 @@ h1 {
   }
   .education-panel .eyebrow {
     margin-bottom: 12px;
+  }
+  .upper-rail-panel {
+    top: 96px;
+    width: 305px;
+  }
+  .upper-rail-panel .eyebrow {
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .upper-rail-copy {
+    gap: 12px;
+    padding-top: 8px;
+  }
+  .upper-rail-year {
+    font-size: 22px;
+  }
+  .upper-rail-copy h2 {
+    margin: 0 0 4px;
+    font-size: 13px;
+  }
+  .upper-rail-copy p {
+    font-size: 10px;
+    line-height: 1.45;
   }
   .bottom-panel {
     bottom: 20px;

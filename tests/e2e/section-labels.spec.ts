@@ -18,9 +18,9 @@ for (const size of [
     const educationLabel = page.locator('.education-panel .eyebrow');
     const themePanel = page.getByTestId('theme-panel');
     await expect(school).toBeVisible();
-    await expect(school).toHaveText('01 /樹仁校史');
+    await expect(school).toHaveText('02 /樹仁校史');
     await expect(educationLabel).toBeVisible();
-    await expect(educationLabel).toHaveText('02 / 香港教育史');
+    await expect(educationLabel).toHaveText('03 / 香港教育史');
     await expect(school).toHaveCSS('font-size', '14px');
     await expect(laneNumber).toHaveCSS('font-size', '12px');
     await expect(educationLabel).toHaveCSS('font-size', '14px');

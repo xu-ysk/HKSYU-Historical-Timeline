@@ -39,6 +39,34 @@ export function detailPhotoRects(cards: DisplayCard[], view: Viewport): Rect[] {
     gap = 20;
   const ratios = cards.map((c) => (c.photo ? c.photo.width / c.photo.height : 1.5));
   if (cards.length <= 1) return ratios.map((r) => contain(r, box));
+  if (cards.length === 3) {
+    const leftWidth = (box.width - gap) * 0.56,
+      rightX = box.x + leftWidth + gap,
+      rightWidth = box.width - leftWidth - gap,
+      halfHeight = (box.height - gap) / 2;
+    return [
+      contain(ratios[0], { x: box.x, y: box.y, width: leftWidth, height: box.height }),
+      contain(ratios[1], { x: rightX, y: box.y, width: rightWidth, height: halfHeight }),
+      contain(ratios[2], {
+        x: rightX,
+        y: box.y + halfHeight + gap,
+        width: rightWidth,
+        height: halfHeight,
+      }),
+    ];
+  }
+  if (cards.length === 4) {
+    const halfWidth = (box.width - gap) / 2,
+      halfHeight = (box.height - gap) / 2;
+    return ratios.map((ratio, index) =>
+      contain(ratio, {
+        x: box.x + (index % 2) * (halfWidth + gap),
+        y: box.y + Math.floor(index / 2) * (halfHeight + gap),
+        width: halfWidth,
+        height: halfHeight,
+      }),
+    );
+  }
   const horizontal = ratios.map((r, i) =>
     contain(r, {
       x: box.x + (i * (box.width + gap)) / cards.length,

@@ -3,7 +3,7 @@ import { anchor, direction, cardPose, browseStackZ } from '../../src/timeline/la
 import { createMockTimeline } from '../../src/data/mockTimeline';
 import { toCards } from '../../src/domain/normalizeTimeline';
 import { eventPositions } from '../../src/timeline/albumTrack';
-test('both lanes project each year onto exactly the same time axis at every zoom', () => {
+test('three lanes project each year onto exactly the same time axis at every zoom', () => {
   for (const zoom of [0, 0.25, 0.5, 1])
     for (const year of [1949, 1952, 1997, 2026]) {
       const a = anchor(
@@ -18,7 +18,14 @@ test('both lanes project each year onto exactly the same time axis at every zoom
         { width: 1440, height: 900 },
         { focus: 0.55, zoom, endYear: 2026 },
       );
+      const upper = anchor(
+        year,
+        'upper',
+        { width: 1440, height: 900 },
+        { focus: 0.55, zoom, endYear: 2026 },
+      );
       expect((a.x - b.x) * direction.x + (a.y - b.y) * direction.y).toBeCloseTo(0);
+      expect((a.x - upper.x) * direction.x + (a.y - upper.y) * direction.y).toBeCloseTo(0);
     }
 });
 test('overview cards remain inside desktop windows including portrait cards', () => {

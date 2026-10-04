@@ -48,6 +48,9 @@ export class TimelineController {
   private openingSources = new Map<string, Pose>();
   private closingSources = new Map<string, Pose>();
   private closeStart = 1;
+  private groupForEvent(eventId: string | null) {
+    return this.events.find((event) => event.id === eventId)?.photoGroupId;
+  }
   constructor(
     private root: HTMLDivElement,
     cards: DisplayCard[],
@@ -145,7 +148,7 @@ export class TimelineController {
     this.root.dataset.targetFocus = String(this.values.focus);
     this.openingSources = new Map(
       this.nodes
-        .filter((node) => node.card.event.id === eventId)
+        .filter((node) => node.card.event.photoGroupId === this.groupForEvent(eventId))
         .map(({ card }) => [card.id, { ...(this.rendered.get(card.id) ?? this.albumPose(card)) }]),
     );
     this.closingSources.clear();
@@ -177,7 +180,9 @@ export class TimelineController {
     this.closeStart = this.detail.progress;
     this.closingSources = new Map(
       this.nodes
-        .filter((node) => node.card.event.id === this.detailState.eventId)
+        .filter(
+          (node) => node.card.event.photoGroupId === this.groupForEvent(this.detailState.eventId),
+        )
         .map(({ card }) => [card.id, { ...(this.rendered.get(card.id) ?? this.albumPose(card)) }]),
     );
     this.detailState = next;
@@ -359,7 +364,9 @@ export class TimelineController {
       .closest<HTMLElement>('.museum-app')
       ?.style.setProperty('--detail-progress', String(this.detail.progress));
     this.root.dataset.detailProgress = this.detail.progress.toFixed(4);
-    const selected = this.nodes.filter((n) => n.card.event.id === this.detailState.eventId),
+    const selected = this.nodes.filter(
+        (n) => n.card.event.photoGroupId === this.groupForEvent(this.detailState.eventId),
+      ),
       rects = detailPhotoRects(
         selected.map((n) => n.card),
         this.view,
@@ -425,7 +432,7 @@ export class TimelineController {
       el.style.pointerEvents = this.blocked ? 'none' : '';
     });
     this.root.querySelectorAll<SVGLineElement>('[data-track]').forEach((el) => {
-      const lane = el.dataset.track as 'axis' | 'education',
+      const lane = el.dataset.track as 'axis' | 'upper' | 'education',
         a = anchor(1949, lane, this.view, this.values),
         b = anchor(this.values.endYear, lane, this.view, this.values);
       el.setAttribute('x1', String(a.x));

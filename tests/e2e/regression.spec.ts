@@ -75,8 +75,8 @@ test('central focused event is visually separated from both adjacent event group
   await expect(page.getByTestId('scene')).toBeVisible();
   await page.getByTestId('year-slider').fill('1997');
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
-  const focused = page.locator('.photo-card[data-event-id="school-1997-0"]');
-  const next = page.locator('.photo-card[data-event-id="school-1997-1"]');
+  const focused = page.locator('.photo-card[data-event-id="school-1997-0"]').first();
+  const next = page.locator('.photo-card[data-event-id="school-1997-1"]').first();
   await expect
     .poll(async () => {
       const a = await focused.boundingBox(),

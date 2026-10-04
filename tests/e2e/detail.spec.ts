@@ -26,6 +26,8 @@ for (const sample of [
   { year: 1949, order: 1, count: 1, name: 'single' },
   { year: 1953, order: 3, count: 2, name: 'portrait-pair' },
   { year: 1956, order: 2, count: 2, name: 'landscape-pair' },
+  { year: 1956, order: 3, count: 3, name: 'three-photo-collage' },
+  { year: 1958, order: 1, count: 4, name: 'four-photo-collage' },
 ])
   test('extract and return ' + sample.name, async ({ page }) => {
     await page.goto('/');
@@ -58,6 +60,23 @@ for (const sample of [
       expect(box!.x).toBeGreaterThan(0);
       expect(box!.x + box!.width).toBeLessThan(text!.x);
       expect(box!.y + box!.height).toBeLessThan(710);
+    }
+    if (sample.count >= 3) {
+      const boxes = await page.locator('[data-extracted=true]').evaluateAll((items) =>
+        items.map((item) => {
+          const box = item.getBoundingClientRect();
+          return { x: box.x, y: box.y, width: box.width, height: box.height };
+        }),
+      );
+      for (let i = 0; i < boxes.length; i++)
+        for (let j = i + 1; j < boxes.length; j++) {
+          const a = boxes[i],
+            b = boxes[j],
+            overlap =
+              Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
+              Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
+          expect(overlap).toBeLessThan(1);
+        }
     }
     await page.screenshot({ path: test.info().outputPath('stage5-' + sample.name + '.png') });
     await expect(page.getByRole('dialog')).toBeVisible();

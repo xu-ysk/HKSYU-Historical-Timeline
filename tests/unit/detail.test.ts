@@ -42,3 +42,40 @@ test('single, blank and both pair orientations preserve aspect ratios and fit le
         ).toBe(true);
     }
 });
+
+test('three and four photo groups use a complete non-overlapping collage inside the photo region', () => {
+  const data = createMockTimeline(2026),
+    cards = toCards(data),
+    view = { width: 1440, height: 900 },
+    regions = detailRegions(view);
+  for (const count of [3, 4]) {
+    const event = data.schoolEvents.find((item) => item.photos.length === count)!;
+    const group = cards.filter((card) => card.event.id === event.id);
+    const rects = detailPhotoRects(group, view);
+    expect(rects).toHaveLength(count);
+    expect(new Set(rects.map((rect) => `${Math.round(rect.x)}:${Math.round(rect.y)}`)).size).toBe(
+      count,
+    );
+    expect(new Set(rects.map((rect) => Math.round(rect.y))).size).toBeGreaterThan(1);
+    for (const rect of rects) {
+      expect(rect.x).toBeGreaterThanOrEqual(regions.photos.x - 0.001);
+      expect(rect.y).toBeGreaterThanOrEqual(regions.photos.y - 0.001);
+      expect(rect.x + rect.width).toBeLessThanOrEqual(
+        regions.photos.x + regions.photos.width + 0.001,
+      );
+      expect(rect.y + rect.height).toBeLessThanOrEqual(
+        regions.photos.y + regions.photos.height + 0.001,
+      );
+      expect(rect.x + rect.width).toBeLessThanOrEqual(regions.text.x);
+    }
+    for (let i = 0; i < rects.length; i++)
+      for (let j = i + 1; j < rects.length; j++) {
+        const a = rects[i],
+          b = rects[j],
+          overlap =
+            Math.max(0, Math.min(a.x + a.width, b.x + b.width) - Math.max(a.x, b.x)) *
+            Math.max(0, Math.min(a.y + a.height, b.y + b.height) - Math.max(a.y, b.y));
+        expect(overlap).toBeLessThan(0.01);
+      }
+  }
+});

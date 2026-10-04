@@ -57,6 +57,11 @@ export function TimelineScene({
       !best || Math.abs(event.year - focusYear) < Math.abs(best.year - focusYear) ? event : best,
     undefined,
   );
+  const upperRail = data.upperRailEvents.reduce<(typeof data.upperRailEvents)[number] | undefined>(
+    (best, event) =>
+      !best || Math.abs(event.year - focusYear) < Math.abs(best.year - focusYear) ? event : best,
+    undefined,
+  );
   return (
     <div
       ref={ref}
@@ -66,12 +71,12 @@ export function TimelineScene({
       data-mode={mode}
     >
       <div className="school-label">
-        <span className="lane-number">01 /</span>
+        <span className="lane-number">02 /</span>
         <span>{m.school}</span>
         <span className="label-rule" />
       </div>
       <svg className="track-lines" width="100%" height="100%" aria-hidden="true">
-        {(['axis', 'education'] as const).map((lane) => {
+        {(['axis', 'upper', 'education'] as const).map((lane) => {
           const a = anchor(1949, lane, view, values),
             b = anchor(endYear, lane, view, values);
           return (
@@ -88,6 +93,24 @@ export function TimelineScene({
           );
         })}
       </svg>
+      <aside className="upper-rail-panel" data-testid="upper-rail-panel">
+        <div className="eyebrow">
+          <span>01/</span> {locale === 'en' ? 'Upper rail events' : '上轨事件'}
+        </div>
+        {upperRail ? (
+          <div className="upper-rail-copy">
+            <span className="upper-rail-year" data-testid="upper-rail-year">
+              {upperRail.year}
+            </span>
+            <div>
+              <h2 data-testid="upper-rail-title">{localized(upperRail.title, locale)}</h2>
+              <p data-testid="upper-rail-body">{localized(upperRail.body, locale)}</p>
+            </div>
+          </div>
+        ) : (
+          <p>{m.empty}</p>
+        )}
+      </aside>
       {cards.map((card) => (
         <PhotoCard
           key={card.id}
@@ -124,7 +147,7 @@ export function TimelineScene({
       })}
       <aside className="education-panel" data-testid="education-panel">
         <div className="eyebrow">
-          <span>02 /</span> {m.education}
+          <span>03 /</span> {m.education}
         </div>
         {education ? (
           <div className="education-copy">

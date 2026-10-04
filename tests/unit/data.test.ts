@@ -43,6 +43,31 @@ describe('time and content contracts', () => {
       false,
     );
   });
+  test('V1.1 fixtures provide the upper rail and stable two-to-four photo groups', () => {
+    const data = normalizeTimeline(createMockTimeline(2026), 2026);
+    expect(data.upperRailEvents.length).toBeGreaterThan(0);
+    expect(data.upperRailEvents.every((event) => event.year >= 1949 && event.year <= 2026)).toBe(
+      true,
+    );
+    expect(data.upperRailEvents.map((event) => event.year)).toEqual(
+      [...data.upperRailEvents.map((event) => event.year)].sort((a, b) => a - b),
+    );
+    expect(
+      data.upperRailEvents.some((event) =>
+        /founder|college|university/i.test(event.title.en ?? ''),
+      ),
+    ).toBe(true);
+    expect(data.schoolEvents.every((event) => event.photoGroupId.length > 0)).toBe(true);
+    expect(
+      data.schoolEvents.filter((event) => event.photos.length === 3).length,
+    ).toBeGreaterThanOrEqual(3);
+    expect(
+      data.schoolEvents.filter((event) => event.photos.length === 4).length,
+    ).toBeGreaterThanOrEqual(3);
+    expect(new Set(data.schoolEvents.map((event) => event.photoGroupId)).size).toBe(
+      data.schoolEvents.length,
+    );
+  });
   test('invalid data fails explicitly and sorting does not mutate the provider result', () => {
     const data = createMockTimeline(2026);
     data.schoolEvents.reverse();
@@ -53,6 +78,11 @@ describe('time and content contracts', () => {
     const bad = createMockTimeline(2026);
     bad.schoolEvents[1].photos[0].width = 0;
     expect(() => normalizeTimeline(bad, 2026)).toThrow(/size/);
+    const oversizedGroup = createMockTimeline(2026),
+      three = oversizedGroup.schoolEvents.find((event) => event.photos.length === 3)!,
+      two = oversizedGroup.schoolEvents.find((event) => event.photos.length === 2)!;
+    two.photoGroupId = three.photoGroupId;
+    expect(() => normalizeTimeline(oversizedGroup, 2026)).toThrow(/exceeds four photos/);
   });
   test('English sample copy is available in all interface languages', () => {
     expect(localized({ en: 'Sample' }, 'zh-Hant')).toBe('Sample');
