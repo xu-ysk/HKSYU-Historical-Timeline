@@ -13,8 +13,18 @@ test('imported workbook snapshot contains the complete real-data contract', () =
   expect(timeline.schoolEvents.filter((event) => event.photos.length === 3)).toHaveLength(1);
   expect(timeline.schoolEvents.filter((event) => event.photos.length === 5)).toHaveLength(1);
   expect(
-    timeline.schoolEvents.filter((event) => !Object.keys(event.body).length).map((event) => event.id),
-  ).toEqual(['P54', 'P58', 'P59', 'P67']);
+    timeline.schoolEvents
+      .filter((event) => !Object.keys(event.body).length)
+      .map((event) => event.id),
+  ).toEqual([]);
+  expect(
+    timeline.upperRailEvents.every((event) => event.title.en?.trim() && event.body.en?.trim()),
+  ).toBe(true);
+  for (const id of ['P54', 'P58', 'P59', 'P67']) {
+    const body = timeline.schoolEvents.find((event) => event.id === id)?.body ?? {};
+    expect(Object.keys(body)).toEqual(['en', 'zh-Hant', 'zh-Hans']);
+    expect(Object.values(body).every((text) => typeof text === 'string' && text.trim().length > 0)).toBe(true);
+  }
   expect(timeline.schoolEvents.find((event) => event.id === 'P02')?.yearLabel).toBe('1971–1972');
   const finalPlan = timeline.schoolEvents.find((event) => event.id === 'P118');
   expect(finalPlan?.year).toBe(2026);

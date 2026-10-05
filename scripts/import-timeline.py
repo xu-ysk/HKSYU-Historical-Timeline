@@ -244,7 +244,7 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser.add_argument("--workbook", type=Path, default=Path("HKSYU Timeline.xlsx"))
     parser.add_argument("--public-dir", type=Path, default=Path("public"))
     parser.add_argument("--output", type=Path, default=Path("public/timeline.json"))
-    parser.add_argument("--revision", default="xlsx-2026-10-04")
+    parser.add_argument("--revision", default="xlsx-2026-10-05")
     args = parser.parse_args(argv)
     data = build(args.workbook, args.public_dir, args.revision)
     args.output.parent.mkdir(parents=True, exist_ok=True)

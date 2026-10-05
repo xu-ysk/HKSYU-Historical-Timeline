@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-2026-10-04",
+  "revision": "xlsx-2026-10-05",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -8,10 +8,12 @@
       "yearLabel": "1949",
       "orderInYear": 0,
       "title": {
+        "en": "Hu Hung Lick and Chung Chi Yung Study in Europe: From Law to Educational Commitment",
         "zh-Hant": "胡鴻烈、鍾期榮赴歐深造：從法律走向教育關懷",
         "zh-Hans": "胡鸿烈、钟期荣赴欧深造：从法律走向教育关怀"
       },
       "body": {
+        "en": "After the war, Dr. Hu Hung Lick and Dr. Chung Chi Yung went to France to further their studies in law. Their exposure to different legal systems, social institutions, and educational philosophies in Europe laid the foundation for their later efforts to address youth and social issues through institutional reform.",
         "zh-Hant": "胡鴻烈博士與鍾期榮博士戰後赴法深造法律，並在歐洲接觸不同法制、社會制度與教育思想，為日後以制度改革回應青年與社會問題奠定基礎。",
         "zh-Hans": "胡鸿烈博士与钟期荣博士战后赴法深造法律，并在欧洲接触不同法制、社会制度与教育思想，为日后以制度改革回应青年与社会问题奠定基础。"
       }
@@ -22,10 +24,12 @@
       "yearLabel": "1955",
       "orderInYear": 1,
       "title": {
+        "en": "The Couple Moves to Hong Kong: Toward Education and Public Service",
         "zh-Hant": "兩人移居香港：走向教育與公共服務",
         "zh-Hans": "两人移居香港：走向教育与公共服务"
       },
       "body": {
+        "en": "Around 1955, Dr. Hu Hung Lick and Dr. Chung Chi Yung moved to Hong Kong, where they devoted themselves respectively to law, public service, and Chinese post-secondary education. This gradually shaped the social commitment and educational vision that would later lead to the founding of Shue Yan.",
         "zh-Hant": "1955年前後，胡鴻烈博士與鍾期榮博士移居香港，分別投身法律、公共服務與中文專上教育，逐步形成日後創辦樹仁的社會關懷與教育視野。",
         "zh-Hans": "1955年前后，胡鸿烈博士与钟期荣博士移居香港，分别投身法律、公共服务与中文专上教育，逐步形成日后创办树仁的社会关怀与教育视野。"
       }
@@ -36,10 +40,12 @@
       "yearLabel": "1966",
       "orderInYear": 2,
       "title": {
+        "en": "Chung Chi Yung School: From Children's Education to Youth Care",
         "zh-Hant": "鍾期榮學校：從兒童教育到青年關懷",
         "zh-Hans": "钟期荣学校：从儿童教育到青年关怀"
       },
       "body": {
+        "en": "Between 1966 and 1976, Dr. Chung Chi Yung founded Chung Chi Yung School (kindergarten and primary school) at Block 7, Tai Wo Hau, Kowloon, translating her reflections on juvenile justice, social education, and youth development into foundational educational practice.",
         "zh-Hant": "1966至1976年間，鍾期榮博士於九龍大窩口七座創辦鍾期榮學校（幼稚園暨小學），把她對少年司法、社會教育與青年成長的思考落實為基礎教育實踐。",
         "zh-Hans": "1966至1976年间，钟期荣博士于九龙大窝口七座创办钟期荣学校（幼稚园暨小学），把她对少年司法、社会教育与青年成长的思考落实为基础教育实践。"
       }
@@ -50,10 +56,12 @@
       "yearLabel": "1971",
       "orderInYear": 3,
       "title": {
+        "en": "Shue Yan College Founded: Transforming Educational Thought into Institutional Practice",
         "zh-Hant": "樹仁書院創立：把教育思考轉化為制度實踐",
         "zh-Hans": "树仁书院创立：把教育思考转化为制度实践"
       },
       "body": {
+        "en": "In 1971, Dr. Hu Hung Lick and Dr. Chung Chi Yung founded Shue Yan College, further transforming their earlier commitment to children's, youth, and social education into a higher education initiative responding to the shortage of further education opportunities in Hong Kong.",
         "zh-Hant": "1971年，胡鴻烈博士與鍾期榮博士創辦樹仁書院，將早年對兒童、青年與社會教育的關懷，進一步轉化為回應香港升學機會不足的高等教育實踐。",
         "zh-Hans": "1971年，胡鸿烈博士与钟期荣博士创办树仁书院，将早年对儿童、青年与社会教育的关怀，进一步转化为回应香港升学机会不足的高等教育实践。"
       }
@@ -64,10 +72,12 @@
       "yearLabel": "1972",
       "orderInYear": 4,
       "title": {
+        "en": "Shue Yan Secondary School Founded: Extending the Educational Ladder",
         "zh-Hant": "樹仁中學創辦：延伸辦學階梯",
         "zh-Hans": "树仁中学创办：延伸办学阶梯"
       },
       "body": {
+        "en": "In 1972, Dr. Chung Chi Yung founded Shue Yan Secondary School, extending her educational practice from early childhood and primary education and youth nurturing to secondary education, gradually forming an articulated educational pathway from basic education to post-secondary education.",
         "zh-Hant": "1972年，鍾期榮博士創辦樹仁中學，使其教育實踐由幼小教育、青年培育延伸至中學教育，逐步形成由基礎教育至專上教育相連的辦學脈絡。",
         "zh-Hans": "1972年，钟期荣博士创办树仁中学，使其教育实践由幼小教育、青年培育延伸至中学教育，逐步形成由基础教育至专上教育相连的办学脉络。"
       }
@@ -78,10 +88,12 @@
       "yearLabel": "1976",
       "orderInYear": 5,
       "title": {
+        "en": "Registered as a Post-Secondary College: Gaining Institutional Recognition",
         "zh-Hant": "註冊為專上學院：取得制度認可",
         "zh-Hans": "注册为专上学院：取得制度认可"
       },
       "body": {
+        "en": "In 1976, Shue Yan registered as a post-secondary college under the Post Secondary Colleges Ordinance, formally obtaining the institutional qualification to award post-secondary diplomas.",
         "zh-Hant": "1976年，樹仁依《專上學院條例》註冊為專上學院，正式取得頒授專上文憑的制度資格。",
         "zh-Hans": "1976年，树仁依《专上学院条例》注册为专上学院，正式取得颁授专上文凭的制度资格。"
       }
@@ -92,10 +104,12 @@
       "yearLabel": "1977",
       "orderInYear": 6,
       "title": {
+        "en": "Relocation to Wan Chai's Monmouth Path; Braemar Hill Campus Site Approved",
         "zh-Hant": "遷往灣仔萬茂徑，獲批寶馬山校址",
         "zh-Hans": "迁往湾仔万茂径，获批宝马山校址"
       },
       "body": {
+        "en": "Shue Yan relocated to Monmouth Path in Wan Chai and, after years of application, was granted a permanent campus site at Braemar Hill, laying the foundation for long-term campus development.",
         "zh-Hant": "樹仁遷往灣仔萬茂徑，並在經過多年申請後獲批寶馬山永久校址，為長遠校園建設奠定基礎。",
         "zh-Hans": "树仁迁往湾仔万茂径，并在经过多年申请后获批宝马山永久校址，为长远校园建设奠定基础。"
       }
@@ -106,10 +120,12 @@
       "yearLabel": "1978",
       "orderInYear": 7,
       "title": {
+        "en": "Facing the \"2-2-1\" System: Persisting with Four-Year Education",
         "zh-Hant": "面對「二二一」學制：堅持四年制教育",
         "zh-Hans": "面对「二二一」学制：坚持四年制教育"
       },
       "body": {
+        "en": "In 1978, Shue Yan refused to switch to the \"2-2-1\" system in exchange for government funding, choosing instead to uphold its commitment to four-year education and whole-person development.",
         "zh-Hant": "1978年，樹仁拒絕以改行「二二一」學制換取政府資助，選擇堅持四年制教育與全人培育理念。",
         "zh-Hans": "1978年，树仁拒绝以改行「二二一」学制换取政府资助，选择坚持四年制教育与全人培育理念。"
       }
@@ -120,10 +136,12 @@
       "yearLabel": "1979",
       "orderInYear": 8,
       "title": {
+        "en": "International Cooperation Expands Academic Recognition",
         "zh-Hant": "國際合作拓展學術認受",
         "zh-Hans": "国际合作拓展学术认受"
       },
       "body": {
+        "en": "In 1979, Shue Yan co-organized an MBA programme with Northeast Louisiana State University in the United States, expanding academic ties and programme recognition through overseas cooperation.",
         "zh-Hant": "1979年，樹仁與美國路易斯安那州立東北大學合辦工商管理碩士課程，透過海外合作擴展學術連繫與課程認受性。",
         "zh-Hans": "1979年，树仁与美国路易斯安那州立东北大学合办工商管理硕士课程，透过海外合作扩展学术连系与课程认受性。"
       }
@@ -134,10 +152,12 @@
       "yearLabel": "1980",
       "orderInYear": 9,
       "title": {
+        "en": "Braemar Hill Campus Construction Begins",
         "zh-Hant": "寶馬山校園建設展開",
         "zh-Hans": "宝马山校园建设展开"
       },
       "body": {
+        "en": "In 1980, site formation began at the Braemar Hill campus, marking Shue Yan's gradual transition from temporary and scattered teaching spaces toward a permanent campus.",
         "zh-Hant": "1980年，寶馬山校舍地盤開始開闢，樹仁由臨時及分散的辦學空間逐步走向永久校園建設。",
         "zh-Hans": "1980年，宝马山校舍地盘开始开辟，树仁由临时及分散的办学空间逐步走向永久校园建设。"
       }
@@ -148,10 +168,12 @@
       "yearLabel": "1982",
       "orderInYear": 10,
       "title": {
+        "en": "A Test of Graduate Qualifications and Professional Recognition",
         "zh-Hant": "畢業生資格與專業認受的考驗",
         "zh-Hans": "毕业生资格与专业认受的考验"
       },
       "body": {
+        "en": "In the early 1980s, Shue Yan graduates continued to face institutional constraints in terms of remuneration, professional prospects, and qualification recognition, reflecting the complex position of private post-secondary education within Hong Kong's higher education system.",
         "zh-Hant": "1980年代初，樹仁畢業生在薪酬待遇、專業出路及資格認受上仍面對制度限制，反映私立專上教育在香港高等教育體系中的複雜位置。",
         "zh-Hans": "1980年代初，树仁毕业生在薪酬待遇、专业出路及资格认受上仍面对制度限制，反映私立专上教育在香港高等教育体系中的复杂位置。"
       }
@@ -162,10 +184,12 @@
       "yearLabel": "1983",
       "orderInYear": 11,
       "title": {
+        "en": "New Campus Foundation Stone Laid: The Engineering Challenge of Building on a Steep Slope",
         "zh-Hant": "新校奠基：陡坡建校的工程考驗",
         "zh-Hans": "新校奠基：陡坡建校的工程考验"
       },
       "body": {
+        "en": "In 1983, the foundation stone-laying ceremony for the new Braemar Hill campus was held. Because the site was located on a steep hillside, the university had to spend nearly six and a half years driving 176 concrete piles to establish a solid foundation for the building.",
         "zh-Hant": "1983年，寶馬山新校舉行奠基典禮；因校址位處陡峭山坡，校方需花近六年半打入176根水泥柱，方能為校舍建立穩固地基。",
         "zh-Hans": "1983年，宝马山新校举行奠基典礼；因校址位处陡峭山坡，校方需花近六年半打入176根水泥柱，方能为校舍建立稳固地基。"
       }
@@ -176,10 +200,12 @@
       "yearLabel": "1985",
       "orderInYear": 12,
       "title": {
+        "en": "Moving into Braemar Hill: The Permanent Campus Completed",
         "zh-Hant": "遷入寶馬山：永久校園落成",
         "zh-Hans": "迁入宝马山：永久校园落成"
       },
       "body": {
+        "en": "In 1985, the twelve-storey teaching building was completed, and Shue Yan formally moved to its present Braemar Hill site, establishing a permanent campus to support teaching, administration, and student life.",
         "zh-Hant": "1985年，樓高十二層的教學大樓落成，樹仁正式遷入寶馬山現址，建立支撐教學、行政與學生生活的永久校園。",
         "zh-Hans": "1985年，楼高十二层的教学大楼落成，树仁正式迁入宝马山现址，建立支撑教学、行政与学生生活的永久校园。"
       }
@@ -190,10 +216,12 @@
       "yearLabel": "1986",
       "orderInYear": 13,
       "title": {
+        "en": "New Campus Opening: Campus Development Enters a Stable Phase",
         "zh-Hant": "新校舍開幕：校園發展進入穩定階段",
         "zh-Hans": "新校舍开幕：校园发展进入稳定阶段"
       },
       "body": {
+        "en": "In 1986, the new Shue Yan campus was officially opened, marking the college's transition from the resource constraints of its early years to a more stable phase of campus development.",
         "zh-Hant": "1986年，樹仁新校舍正式啟用，標誌學院由草創時期的資源緊張，走向較穩定的校園發展階段。",
         "zh-Hans": "1986年，树仁新校舍正式启用，标志学院由草创时期的资源紧张，走向较稳定的校园发展阶段。"
       }
@@ -204,10 +232,12 @@
       "yearLabel": "1987",
       "orderInYear": 14,
       "title": {
+        "en": "Cooperation with Peking University: Expanding Academic Ties with the Mainland",
         "zh-Hant": "與北京大學合作：拓展內地學術連繫",
         "zh-Hans": "与北京大学合作：拓展内地学术连系"
       },
       "body": {
+        "en": "In 1987, Shue Yan co-organized a Bachelor of Laws programme with Peking University, becoming an important milestone in the college's expansion of academic cooperation with the mainland.",
         "zh-Hant": "1987年，樹仁與北京大學合辦法律本科學士學位課程，成為學院拓展內地學術合作的重要里程碑。",
         "zh-Hans": "1987年，树仁与北京大学合办法律本科学士学位课程，成为学院拓展内地学术合作的重要里程碑。"
       }
@@ -218,10 +248,12 @@
       "yearLabel": "1988",
       "orderInYear": 15,
       "title": {
+        "en": "Defending Four-Year Education Once Again",
         "zh-Hant": "再度守護四年制教育",
         "zh-Hans": "再度守护四年制教育"
       },
       "body": {
+        "en": "In 1988, in the face of a new round of adjustments to Hong Kong's higher education system, Shue Yan once again insisted on four-year education, reaffirming that university education should not be measured solely by efficiency and financial arrangements.",
         "zh-Hant": "1988年，面對香港高等教育制度的新一輪調整，樹仁再次堅持四年制教育，重申大學教育不應只以效率與財政安排衡量",
         "zh-Hans": "1988年，面对香港高等教育制度的新一轮调整，树仁再次坚持四年制教育，重申大学教育不应只以效率与财政安排衡量"
       }
@@ -232,10 +264,12 @@
       "yearLabel": "1990",
       "orderInYear": 16,
       "title": {
+        "en": "Student Petitions and the Continuation of the Four-Year Principle",
         "zh-Hant": "學生請願與四年制原則的延續",
         "zh-Hans": "学生请愿与四年制原则的延续"
       },
       "body": {
+        "en": "Around 1990, students' campaigns for government funding reflected the tuition pressures and fairness issues facing private post-secondary education, while Shue Yan continued to make the maintenance of four-year education a precondition for accepting funding.",
         "zh-Hant": "1990年前後，學生爭取政府資助的行動反映私立專上教育的學費壓力與公平問題，而樹仁仍以維持四年制教育作為接受資助的前提。",
         "zh-Hans": "1990年前后，学生争取政府资助的行动反映私立专上教育的学费压力与公平问题，而树仁仍以维持四年制教育作为接受资助的前提。"
       }
@@ -246,10 +280,12 @@
       "yearLabel": "1995",
       "orderInYear": 17,
       "title": {
+        "en": "Library Complex Completed: Supporting Academic Development",
         "zh-Hant": "圖書館綜合大樓落成：支援學術發展",
         "zh-Hans": "图书馆综合大楼落成：支援学术发展"
       },
       "body": {
+        "en": "In 1995, the nineteen-storey library complex was completed, providing vital support for the library, computer centre, research centre, and student learning spaces.",
         "zh-Hant": "1995年，樓高十九層的圖書館綜合大樓落成，為圖書館、電腦中心、研究中心及學生學習空間提供重要支援",
         "zh-Hans": "1995年，楼高十九层的图书馆综合大楼落成，为图书馆、计算机中心、研究中心及学生学习空间提供重要支持"
       }
@@ -260,10 +296,12 @@
       "yearLabel": "1996",
       "orderInYear": 18,
       "title": {
+        "en": "First Degree Accreditation Application; Research Platform Established",
         "zh-Hant": "首次申請學位評審，建立研究平台",
         "zh-Hans": "首次申请学位评审，建立研究平台"
       },
       "body": {
+        "en": "In 1996, Shue Yan applied for the first time to upgrade its honours diploma programmes to bachelor's degree programmes and established the Contemporary China Research Centre, initiating institutional preparations for degree accreditation and research development.",
         "zh-Hant": "1996年，樹仁首次申請將榮譽文憑課程提升為學士學位課程，並成立當代中國研究中心，展開學位評審與研究發展的制度準備。",
         "zh-Hans": "1996年，树仁首次申请将荣誉文凭课程提升为学士学位课程，并成立当代中国研究中心，展开学位评审与研究发展的制度准备。"
       }
@@ -274,10 +312,12 @@
       "yearLabel": "1999",
       "orderInYear": 19,
       "title": {
+        "en": "The Retitling Campaign under Higher Education Reform",
         "zh-Hant": "高等教育改革下的正名行動",
         "zh-Hans": "高等教育改革下的正名行动"
       },
       "body": {
+        "en": "In 1999, Shue Yan established the Committee for the Attainment of Private University Status, advancing the demand for university retitling to the levels of policy advocacy, government response, and institutional review.",
         "zh-Hant": "1999年，樹仁成立「爭取私立大學地位委員會」，把大學正名訴求推進至政策倡議、政府回應與制度評審層面。",
         "zh-Hans": "1999年，树仁成立「争取私立大学地位委员会」，把大学正名要求推进至政策倡议、政府响应与制度评审层面。"
       }
@@ -288,10 +328,12 @@
       "yearLabel": "2000",
       "orderInYear": 20,
       "title": {
+        "en": "Academic Accreditation Begins: From Advocacy to Institutional Procedure",
         "zh-Hant": "展開學術評審：由倡議進入制度程序",
         "zh-Hans": "展开学术评审：由倡议进入制度程序"
       },
       "body": {
+        "en": "In 2000, Shue Yan applied to the Hong Kong Council for Academic Accreditation for institutional review, transforming the public demand for university retitling into a review process covering programmes, faculty, resources, and management systems.",
         "zh-Hant": "2000年，樹仁向香港學術評審局申請院校評審，將大學正名的公共訴求轉化為課程、師資、資源及管理制度的審查程序。",
         "zh-Hans": "2000年，树仁向香港学术评审局申请院校评审，将大学正名的公共要求转化为课程、师资、资源及管理制度的审查程序。"
       }
@@ -302,10 +344,12 @@
       "yearLabel": "2001",
       "orderInYear": 21,
       "title": {
+        "en": "First Batch of Honours Degree Programmes Accredited",
         "zh-Hant": "首批榮譽學士課程通過評審",
         "zh-Hans": "首批荣誉学士课程通过评审"
       },
       "body": {
+        "en": "In 2001, three programmes—Chinese Language and Literature, Journalism and Communication, and Accounting—were the first to pass accreditation, marking Shue Yan's formal progress toward becoming a degree-awarding institution.",
         "zh-Hant": "2001年，中國語言文學、新聞與傳播及會計三個課程率先通過評審，標誌樹仁正式走向學位頒授院校",
         "zh-Hans": "2001年，中国语言文学、新闻与传播及会计三个课程率先通过评审，标志树仁正式走向学位颁授院校"
       }
@@ -316,10 +360,12 @@
       "yearLabel": "2002",
       "orderInYear": 22,
       "title": {
+        "en": "Social Work Programme Accredited for Bachelor's Degree",
         "zh-Hant": "社會工作課程通過學士學位評審",
         "zh-Hans": "社会工作课程通过学士学位评审"
       },
       "body": {
+        "en": "In 2002, the Department of Social Work was approved to offer an honours bachelor's degree programme, showing that Shue Yan's degree accreditation was gradually extending into professional and social service fields.",
         "zh-Hant": "2002年，社會工作學系獲准開辦榮譽學士課程，顯示樹仁的學位評審逐步擴展至專業及社會服務領域。",
         "zh-Hans": "2002年，社会工作学系获准开办荣誉学士课程，显示树仁的学位评审逐步扩展至专业及社会服务领域。"
       }
@@ -330,10 +376,12 @@
       "yearLabel": "2003",
       "orderInYear": 23,
       "title": {
+        "en": "Business, Counselling and Psychology Programmes Accredited",
         "zh-Hant": "商科、輔導及心理學課程通過評審",
         "zh-Hans": "商科、辅导及心理学课程通过评审"
       },
       "body": {
+        "en": "In 2003, the Department of Business Administration and the Department of Counselling and Psychology were approved to offer honours bachelor's degree programmes, further expanding Shue Yan's degree programme structure.",
         "zh-Hant": "2003年，工商管理系、輔導及心理學系獲准開辦榮譽學士課程，進一步擴大樹仁的學位課程架構。",
         "zh-Hans": "2003年，工商管理系、辅导及心理学系获准开办荣誉学士课程，进一步扩大树仁的学位课程架构。"
       }
@@ -344,10 +392,12 @@
       "yearLabel": "2004",
       "orderInYear": 24,
       "title": {
+        "en": "Economics Programme Accredited",
         "zh-Hant": "經濟學課程通過評審",
         "zh-Hans": "经济学课程通过评审"
       },
       "body": {
+        "en": "In 2004, the Department of Economics was approved to offer an honours bachelor's degree programme, marking the continued refinement of Shue Yan's business and social science programme system.",
         "zh-Hant": "2004年，經濟學系獲准開辦榮譽學士課程，標誌樹仁的商科與社會科學課程體系繼續完善。",
         "zh-Hans": "2004年，经济学系获准开办荣誉学士课程，标志树仁的商科与社会科学课程体系继续完善。"
       }
@@ -358,10 +408,12 @@
       "yearLabel": "2005",
       "orderInYear": 25,
       "title": {
+        "en": "Multiple Programmes Complete Accreditation; First Cohort of Bachelor's Students Graduates",
         "zh-Hant": "多個課程完成評審，首批學士學生畢業",
         "zh-Hans": "多个课程完成评审，首批学士学生毕业"
       },
       "body": {
+        "en": "In 2005, programmes in History, Sociology, and English Language and Literature passed accreditation, the first cohort of honours bachelor's students graduated, and the Residential and Amenities Building was completed.",
         "zh-Hant": "2005年，歷史、社會學及英國語言文學等課程通過評審，首批榮譽學士學生畢業，宿舍文康大樓亦落成。",
         "zh-Hans": "2005年，历史、社会学及英国语言文学等课程通过评审，首批荣誉学士学生毕业，宿舍文康大楼亦落成。"
       }
@@ -372,10 +424,12 @@
       "yearLabel": "2006",
       "orderInYear": 26,
       "title": {
+        "en": "Retitled as Hong Kong Shue Yan University: Hong Kong's First Private University",
         "zh-Hant": "正名為香港樹仁大學：香港首間私立大學",
         "zh-Hans": "正名为香港树仁大学：香港首间私立大学"
       },
       "body": {
+        "en": "In 2006, Shue Yan was approved by the Chief Executive in Council to be retitled as Hong Kong Shue Yan University, becoming Hong Kong's first private university.",
         "zh-Hant": "2006年，樹仁獲行政長官會同行政會議批准正名為香港樹仁大學，成為香港首間私立大學。",
         "zh-Hans": "2006年，树仁获行政长官会同行政会议批准正名为香港树仁大学，成为香港首间私立大学。"
       }
@@ -386,10 +440,12 @@
       "yearLabel": "2007",
       "orderInYear": 27,
       "title": {
+        "en": "New University Name Officially Adopted: Entering a New Stage of University Development",
         "zh-Hant": "新校名正式啟用：進入大學發展階段",
         "zh-Hans": "新校名正式启用：进入大学发展阶段"
       },
       "body": {
+        "en": "In February 2007, Hong Kong Shue Yan University held its retitling ceremony, officially adopting its new name and marking Shue Yan's transition from a post-secondary college to a new stage of university development.",
         "zh-Hant": "2007年2月，香港樹仁大學舉行正名典禮，新校名正式啟用，標誌樹仁由專上學院進入大學發展的新階段。",
         "zh-Hans": "2007年2月，香港树仁大学举行正名典礼，新校名正式启用，标志树仁由专上学院进入大学发展的新阶段。"
       }
@@ -2158,7 +2214,11 @@
       "themeId": "C",
       "photoGroupId": "P54",
       "title": {},
-      "body": {},
+      "body": {
+        "en": "Chief Executive Tung Chee-hwa officiated at the foundation stone ceremony for Shue Yan’s new Residential and Amenities Complex.",
+        "zh-Hant": "行政長官董建華主持樹仁新宿舍文康大樓奠基禮。",
+        "zh-Hans": "行政长官董建华主持树仁新宿舍文康大楼奠基礼。"
+      },
       "photos": [
         {
           "id": "P54-photo-1",
@@ -2278,7 +2338,11 @@
       "themeId": "C",
       "photoGroupId": "P58",
       "title": {},
-      "body": {},
+      "body": {
+        "en": "A topping-out ceremony for the Residential and Amenities Complex was officiated by Secretary for Education and Manpower Arthur Li and Shue Yan’s founders.",
+        "zh-Hant": "宿舍文康大樓舉行平頂典禮，由教育統籌局局長李國章與樹仁創辦人主持。",
+        "zh-Hans": "宿舍文康大楼举行平顶典礼，由教育统筹局局长李国章与树仁创办人主持。"
+      },
       "photos": [
         {
           "id": "P58-photo-1",
@@ -2300,7 +2364,11 @@
       "themeId": "C",
       "photoGroupId": "P59",
       "title": {},
-      "body": {},
+      "body": {
+        "en": "The City University of Hong Kong awarded Chung Chi-yung an honorary Doctor of Social Science degree in recognition of her contributions to education.",
+        "zh-Hant": "香港城市大學向鍾期榮頒授榮譽社會科學博士，表揚其教育貢獻。",
+        "zh-Hans": "香港城市大学向钟期荣颁授荣誉社会科学博士，表扬其教育贡献。"
+      },
       "photos": [
         {
           "id": "P59-photo-1",
@@ -2504,7 +2572,11 @@
       "themeId": "C",
       "photoGroupId": "P67",
       "title": {},
-      "body": {},
+      "body": {
+        "en": "The Hong Kong Government approved the renaming of Shue Yan College to Hong Kong Shue Yan University, making It the city’s first private university.",
+        "zh-Hant": "香港政府批准樹仁學院正名為香港樹仁大學，成為全港首所私立大學。",
+        "zh-Hans": "香港政府批准树仁学院正名为香港树仁大学，成为全港首所私立大学。"
+      },
       "photos": [
         {
           "id": "P67-photo-1",
