@@ -13,23 +13,20 @@ for (const size of [
     await expect(page.getByTestId('scene')).toBeVisible();
 
     const upper = page.getByTestId('upper-rail-panel');
-    const school = page.locator('.school-label');
     const education = page.getByTestId('education-panel');
     await expect(upper).toBeVisible();
     await expect(page.locator('[data-track="upper"]')).toHaveCount(1);
     await expect(page.locator('[data-track="education"]')).toHaveCount(1);
-    await expect(upper.locator('.eyebrow')).toHaveText(/01\s*\//);
+    await expect(upper.locator('.eyebrow')).toHaveText('01/ 樹仁校史');
     await expect(upper).toHaveText(/Founders|College|University/);
     await expect(upper.locator('[data-testid="upper-rail-year"]')).toHaveText('1949');
     await expect(upper.locator('[data-testid="upper-rail-title"]')).toBeVisible();
     await expect(upper.locator('[data-testid="upper-rail-body"]')).toBeVisible();
-    await expect(school).toHaveText(/02\s*\/.*樹仁校史/);
+    await expect(page.locator('.school-label')).toHaveCount(0);
     await expect(education.locator('.eyebrow')).toHaveText(/03\s*\/.*香港教育史/);
 
     const upperBox = (await upper.boundingBox())!;
-    const schoolBox = (await school.boundingBox())!;
     const educationBox = (await education.boundingBox())!;
-    expect(upperBox.y + upperBox.height).toBeLessThan(schoolBox.y + schoolBox.height * 0.7);
     expect(upperBox.x + upperBox.width).toBeLessThan(size.width * 0.48);
     expect(upperBox.y + upperBox.height).toBeLessThan(educationBox.y);
 

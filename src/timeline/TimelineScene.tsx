@@ -70,11 +70,6 @@ export function TimelineScene({
       data-phase="idle"
       data-mode={mode}
     >
-      <div className="school-label">
-        <span className="lane-number">02 /</span>
-        <span>{m.school}</span>
-        <span className="label-rule" />
-      </div>
       <svg className="track-lines" width="100%" height="100%" aria-hidden="true">
         {(['axis', 'upper', 'education'] as const).map((lane) => {
           const a = anchor(1949, lane, view, values),
@@ -95,7 +90,7 @@ export function TimelineScene({
       </svg>
       <aside className="upper-rail-panel" data-testid="upper-rail-panel">
         <div className="eyebrow">
-          <span>01/</span> {locale === 'en' ? 'Upper rail events' : '上轨事件'}
+          <span>01/</span> {locale === 'en' ? 'Shue Yan history' : m.school}
         </div>
         {upperRail ? (
           <div className="upper-rail-copy">

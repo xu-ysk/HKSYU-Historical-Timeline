@@ -106,29 +106,6 @@ h1 {
   inset: 0;
   pointer-events: none;
 }
-.school-label {
-  position: absolute;
-  left: 42px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  color: #757166;
-  font-size: 14px;
-  letter-spacing: 2.5px;
-}
-.lane-number {
-  font:
-    12px Georgia,
-    serif;
-  color: #a69e90;
-}
-.label-rule {
-  height: 1px;
-  width: 50px;
-  background: #c5bdae;
-}
 .photo-card {
   position: absolute;
   left: 0;

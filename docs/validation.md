@@ -142,7 +142,7 @@ V1.0 原有阶段与 V1.1 阶段 7～9 已完成，`spec.md` 清单已勾选。�
 
 第二版已改由 `public/timeline.json` 和 `public/Historical_Timeline_Images/` 提供正式本地資料，避免依賴只能由校內電腦訪問的照片伺服器。`npm run import:data` 讀取工作簿與照片鏡像，輸出 28 條上軌事件、118 條樹仁校史事件、20 條香港教育史事件及 185 張照片；重新匯出的 JSON 與目前快照一致，185 個照片路徑均能解析到本地文件。
 
-第二版加入粗指標觸屏命中區和觸控輕點開啟照片的處理。`npm run check` 最終結果為 195/195 瀏覽器測試通過，包含 Chromium、Chrome、Edge 各自的展覽觸屏測試；`npm run build` 之後的正式 `dist` 包含真实 `timeline.json` 和全部本地照片。預覽中 `timeline.json` 與含中文目錄的照片请求均返回 HTTP 200。
+第二版加入粗指標觸屏命中區和觸控輕點開啟照片的處理。`npm run check` 最終結果為 198/198 瀏覽器測試通過，包含 Chromium、Chrome、Edge 各自的展覽觸屏測試；`npm run build` 之後的正式 `dist` 包含真实 `timeline.json` 和全部本地照片。預覽中 `timeline.json` 與含中文目錄的照片请求均返回 HTTP 200。
 
 展示目標是約 85 寸橫向展覽觸屏。当前自动化触屏测试使用 1920×1080 视口模拟粗指标输入；实体屏幕的像素分辨率、系统缩放、浏览器和触控驱动仍待场地确认。手機和平板不在第二版適配範圍內。
 
