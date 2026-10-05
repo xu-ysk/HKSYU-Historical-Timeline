@@ -25,6 +25,10 @@ for (const sample of [
     await source.press('Enter');
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', sample.id);
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
+    await expect(page.getByTestId('event-detail')).toHaveAttribute(
+      'data-placeholder-only',
+      'false',
+    );
     await expect(page.getByTestId('detail-body')).not.toBeEmpty();
     const text = (await page.getByTestId('detail-text').boundingBox())!;
     const photos = await page.locator('[data-extracted="true"]').all();

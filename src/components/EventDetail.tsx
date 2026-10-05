@@ -20,7 +20,8 @@ export function EventDetail({
     m = messages[locale],
     title = localized(event.title, locale),
     body = localized(event.body, locale),
-    hasText = Boolean(title || body);
+    hasText = Boolean(title || body),
+    placeholderOnly = !event.photos.some((photo) => photo.kind === 'image');
   useEffect(() => {
     dialogRef.current?.focus();
     const key = (e: KeyboardEvent) => {
@@ -38,7 +39,7 @@ export function EventDetail({
   return (
     <section
       ref={dialogRef}
-      className="event-detail"
+      className={'event-detail' + (placeholderOnly ? ' event-detail-placeholder' : '')}
       role="dialog"
       aria-modal="true"
       tabIndex={-1}
@@ -47,6 +48,7 @@ export function EventDetail({
       data-testid="event-detail"
       data-event={event.id}
       data-phase={phase}
+      data-placeholder-only={placeholderOnly ? 'true' : 'false'}
       onClick={(e) => {
         e.stopPropagation();
         onClose();

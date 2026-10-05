@@ -377,11 +377,13 @@ export class TimelineController {
         (n) => n.card.event.photoGroupId === this.groupForEvent(this.detailState.eventId),
       ),
       selectedEvent = this.events.find((event) => event.id === this.detailState.eventId),
+      hasRealPhoto = Boolean(selectedEvent?.photos.some((photo) => photo.kind === 'image')),
       showDetailText = Boolean(
+        hasRealPhoto &&
         selectedEvent &&
-          [...Object.values(selectedEvent.title), ...Object.values(selectedEvent.body)].some(
-            (value) => value?.trim(),
-          ),
+        [...Object.values(selectedEvent.title), ...Object.values(selectedEvent.body)].some(
+          (value) => value?.trim(),
+        ),
       ),
       rects = detailPhotoRects(
         selected.map((n) => n.card),

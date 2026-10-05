@@ -16,19 +16,24 @@ export const PhotoCard = memo(
     onSelect?: (id: string) => void;
   }) {
     const image = card.photo?.kind === 'image' && card.photo.src ? card.photo.src : null;
+    const title = localized(card.event.title, locale).trim();
+    const body = localized(card.event.body, locale).trim();
+    const placeholder = !image;
+    const placeholderBody = title ? body : body || title;
     return (
       <button
-        className={'photo-card' + (image ? ' photo-card-image' : '')}
+        className={'photo-card' + (image ? ' photo-card-image' : ' photo-card-placeholder')}
         data-card-id={card.id}
         data-event-id={card.event.id}
         data-theme={card.event.themeId}
+        data-placeholder={placeholder ? 'true' : undefined}
         data-testid={'card-' + card.id}
         aria-label={
           card.event.year +
           ' · ' +
-          localized(card.event.title, locale) +
+          (title || body || card.event.yearLabel || card.event.year) +
           ' · ' +
-          (card.photo ? localized(card.photo.alt, locale) : 'Text only')
+          (placeholder ? body || title || 'Text only' : localized(card.photo!.alt, locale))
         }
         style={
           {
@@ -50,23 +55,15 @@ export const PhotoCard = memo(
               draggable={false}
             />
           ) : (
-            <>
-              <span className="photo-top">
-                HKSYU ARCHIVE <span>{card.event.yearLabel ?? card.event.year}</span>
+            <span
+              className={'photo-placeholder-content' + (title ? '' : ' photo-placeholder-no-title')}
+            >
+              <span className="photo-placeholder-year">
+                {card.event.yearLabel ?? card.event.year}
               </span>
-              <span className="photo-letter">
-                {card.event.themeId}
-                {card.photo && card.event.photos.length > 1 && (
-                  <small>
-                    {card.event.photos.findIndex((photo) => photo.id === card.photo?.id) + 1}
-                  </small>
-                )}
-              </span>
-              <span className="photo-bottom">
-                {card.photo ? 'A MOMENT IN TIME' : 'A STORY IN WORDS'}
-                <span>—</span>
-              </span>
-            </>
+              {title && <span className="photo-placeholder-title">{title}</span>}
+              {placeholderBody && <span className="photo-placeholder-body">{placeholderBody}</span>}
+            </span>
           )}
         </span>
       </button>

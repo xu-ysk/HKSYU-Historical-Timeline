@@ -38,3 +38,10 @@ test('keyboard focus stays in the detail and Escape listeners are cleaned up', a
   fireEvent.keyDown(window, { key: 'Escape' });
   expect(onClose).toHaveBeenCalledTimes(1);
 });
+
+test('placeholder-only details keep the description accessible while marking the centered mode', () => {
+  const onClose = vi.fn();
+  render(<EventDetail event={event} locale="en" phase="detail" onClose={onClose} />);
+  expect(screen.getByRole('dialog')).toHaveAttribute('data-placeholder-only', 'true');
+  expect(screen.getByTestId('detail-body')).toHaveTextContent(event.body.en!);
+});

@@ -48,7 +48,9 @@ for (const sample of [
     await expect(page.locator('.photo-card')).toHaveCount(initialCount);
     await expect(source).toHaveAttribute('data-original-node', 'yes');
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', eventId);
-    const text = await page.getByTestId('detail-text').boundingBox();
+    const placeholderOnly =
+      (await page.getByTestId('event-detail').getAttribute('data-placeholder-only')) === 'true';
+    const text = placeholderOnly ? null : await page.getByTestId('detail-text').boundingBox();
     const languages = await page.locator('.languages').boundingBox(),
       viewSwitch = await page.getByTestId('view-switch').boundingBox();
     await expect(page.getByTestId('close-detail')).toHaveCount(0);
@@ -60,8 +62,18 @@ for (const sample of [
     for (const photo of await page.locator('[data-extracted=true]').all()) {
       const box = await photo.boundingBox();
       expect(box!.x).toBeGreaterThan(0);
-      expect(box!.x + box!.width).toBeLessThan(text!.x);
-      expect(box!.y + box!.height).toBeLessThan(710);
+      if (placeholderOnly) {
+        expect(box!.x + box!.width).toBeLessThan(1440);
+        expect(box!.y).toBeGreaterThan(0);
+        expect(box!.y + box!.height).toBeLessThan(900);
+        if (sample.count === 1) {
+          expect(Math.abs(box!.x + box!.width / 2 - 720)).toBeLessThan(1);
+          expect(Math.abs(box!.y + box!.height / 2 - 450)).toBeLessThan(1);
+        }
+      } else {
+        expect(box!.x + box!.width).toBeLessThan(text!.x);
+        expect(box!.y + box!.height).toBeLessThan(710);
+      }
     }
     if (sample.count >= 3) {
       const boxes = await page.locator('[data-extracted=true]').evaluateAll((items) =>
@@ -90,7 +102,7 @@ for (const sample of [
     await expect(page.getByTestId('theme-E')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   });
-test('either photograph opens the same pair and long text scroll does not move timeline', async ({
+test('either placeholder card opens the same pair without moving the timeline', async ({
   page,
 }) => {
   await page.goto('/');
@@ -104,11 +116,7 @@ test('either photograph opens the same pair and long text scroll does not move t
   await expect(page.locator('[data-extracted=true]')).toHaveCount(2);
   await page.setViewportSize({ width: 1280, height: 720 });
   const focus = await page.getByTestId('scene').getAttribute('data-focus');
-  await page.getByTestId('detail-body').hover();
-  await page.mouse.wheel(0, 500);
-  await expect
-    .poll(() => page.getByTestId('detail-body').evaluate((el) => el.scrollTop))
-    .toBeGreaterThan(0);
+  await expect(page.getByTestId('event-detail')).toHaveAttribute('data-placeholder-only', 'true');
   await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
   await page.screenshot({ path: test.info().outputPath('stage5-compact-english-pair.png') });
   await page.keyboard.press('Escape');
