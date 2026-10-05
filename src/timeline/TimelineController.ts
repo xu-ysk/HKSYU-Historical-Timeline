@@ -315,9 +315,15 @@ export class TimelineController {
     this.root.dataset.targetFocus = String(this.values.focus);
     this.dirty = true;
   };
-  private up = () => {
+  private up = (e: PointerEvent) => {
+    const tappedEventId =
+      e.pointerType === 'touch' && !this.drag?.moved
+        ? (e.target instanceof Element ? e.target.closest<HTMLElement>('.photo-card') : null)
+            ?.dataset.eventId
+        : undefined;
     if (this.drag?.moved) this.suppressClick = true;
     this.cancel();
+    if (tappedEventId) this.open(tappedEventId);
   };
   private cancel = () => {
     const id = this.drag?.id;
@@ -369,9 +375,17 @@ export class TimelineController {
     const selected = this.nodes.filter(
         (n) => n.card.event.photoGroupId === this.groupForEvent(this.detailState.eventId),
       ),
+      selectedEvent = this.events.find((event) => event.id === this.detailState.eventId),
+      showDetailText = Boolean(
+        selectedEvent &&
+          [...Object.values(selectedEvent.title), ...Object.values(selectedEvent.body)].some(
+            (value) => value?.trim(),
+          ),
+      ),
       rects = detailPhotoRects(
         selected.map((n) => n.card),
         this.view,
+        showDetailText,
       );
     const scrim = this.root.querySelector<HTMLElement>('.detail-scrim');
     if (scrim) scrim.hidden = !this.blocked;

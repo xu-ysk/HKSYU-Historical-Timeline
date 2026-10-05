@@ -79,3 +79,13 @@ test('three and four photo groups use a complete non-overlapping collage inside 
       }
   }
 });
+
+test('photo-only details use a centered full-width photo region', () => {
+  const view = { width: 1440, height: 900 },
+    regions = detailRegions(view, false);
+  expect(regions.photos.x).toBe(65);
+  expect(regions.photos.width).toBe(view.width - 130);
+  expect(regions.photos.y).toBe(125);
+  expect(regions.photos.height).toBe(view.height - 250);
+  expect(regions.text.x).toBeGreaterThan(view.width);
+});

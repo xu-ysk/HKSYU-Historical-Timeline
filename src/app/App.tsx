@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Locale, TimelineDataset, ThemeId } from '../domain/timeline';
 import { useCurrentYear } from '../domain/useCurrentYear';
 import { mockProvider } from '../data/mockProvider';
+import { realProvider } from '../data/realProvider';
 import { messages } from '../i18n/messages';
 import { LanguageSwitcher, ThemeSwitcher } from '../components/Controls';
 import { TimelineScene } from '../timeline/TimelineScene';
@@ -37,12 +38,22 @@ export default function App() {
   const m = messages[locale],
     endYear = useCurrentYear();
   const [loadAttempt, setLoadAttempt] = useState(0);
+  const provider =
+    import.meta.env.MODE === 'test' || import.meta.env.VITE_TIMELINE_SOURCE === 'mock'
+      ? mockProvider
+      : realProvider;
   const selected = data?.schoolEvents.find((e) => e.id === detail.eventId),
     focused = data?.schoolEvents.find((e) => e.id === eventId),
+    focusedLabel = focused
+      ? localized(focused.title, locale) ||
+        localized(focused.body, locale).slice(0, 72) ||
+        focused.yearLabel ||
+        String(focused.year)
+      : '—',
     detailActive = detail.phase !== 'idle';
   useEffect(() => {
     const abort = new AbortController();
-    mockProvider
+    provider
       .load(abort.signal)
       .then((result) => {
         if (!abort.signal.aborted) {
@@ -54,7 +65,7 @@ export default function App() {
         if (!abort.signal.aborted) setError(true);
       });
     return () => abort.abort();
-  }, [endYear, loadAttempt]);
+  }, [endYear, loadAttempt, provider]);
   return (
     <main className="museum-app" data-detail-active={detailActive}>
       <header className="masthead">
@@ -134,7 +145,7 @@ export default function App() {
               data-testid="open-focused"
               onClick={() => focused && controllerRef.current?.open(focused.id)}
             >
-              {focused ? localized(focused.title, locale) : '—'} ↗
+              {focusedLabel} ↗
             </button>
             <button
               disabled={detailActive}

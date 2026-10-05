@@ -1,0 +1,4445 @@
+{
+  "schemaVersion": 1,
+  "revision": "xlsx-2026-10-04",
+  "upperRailEvents": [
+    {
+      "id": "T01",
+      "year": 1949,
+      "yearLabel": "1949",
+      "orderInYear": 0,
+      "title": {
+        "zh-Hant": "胡鴻烈、鍾期榮赴歐深造：從法律走向教育關懷",
+        "zh-Hans": "胡鸿烈、钟期荣赴欧深造：从法律走向教育关怀"
+      },
+      "body": {
+        "zh-Hant": "胡鴻烈博士與鍾期榮博士戰後赴法深造法律，並在歐洲接觸不同法制、社會制度與教育思想，為日後以制度改革回應青年與社會問題奠定基礎。",
+        "zh-Hans": "胡鸿烈博士与钟期荣博士战后赴法深造法律，并在欧洲接触不同法制、社会制度与教育思想，为日后以制度改革回应青年与社会问题奠定基础。"
+      }
+    },
+    {
+      "id": "T02",
+      "year": 1955,
+      "yearLabel": "1955",
+      "orderInYear": 1,
+      "title": {
+        "zh-Hant": "兩人移居香港：走向教育與公共服務",
+        "zh-Hans": "两人移居香港：走向教育与公共服务"
+      },
+      "body": {
+        "zh-Hant": "1955年前後，胡鴻烈博士與鍾期榮博士移居香港，分別投身法律、公共服務與中文專上教育，逐步形成日後創辦樹仁的社會關懷與教育視野。",
+        "zh-Hans": "1955年前后，胡鸿烈博士与钟期荣博士移居香港，分别投身法律、公共服务与中文专上教育，逐步形成日后创办树仁的社会关怀与教育视野。"
+      }
+    },
+    {
+      "id": "T03",
+      "year": 1966,
+      "yearLabel": "1966",
+      "orderInYear": 2,
+      "title": {
+        "zh-Hant": "鍾期榮學校：從兒童教育到青年關懷",
+        "zh-Hans": "钟期荣学校：从儿童教育到青年关怀"
+      },
+      "body": {
+        "zh-Hant": "1966至1976年間，鍾期榮博士於九龍大窩口七座創辦鍾期榮學校（幼稚園暨小學），把她對少年司法、社會教育與青年成長的思考落實為基礎教育實踐。",
+        "zh-Hans": "1966至1976年间，钟期荣博士于九龙大窝口七座创办钟期荣学校（幼稚园暨小学），把她对少年司法、社会教育与青年成长的思考落实为基础教育实践。"
+      }
+    },
+    {
+      "id": "T04",
+      "year": 1971,
+      "yearLabel": "1971",
+      "orderInYear": 3,
+      "title": {
+        "zh-Hant": "樹仁書院創立：把教育思考轉化為制度實踐",
+        "zh-Hans": "树仁书院创立：把教育思考转化为制度实践"
+      },
+      "body": {
+        "zh-Hant": "1971年，胡鴻烈博士與鍾期榮博士創辦樹仁書院，將早年對兒童、青年與社會教育的關懷，進一步轉化為回應香港升學機會不足的高等教育實踐。",
+        "zh-Hans": "1971年，胡鸿烈博士与钟期荣博士创办树仁书院，将早年对儿童、青年与社会教育的关怀，进一步转化为回应香港升学机会不足的高等教育实践。"
+      }
+    },
+    {
+      "id": "T05",
+      "year": 1972,
+      "yearLabel": "1972",
+      "orderInYear": 4,
+      "title": {
+        "zh-Hant": "樹仁中學創辦：延伸辦學階梯",
+        "zh-Hans": "树仁中学创办：延伸办学阶梯"
+      },
+      "body": {
+        "zh-Hant": "1972年，鍾期榮博士創辦樹仁中學，使其教育實踐由幼小教育、青年培育延伸至中學教育，逐步形成由基礎教育至專上教育相連的辦學脈絡。",
+        "zh-Hans": "1972年，钟期荣博士创办树仁中学，使其教育实践由幼小教育、青年培育延伸至中学教育，逐步形成由基础教育至专上教育相连的办学脉络。"
+      }
+    },
+    {
+      "id": "T06",
+      "year": 1976,
+      "yearLabel": "1976",
+      "orderInYear": 5,
+      "title": {
+        "zh-Hant": "註冊為專上學院：取得制度認可",
+        "zh-Hans": "注册为专上学院：取得制度认可"
+      },
+      "body": {
+        "zh-Hant": "1976年，樹仁依《專上學院條例》註冊為專上學院，正式取得頒授專上文憑的制度資格。",
+        "zh-Hans": "1976年，树仁依《专上学院条例》注册为专上学院，正式取得颁授专上文凭的制度资格。"
+      }
+    },
+    {
+      "id": "T07",
+      "year": 1977,
+      "yearLabel": "1977",
+      "orderInYear": 6,
+      "title": {
+        "zh-Hant": "遷往灣仔萬茂徑，獲批寶馬山校址",
+        "zh-Hans": "迁往湾仔万茂径，获批宝马山校址"
+      },
+      "body": {
+        "zh-Hant": "樹仁遷往灣仔萬茂徑，並在經過多年申請後獲批寶馬山永久校址，為長遠校園建設奠定基礎。",
+        "zh-Hans": "树仁迁往湾仔万茂径，并在经过多年申请后获批宝马山永久校址，为长远校园建设奠定基础。"
+      }
+    },
+    {
+      "id": "T08",
+      "year": 1978,
+      "yearLabel": "1978",
+      "orderInYear": 7,
+      "title": {
+        "zh-Hant": "面對「二二一」學制：堅持四年制教育",
+        "zh-Hans": "面对「二二一」学制：坚持四年制教育"
+      },
+      "body": {
+        "zh-Hant": "1978年，樹仁拒絕以改行「二二一」學制換取政府資助，選擇堅持四年制教育與全人培育理念。",
+        "zh-Hans": "1978年，树仁拒绝以改行「二二一」学制换取政府资助，选择坚持四年制教育与全人培育理念。"
+      }
+    },
+    {
+      "id": "T09",
+      "year": 1979,
+      "yearLabel": "1979",
+      "orderInYear": 8,
+      "title": {
+        "zh-Hant": "國際合作拓展學術認受",
+        "zh-Hans": "国际合作拓展学术认受"
+      },
+      "body": {
+        "zh-Hant": "1979年，樹仁與美國路易斯安那州立東北大學合辦工商管理碩士課程，透過海外合作擴展學術連繫與課程認受性。",
+        "zh-Hans": "1979年，树仁与美国路易斯安那州立东北大学合办工商管理硕士课程，透过海外合作扩展学术连系与课程认受性。"
+      }
+    },
+    {
+      "id": "T10",
+      "year": 1980,
+      "yearLabel": "1980",
+      "orderInYear": 9,
+      "title": {
+        "zh-Hant": "寶馬山校園建設展開",
+        "zh-Hans": "宝马山校园建设展开"
+      },
+      "body": {
+        "zh-Hant": "1980年，寶馬山校舍地盤開始開闢，樹仁由臨時及分散的辦學空間逐步走向永久校園建設。",
+        "zh-Hans": "1980年，宝马山校舍地盘开始开辟，树仁由临时及分散的办学空间逐步走向永久校园建设。"
+      }
+    },
+    {
+      "id": "T11",
+      "year": 1982,
+      "yearLabel": "1982",
+      "orderInYear": 10,
+      "title": {
+        "zh-Hant": "畢業生資格與專業認受的考驗",
+        "zh-Hans": "毕业生资格与专业认受的考验"
+      },
+      "body": {
+        "zh-Hant": "1980年代初，樹仁畢業生在薪酬待遇、專業出路及資格認受上仍面對制度限制，反映私立專上教育在香港高等教育體系中的複雜位置。",
+        "zh-Hans": "1980年代初，树仁毕业生在薪酬待遇、专业出路及资格认受上仍面对制度限制，反映私立专上教育在香港高等教育体系中的复杂位置。"
+      }
+    },
+    {
+      "id": "T12",
+      "year": 1983,
+      "yearLabel": "1983",
+      "orderInYear": 11,
+      "title": {
+        "zh-Hant": "新校奠基：陡坡建校的工程考驗",
+        "zh-Hans": "新校奠基：陡坡建校的工程考验"
+      },
+      "body": {
+        "zh-Hant": "1983年，寶馬山新校舉行奠基典禮；因校址位處陡峭山坡，校方需花近六年半打入176根水泥柱，方能為校舍建立穩固地基。",
+        "zh-Hans": "1983年，宝马山新校举行奠基典礼；因校址位处陡峭山坡，校方需花近六年半打入176根水泥柱，方能为校舍建立稳固地基。"
+      }
+    },
+    {
+      "id": "T13",
+      "year": 1985,
+      "yearLabel": "1985",
+      "orderInYear": 12,
+      "title": {
+        "zh-Hant": "遷入寶馬山：永久校園落成",
+        "zh-Hans": "迁入宝马山：永久校园落成"
+      },
+      "body": {
+        "zh-Hant": "1985年，樓高十二層的教學大樓落成，樹仁正式遷入寶馬山現址，建立支撐教學、行政與學生生活的永久校園。",
+        "zh-Hans": "1985年，楼高十二层的教学大楼落成，树仁正式迁入宝马山现址，建立支撑教学、行政与学生生活的永久校园。"
+      }
+    },
+    {
+      "id": "T14",
+      "year": 1986,
+      "yearLabel": "1986",
+      "orderInYear": 13,
+      "title": {
+        "zh-Hant": "新校舍開幕：校園發展進入穩定階段",
+        "zh-Hans": "新校舍开幕：校园发展进入稳定阶段"
+      },
+      "body": {
+        "zh-Hant": "1986年，樹仁新校舍正式啟用，標誌學院由草創時期的資源緊張，走向較穩定的校園發展階段。",
+        "zh-Hans": "1986年，树仁新校舍正式启用，标志学院由草创时期的资源紧张，走向较稳定的校园发展阶段。"
+      }
+    },
+    {
+      "id": "T15",
+      "year": 1987,
+      "yearLabel": "1987",
+      "orderInYear": 14,
+      "title": {
+        "zh-Hant": "與北京大學合作：拓展內地學術連繫",
+        "zh-Hans": "与北京大学合作：拓展内地学术连系"
+      },
+      "body": {
+        "zh-Hant": "1987年，樹仁與北京大學合辦法律本科學士學位課程，成為學院拓展內地學術合作的重要里程碑。",
+        "zh-Hans": "1987年，树仁与北京大学合办法律本科学士学位课程，成为学院拓展内地学术合作的重要里程碑。"
+      }
+    },
+    {
+      "id": "T16",
+      "year": 1988,
+      "yearLabel": "1988",
+      "orderInYear": 15,
+      "title": {
+        "zh-Hant": "再度守護四年制教育",
+        "zh-Hans": "再度守护四年制教育"
+      },
+      "body": {
+        "zh-Hant": "1988年，面對香港高等教育制度的新一輪調整，樹仁再次堅持四年制教育，重申大學教育不應只以效率與財政安排衡量",
+        "zh-Hans": "1988年，面对香港高等教育制度的新一轮调整，树仁再次坚持四年制教育，重申大学教育不应只以效率与财政安排衡量"
+      }
+    },
+    {
+      "id": "T17",
+      "year": 1990,
+      "yearLabel": "1990",
+      "orderInYear": 16,
+      "title": {
+        "zh-Hant": "學生請願與四年制原則的延續",
+        "zh-Hans": "学生请愿与四年制原则的延续"
+      },
+      "body": {
+        "zh-Hant": "1990年前後，學生爭取政府資助的行動反映私立專上教育的學費壓力與公平問題，而樹仁仍以維持四年制教育作為接受資助的前提。",
+        "zh-Hans": "1990年前后，学生争取政府资助的行动反映私立专上教育的学费压力与公平问题，而树仁仍以维持四年制教育作为接受资助的前提。"
+      }
+    },
+    {
+      "id": "T18",
+      "year": 1995,
+      "yearLabel": "1995",
+      "orderInYear": 17,
+      "title": {
+        "zh-Hant": "圖書館綜合大樓落成：支援學術發展",
+        "zh-Hans": "图书馆综合大楼落成：支援学术发展"
+      },
+      "body": {
+        "zh-Hant": "1995年，樓高十九層的圖書館綜合大樓落成，為圖書館、電腦中心、研究中心及學生學習空間提供重要支援",
+        "zh-Hans": "1995年，楼高十九层的图书馆综合大楼落成，为图书馆、计算机中心、研究中心及学生学习空间提供重要支持"
+      }
+    },
+    {
+      "id": "T19",
+      "year": 1996,
+      "yearLabel": "1996",
+      "orderInYear": 18,
+      "title": {
+        "zh-Hant": "首次申請學位評審，建立研究平台",
+        "zh-Hans": "首次申请学位评审，建立研究平台"
+      },
+      "body": {
+        "zh-Hant": "1996年，樹仁首次申請將榮譽文憑課程提升為學士學位課程，並成立當代中國研究中心，展開學位評審與研究發展的制度準備。",
+        "zh-Hans": "1996年，树仁首次申请将荣誉文凭课程提升为学士学位课程，并成立当代中国研究中心，展开学位评审与研究发展的制度准备。"
+      }
+    },
+    {
+      "id": "T20",
+      "year": 1999,
+      "yearLabel": "1999",
+      "orderInYear": 19,
+      "title": {
+        "zh-Hant": "高等教育改革下的正名行動",
+        "zh-Hans": "高等教育改革下的正名行动"
+      },
+      "body": {
+        "zh-Hant": "1999年，樹仁成立「爭取私立大學地位委員會」，把大學正名訴求推進至政策倡議、政府回應與制度評審層面。",
+        "zh-Hans": "1999年，树仁成立「争取私立大学地位委员会」，把大学正名要求推进至政策倡议、政府响应与制度评审层面。"
+      }
+    },
+    {
+      "id": "T21",
+      "year": 2000,
+      "yearLabel": "2000",
+      "orderInYear": 20,
+      "title": {
+        "zh-Hant": "展開學術評審：由倡議進入制度程序",
+        "zh-Hans": "展开学术评审：由倡议进入制度程序"
+      },
+      "body": {
+        "zh-Hant": "2000年，樹仁向香港學術評審局申請院校評審，將大學正名的公共訴求轉化為課程、師資、資源及管理制度的審查程序。",
+        "zh-Hans": "2000年，树仁向香港学术评审局申请院校评审，将大学正名的公共要求转化为课程、师资、资源及管理制度的审查程序。"
+      }
+    },
+    {
+      "id": "T22",
+      "year": 2001,
+      "yearLabel": "2001",
+      "orderInYear": 21,
+      "title": {
+        "zh-Hant": "首批榮譽學士課程通過評審",
+        "zh-Hans": "首批荣誉学士课程通过评审"
+      },
+      "body": {
+        "zh-Hant": "2001年，中國語言文學、新聞與傳播及會計三個課程率先通過評審，標誌樹仁正式走向學位頒授院校",
+        "zh-Hans": "2001年，中国语言文学、新闻与传播及会计三个课程率先通过评审，标志树仁正式走向学位颁授院校"
+      }
+    },
+    {
+      "id": "T23",
+      "year": 2002,
+      "yearLabel": "2002",
+      "orderInYear": 22,
+      "title": {
+        "zh-Hant": "社會工作課程通過學士學位評審",
+        "zh-Hans": "社会工作课程通过学士学位评审"
+      },
+      "body": {
+        "zh-Hant": "2002年，社會工作學系獲准開辦榮譽學士課程，顯示樹仁的學位評審逐步擴展至專業及社會服務領域。",
+        "zh-Hans": "2002年，社会工作学系获准开办荣誉学士课程，显示树仁的学位评审逐步扩展至专业及社会服务领域。"
+      }
+    },
+    {
+      "id": "T24",
+      "year": 2003,
+      "yearLabel": "2003",
+      "orderInYear": 23,
+      "title": {
+        "zh-Hant": "商科、輔導及心理學課程通過評審",
+        "zh-Hans": "商科、辅导及心理学课程通过评审"
+      },
+      "body": {
+        "zh-Hant": "2003年，工商管理系、輔導及心理學系獲准開辦榮譽學士課程，進一步擴大樹仁的學位課程架構。",
+        "zh-Hans": "2003年，工商管理系、辅导及心理学系获准开办荣誉学士课程，进一步扩大树仁的学位课程架构。"
+      }
+    },
+    {
+      "id": "T25",
+      "year": 2004,
+      "yearLabel": "2004",
+      "orderInYear": 24,
+      "title": {
+        "zh-Hant": "經濟學課程通過評審",
+        "zh-Hans": "经济学课程通过评审"
+      },
+      "body": {
+        "zh-Hant": "2004年，經濟學系獲准開辦榮譽學士課程，標誌樹仁的商科與社會科學課程體系繼續完善。",
+        "zh-Hans": "2004年，经济学系获准开办荣誉学士课程，标志树仁的商科与社会科学课程体系继续完善。"
+      }
+    },
+    {
+      "id": "T26",
+      "year": 2005,
+      "yearLabel": "2005",
+      "orderInYear": 25,
+      "title": {
+        "zh-Hant": "多個課程完成評審，首批學士學生畢業",
+        "zh-Hans": "多个课程完成评审，首批学士学生毕业"
+      },
+      "body": {
+        "zh-Hant": "2005年，歷史、社會學及英國語言文學等課程通過評審，首批榮譽學士學生畢業，宿舍文康大樓亦落成。",
+        "zh-Hans": "2005年，历史、社会学及英国语言文学等课程通过评审，首批荣誉学士学生毕业，宿舍文康大楼亦落成。"
+      }
+    },
+    {
+      "id": "T27",
+      "year": 2006,
+      "yearLabel": "2006",
+      "orderInYear": 26,
+      "title": {
+        "zh-Hant": "正名為香港樹仁大學：香港首間私立大學",
+        "zh-Hans": "正名为香港树仁大学：香港首间私立大学"
+      },
+      "body": {
+        "zh-Hant": "2006年，樹仁獲行政長官會同行政會議批准正名為香港樹仁大學，成為香港首間私立大學。",
+        "zh-Hans": "2006年，树仁获行政长官会同行政会议批准正名为香港树仁大学，成为香港首间私立大学。"
+      }
+    },
+    {
+      "id": "T28",
+      "year": 2007,
+      "yearLabel": "2007",
+      "orderInYear": 27,
+      "title": {
+        "zh-Hant": "新校名正式啟用：進入大學發展階段",
+        "zh-Hans": "新校名正式启用：进入大学发展阶段"
+      },
+      "body": {
+        "zh-Hant": "2007年2月，香港樹仁大學舉行正名典禮，新校名正式啟用，標誌樹仁由專上學院進入大學發展的新階段。",
+        "zh-Hans": "2007年2月，香港树仁大学举行正名典礼，新校名正式启用，标志树仁由专上学院进入大学发展的新阶段。"
+      }
+    }
+  ],
+  "schoolEvents": [
+    {
+      "id": "P01",
+      "year": 1971,
+      "yearLabel": "1971",
+      "orderInYear": 0,
+      "themeId": "A",
+      "photoGroupId": "P01",
+      "title": {
+        "en": "Henry Hu and Chung Chi-yung founded Hong Kong Shue Yan College on Sing Woo Road, Happy Valley, to address the shortage of places in local post-secondary education.",
+        "zh-Hant": "胡鴻烈與鐘期榮在跑馬地成和道創辦香港樹仁書院，以回應本地專上教育學額不足。",
+        "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以响应本地专上教育学额不足。"
+      },
+      "body": {
+        "en": "Shue Yan established its Board of Governors, bringing together prominent leaders to advance university affairs and campus development. The Board of Governors included Chairman Wilfred Wong Sien-bing, and other members such as Sir Run Run Shaw, Ms. Aw Sian from Sing Tao Daily, Mr. Ngan Shing-kwan, founder of China Motor Corporation, Mr. Ting Hsiung-chao, one of the founders of the Hong Kong Plastics Manufacturers Association, Dr. Maurice J. Anderson, Mr. T. K. Ann, Bishop Gilbert Baker, Barrister Brook Bernacchi, Mr. Cha Chi Ming, Mr. Chan Po Fun, Mr. Chen Cunren, Dr. Chung Chi-yung, Rev. Fergus Cronin, Mr. Henry Hu, Mr. Huo Pao-tsai, Barrister Henry Litton, Mr. Liu Han-tang, Mr. Y. B. Loo, Mr. Peter P. K. Ng, Mr. Shum Choi Sang, Mr. Shum Wai-yau, Mr. Peter H. M. Tsang, Mr. C. S. Wan, and Mr. Yuen Ngan Ming.",
+        "zh-Hant": "樹仁成立校董會，匯聚賢達，推動校務與校舍建設。校董會成員包括主席黃宣平議員，校董成員包括邵逸夫先生、來自《星島日報》的胡仙女士、中華汽車創辦人顏成坤議員、香港塑膠業廠商會創會人之一丁熊照先生、晏務理博士、安子介議員、白約翰主教、貝納祺御用大律師、查濟民先生、陳普芬議員、陳存仁先生、鍾期榮博士、龔樂年神父、胡鴻烈議員、霍寶材先生、烈顯倫御用大律師、劉漢棟先生、陸蔭百先生、伍秉堅議員、岑才生先生、岑維休先生、曾漢文先生、萬基春先先生、阮雁鳴先生",
+        "zh-Hans": "树仁成立校董会，汇聚贤达，推动校务与校舍建设。校董会成员包括主席黄宣平议员，校董成员包括邵逸夫先生、来自《星岛日报》的胡仙女士、中华汽车创办人颜成坤议员、香港塑料业厂商会创会人之一丁熊照先生、晏务理博士、安子介议员、白约翰主教、贝纳祺御用大律师、查济民先生、陈普芬议员、陈存仁先生、钟期荣博士、龚乐年神父、胡鸿烈议员、霍宝材先生、烈显伦御用大律师、刘汉栋先生、陆荫百先生、伍秉坚议员、岑才生先生、岑维休先生、曾汉文先生、万春先先生、阮雁鸣先生。"
+      },
+      "photos": [
+        {
+          "id": "P01-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1971/image1.jpg",
+          "width": 901,
+          "height": 617,
+          "alt": {
+            "en": "Henry Hu and Chung Chi-yung founded Hong Kong Shue Yan College on Sing Woo Road, Happy Valley, to address the shortage of places in local post-secondary education.",
+            "zh-Hant": "胡鴻烈與鐘期榮在跑馬地成和道創辦香港樹仁書院，以回應本地專上教育學額不足。",
+            "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以响应本地专上教育学额不足。"
+          }
+        },
+        {
+          "id": "P01-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1971/image2.jpg",
+          "width": 1354,
+          "height": 827,
+          "alt": {
+            "en": "Henry Hu and Chung Chi-yung founded Hong Kong Shue Yan College on Sing Woo Road, Happy Valley, to address the shortage of places in local post-secondary education.",
+            "zh-Hant": "胡鴻烈與鐘期榮在跑馬地成和道創辦香港樹仁書院，以回應本地專上教育學額不足。",
+            "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以响应本地专上教育学额不足。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P02",
+      "year": 1971,
+      "yearLabel": "1971–1972",
+      "orderInYear": 1,
+      "themeId": "D",
+      "photoGroupId": "P02",
+      "title": {},
+      "body": {
+        "en": "Shue Yan had already established scholarships in its early years and entered into an academic collaboration with Northeast Louisiana University in the United States, thereby expanding overseas learning opportunities for students.",
+        "zh-Hant": "樹仁開辦初期已經設獎學金，並且與美國路易斯安洲立東北那東北路易斯安那大學展開學術合作，為學生開拓海外學習機會。",
+        "zh-Hans": "树仁开办初期已经设奖学金，并且与美国东北路易斯安那大学展开学术合作，为学生开拓海外学习机会。"
+      },
+      "photos": [
+        {
+          "id": "P02-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1971-1972/image3.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P02 photograph 1"
+          }
+        },
+        {
+          "id": "P02-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1971-1972/image4.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P02 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P03",
+      "year": 1972,
+      "yearLabel": "1972",
+      "orderInYear": 2,
+      "themeId": "C",
+      "photoGroupId": "P03",
+      "title": {},
+      "body": {
+        "en": "Shue Yan College Limited adopted its Memorandum and Articles of Association, formally establishing the institution’s corporate and governance framework.",
+        "zh-Hant": "樹仁書院有限公司通過組織章程大綱及細則，正式確立院校的法人與管治架構。",
+        "zh-Hans": "树仁书院有限公司通过组织章程大纲及细则，正式确立院校的法人与管治架构。"
+      },
+      "photos": [
+        {
+          "id": "P03-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%881%EF%BC%89/image5.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P03 photograph 1"
+          }
+        },
+        {
+          "id": "P03-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%881%EF%BC%89/image6.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P03 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P04",
+      "year": 1972,
+      "yearLabel": "1972",
+      "orderInYear": 3,
+      "themeId": "D",
+      "photoGroupId": "P04",
+      "title": {},
+      "body": {
+        "en": "President Henry Hu toured the United States on behalf of Shue Yan College, and he discussed academic cooperation with several universities.",
+        "zh-Hant": "校監胡鴻烈代表樹仁書院赴美考察，與多所大學商討學術合作。",
+        "zh-Hans": "校监胡鸿烈代表树仁书院赴美考察，与多所大学商讨学术合作。"
+      },
+      "photos": [
+        {
+          "id": "P04-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%882%EF%BC%89/image7.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P04 photograph 1"
+          }
+        },
+        {
+          "id": "P04-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%882%EF%BC%89/image8.jpg",
+          "width": 1572,
+          "height": 1125,
+          "alt": {
+            "en": "P04 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P05",
+      "year": 1972,
+      "yearLabel": "1972",
+      "orderInYear": 4,
+      "themeId": "D",
+      "photoGroupId": "P05",
+      "title": {},
+      "body": {
+        "en": "Shue Yan and Northeast Louisiana University jointly launched their first credit-bearing summer programme, taught by visiting scholars and American student tutors.",
+        "zh-Hant": "樹仁與美國東北路易斯安那大學合辦首個可計學分暑期課程，由訪港學者及美國學生導師授課。",
+        "zh-Hans": "树仁与美国东北路易斯安那大学合办首个可计学分暑期课程，由访港学者及美国学生导师授课。"
+      },
+      "photos": [
+        {
+          "id": "P05-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%883%EF%BC%89/image9.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P05 photograph 1"
+          }
+        },
+        {
+          "id": "P05-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%883%EF%BC%89/image10.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P05 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P06",
+      "year": 1972,
+      "yearLabel": "1972",
+      "orderInYear": 5,
+      "themeId": "A",
+      "photoGroupId": "P06",
+      "title": {},
+      "body": {
+        "en": "The campus at 7 Wan Chai Gap Road opened in 1972, serving as Shue Yan’s secondary section during the day and its post-secondary evening division at night.",
+        "zh-Hant": "灣仔峽道7號校舍啟用，日間供樹仁書院中學部學生上課，晚間則由樹仁書院大專部夜組使用。",
+        "zh-Hans": "湾仔峡道7号校舍启用，日间供树仁书院中学部学生上课，晚间则由树仁书院大专部夜组使用。"
+      },
+      "photos": [
+        {
+          "id": "P06-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%884%EF%BC%89/image11.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P06 photograph 1"
+          }
+        },
+        {
+          "id": "P06-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1972/1972%EF%BC%884%EF%BC%89/image12.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P06 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P07",
+      "year": 1974,
+      "yearLabel": "1974",
+      "orderInYear": 6,
+      "themeId": "B",
+      "photoGroupId": "P07",
+      "title": {},
+      "body": {
+        "en": "Governor Sir Murray MacLehose paid a private visit to the Wan Chai Gap Road campus and learned about Shue Yan’s founding story and development.",
+        "zh-Hant": "港督麥理浩爵士私人到訪峽道校舍，了解樹仁的創校經過與發展。",
+        "zh-Hans": "港督麦理浩爵士私人到访峡道校舍，了解树仁的创校经过与发展。"
+      },
+      "photos": [
+        {
+          "id": "P07-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1974/1974%EF%BC%881%EF%BC%89/image13.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P07 photograph 1"
+          }
+        },
+        {
+          "id": "P07-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1974/1974%EF%BC%881%EF%BC%89/image14.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P07 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P08",
+      "year": 1974,
+      "yearLabel": "1974",
+      "orderInYear": 7,
+      "themeId": "C",
+      "photoGroupId": "P08",
+      "title": {},
+      "body": {
+        "en": "The Education Department made its first formal visit to Shue Yan’s post-secondary campus on Sing Woo Road, Happy Valley.",
+        "zh-Hant": "教育署首次正式到訪樹仁位於跑馬地成和道的專上校舍。",
+        "zh-Hans": "教育署首次正式到访树仁位于跑马地成和道的专上校舍。"
+      },
+      "photos": [
+        {
+          "id": "P08-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1974/1974%EF%BC%882%EF%BC%89/image15.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P08 photograph 1"
+          }
+        },
+        {
+          "id": "P08-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1974/1974%EF%BC%882%EF%BC%89/image16.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P08 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P09",
+      "year": 1975,
+      "yearLabel": "1975",
+      "orderInYear": 8,
+      "themeId": "C",
+      "photoGroupId": "P09",
+      "title": {},
+      "body": {
+        "en": "Education Department specialists conducted Shue Yan’s first academic assessment, followed by a further inspection by Director K. W. J. Topley.",
+        "zh-Hant": "教育署專家首次評核樹仁學術水平，其後教育署署長 K. W. J. Topley 再次視察。",
+        "zh-Hans": "教育署专家首次评核树仁学术水平，其后教育署署长 K. W. J. Topley 再次视察。"
+      },
+      "photos": [
+        {
+          "id": "P09-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1975/image17.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P09 photograph 1"
+          }
+        },
+        {
+          "id": "P09-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1975/image18.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P09 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "year": 1976,
+      "yearLabel": "1976",
+      "orderInYear": 9,
+      "themeId": "C",
+      "photoGroupId": "P10",
+      "title": {},
+      "body": {
+        "en": "Shue Yan was registered under the Post Secondary Colleges Ordinance, became authorised to award post-secondary diplomas, and formally adopted the name Shue Yan College.",
+        "zh-Hant": "樹仁按《專上學院條例》註冊，獲准頒授專上文憑，並正式定名為樹仁學院。",
+        "zh-Hans": "树仁按《专上学院条例》注册，获准颁授专上文凭，并正式定名为树仁学院。"
+      },
+      "photos": [
+        {
+          "id": "P10-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1976/1976%EF%BC%881%EF%BC%89/image19.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P10 photograph 1"
+          }
+        },
+        {
+          "id": "P10-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1976/1976%EF%BC%881%EF%BC%89/image20.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P10 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P11",
+      "year": 1976,
+      "yearLabel": "1976",
+      "orderInYear": 10,
+      "themeId": "B",
+      "photoGroupId": "P11",
+      "title": {},
+      "body": {
+        "en": "Governor Sir Murray MacLehose presented Henry Hu with the insignia of an Officer of the Order of the British Empire in recognition of his public service.",
+        "zh-Hant": "港督麥理浩爵士向胡鴻烈頒授大英帝國官佐勳章，表揚其公共服務。",
+        "zh-Hans": "港督麦理浩爵士向胡鸿烈颁授大英帝国官佐勋章，表扬其公共服务。"
+      },
+      "photos": [
+        {
+          "id": "P11-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1976/1976%EF%BC%882%EF%BC%89/image21.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P11 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P12",
+      "year": 1977,
+      "yearLabel": "1977",
+      "orderInYear": 11,
+      "themeId": "A",
+      "photoGroupId": "P12",
+      "title": {},
+      "body": {
+        "en": "Shue Yan College moved to a seven-storey campus on Monmouth Path in Wan Chai, expanding its teaching space.",
+        "zh-Hant": "樹仁學院遷入灣仔萬茂里七層高的獨立校舍，擴充教學空間。",
+        "zh-Hans": "树仁学院迁入湾仔万茂里七层高的独立校舍，扩充教学空间。"
+      },
+      "photos": [
+        {
+          "id": "P12-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1977/image22.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P12 photograph 1"
+          }
+        },
+        {
+          "id": "P12-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1977/image23.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P12 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P13",
+      "year": 1978,
+      "yearLabel": "1978",
+      "orderInYear": 12,
+      "themeId": "C",
+      "photoGroupId": "P13",
+      "title": {},
+      "body": {
+        "en": "Students overwhelmingly backed the four-year curriculum; the College declined government funding and rejected the proposed 2-2-1 system.",
+        "zh-Hant": "學生以壓倒性多數支持四年制；學院拒絕政府資助，不接受建議的「二二一」學制。",
+        "zh-Hans": "学生以压倒性多数支持四年制；学院拒绝政府资助，不接受建议的「二二一」学制。"
+      },
+      "photos": [
+        {
+          "id": "P13-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1978/image24.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P13 photograph 1"
+          }
+        },
+        {
+          "id": "P13-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1978/image25.jpg",
+          "width": 821,
+          "height": 609,
+          "alt": {
+            "en": "P13 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P14",
+      "year": 1979,
+      "yearLabel": "1979",
+      "orderInYear": 13,
+      "themeId": "D",
+      "photoGroupId": "P14",
+      "title": {},
+      "body": {
+        "en": "Shue Yan joined the Association of Southeast Asian Institutions of Higher Learning, gaining regional recognition for its academic standards.",
+        "zh-Hant": "樹仁加入東南亞高等教育協會，其學術水平獲區域認可。",
+        "zh-Hans": "树仁加入东南亚高等教育协会，其学术水平获区域认可。"
+      },
+      "photos": [
+        {
+          "id": "P14-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1979/1979%EF%BC%881%EF%BC%89/image26.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P14 photograph 1"
+          }
+        },
+        {
+          "id": "P14-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1979/1979%EF%BC%881%EF%BC%89/image27.jpg",
+          "width": 1612,
+          "height": 1125,
+          "alt": {
+            "en": "P14 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P15",
+      "year": 1979,
+      "yearLabel": "1979",
+      "orderInYear": 14,
+      "themeId": "D",
+      "photoGroupId": "P15",
+      "title": {},
+      "body": {
+        "en": "Shue Yan and Northeast Louisiana University jointly launched the College’s first  MBA programme, creating a new pathway for postgraduate study.",
+        "zh-Hant": "樹仁與東北路易斯安那大學合辦學院首個工商管理碩士課程，開拓研究生進修途徑。",
+        "zh-Hans": "树仁与路易斯安那东北大学合办学院首个工商管理硕士课程，开拓研究生进修途径。"
+      },
+      "photos": [
+        {
+          "id": "P15-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1979/1979%EF%BC%882%EF%BC%89/image28.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P15 photograph 1"
+          }
+        },
+        {
+          "id": "P15-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1979/1979%EF%BC%882%EF%BC%89/image29.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P15 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P16",
+      "year": 1979,
+      "yearLabel": "1979",
+      "orderInYear": 15,
+      "themeId": "C",
+      "photoGroupId": "P16",
+      "title": {},
+      "body": {
+        "en": "Student representatives presented the Director of Education, K. W. J. Topley, with a campus-wide petition defending Shue Yan’s four-year curriculum.",
+        "zh-Hant": "學生代表向教育署署長 K. W. J. Topley 遞交全校聯署，捍衛樹仁四年制課程。",
+        "zh-Hans": "学生代表向教育署署长 K. W. J. Topley 递交全校联署，捍卫树仁四年制课程。"
+      },
+      "photos": [
+        {
+          "id": "P16-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1979/1979%EF%BC%883%EF%BC%89/image30.jpg",
+          "width": 1492,
+          "height": 999,
+          "alt": {
+            "en": "P16 photograph 1"
+          }
+        },
+        {
+          "id": "P16-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1979/1979%EF%BC%883%EF%BC%89/image31.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P16 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P17",
+      "year": 1980,
+      "yearLabel": "1980",
+      "orderInYear": 16,
+      "themeId": "D",
+      "photoGroupId": "P17",
+      "title": {},
+      "body": {
+        "en": "Acting Governor Sir Denys Roberts visited Shue Yan, meeting staff and students and inspecting its teaching environment.",
+        "zh-Hant": "署理港督羅弼時爵士到訪樹仁，會見學院師生並視察教學環境。",
+        "zh-Hans": "署理港督罗弼时爵士到访树仁，会见学院师生并视察教学环境。"
+      },
+      "photos": [
+        {
+          "id": "P17-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1980/image32.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P17 photograph 1"
+          }
+        },
+        {
+          "id": "P17-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1980/image33.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P17 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P18",
+      "year": 1981,
+      "yearLabel": "1981",
+      "orderInYear": 17,
+      "themeId": "D",
+      "photoGroupId": "P18",
+      "title": {},
+      "body": {
+        "en": "Shue Yan and the University of Alabama in the US jointly launched their first Master of Social Work programme to meet the demand forprofessionals in the field.",
+        "zh-Hant": "樹仁與美國阿拉巴馬大學合辦首個社會工作碩士課程，回應專業人才需求。",
+        "zh-Hans": "树仁与美国阿拉巴马大学合办首个社会工作硕士课程，响应专业人才需求。"
+      },
+      "photos": [
+        {
+          "id": "P18-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1981/image34.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P18 photograph 1"
+          }
+        },
+        {
+          "id": "P18-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1981/image35.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P18 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P19",
+      "year": 1983,
+      "yearLabel": "1983",
+      "orderInYear": 18,
+      "themeId": "A",
+      "photoGroupId": "P19",
+      "title": {},
+      "body": {
+        "en": "Governor Sir Edward Youde attended the laying foundation stone ceremony for Shue Yan College’s new Braemar Hill campus. The self-financed development required 176 concrete piles to be driven into the steep hillside, marking a major milestone in the College’s campus development.",
+        "zh-Hant": "港督尤德爵士出席樹仁學院寶馬山新校舍奠基禮。這項自資建校工程須在陡峭山坡打下176根水泥樁，標誌學院校園發展邁出重要一步。",
+        "zh-Hans": "港督尤德爵士出席树仁学院宝马山新校舍奠基礼。这项自资建校工程须在陡峭山坡打下176根水泥桩，标志学院校园发展迈出重要一步。"
+      },
+      "photos": [
+        {
+          "id": "P19-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1983/image36.jpg",
+          "width": 1400,
+          "height": 932,
+          "alt": {
+            "en": "P19 photograph 1"
+          }
+        },
+        {
+          "id": "P19-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1983/image37.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P19 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P20",
+      "year": 1984,
+      "yearLabel": "1984",
+      "orderInYear": 19,
+      "themeId": "A",
+      "photoGroupId": "P20",
+      "title": {},
+      "body": {
+        "en": "Shue Yan College held the topping-off ceremony for its new teaching building on the Braemar Hill campus, marking the gradual completion of the new campus construction.",
+        "zh-Hant": "樹仁學院於寶馬山新教學大樓舉行平頂禮，見證新校舍工程逐步完成。",
+        "zh-Hans": "树仁学院于宝马山新教学大楼举行平顶礼，见证新校舍工程逐步完成。"
+      },
+      "photos": [
+        {
+          "id": "P20-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1984/1984%EF%BC%881%EF%BC%89/image38.jpg",
+          "width": 1264,
+          "height": 894,
+          "alt": {
+            "en": "P20 photograph 1"
+          }
+        },
+        {
+          "id": "P20-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1984/1984%EF%BC%881%EF%BC%89/image39.jpg",
+          "width": 1314,
+          "height": 831,
+          "alt": {
+            "en": "P20 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P21",
+      "year": 1984,
+      "yearLabel": "1984",
+      "orderInYear": 20,
+      "themeId": "D",
+      "photoGroupId": "P21",
+      "title": {},
+      "body": {
+        "en": "China’s Vice Minister of Education, Huang Xinbai, visited Shue Yan, strengthening the College’s growing academic ties with mainland China.",
+        "zh-Hant": "中國教育部副部長黃辛白訪問樹仁，加強學院與內地逐步建立的學術聯繫。",
+        "zh-Hans": "中国教育部副部长黄辛白访问树仁，加强学院与内地逐步建立的学术联系。"
+      },
+      "photos": [
+        {
+          "id": "P21-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1984/1984%EF%BC%882%EF%BC%89/image40.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P21 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P22",
+      "year": 1985,
+      "yearLabel": "1985",
+      "orderInYear": 21,
+      "themeId": "D",
+      "photoGroupId": "P22",
+      "title": {},
+      "body": {
+        "en": "Hu Fai-chung joined Shue Yan College in 1985, beginning a long-term contribution to the University’s administration, teaching and learning development, campus expansion, and pursuit of university status.",
+        "zh-Hant": "胡懷中於1985年加入樹仁學院，自此在大學行政管理、教與學發展、校舍擴充及大學正名等方面作出長期貢獻。",
+        "zh-Hans": "胡怀中于1985年加入树仁学院，自此在大学行政管理、教与学发展、校舍扩充及大学正名等方面作出长期贡献。"
+      },
+      "photos": [
+        {
+          "id": "P22-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1985/image41.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P22 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P23",
+      "year": 1986,
+      "yearLabel": "1986",
+      "orderInYear": 22,
+      "themeId": "A",
+      "photoGroupId": "P23",
+      "title": {},
+      "body": {
+        "en": "The new Shue Yan College campus on Braemar Hill officially opened, providing a permanent base for the College’s teaching and institutional development.",
+        "zh-Hant": "樹仁學院寶馬山新校舍正式啟用，為學院教學與長遠發展提供永久校園基礎。",
+        "zh-Hans": "树仁学院宝马山新校舍正式启用，为学院教学与长远发展提供永久校园基础。"
+      },
+      "photos": [
+        {
+          "id": "P23-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1986/1986%EF%BC%881%EF%BC%89/image42.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P23 photograph 1"
+          }
+        },
+        {
+          "id": "P23-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1986/1986%EF%BC%881%EF%BC%89/image43.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P23 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P24",
+      "year": 1986,
+      "yearLabel": "1986",
+      "orderInYear": 23,
+      "themeId": "D",
+      "photoGroupId": "P24",
+      "title": {},
+      "body": {
+        "en": "Shue Yan and Peking University signed a five-year academic cooperation agreement covering faculty and student exchanges, postgraduate training, and legal education.",
+        "zh-Hant": "樹仁與北京大學簽署五年學術合作協議，涵蓋師生交流、研究生培養及法律教育。",
+        "zh-Hans": "树仁与北京大学签署五年学术合作协议，涵盖师生交流、研究生培养及法律教育。"
+      },
+      "photos": [
+        {
+          "id": "P24-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1986/1986%EF%BC%882%EF%BC%89/image44.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P24 photograph 1"
+          }
+        },
+        {
+          "id": "P24-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1986/1986%EF%BC%882%EF%BC%89/image45.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P24 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P25",
+      "year": 1987,
+      "yearLabel": "1987",
+      "orderInYear": 24,
+      "themeId": "D",
+      "photoGroupId": "P25",
+      "title": {},
+      "body": {
+        "en": "A delegation from the State Education Commission visited Shue Yan; Peking University President Ding Shisun addressed the welcoming reception.",
+        "zh-Hant": "國家教育委員會代表團訪問樹仁；北京大學校長丁石孫在歡迎會致辭。",
+        "zh-Hans": "国家教育委员会代表团访问树仁；北京大学校长丁石孙在欢迎会致辞。"
+      },
+      "photos": [
+        {
+          "id": "P25-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1987/1987%EF%BC%881%EF%BC%89/image46.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P25 photograph 1"
+          }
+        },
+        {
+          "id": "P25-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1987/1987%EF%BC%881%EF%BC%89/image47.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P25 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P26",
+      "year": 1987,
+      "yearLabel": "1987",
+      "orderInYear": 25,
+      "themeId": "B",
+      "photoGroupId": "P26",
+      "title": {},
+      "body": {
+        "en": "Henry Hu Hung-lick was appointed a member of the Sixth National Committee of the Chinese People’s Political Consultative Conference in 1987. He subsequently served on the Seventh National Committee and, from 1993, as a Standing Committee member of the Eighth and Ninth National Committees.",
+        "zh-Hant": "胡鴻烈於1987年獲委任為第六屆全國政協委員，後續任第七屆委員，並於1993年起出任第八、九屆全國政協常委。",
+        "zh-Hans": "胡鸿烈于1987年获委任为第六届全国政协委员  ，后续任第七届委员，并于1993年起出任第八、九届全国政协常委。"
+      },
+      "photos": [
+        {
+          "id": "P26-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1987/1987%EF%BC%882%EF%BC%89/image48.jpg",
+          "width": 208,
+          "height": 301,
+          "alt": {
+            "en": "P26 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P27",
+      "year": 1987,
+      "yearLabel": "1987",
+      "orderInYear": 26,
+      "themeId": "B",
+      "photoGroupId": "P27",
+      "title": {},
+      "body": {
+        "en": "Henry Hu attended the Fifth Session of the Sixth National Committee of the Chinese People’s Political Consultative Conference in Beijing.",
+        "zh-Hant": "胡鴻烈赴北京出席中國人民政治協商會議第六屆全國委員會第五次會議。",
+        "zh-Hans": "胡鸿烈赴北京出席中国人民政治协商会议第六届全国委员会第五次会议。"
+      },
+      "photos": [
+        {
+          "id": "P27-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1987/1987%EF%BC%883%EF%BC%89/image49.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P27 photograph 1"
+          }
+        },
+        {
+          "id": "P27-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1987/1987%EF%BC%883%EF%BC%89/image50.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P27 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P28",
+      "year": 1987,
+      "yearLabel": "1987—1988",
+      "orderInYear": 27,
+      "themeId": "D",
+      "photoGroupId": "P28",
+      "title": {},
+      "body": {
+        "en": "Shue Yan and Peking University jointly offered a Bachelor of Laws programme, which became Shue Yan’s first degree programme recognised by China’s State Education Commission.",
+        "zh-Hant": "樹仁與北京大學合辦法律學士課程，成為樹仁首個獲中國國家教育委員會認可的學位課程。",
+        "zh-Hans": "树仁与北京大学合办法律学士课程，成为树仁首个获中国国家教育委员会认可的学位课程。"
+      },
+      "photos": [
+        {
+          "id": "P28-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1987-1988/image51.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P28 photograph 1"
+          }
+        },
+        {
+          "id": "P28-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1987-1988/image52.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P28 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P29",
+      "year": 1988,
+      "yearLabel": "1988",
+      "orderInYear": 28,
+      "themeId": "D",
+      "photoGroupId": "P29",
+      "title": {},
+      "body": {
+        "en": "China’s State Education Commission donated more than 2,000 volumes on literature and history  to Shue Yan, enriching the College’s academic collection.",
+        "zh-Hant": "國家教育委員會向樹仁贈送逾二千冊文史典籍，充實學院的學術館藏。",
+        "zh-Hans": "国家教育委员会向树仁赠送逾二千册文史典籍，充实学院的学术馆藏。"
+      },
+      "photos": [
+        {
+          "id": "P29-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1988/1988%EF%BC%881%EF%BC%89/image53.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P29 photograph 1"
+          }
+        },
+        {
+          "id": "P29-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1988/1988%EF%BC%881%EF%BC%89/image54.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P29 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P30",
+      "year": 1988,
+      "yearLabel": "1988",
+      "orderInYear": 29,
+      "themeId": "C",
+      "photoGroupId": "P30",
+      "title": {},
+      "body": {
+        "en": "Shue Yan students marched against the proposed conversion of Hong Kong’s four-year undergraduate structure to a three-year system.",
+        "zh-Hant": "樹仁學生遊行反對把香港四年制大學本科課程改為三年制。",
+        "zh-Hans": "树仁学生游行反对把香港四年制大学本科课程改为三年制。"
+      },
+      "photos": [
+        {
+          "id": "P30-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1988/1988%EF%BC%882%EF%BC%89/image55.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P30 photograph 1"
+          }
+        },
+        {
+          "id": "P30-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1988/1988%EF%BC%882%EF%BC%89/image56.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P30 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P31",
+      "year": 1990,
+      "yearLabel": "1990",
+      "orderInYear": 30,
+      "themeId": "C",
+      "photoGroupId": "P31",
+      "title": {},
+      "body": {
+        "en": "Student representatives staged a four-day hunger strike after the government excluded Shue Yan from the publicly funded university system.",
+        "zh-Hant": "政府把樹仁排除於公帑資助大學安排外，學生代表發起四日絕食抗議。",
+        "zh-Hans": "政府把树仁排除于公帑资助大学安排外，学生代表发起四日绝食抗议。"
+      },
+      "photos": [
+        {
+          "id": "P31-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1990/image57.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P31 photograph 1"
+          }
+        },
+        {
+          "id": "P31-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1990/image58.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P31 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P32",
+      "year": 1991,
+      "yearLabel": "1991",
+      "orderInYear": 31,
+      "themeId": "D",
+      "photoGroupId": "P32",
+      "title": {},
+      "body": {
+        "en": "The first cohort of 81 graduates from Shue Yan and Peking University’s joint Bachelor of Laws programme received their degrees in Beijing.",
+        "zh-Hant": "樹仁與北京大學合辦法律學士課程首屆八十一名畢業生在北京獲頒學位。",
+        "zh-Hans": "树仁与北京大学合办法律学士课程首届八十一名毕业生在北京获颁学位。"
+      },
+      "photos": [
+        {
+          "id": "P32-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1991/1991%EF%BC%881%EF%BC%89/image59.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P32 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P33",
+      "year": 1991,
+      "yearLabel": "1991",
+      "orderInYear": 32,
+      "themeId": "B",
+      "photoGroupId": "P33",
+      "title": {},
+      "body": {
+        "en": "The University of Glamorgan awarded Henry Hu an Honorary Fellowship in recognition of his educational leadership and international academic contributions.",
+        "zh-Hant": "英國格拉摩根大學向胡鴻烈頒授榮譽院士，表揚其教育領導與國際學術貢獻。",
+        "zh-Hans": "英国格拉摩根大学向胡鸿烈颁授荣誉院士，表扬其教育领导与国际学术贡献。"
+      },
+      "photos": [
+        {
+          "id": "P33-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1991/1991%EF%BC%882%EF%BC%89/image60.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P33 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P34",
+      "year": 1992,
+      "yearLabel": "1992",
+      "orderInYear": 33,
+      "themeId": "D",
+      "photoGroupId": "P34",
+      "title": {},
+      "body": {
+        "en": "Professor Hu Yao-su joined Shue Yan College in 1992, leading its academic development, accreditation, and pursuit of university status.",
+        "zh-Hant": "胡耀蘇教授於1992年加入樹仁學院，推動學術發展、評審和正名之路。",
+        "zh-Hans": "胡耀苏教授于1992年加入树仁学院，推动学术发展、评审和正名之路。"
+      },
+      "photos": [
+        {
+          "id": "P34-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1992/1992%EF%BC%881%EF%BC%89/image61.jpg",
+          "width": 1106,
+          "height": 646,
+          "alt": {
+            "en": "P34 photograph 1"
+          }
+        },
+        {
+          "id": "P34-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1992/1992%EF%BC%881%EF%BC%89/image62.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P34 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P35",
+      "year": 1992,
+      "yearLabel": "1992",
+      "orderInYear": 34,
+      "themeId": "C",
+      "photoGroupId": "P35",
+      "title": {},
+      "body": {
+        "en": "The Students’ Union organised a signature campaign in support of Shue Yan’s application to the Hong Kong Government for formal academic accreditation.",
+        "zh-Hant": "學生會發起簽名運動，支持樹仁向香港政府申請正式學術評審。",
+        "zh-Hans": "学生会发起签名运动，支持树仁向香港政府申请正式学术评审。"
+      },
+      "photos": [
+        {
+          "id": "P35-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1992/1992%EF%BC%882%EF%BC%89/image63.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P35 photograph 1"
+          }
+        },
+        {
+          "id": "P35-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1992/1992%EF%BC%882%EF%BC%89/image64.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P35 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P36",
+      "year": 1993,
+      "yearLabel": "1993",
+      "orderInYear": 35,
+      "themeId": "B",
+      "photoGroupId": "P36",
+      "title": {},
+      "body": {
+        "en": "Governor Chris Patten presented Principal Chung Chi-yung with the Badge of Honour in recognition of her community contributions.",
+        "zh-Hant": "港督彭定康向校長鍾期榮頒授榮譽勳章，表揚其社區貢獻。",
+        "zh-Hans": "港督彭定康向校长钟期荣颁授荣誉勋章，表扬其小区贡献。"
+      },
+      "photos": [
+        {
+          "id": "P36-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1993/image65.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P36 photograph 1"
+          }
+        },
+        {
+          "id": "P36-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1993/image66.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P36 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P37",
+      "year": 1994,
+      "yearLabel": "1994",
+      "orderInYear": 36,
+      "themeId": "D",
+      "photoGroupId": "P37",
+      "title": {},
+      "body": {
+        "en": "In Hong Kong, Shue Yan and Renmin University of China jointly launched the first training course for Chinese lawyers and held the graduation ceremony in Shenzhen.",
+        "zh-Hant": "樹仁與中國人民大學在香港首辦中國律師培訓課程，並在深圳舉行畢業典禮。",
+        "zh-Hans": "树仁与中国人民大学在香港首办中国律师培训课程，并在深圳举行毕业典礼。"
+      },
+      "photos": [
+        {
+          "id": "P37-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1994/image67.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P37 photograph 1"
+          }
+        },
+        {
+          "id": "P37-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1994/image68.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P37 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P38",
+      "year": 1995,
+      "yearLabel": "1995",
+      "orderInYear": 37,
+      "themeId": "A",
+      "photoGroupId": "P38",
+      "title": {},
+      "body": {
+        "en": "Governor Chris Patten joined Chung Chi-yung and Henry Hu in hosting the opening of Shue Yan’s HK$100-million Library Complex, which greatly expanding campus resources.",
+        "zh-Hant": "港督彭定康與鍾期榮、胡鴻烈主持耗資一億元的圖書館綜合大樓啟用，顯著擴充校園資源。",
+        "zh-Hans": "港督彭定康与钟期荣、胡鸿烈主持耗资一亿元的图书馆综合大楼启用，显着扩充校园资源。"
+      },
+      "photos": [
+        {
+          "id": "P38-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1995/1995%EF%BC%881%EF%BC%89/image69.jpg",
+          "width": 962,
+          "height": 659,
+          "alt": {
+            "en": "P38 photograph 1"
+          }
+        },
+        {
+          "id": "P38-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1995/1995%EF%BC%881%EF%BC%89/image70.jpg",
+          "width": 581,
+          "height": 859,
+          "alt": {
+            "en": "P38 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P39",
+      "year": 1995,
+      "yearLabel": "1995",
+      "orderInYear": 38,
+      "themeId": "D",
+      "photoGroupId": "P39",
+      "title": {},
+      "body": {
+        "en": "Shue Yan graduates received Honours Diplomas, replacing the Diplomas awarded to graduates in earlier years.",
+        "zh-Hant": "畢業生自本年起獲頒榮譽文憑，取代此前頒授的文憑。",
+        "zh-Hans": "毕业生自本年起获颁荣誉文凭，取代此前颁授的文凭。"
+      },
+      "photos": []
+    },
+    {
+      "id": "P40",
+      "year": 1995,
+      "yearLabel": "1995",
+      "orderInYear": 39,
+      "themeId": "A",
+      "photoGroupId": "P40",
+      "title": {},
+      "body": {
+        "en": "Shue Yan Library moved into the new Library Complex, expanding its collections and learning spaces.",
+        "zh-Hant": "圖書館遷入新圖書館大樓，擴充館藏與學習空間。",
+        "zh-Hans": "图书馆迁入新图书馆大楼，扩充馆藏与学习空间。"
+      },
+      "photos": [
+        {
+          "id": "P40-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1995/1995%EF%BC%883%EF%BC%89/image71.jpg",
+          "width": 951,
+          "height": 654,
+          "alt": {
+            "en": "P40 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P41",
+      "year": 1996,
+      "yearLabel": "1996",
+      "orderInYear": 40,
+      "themeId": "D",
+      "photoGroupId": "P41",
+      "title": {},
+      "body": {
+        "en": "Shue Yan established the Contemporary China Research Centre for interdisciplinary research and convened an international conference.",
+        "zh-Hant": "樹仁成立跨學科的「當代中國研究中心」，並舉辦國際學術會議。",
+        "zh-Hans": "树仁成立跨学科的「当代中国研究中心」，并举办国际学术会议。"
+      },
+      "photos": [
+        {
+          "id": "P41-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1996/image72.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P41 photograph 1"
+          }
+        },
+        {
+          "id": "P41-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1996/image73.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P41 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P42",
+      "year": 1997,
+      "yearLabel": "1997",
+      "orderInYear": 41,
+      "themeId": "D",
+      "photoGroupId": "P42",
+      "title": {},
+      "body": {
+        "en": "Vice Premier Li Lanqing met President Henry Hu and Principal Chung Chi-yung in Zhongnanhai, Beijing, recognising Shue Yan’s achievements and its contribution to educational exchange between Hong Kong and Mainland China.",
+        "zh-Hant": "國務院副總理李嵐清於北京中南海接見胡鴻烈校監與鍾期榮校長夫婦，肯定樹仁的辦學成績及其促進兩地教育交流的貢獻。",
+        "zh-Hans": "国务院副总理李岚清于北京中南海接见胡鸿烈校监与钟期荣校长夫妇，肯定树仁的办学成绩及其促进两地教育交流的贡献。"
+      },
+      "photos": [
+        {
+          "id": "P42-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1997/1997%EF%BC%881%EF%BC%89/image74.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P42 photograph 1"
+          }
+        },
+        {
+          "id": "P42-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1997/1997%EF%BC%881%EF%BC%89/image75.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P42 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P43",
+      "year": 1997,
+      "yearLabel": "1997",
+      "orderInYear": 42,
+      "themeId": "D",
+      "photoGroupId": "P43",
+      "title": {},
+      "body": {
+        "en": "Shue Yan’s Putonghua Centre signed an agreement with China’s national language authority, formally establishing cooperation in language education.",
+        "zh-Hant": "樹仁普通話中心與國家語言文字主管部門簽署協議，正式建立語言教育合作。",
+        "zh-Hans": "树仁普通话中心与国家语言文字主管部门签署协议，正式建立语言教育合作。"
+      },
+      "photos": [
+        {
+          "id": "P43-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1997/1997%EF%BC%882%EF%BC%89/image76.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P43 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P44",
+      "year": 1997,
+      "yearLabel": "1997",
+      "orderInYear": 43,
+      "themeId": "D",
+      "photoGroupId": "P44",
+      "title": {},
+      "body": {
+        "en": "Shue Yan admitted its final cohort of evening-programme students, bringing admissions to the evening programme to an end.",
+        "zh-Hant": "樹仁最後一年招收夜校生，此後停止夜校課程的新生招生。",
+        "zh-Hans": "树仁最后一年招收夜校生，此后停止夜校课程的新生招生。"
+      },
+      "photos": []
+    },
+    {
+      "id": "P45",
+      "year": 1998,
+      "yearLabel": "1998",
+      "orderInYear": 44,
+      "themeId": "B",
+      "photoGroupId": "P45",
+      "title": {},
+      "body": {
+        "en": "Chief Executive Tung Chee-hwa presented Henry Hu with the Gold Bauhinia Star for distinguished service to Hong Kong.",
+        "zh-Hant": "行政長官董建華向胡鴻烈頒授金紫荊星章，表揚其對香港的卓越服務。",
+        "zh-Hans": "行政长官董建华向胡鸿烈颁授金紫荆星章，表扬其对香港的卓越服务。"
+      },
+      "photos": [
+        {
+          "id": "P45-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1998/image77.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P45 photograph 1"
+          }
+        },
+        {
+          "id": "P45-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1998/image78.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P45 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P46",
+      "year": 1999,
+      "yearLabel": "1999",
+      "orderInYear": 45,
+      "themeId": "C",
+      "photoGroupId": "P46",
+      "title": {},
+      "body": {
+        "en": "Shue Yan launched a coordinated campaign for private-university status, including a signature collection, staff forums, programme validation, and advocacy in the Legislative Council.",
+        "zh-Hant": "樹仁發起爭取私立大學地位的協同行動，包括聯署、教職員論壇、課程評審及立法會倡議。",
+        "zh-Hans": "树仁发起争取私立大学地位的协同行动，包括联署、教职员论坛、课程评审及立法会倡议。"
+      },
+      "photos": [
+        {
+          "id": "P46-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1999/1999%EF%BC%881%EF%BC%89/image79.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P46 photograph 1"
+          }
+        },
+        {
+          "id": "P46-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1999/1999%EF%BC%881%EF%BC%89/image80.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P46 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P47",
+      "year": 1999,
+      "yearLabel": "1999",
+      "orderInYear": 46,
+      "themeId": "C",
+      "photoGroupId": "P47",
+      "title": {},
+      "body": {
+        "en": "In 1999, Andrea Hope joined Shue Yan to lead the programme validation and support the College’s progress towards university status.",
+        "zh-Hant": "1999年，何珮顏加入樹仁，負責課程評審，推動學院升格為大學。",
+        "zh-Hans": "1999年，何珮颜加入树仁，负责课程评审，推动学院升格为大学。"
+      },
+      "photos": [
+        {
+          "id": "P47-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/1999/1999%EF%BC%882%EF%BC%89/image81.jpg",
+          "width": 1698,
+          "height": 1110,
+          "alt": {
+            "en": "P47 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P48",
+      "year": 2000,
+      "yearLabel": "2000",
+      "orderInYear": 47,
+      "themeId": "B",
+      "photoGroupId": "P48",
+      "title": {},
+      "body": {
+        "en": "Chief Executive Tung Chee-hwa awarded Chung Chi-yung the Gold Bauhinia Star for her lifelong contribution to higher education.",
+        "zh-Hant": "行政長官董建華向鍾期榮頒授金紫荊星章，表揚其畢生對高等教育的貢獻。",
+        "zh-Hans": "行政长官董建华向钟期荣颁授金紫荆星章，表扬其毕生对高等教育的贡献。"
+      },
+      "photos": [
+        {
+          "id": "P48-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2000/2000%EF%BC%881%EF%BC%89/image82.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P48 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P49",
+      "year": 2000,
+      "yearLabel": "2000",
+      "orderInYear": 48,
+      "themeId": "C",
+      "photoGroupId": "P49",
+      "title": {},
+      "body": {
+        "en": "Shue Yan underwent an institutional review.",
+        "zh-Hant": "樹仁經歷院校評審。",
+        "zh-Hans": "树仁经历院校评审。"
+      },
+      "photos": [
+        {
+          "id": "P49-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2000/2000%EF%BC%882%EF%BC%89/image83.jpg",
+          "width": 154,
+          "height": 271,
+          "alt": {
+            "en": "P49 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P50",
+      "year": 2000,
+      "yearLabel": "2000",
+      "orderInYear": 49,
+      "themeId": "C",
+      "photoGroupId": "P50",
+      "title": {},
+      "body": {
+        "en": "The Department of Accounting underwent a validation exercise from 22 to 24 November.",
+        "zh-Hant": "會計學系於11月22至24日進行課程評審。",
+        "zh-Hans": "会计学系于11月22至24日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P50-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2000/2000%EF%BC%883%EF%BC%89/image84.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P50 photograph 1"
+          }
+        },
+        {
+          "id": "P50-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2000/2000%EF%BC%883%EF%BC%89/image85.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P50 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P51",
+      "year": 2001,
+      "yearLabel": "2001",
+      "orderInYear": 50,
+      "themeId": "C",
+      "photoGroupId": "P51",
+      "title": {},
+      "body": {
+        "en": "The Department of Journalism and Communication underwent a validation exercise from late February to 2 March.",
+        "zh-Hant": "新聞傳播學系於2月底至3月2日進行課程評審。",
+        "zh-Hans": "新闻传播学系于2月底至3月2日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P51-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2001/2001%EF%BC%881%EF%BC%89/image86.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P51 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P52",
+      "year": 2001,
+      "yearLabel": "2001",
+      "orderInYear": 51,
+      "themeId": "C",
+      "photoGroupId": "P52",
+      "title": {},
+      "body": {
+        "en": "The Department of Social Work underwent a validation exercise from 2 to 4 April.",
+        "zh-Hant": "社會工作學系於4月2至4日進行課程評審。",
+        "zh-Hans": "社会工作学系于4月2至4日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P52-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2001/2001%EF%BC%882%EF%BC%89/image87.jpg",
+          "width": 558,
+          "height": 824,
+          "alt": {
+            "en": "P52 photograph 1"
+          }
+        },
+        {
+          "id": "P52-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2001/2001%EF%BC%882%EF%BC%89/image91.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P52 photograph 2"
+          }
+        },
+        {
+          "id": "P52-photo-3",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2001/2001%EF%BC%882%EF%BC%89/image95.jpg",
+          "width": 1156,
+          "height": 728,
+          "alt": {
+            "en": "P52 photograph 3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P53",
+      "year": 2001,
+      "yearLabel": "2001",
+      "orderInYear": 52,
+      "themeId": "C",
+      "photoGroupId": "P53",
+      "title": {},
+      "body": {
+        "en": "The Department of Chinese Language and Literature underwent a validation exercise from 2 to 4 May.",
+        "zh-Hant": "中國語言文學系於5月2至4日進行課程評審。",
+        "zh-Hans": "中国语言文学系于5月2至4日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P53-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2001/2001%EF%BC%883%EF%BC%89/image88.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P53 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P54",
+      "year": 2001,
+      "yearLabel": "2001",
+      "orderInYear": 53,
+      "themeId": "C",
+      "photoGroupId": "P54",
+      "title": {},
+      "body": {},
+      "photos": [
+        {
+          "id": "P54-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2001/2001%EF%BC%884%EF%BC%89/image100.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P54 photograph 1"
+          }
+        },
+        {
+          "id": "P54-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2001/2001%EF%BC%884%EF%BC%89/image101.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P54 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P55",
+      "year": 2003,
+      "yearLabel": "2003",
+      "orderInYear": 54,
+      "themeId": "C",
+      "photoGroupId": "P55",
+      "title": {},
+      "body": {
+        "en": "The Department of Business Administration underwent a validation exercise from 9 to 11 June.",
+        "zh-Hant": "工商管理學系於6月9至11日進行課程評審。",
+        "zh-Hans": "工商管理学系于6月9至11日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P55-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2003/2003%EF%BC%881%EF%BC%89/image89.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P55 photograph 1"
+          }
+        },
+        {
+          "id": "P55-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2003/2003%EF%BC%881%EF%BC%89/image90.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P55 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P56",
+      "year": 2003,
+      "yearLabel": "2003",
+      "orderInYear": 55,
+      "themeId": "C",
+      "photoGroupId": "P56",
+      "title": {},
+      "body": {
+        "en": "The Department of Counselling and Psychology underwent a validation exercise from 9 to 11 December.",
+        "zh-Hant": "輔導及心理學系於12月9至11日進行課程評審。",
+        "zh-Hans": "辅导及心理学系于12月9至11日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P56-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2003/2003%EF%BC%882%EF%BC%89/image91.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P56 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P57",
+      "year": 2004,
+      "yearLabel": "2004",
+      "orderInYear": 56,
+      "themeId": "C",
+      "photoGroupId": "P57",
+      "title": {},
+      "body": {
+        "en": "The Department of Economics underwent a validation exercise from 29 to 31 March.",
+        "zh-Hant": "經濟學系於3月29至31日進行課程評審。",
+        "zh-Hans": "经济学系于3月29至31日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P57-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2004/2004%EF%BC%881%EF%BC%89/image92.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P57 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P58",
+      "year": 2004,
+      "yearLabel": "2004",
+      "orderInYear": 57,
+      "themeId": "C",
+      "photoGroupId": "P58",
+      "title": {},
+      "body": {},
+      "photos": [
+        {
+          "id": "P58-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2004/2004%EF%BC%882%EF%BC%89/image102.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P58 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P59",
+      "year": 2004,
+      "yearLabel": "2004",
+      "orderInYear": 58,
+      "themeId": "C",
+      "photoGroupId": "P59",
+      "title": {},
+      "body": {},
+      "photos": [
+        {
+          "id": "P59-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2004/2004%EF%BC%883%EF%BC%89/image103.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P59 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P60",
+      "year": 2005,
+      "yearLabel": "2005",
+      "orderInYear": 59,
+      "themeId": "C",
+      "photoGroupId": "P60",
+      "title": {},
+      "body": {
+        "en": "The Department of Sociology underwent a validation exercise from 11 to 14 April.",
+        "zh-Hant": "社會學系於4月11至14日進行課程評審。",
+        "zh-Hans": "社会学系于4月11至14日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P60-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2005/2005%EF%BC%881%EF%BC%89/image93.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P60 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P61",
+      "year": 2005,
+      "yearLabel": "2005",
+      "orderInYear": 60,
+      "themeId": "C",
+      "photoGroupId": "P61",
+      "title": {},
+      "body": {
+        "en": "The Department of History underwent a validation exercise from 20 to 22 April.",
+        "zh-Hant": "歷史學系於4月20至22日進行課程評審。",
+        "zh-Hans": "历史学系于4月20至22日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P61-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2005/2005%EF%BC%882%EF%BC%89/image94.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P61 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P62",
+      "year": 2005,
+      "yearLabel": "2005",
+      "orderInYear": 61,
+      "themeId": "C",
+      "photoGroupId": "P62",
+      "title": {},
+      "body": {
+        "en": "The Department of English Language and Literature underwent a validation from 27 to 29 April.",
+        "zh-Hant": "英文語文學系於4月27至29日進行課程評審",
+        "zh-Hans": "英文语文学系于4月27至29日进行课程评审。"
+      },
+      "photos": [
+        {
+          "id": "P62-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2005/2005%EF%BC%883%EF%BC%89/image95.JPG",
+          "width": 3008,
+          "height": 2000,
+          "alt": {
+            "en": "P62 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P63",
+      "year": 2006,
+      "yearLabel": "2006",
+      "orderInYear": 62,
+      "themeId": "C",
+      "photoGroupId": "P63",
+      "title": {},
+      "body": {
+        "en": "Shue Yan College underwent an institutional review from 10 to 12 May, preparing for university status accreditation.",
+        "zh-Hant": "樹仁學院於5月10至12日進行院校評審，為升格大學作準備",
+        "zh-Hans": "树仁学院于5月10至12日进行院校评审，为升格大学作准备。"
+      },
+      "photos": [
+        {
+          "id": "P63-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2006/2006(1)/image96.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P63 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P64",
+      "year": 2006,
+      "yearLabel": "2006",
+      "orderInYear": 63,
+      "themeId": "C",
+      "photoGroupId": "P64",
+      "title": {},
+      "body": {
+        "en": "The Faculty of Social Sciences underwent its five-year periodic programme review on 16 and 17 May.",
+        "zh-Hant": "社會科學院於5月16至17日進行課程五年定期覆審。",
+        "zh-Hans": "社会科学院于5月16至17日进行课程五年定期覆审。"
+      },
+      "photos": [
+        {
+          "id": "P64-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2006/2006(2)/image97.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P64 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P65",
+      "year": 2006,
+      "yearLabel": "2006",
+      "orderInYear": 64,
+      "themeId": "C",
+      "photoGroupId": "P65",
+      "title": {},
+      "body": {
+        "en": "The Faculty of Arts underwent its five-year periodic programme review on 22 and 23 May.",
+        "zh-Hant": "文學院於5月22至23日進行課程五年定期覆審。",
+        "zh-Hans": "文学院于5月22至23日进行课程五年定期覆审。"
+      },
+      "photos": [
+        {
+          "id": "P65-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2006/2006(3)/image98.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P65 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P66",
+      "year": 2006,
+      "yearLabel": "2006",
+      "orderInYear": 65,
+      "themeId": "C",
+      "photoGroupId": "P66",
+      "title": {},
+      "body": {
+        "en": "The  Faculty of Commerce underwent its five-year periodic programme review on 29 and 30 May.",
+        "zh-Hant": "商學院於5月29至30日進行課程五年定期覆審。",
+        "zh-Hans": "商学院于5月29至30日进行课程五年定期覆审。"
+      },
+      "photos": [
+        {
+          "id": "P66-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2006/2006%EF%BC%884%EF%BC%89/image99.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P66 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P67",
+      "year": 2006,
+      "yearLabel": "2006",
+      "orderInYear": 66,
+      "themeId": "C",
+      "photoGroupId": "P67",
+      "title": {},
+      "body": {},
+      "photos": [
+        {
+          "id": "P67-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2006/2006%EF%BC%885%EF%BC%89/image104.jpg",
+          "width": 344,
+          "height": 536,
+          "alt": {
+            "en": "P67 photograph 1"
+          }
+        },
+        {
+          "id": "P67-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2006/2006%EF%BC%885%EF%BC%89/image105.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P67 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P68",
+      "year": 2007,
+      "yearLabel": "2007",
+      "orderInYear": 67,
+      "themeId": "C",
+      "photoGroupId": "P68",
+      "title": {},
+      "body": {
+        "en": "Chief Executive Donald Tsang and distinguished guests attended the official ceremony celebrating Hong Kong Shue Yan University’s new name and university status.",
+        "zh-Hant": "行政長官曾蔭權與嘉賓出席香港樹仁大學正名典禮，慶祝新校名與大學地位。",
+        "zh-Hans": "行政长官曾荫权与嘉宾出席香港树仁大学正名典礼，庆祝新校名与大学地位。"
+      },
+      "photos": [
+        {
+          "id": "P68-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2007/2007%EF%BC%881%EF%BC%89/image106.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P68 photograph 1"
+          }
+        },
+        {
+          "id": "P68-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2007/2007%EF%BC%881%EF%BC%89/image107.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P68 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P69",
+      "year": 2007,
+      "yearLabel": "2007",
+      "orderInYear": 68,
+      "themeId": "C",
+      "photoGroupId": "P69",
+      "title": {},
+      "body": {
+        "en": "The Hong Kong Institute of Education awarded honorary doctorates to Henry Hu and Chung Chi-yung in recognition of their exceptional contributions to education.",
+        "zh-Hant": "香港教育學院向胡鴻烈與鍾期榮頒授榮譽博士，表揚兩人的卓越教育貢獻。",
+        "zh-Hans": "香港教育学院向胡鸿烈与钟期荣颁授荣誉博士，表扬两人的卓越教育贡献。"
+      },
+      "photos": [
+        {
+          "id": "P69-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2007/2007%EF%BC%882%EF%BC%89/image108.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P69 photograph 1"
+          }
+        },
+        {
+          "id": "P69-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2007/2007%EF%BC%882%EF%BC%89/image109.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P69 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P70",
+      "year": 2007,
+      "yearLabel": "2007",
+      "orderInYear": 69,
+      "themeId": "B",
+      "photoGroupId": "P70",
+      "title": {},
+      "body": {
+        "en": "In 2007, Dr. Henry Hu and Dr. Chung Chi-yung were named Persons of the Year of ‘Touching China’ for their lifelong dedication to education.",
+        "zh-Hant": "2007年，創辦人胡鴻烈博士及鍾期榮博士獲選為「感動中國」年度人物，以表彰二人畢生奉獻教育。",
+        "zh-Hans": "2007年，创办人胡鸿烈博士及钟期荣博士获选为「感动中国」年度人物，以表彰二人毕生奉献教育。"
+      },
+      "photos": [
+        {
+          "id": "P70-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2007/2007%EF%BC%883%EF%BC%89/image110.jpg",
+          "width": 996,
+          "height": 765,
+          "alt": {
+            "en": "P70 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P71",
+      "year": 2008,
+      "yearLabel": "2008",
+      "orderInYear": 70,
+      "themeId": "B",
+      "photoGroupId": "P71",
+      "title": {},
+      "body": {
+        "en": "Chief Executive Donald Tsang presented Henry Hu with the Grand Bauhinia Medal at Government House, Hong Kong.",
+        "zh-Hant": "行政長官曾蔭權在香港禮賓府向胡鴻烈頒授大紫荊勳章。",
+        "zh-Hans": "行政长官曾荫权在香港礼宾府向胡鸿烈颁授大紫荆勋章。"
+      },
+      "photos": [
+        {
+          "id": "P71-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2008/image111.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P71 photograph 1"
+          }
+        },
+        {
+          "id": "P71-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2008/image112.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P71 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P72",
+      "year": 2010,
+      "yearLabel": "2010",
+      "orderInYear": 71,
+      "themeId": "D",
+      "photoGroupId": "P72",
+      "title": {},
+      "body": {
+        "en": "The University launched its first independently offered master’s degree programme —  the Master of Social Sciences in Counselling Psychology.",
+        "zh-Hant": "大學首次獨立開辦碩士學位課程——輔導心理學社會科學碩士。",
+        "zh-Hans": "大学首次独立开办硕士学位课程——辅导心理学社会科学硕士。"
+      },
+      "photos": [
+        {
+          "id": "P72-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2010/2010%EF%BC%881%EF%BC%89/image113.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P72 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P73",
+      "year": 2010,
+      "yearLabel": "2010",
+      "orderInYear": 72,
+      "themeId": "B",
+      "photoGroupId": "P73",
+      "title": {},
+      "body": {
+        "en": "Henry Hu Hung-lick and Chung Chi-yung were named among the inaugural Hong Kong Loving Hearts honourees by Asia Television, with more than 130 supporters attending the ceremony.",
+        "zh-Hant": "胡鴻烈與鍾期榮獲亞洲電視首屆「感動香港十大人物」，逾一百三十名支持者到場見證。",
+        "zh-Hans": "胡鸿烈与钟期荣获亚洲电视首届「感动香港十大人物」，逾一百三十名支持者到场见证。"
+      },
+      "photos": [
+        {
+          "id": "P73-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2010/2010%EF%BC%882%EF%BC%89/image114.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P73 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P74",
+      "year": 2011,
+      "yearLabel": "2011",
+      "orderInYear": 73,
+      "themeId": "B",
+      "photoGroupId": "P74",
+      "title": {},
+      "body": {
+        "en": "Asteroids 34778 and 34779 were named HUHUNGLICK and CHUNGCHIYUNG, respectively, in honour of the University’s founders and their educational legacy.",
+        "zh-Hant": "小行星34778及34779分別命名為「胡鴻烈星」及「鍾期榮星」，紀念創辦人與其教育傳承。",
+        "zh-Hans": "小行星34778及34779分别命名为「胡鸿烈星」及「钟期荣星」，纪念创办人与其教育传承。"
+      },
+      "photos": [
+        {
+          "id": "P74-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2011/image115.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P74 photograph 1"
+          }
+        },
+        {
+          "id": "P74-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2011/image116.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P74 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P75",
+      "year": 2012,
+      "yearLabel": "2012",
+      "orderInYear": 74,
+      "themeId": "D",
+      "photoGroupId": "P75",
+      "title": {},
+      "body": {
+        "en": "Since 2012/13, Shue Yan University has received HK$125.6 million in funding from the Quality Enhancement Support Scheme (QESS) for 13 projects. These initiatives have advanced teaching and learning, digital resources, internships and career development, artificial intelligence education, and student wellbeing.",
+        "zh-Hant": "仁大自2012/13年度起，獲「質素提升支援計劃」資助合共1.256億港元，推展13個項目。這些項目促進了教與學、數碼資源、實習及職涯發展、人工智能教育，以及學生身心健康。",
+        "zh-Hans": "仁大自2012/13年度起，获「质素提升支援计划」资助合共1.256亿港元，推展13个项目。这些项目促进了教与学、数码资源、实习及职涯发展、人工智能教育，以及学生身心健康。"
+      },
+      "photos": [
+        {
+          "id": "P75-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2012/image117.jpg",
+          "width": 878,
+          "height": 462,
+          "alt": {
+            "en": "P75 photograph 1"
+          }
+        },
+        {
+          "id": "P75-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2012/image118.jpg",
+          "width": 749,
+          "height": 426,
+          "alt": {
+            "en": "P75 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P76",
+      "year": 2013,
+      "yearLabel": "2013",
+      "orderInYear": 75,
+      "themeId": "D",
+      "photoGroupId": "P76",
+      "title": {},
+      "body": {
+        "en": "Research Grants Council’s funding schemes began supporting self-financing institutions, creating new competitive opportunities for research development at Shue Yan.",
+        "zh-Hant": "研究資助局計劃開始支援自資院校，為樹仁開啟競爭性研究發展的新機會。",
+        "zh-Hans": "研究资助局计划开始支援自资院校，为树仁开启竞争性研究发展的新机会。"
+      },
+      "photos": []
+    },
+    {
+      "id": "P77",
+      "year": 2014,
+      "yearLabel": "2014",
+      "orderInYear": 76,
+      "themeId": "B",
+      "photoGroupId": "P77",
+      "title": {},
+      "body": {
+        "en": "Founding Principal Chung Chi-yung passed away; more than 2,000 relatives, friends, colleagues, students, alumni, and community members paid tribute.",
+        "zh-Hant": "創校校長鍾期榮逝世，逾二千名親友、同事、學生、校友及社會人士致哀。",
+        "zh-Hans": "创校校长钟期荣逝世，逾二千名亲友、同事、学生、校友及社会人士致哀。"
+      },
+      "photos": [
+        {
+          "id": "P77-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2014/image119.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P77 photograph 1"
+          }
+        },
+        {
+          "id": "P77-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2014/image120.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P77 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P78",
+      "year": 2015,
+      "yearLabel": "2015",
+      "orderInYear": 77,
+      "themeId": "D",
+      "photoGroupId": "P78",
+      "title": {},
+      "body": {
+        "en": "A HK$6.75 million grant from the  Research Grants Council‘s Institutional Development Scheme was received to establish Shue Yan’s first interdisciplinary research platform and strengthen its research capacity.",
+        "zh-Hant": "仁大獲研究資助局的院校發展計劃撥款六百七十五萬港元，建立校內首個跨學科研究平台並提升研究能力。",
+        "zh-Hans": "仁大获研究资助局的院校发展计划拨款六百七十五万港元，建立校内首个跨学科研究平台并提升研究能力。"
+      },
+      "photos": [
+        {
+          "id": "P78-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2015/2015%EF%BC%881%EF%BC%89/image121.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P78 photograph 1"
+          }
+        },
+        {
+          "id": "P78-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2015/2015%EF%BC%881%EF%BC%89/image122.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P78 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P79",
+      "year": 2015,
+      "yearLabel": "2015",
+      "orderInYear": 78,
+      "themeId": "D",
+      "photoGroupId": "P79",
+      "title": {},
+      "body": {
+        "en": "The University of Hong Kong awarded Henry Hu an honorary Doctor of Social Sciences for his long-standing contributions to education and public service.",
+        "zh-Hant": "香港大學向胡鴻烈頒授榮譽社會科學博士，表揚其長期教育與公共服務。",
+        "zh-Hans": "香港大学向胡鸿烈颁授荣誉社会科学博士，表扬其长期教育与公共服务。"
+      },
+      "photos": [
+        {
+          "id": "P79-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2015/2015%EF%BC%882%EF%BC%89/image123.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P79 photograph 1"
+          }
+        },
+        {
+          "id": "P79-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2015/2015%EF%BC%882%EF%BC%89/image124.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P79 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P80",
+      "year": 2015,
+      "yearLabel": "2015",
+      "orderInYear": 79,
+      "themeId": "B",
+      "photoGroupId": "P80",
+      "title": {},
+      "body": {
+        "en": "Li Dak Sum donated HK$10 million to establish postgraduate scholarships supporting and encouraging Shue Yan students to pursue advanced study.",
+        "zh-Hant": "李達三博士捐出一千萬港元設立研究生獎學金，支持並鼓勵樹仁學生深造。",
+        "zh-Hans": "李达三博士捐出一千万港元设立研究生奖学金，支持并鼓励树仁学生深造。"
+      },
+      "photos": [
+        {
+          "id": "P80-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2015/2015%EF%BC%883%EF%BC%89/image125.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P80 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P81",
+      "year": 2017,
+      "yearLabel": "2017",
+      "orderInYear": 80,
+      "themeId": "D",
+      "photoGroupId": "P81",
+      "title": {},
+      "body": {
+        "en": "Shue Yan University established its Graduate School, while the Executive Council approved  the launch of 12 research postgraduate programmes in 6 disciplines.",
+        "zh-Hant": "樹仁大學成立研究院；行政會議同時批准六個學科開辦十二個研究式研究生課程。",
+        "zh-Hans": "树仁大学成立研究院；行政会议同时批准六个学科开办十二个研究式研究生课程。"
+      },
+      "photos": [
+        {
+          "id": "P81-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2017/2017%EF%BC%881%EF%BC%89/image126.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P81 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P82",
+      "year": 2017,
+      "yearLabel": "2017",
+      "orderInYear": 81,
+      "themeId": "D",
+      "photoGroupId": "P82",
+      "title": {},
+      "body": {
+        "en": "A HK$6.2-million grant was received from the Research Grant Council’s  Institutional Development Scheme to expand interdisciplinary infrastructure for evidence-based practice and research.",
+        "zh-Hant": "仁大獲研究資助局的院校發展計劃撥款六百二十萬港元擴充循證實踐及研究的跨學科基礎設施。",
+        "zh-Hans": "仁大获研究资助局的院校发展计划拨款六百二十万港元扩充循证实践及研究的跨学科基础设施。"
+      },
+      "photos": []
+    },
+    {
+      "id": "P83",
+      "year": 2017,
+      "yearLabel": "2017",
+      "orderInYear": 82,
+      "themeId": "D",
+      "photoGroupId": "P83",
+      "title": {},
+      "body": {
+        "en": "Chief Secretary for Administration Matthew Cheung officiated at the opening of HKSYU’s Research Complex, marking a new stage in the University’s campus development and research facilities.",
+        "zh-Hant": "政務司司長張建宗主禮香港樹仁大學研究院綜合大樓開幕，標誌大學校園建設與研究設施發展進入新階段。",
+        "zh-Hans": "政务司司长张建宗主礼香港树仁大学研究院综合大楼开幕，标志大学校园建设与研究设施发展进入新阶段。"
+      },
+      "photos": [
+        {
+          "id": "P83-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2017/2017%EF%BC%883%EF%BC%89/image127.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P83 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P84",
+      "year": 2017,
+      "yearLabel": "2017",
+      "orderInYear": 83,
+      "themeId": "D",
+      "photoGroupId": "P84",
+      "title": {},
+      "body": {
+        "en": "Dr Henry Hu Hung-lick received a lifetime achievement award in recognition of his enduring contributions to Shue Yan and education in Hong Kong.",
+        "zh-Hant": "胡鴻烈博士獲頒終身成就獎，以表揚其畢生對樹仁及香港教育的貢獻。",
+        "zh-Hans": "胡鸿烈博士获颁终身成就奖，以表扬其毕生对树仁及香港教育的贡献。"
+      },
+      "photos": [
+        {
+          "id": "P84-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2017/2017%EF%BC%884%EF%BC%89/image128.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P84 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P85",
+      "year": 2017,
+      "yearLabel": "2017",
+      "orderInYear": 84,
+      "themeId": "A",
+      "photoGroupId": "P85",
+      "title": {},
+      "body": {
+        "en": "The Jockey Club Multimedia Production Centre opened with a HK$5-million donation from the Jockey Club, supporting professional studios, journalism education, and research.",
+        "zh-Hant": "仁大獲賽馬會捐款五百萬港元，成立賽馬會多媒體製作中心，支援專業影室、新聞教育及研究。",
+        "zh-Hans": "仁大获赛马会捐款五百万港元，成立赛马会多媒体制作中心，支援专业影室、新闻教育及研究。"
+      },
+      "photos": [
+        {
+          "id": "P85-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2017/2017%EF%BC%885%EF%BC%89/image129.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P85 photograph 1"
+          }
+        },
+        {
+          "id": "P85-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2017/2017%EF%BC%885%EF%BC%89/image130.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P85 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P86",
+      "year": 2017,
+      "yearLabel": "2017-2018",
+      "orderInYear": 85,
+      "themeId": "B",
+      "photoGroupId": "P86",
+      "title": {},
+      "body": {
+        "en": "The University introduced General Education.",
+        "zh-Hant": "大學推行通識教育。",
+        "zh-Hans": "大学推行通识教育。"
+      },
+      "photos": [
+        {
+          "id": "P86-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2017-2018/image131.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P86 photograph 1"
+          }
+        },
+        {
+          "id": "P86-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2017-2018/image132.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P86 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P87",
+      "year": 2018,
+      "yearLabel": "2018",
+      "orderInYear": 86,
+      "themeId": "D",
+      "photoGroupId": "P87",
+      "title": {},
+      "body": {
+        "en": "Shue Yan enrolled its first cohort of Master of Philosophy and Doctor of Philosophy research students.",
+        "zh-Hant": "樹仁招收首屆哲學碩士及哲學博士研究生。",
+        "zh-Hans": "树仁招收首届哲学硕士及哲学博士研究生。"
+      },
+      "photos": [
+        {
+          "id": "P87-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2018/image133.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P87 photograph 1"
+          }
+        },
+        {
+          "id": "P87-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2018/image134.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P87 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P88",
+      "year": 2019,
+      "yearLabel": "2019-2020",
+      "orderInYear": 87,
+      "themeId": "D",
+      "photoGroupId": "P88",
+      "title": {},
+      "body": {
+        "en": "Shue Yan received HK$20 million  from the iFREE Group to develop robotics laboratory and big-data facilities.",
+        "zh-Hant": "樹仁獲iFREE集團捐款二千萬港元，建設機械人實驗室及大數據設施。",
+        "zh-Hans": "树仁获iFREE集团捐款二千万港元，建设机械人实验室及大数据设施。"
+      },
+      "photos": [
+        {
+          "id": "P88-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2019-2020/image135.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P88 photograph 1"
+          }
+        },
+        {
+          "id": "P88-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2019-2020/image136.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P88 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P89",
+      "year": 2020,
+      "yearLabel": "2020",
+      "orderInYear": 88,
+      "themeId": "D",
+      "photoGroupId": "P89",
+      "title": {},
+      "body": {
+        "en": "Hong Kong Shue Yan University entered the QS Asia University Rankings for the first time in the 401–450 band, marking a new stage in its recognition in Asian higher education.",
+        "zh-Hant": "香港樹仁大學首次進入 QS 亞洲大學排名，位列 401–450 組別，標誌大學在亞洲高等教育界的認受性邁進新階段。",
+        "zh-Hans": "香港树仁大学首次进入 QS 亚洲大学排名，位列 401–450 组别，标志大学在亚洲高等教育界的认受性迈进新阶段。"
+      },
+      "photos": []
+    },
+    {
+      "id": "P90",
+      "year": 2020,
+      "yearLabel": "2020",
+      "orderInYear": 89,
+      "themeId": "D",
+      "photoGroupId": "P90",
+      "title": {},
+      "body": {
+        "en": "The Department of Applied Data Science was established to offer Shue Yan’s first bachelor of science program.",
+        "zh-Hant": "應用數據科學學系成立，開辦樹仁首個理學學士課程。",
+        "zh-Hans": "应用数据科学学系成立，开办树仁首个理学学士课程。"
+      },
+      "photos": [
+        {
+          "id": "P90-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2020/2020%EF%BC%882%EF%BC%89/image137.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P90 photograph 1"
+          }
+        },
+        {
+          "id": "P90-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2020/2020%EF%BC%882%EF%BC%89/image138.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P90 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P91",
+      "year": 2021,
+      "yearLabel": "2021",
+      "orderInYear": 90,
+      "themeId": "E",
+      "photoGroupId": "P91",
+      "title": {},
+      "body": {
+        "en": "The University celebrated President Henry Hu’s 101st birthday, honouring his lifelong service.",
+        "zh-Hant": "大學為校監胡鴻烈一百零一歲壽辰舉行小型慶祝會，表揚其畢生服務。",
+        "zh-Hans": "大学为校监胡鸿烈一百零一岁寿辰举行小型庆祝会，表扬其毕生服务。"
+      },
+      "photos": [
+        {
+          "id": "P91-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2021/2021%EF%BC%881%EF%BC%89/image139.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P91 photograph 1"
+          }
+        },
+        {
+          "id": "P91-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2021/2021%EF%BC%881%EF%BC%89/image140.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P91 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P92",
+      "year": 2021,
+      "yearLabel": "2021",
+      "orderInYear": 91,
+      "themeId": "D",
+      "photoGroupId": "P92",
+      "title": {},
+      "body": {
+        "en": "In 2020/21, HKSYU received HK$16.4 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSocSc (Hons) in Arts, Culture and Technology.",
+        "zh-Hant": "2020/21 年, 樹仁獲自資專上教育提升及啟動補助金 一千六百四十萬元，發展藝術、文化及科技榮譽社會科學學士課程。",
+        "zh-Hans": "2020/21 年, 树仁获自资专上教育提升及启动补助金 一千六百四十万元，发展艺术、文化及科技荣誉社会科学学士课程。"
+      },
+      "photos": [
+        {
+          "id": "P92-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2021/2021%EF%BC%882%EF%BC%89/image141.jpg",
+          "width": 860,
+          "height": 1144,
+          "alt": {
+            "en": "P92 photograph 1"
+          }
+        },
+        {
+          "id": "P92-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2021/2021%EF%BC%882%EF%BC%89/image142.jpg",
+          "width": 1724,
+          "height": 1146,
+          "alt": {
+            "en": "P92 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P93",
+      "year": 2021,
+      "yearLabel": "2021-2025",
+      "orderInYear": 92,
+      "themeId": "D",
+      "photoGroupId": "P93",
+      "title": {},
+      "body": {
+        "en": "The University’s Five-year Strategic Plan   advocates reinventing liberal arts education for the digital era.",
+        "zh-Hant": "大學五年策略發展計劃倡議在數字時代重塑博雅教育。",
+        "zh-Hans": "大学五年策略发展计划倡议在数字时代重塑博雅教育。"
+      },
+      "photos": [
+        {
+          "id": "P93-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2021-2025/image143.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P93 photograph 1"
+          }
+        },
+        {
+          "id": "P93-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2021-2025/image144.jpg",
+          "width": 2052,
+          "height": 1160,
+          "alt": {
+            "en": "P93 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P94",
+      "year": 2022,
+      "yearLabel": "2022",
+      "orderInYear": 93,
+      "themeId": "E",
+      "photoGroupId": "P94",
+      "title": {},
+      "body": {
+        "en": "The Dr. Francis Cheung Business Analytics Research Centre was established with a donation from Dr. Francis Cheung to advance interdisciplinary big-data research and evidence-based decision-making across sectors.",
+        "zh-Hant": "由張舜堯博士捐款成立的張舜堯博士商業分析研究中心啟用，致力推動跨學科大數據研究及各界循證決策。",
+        "zh-Hans": "由张舜尧博士捐款成立的张舜尧博士商业分析研究中心启用，致力推动跨学科大数据研究及各界循证决策。"
+      },
+      "photos": [
+        {
+          "id": "P94-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2022/2022%EF%BC%881%EF%BC%89/image145.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P94 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P95",
+      "year": 2022,
+      "yearLabel": "2022",
+      "orderInYear": 94,
+      "themeId": "B",
+      "photoGroupId": "P95",
+      "title": {},
+      "body": {
+        "en": "Shue Yan launched Hong Kong’s first virtual museum of national intangible cultural heritage, digitally showcasing the Yulan Festival. This digital humanities project was selected as one of the 25 representative showcase projects at the Innotech Expo, organised by Our Hong Kong Foundation.",
+        "zh-Hant": "樹仁推出香港首個國家級非物質文化遺產虛擬博物館，以數字形式展示盂蘭勝會。該數字人文項目獲團結香港基金主辦的創科博覽選為香港25個創科代表性展示項目之一。",
+        "zh-Hans": "树仁推出香港首个国家级非物质文化遗产虚拟博物馆，以数字形式展示盂兰胜会。该数字人文项目获团结香港基金主办的创科博览选为香港25个创科代表性展示项目之一。"
+      },
+      "photos": [
+        {
+          "id": "P95-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2022/2022%EF%BC%882%EF%BC%89/image146.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P95 photograph 1"
+          }
+        },
+        {
+          "id": "P95-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2022/2022%EF%BC%882%EF%BC%89/image147.jpg",
+          "width": 6000,
+          "height": 4500,
+          "alt": {
+            "en": "P95 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P96",
+      "year": 2023,
+      "yearLabel": "2023",
+      "orderInYear": 95,
+      "themeId": "D",
+      "photoGroupId": "P96",
+      "title": {},
+      "body": {
+        "en": "In 2022/23, Shue Yan received HK$19.5 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSc (Hons) in Digital Solutions for Entertainment and Game Applications.",
+        "zh-Hant": "2022/23 年度，仁大獲批自資專上教育提升及啟動補助金一千九百五十萬元，發展娛樂及遊戲應用數碼方案榮譽理學士課程。",
+        "zh-Hans": "2022/23 年度，仁大获批自资专上教育提升及启动补助金一千九百五十万元，发展娱乐及游戏应用数码方案荣誉理学士课程。"
+      },
+      "photos": [
+        {
+          "id": "P96-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2023/2023%EF%BC%881%EF%BC%89/image148.jpg",
+          "width": 792,
+          "height": 1076,
+          "alt": {
+            "en": "P96 photograph 1"
+          }
+        },
+        {
+          "id": "P96-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2023/2023%EF%BC%881%EF%BC%89/image149.jpg",
+          "width": 1594,
+          "height": 1078,
+          "alt": {
+            "en": "P96 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P97",
+      "year": 2023,
+      "yearLabel": "2023",
+      "orderInYear": 96,
+      "themeId": "D",
+      "photoGroupId": "P97",
+      "title": {},
+      "body": {
+        "en": "The Social Work Department launched a government-commissioned one-stop digital information gateway for carers, improving timely access to support information.",
+        "zh-Hant": "社會工作學系推出政府委託的一站式照顧者數碼資訊閘道，改善支援資訊的及時獲取。",
+        "zh-Hans": "社会工作学系推出政府委托的一站式照顾者数码资讯闸道，改善支援资讯的及时获取。"
+      },
+      "photos": [
+        {
+          "id": "P97-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2023/2023%EF%BC%882%EF%BC%89/image150.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P97 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P98",
+      "year": 2023,
+      "yearLabel": "2023",
+      "orderInYear": 97,
+      "themeId": "E",
+      "photoGroupId": "P98",
+      "title": {},
+      "body": {
+        "en": "An interdisciplinary conference on youth-identity translated longitudinal research into practical insights for programmes, policy, and evidence-based youth development.",
+        "zh-Hant": "跨學科青年身份認同會議把縱向研究轉化為課程、政策及循證青年發展的實務洞見。",
+        "zh-Hans": "跨学科青年身份认同会议把纵向研究转化为课程、政策及循证青年发展的实务洞见。"
+      },
+      "photos": [
+        {
+          "id": "P98-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2023/2023%EF%BC%883%EF%BC%89/image151.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P98 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P99",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 98,
+      "themeId": "E",
+      "photoGroupId": "P99",
+      "title": {},
+      "body": {
+        "en": "In 2023/24, Shue Yan received HK$14. 6 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSocSc (Hons) in Forensic and Investigative Psychology.",
+        "zh-Hant": "2023/24年，仁大獲批 自資專上教育提升及啟動補助一千四百六十萬元，發展法證及偵緝心理學榮譽社會科學學士課程。",
+        "zh-Hans": "2023/24年，仁大获批 自资专上教育提升及启动补助一千四百六十万元，发展法证及侦缉心理学荣誉社会科学学士课程。"
+      },
+      "photos": [
+        {
+          "id": "P99-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%881%EF%BC%89/image152.jpg",
+          "width": 280,
+          "height": 358,
+          "alt": {
+            "en": "P99 photograph 1"
+          }
+        },
+        {
+          "id": "P99-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%881%EF%BC%89/image153.jpg",
+          "width": 2050,
+          "height": 1386,
+          "alt": {
+            "en": "P99 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P100",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 99,
+      "themeId": "E",
+      "photoGroupId": "P100",
+      "title": {},
+      "body": {
+        "en": "An AI- and VR-enabled martial arts exhibition documented Ving Tsun and Tai Chi, preserving cultural heritage and encouraging youth participation.",
+        "zh-Hant": "結合人工智能及虛擬實境的武術展覽記錄詠春與太極，保存文化並鼓勵青年參與。",
+        "zh-Hans": "结合人工智能及虚拟实境的武术展览记录咏春与太极，保存文化并鼓励青年参与。"
+      },
+      "photos": [
+        {
+          "id": "P100-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%882%EF%BC%89/image154.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P100 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P101",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 100,
+      "themeId": "E",
+      "photoGroupId": "P101",
+      "title": {},
+      "body": {
+        "en": "The Mrs. Dorothy Koo and Dr. Ti Hua Koo Plaza, redeveloped with their donations, opened with advanced audiovisual facilities.",
+        "zh-Hant": "由顧鐵華、費肇芬捐款重建的伉儷廣場啟用，並配備先進影音設施。",
+        "zh-Hans": "由顾铁华、费肇芬捐款重建的伉俪广场启用，并配备先进影音设施。"
+      },
+      "photos": [
+        {
+          "id": "P101-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%883%EF%BC%89/image155.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P101 photograph 1"
+          }
+        },
+        {
+          "id": "P101-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%883%EF%BC%89/image156.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P101 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P102",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 101,
+      "themeId": "E",
+      "photoGroupId": "P102",
+      "title": {},
+      "body": {
+        "en": "The Tin Ka Ping Teaching and Research Centre for Filial Piety opened to connect interdisciplinary research, moral education, cultural heritage, and school outreach.",
+        "zh-Hant": "田家炳孝道文化教研中心啟用，連結跨學科研究、品德教育、文化傳承及學校外展。",
+        "zh-Hans": "田家炳孝道文化教研中心启用，连结跨学科研究、品德教育、文化传承及学校外展。"
+      },
+      "photos": [
+        {
+          "id": "P102-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%884%EF%BC%89/image157.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P102 photograph 1"
+          }
+        },
+        {
+          "id": "P102-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%884%EF%BC%89/image158.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P102 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P103",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 102,
+      "themeId": "E",
+      "photoGroupId": "P103",
+      "title": {},
+      "body": {
+        "en": "The University launched Hong Kong’s first one-year International Foundation Year Programme for international students, with a certificate awarded upon completion.",
+        "zh-Hant": "大學推出香港首個專為國際學生而設的一年制大學先修課程證書。",
+        "zh-Hans": "大学推出香港首个专为国际学生而设的一年制大学先修课程证书。"
+      },
+      "photos": [
+        {
+          "id": "P103-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%885%EF%BC%89/image159.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P103 photograph 1"
+          }
+        },
+        {
+          "id": "P103-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%885%EF%BC%89/image160.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P103 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P104",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 103,
+      "themeId": "E",
+      "photoGroupId": "P104",
+      "title": {},
+      "body": {
+        "en": "Yang Wei from the Department of Sociology became Shue Yan’s first Doctor of Philosophy graduate, marking a milestone for the Graduate School.",
+        "zh-Hant": "社會學系楊薇成為樹仁首位哲學博士畢業生，標誌研究院重要里程碑。",
+        "zh-Hans": "社会学系杨薇成为树仁首位哲学博士毕业生，标志研究院重要里程碑。"
+      },
+      "photos": [
+        {
+          "id": "P104-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%886%EF%BC%89/image161.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P104 photograph 1"
+          }
+        },
+        {
+          "id": "P104-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%886%EF%BC%89/image162.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P104 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P105",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 104,
+      "themeId": "E",
+      "photoGroupId": "P105",
+      "title": {},
+      "body": {
+        "en": "An interdisciplinary esports project promoted youth empowerment while addressing gaming addiction through psychological, social, business, and policy research.",
+        "zh-Hant": "跨學科電競項目透過心理、社會、商業及政策研究，在應對遊戲成癮同時促進青年賦權。",
+        "zh-Hans": "跨学科电竞项目透过心理、社会、商业及政策研究，在应对游戏成瘾同时促进青年赋权。"
+      },
+      "photos": [
+        {
+          "id": "P105-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%887%EF%BC%89/image163.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P105 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P106",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 105,
+      "themeId": "E",
+      "photoGroupId": "P106",
+      "title": {},
+      "body": {
+        "en": "The Emotion World project gamified evidence-based social-emotional learning and invited students to design AI-assisted characters to promote wellbeing education.",
+        "zh-Hant": "「情緒世界」把循證社交情緒學習遊戲化，並邀請學生設計人工智能輔助角色，推動福祉教育。",
+        "zh-Hans": "「情绪世界」把循证社交情绪学习游戏化，并邀请学生设计人工智能辅助角色，推动福祉教育。"
+      },
+      "photos": [
+        {
+          "id": "P106-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%888%EF%BC%89/image164.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P106 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P107",
+      "year": 2024,
+      "yearLabel": "2024",
+      "orderInYear": 106,
+      "themeId": "D",
+      "photoGroupId": "P107",
+      "title": {},
+      "body": {
+        "en": "The Bridging Grey Digital Divide and diversity in older ICT users post-COVID project advanced research on older adults’ use of technologyand promoted age-inclusive digital innovation.",
+        "zh-Hant": "跨越灰色數碼鴻溝研究長者科技使用，推動年齡共融的數碼創新。",
+        "zh-Hans": "跨越灰色数码鸿沟研究长者科技使用，推动年龄共融的数码创新。"
+      },
+      "photos": [
+        {
+          "id": "P107-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2024/2024%EF%BC%889%EF%BC%89/image165.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P107 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P108",
+      "year": 2025,
+      "yearLabel": "2025",
+      "orderInYear": 107,
+      "themeId": "E",
+      "photoGroupId": "P108",
+      "title": {},
+      "body": {
+        "en": "A longitudinal study of more than 8,000 participants examined resilience across adulthood to inform family, organisational, and public policy.",
+        "zh-Hant": "追蹤逾八千人的縱向研究，探討成年各階段的韌性，為家庭、機構及公共政策提供依據。",
+        "zh-Hans": "追踪逾八千人的纵向研究，探讨成年各阶段的韧性，为家庭、机构及公共政策提供依据。"
+      },
+      "photos": [
+        {
+          "id": "P108-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025/2025%EF%BC%881%EF%BC%89/image166.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P108 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P109",
+      "year": 2025,
+      "yearLabel": "2025",
+      "orderInYear": 108,
+      "themeId": "A",
+      "photoGroupId": "P109",
+      "title": {},
+      "body": {
+        "en": "Founding President Henry Hu passed away at the age of 105; the University community held a funeral and memorial services honouring his legacy.",
+        "zh-Hant": "創校校監胡鴻烈於一百零五歲逝世，大學社群舉行喪禮及追思會，紀念其貢獻。",
+        "zh-Hans": "创校校监胡鸿烈于一百零五岁逝世，大学社群举行丧礼及追思会，纪念其贡献。"
+      },
+      "photos": [
+        {
+          "id": "P109-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025/2025%EF%BC%882%EF%BC%89/image167.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P109 photograph 1"
+          }
+        },
+        {
+          "id": "P109-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025/2025%EF%BC%882%EF%BC%89/image168.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P109 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P111",
+      "year": 2025,
+      "yearLabel": "2025",
+      "orderInYear": 109,
+      "themeId": "D",
+      "photoGroupId": "P111",
+      "title": {},
+      "body": {
+        "en": "Shue Yan University participated in a special exhibition at the Guangdong Museum, creating an extension display on digital architectural heritage art.",
+        "zh-Hant": "仁大參與廣東省博物館特展，策劃數碼建築遺產藝術延伸展區。",
+        "zh-Hans": "仁大参与广东省博物馆特展，策划数码建筑遗产艺术延伸展区。"
+      },
+      "photos": [
+        {
+          "id": "P111-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025/2025%EF%BC%883%EF%BC%89/image170.jpg",
+          "width": 1272,
+          "height": 705,
+          "alt": {
+            "en": "P111 photograph 1"
+          }
+        },
+        {
+          "id": "P111-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025/2025%EF%BC%883%EF%BC%89/image171.jpg",
+          "width": 1091,
+          "height": 705,
+          "alt": {
+            "en": "P111 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P112",
+      "year": 2025,
+      "yearLabel": "2025",
+      "orderInYear": 110,
+      "themeId": "D",
+      "photoGroupId": "P112",
+      "title": {},
+      "body": {
+        "en": "Shue Yan University supported the Hong Kong Maritime Museum’s immersive VR archaeology exhibition “Voyage into Shu”, providing academic and curatorial advice.",
+        "zh-Hant": "仁大支持香港海事博物館「浮海探蜀」沉浸式考古VR展，並提供學術與策展顧問。",
+        "zh-Hans": "仁大支持香港海事博物馆「浮海探蜀」沉浸式考古VR展，并提供学术与策展顾问。"
+      },
+      "photos": [
+        {
+          "id": "P112-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025/2025%EF%BC%884%EF%BC%89/image172.jpg",
+          "width": 325,
+          "height": 460,
+          "alt": {
+            "en": "P112 photograph 1"
+          }
+        },
+        {
+          "id": "P112-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025/2025%EF%BC%884%EF%BC%89/image173.jpg",
+          "width": 946,
+          "height": 939,
+          "alt": {
+            "en": "P112 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P110",
+      "year": 2025,
+      "yearLabel": "2025-2026",
+      "orderInYear": 111,
+      "themeId": "D",
+      "photoGroupId": "P110",
+      "title": {},
+      "body": {
+        "en": "Hong Kong Shue Yan University appointed long-serving Deputy President Hu fai-chung as President.",
+        "zh-Hant": "香港樹仁大學委任長期服務的常務副校監胡懷中出任校長。",
+        "zh-Hans": "香港树仁大学委任长期服务的常务副校监胡怀中出任校长。"
+      },
+      "photos": [
+        {
+          "id": "P110-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2025-2026/image169.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P110 photograph 1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P113",
+      "year": 2026,
+      "yearLabel": "2026",
+      "orderInYear": 112,
+      "themeId": "E",
+      "photoGroupId": "P113",
+      "title": {},
+      "body": {
+        "en": "In 2024/25, Shue Yan University received HK$25.1 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary education to develop an applied degree in Surveying and Dispute Resolution.",
+        "zh-Hant": "2024/2025年， 仁大獲批 自資專上教育提升及啟動補助金兩千五百一十萬元，發展測量及爭議解決學應用學位課程。",
+        "zh-Hans": "2024/2025年， 仁大获批 自资专上教育提升及启动补助金两千五百一十万元，发展测量及争议解决学应用学位课程。"
+      },
+      "photos": []
+    },
+    {
+      "id": "P114",
+      "year": 2026,
+      "yearLabel": "2026",
+      "orderInYear": 113,
+      "themeId": "E",
+      "photoGroupId": "P114",
+      "title": {},
+      "body": {
+        "en": "Shue Yan launched a digital humanities project using a virtual-reality and a mixed-reality platform to digitally document, transmit, and promote Cheung Chau’s Jiao Festival, which is a national intangible cultural heritage.",
+        "zh-Hant": "仁大開展一項數碼人文項目，運用虛擬現實和混合實境平台數字化記錄、傳承並推廣長洲太平清醮這項國家級非物質文化遺產。",
+        "zh-Hans": "仁大开展一项数码人文项目，运用虚拟现实和混合实境平台数字化记录、传承并推广长洲太平清醮这项国家级非物质文化遗产。"
+      },
+      "photos": [
+        {
+          "id": "P114-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026/2026%EF%BC%882%EF%BC%89/image174.jpg",
+          "width": 2220,
+          "height": 1476,
+          "alt": {
+            "en": "P114 photograph 1"
+          }
+        },
+        {
+          "id": "P114-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026/2026%EF%BC%882%EF%BC%89/image175.jpg",
+          "width": 2306,
+          "height": 1476,
+          "alt": {
+            "en": "P114 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P115",
+      "year": 2026,
+      "yearLabel": "2026",
+      "orderInYear": 114,
+      "themeId": "E",
+      "photoGroupId": "P115",
+      "title": {},
+      "body": {
+        "en": "A one-stop internship platform began trial operation, integrating e-portfolios, employer connections, learning resources, and AI-assisted job matching.",
+        "zh-Hant": "一站式實習平台投入試行，整合電子履歷、僱主聯繫、學習資源及人工智能職位配對。",
+        "zh-Hans": "一站式实习平台投入试行，整合电子履历、雇主联系、学习资源及人工智能职位配对。"
+      },
+      "photos": [
+        {
+          "id": "P115-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026/2026%EF%BC%883%EF%BC%89/image176.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P115 photograph 1"
+          }
+        },
+        {
+          "id": "P115-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026/2026%EF%BC%883%EF%BC%89/image177.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P115 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P116",
+      "year": 2026,
+      "yearLabel": "2026-2027",
+      "orderInYear": 115,
+      "themeId": "E",
+      "photoGroupId": "P116",
+      "title": {},
+      "body": {
+        "en": "Shue Yan rose to 360th in the QS Asia rankings and entered the QS World University Rankings  in the band of 1001–1200, becoming the first private university in Hong Kong to be listed.",
+        "zh-Hant": "仁大在QS亞洲排名升至第360位，並首登QS世界大學排名1001至1200位，成為首所上榜的香港私立大學。",
+        "zh-Hans": "仁大在QS亚洲排名升至第360位，并首登QS世界大学排名1001至1200位，成为首所上榜的香港私立大学。"
+      },
+      "photos": [
+        {
+          "id": "P116-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026-2027/2026-2027%EF%BC%881%EF%BC%89/image178.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P116 photograph 1"
+          }
+        },
+        {
+          "id": "P116-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026-2027/2026-2027%EF%BC%881%EF%BC%89/image179.jpg",
+          "width": 1100,
+          "height": 620,
+          "alt": {
+            "en": "P116 photograph 2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "P117",
+      "year": 2026,
+      "yearLabel": "2026-2027",
+      "orderInYear": 116,
+      "themeId": "E",
+      "photoGroupId": "P117",
+      "title": {},
+      "body": {
+        "en": "Shue Yan established its fourth Faculty, the Faculty of Communication, Information and Creative Industries. The faculty comprises the Department of Journalism and Communication and the Department of Data Science and Digital Innovation, formerly known as Applied Data Science.",
+        "zh-Hant": "仁大成立第四個學院——傳播、資訊及創意產業學院。該學院由新聞與傳播學系，以及前稱應用數據科學的數據科學及數碼創新學系組成。",
+        "zh-Hans": "仁大成立第四个学院——传播、资讯及创意产业学院。该学院由新闻与传播学系，以及前称应用数据科学的数据科学及数码创新学系组成。"
+      },
+      "photos": []
+    },
+    {
+      "id": "P118",
+      "year": 2026,
+      "yearLabel": "2026-2031",
+      "orderInYear": 117,
+      "themeId": "E",
+      "photoGroupId": "P118",
+      "title": {},
+      "body": {
+        "en": "Shue Yan’s 2026-2031 Five-year Strategic Plan: Enhancing global competence through a digitally enabled liberal arts education. The Strategic Plan ADORN aims to amplify digital competence and interdisciplinarity, develop strategic areas of excellence with social impact optimize engagement with communities and professional sectors, renew campus facilities with digital infrastructure and sustainable practices, as well as nurture glocal citizens through cultural education.",
+        "zh-Hant": "仁大的五年(2026-2031)策略計劃是融數字科技於博雅教育中，提升全球競爭力。五年策略計劃 （ADORN）旨在提升數字能力與跨學科發展，培育具社會影響力的策略性卓越領域；加強與社區及專業界別的聯繫；透過數碼基礎設施及可持續實踐更新校園設施；並透過文化教育培養具本土與全球視野的公民。",
+        "zh-Hans": "仁大的五年(2026-2031)策略计划是融数字科技于博雅教育中，提升全球竞争力。五年策略计划 （ADORN）旨在提升数字能力与跨学科发展，培育具社会影响力的策略性卓越领域；加强与社区及专业界别的联系；透过数码基础设施及可持续实践更新校园设施；并透过文化教育培养具本土与全球视野的公民。"
+      },
+      "photos": [
+        {
+          "id": "P118-photo-1",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026-2031/image180.jpg",
+          "width": 2082,
+          "height": 1380,
+          "alt": {
+            "en": "P118 photograph 1"
+          }
+        },
+        {
+          "id": "P118-photo-2",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026-2031/image181.jpg",
+          "width": 2508,
+          "height": 1382,
+          "alt": {
+            "en": "P118 photograph 2"
+          }
+        },
+        {
+          "id": "P118-photo-3",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026-2031/image183.jpg",
+          "width": 2840,
+          "height": 1610,
+          "alt": {
+            "en": "P118 photograph 3"
+          }
+        },
+        {
+          "id": "P118-photo-4",
+          "kind": "image",
+          "src": "/Historical_Timeline_Images/2026-2031/image184.jpg",
+          "width": 2868,
+          "height": 1570,
+          "alt": {
+            "en": "P118 photograph 4"
+          }
+        }
+      ]
+    }
+  ],
+  "educationEvents": [
+    {
+      "id": "B01",
+      "year": 1949,
+      "yearLabel": "1949–1950年代",
+      "orderInYear": 0,
+      "title": {
+        "en": "Post-WWII Population Growth and Rising Demand for Higher Education",
+        "zh-Hant": "戰後人口增長與中文高等教育需求上升",
+        "zh-Hans": "战后人口增长与中文高等教育需求上升"
+      },
+      "body": {
+        "en": "Rapid population growth after WWII increased demand for Chinese-medium secondary and post-secondary education opportunities.",
+        "zh-Hant": "戰後从内地进入到香港人口迅速增加，中文中學及專上教育需求大幅上升。",
+        "zh-Hans": "战后从内地进入到香港人口迅速增加，中文中学及专上教育需求大幅上升。"
+      }
+    },
+    {
+      "id": "B02",
+      "year": 1952,
+      "yearLabel": "1952",
+      "orderInYear": 1,
+      "title": {
+        "en": "Keswick Report",
+        "zh-Hant": "《凱斯威克報告》",
+        "zh-Hans": "《凯斯威克报告》"
+      },
+      "body": {
+        "en": "The report recommended the development of Chinese-medium higher education, laying the groundwork for the establishment of The Chinese University of Hong Kong.",
+        "zh-Hant": "報告首次建議發展中文高等教育，為香港中文大學的成立奠定基礎。",
+        "zh-Hans": "报告首次建议发展中文高等教育，为香港中文大学的成立奠定基础。"
+      }
+    },
+    {
+      "id": "B03",
+      "year": 1957,
+      "yearLabel": "1957",
+      "orderInYear": 2,
+      "title": {
+        "en": "Association of Hong Kong Chinese Colleges Established；Chinese University of Hong Kong Established in 1963",
+        "zh-Hant": "崇基學院、新亞書院和聯合書院組成「香港中文專上學校協會」，1963年香港中文大學成立",
+        "zh-Hans": "崇基学院、新亚书院和联合书院组成「香港中文专上学校协会」，1963年香港中文大学成立"
+      },
+      "body": {
+        "en": "Chung Chi, New Asia, and United Colleges formed an association to promote the establishment of a Chinese university. CUHK became the first university in Hong Kong with Chinese as a principal medium of instruction.",
+        "zh-Hant": "崇基、新亞及聯合書院組成協會，共同推動中文大學的成立。香港中文大學成為本地第一所以中文為主要授課語言的大學。",
+        "zh-Hans": "崇基、新亚及联合书院组成协会，共同推动中文大学的成立。香港中文大学成为本地第一所以中文为主要授课语言的大学。"
+      }
+    },
+    {
+      "id": "B04",
+      "year": 1959,
+      "yearLabel": "1959",
+      "orderInYear": 3,
+      "title": {
+        "en": "Unified Entrance Examination for the Chinese Colleges Introduced",
+        "zh-Hant": "專上學校統一入學試設立",
+        "zh-Hans": "专上学校统一入学试设立"
+      },
+      "body": {
+        "en": "Chung Chi, New Asia, and United Colleges introduced a unified entrance examination, laying the foundation for the admissions system of the future Chinese University of Hong Kong.",
+        "zh-Hant": "崇基、新亞及聯合書院設立統一入學試，為日後香港中文大學的招生制度奠定基礎。",
+        "zh-Hans": "崇基、新亚及联合书院设立统一入学试，为日后香港中文大学的招生制度奠定基础。"
+      }
+    },
+    {
+      "id": "B05",
+      "year": 1960,
+      "yearLabel": "1960",
+      "orderInYear": 4,
+      "title": {
+        "en": "Post Secondary Colleges Ordinance",
+        "zh-Hant": "《專上學院條例》",
+        "zh-Hans": "《专上学院条例》"
+      },
+      "body": {
+        "en": "The Ordinance established the legal status and regulatory framework for private post-secondary colleges.",
+        "zh-Hant": "條例確立私立專上院校的法律地位及監管制度。",
+        "zh-Hans": "条例确立私立专上院校的法律地位及监管制度。"
+      }
+    },
+    {
+      "id": "B06",
+      "year": 1978,
+      "yearLabel": "1978",
+      "orderInYear": 5,
+      "title": {
+        "en": "White Paper: Development of Senior Secondary and Tertiary Education",
+        "zh-Hant": "《高中及專上教育發展白皮書》",
+        "zh-Hans": "《高中及专上教育发展白皮书》"
+      },
+      "body": {
+        "en": "The White Paper proposed the \"2-2-1\" structure, reshaping Hong Kong's post-secondary education system.",
+        "zh-Hant": "白皮書提出「二二一」學制，重整香港專上教育制度。",
+        "zh-Hans": "白皮书提出「二二一」学制，重整香港专上教育制度。"
+      }
+    },
+    {
+      "id": "B07",
+      "year": 1979,
+      "yearLabel": "1979",
+      "orderInYear": 6,
+      "title": {
+        "en": "Civil Service Salaries Review Report",
+        "zh-Hant": "《公務員薪俸檢討報告書》",
+        "zh-Hans": "《公务员薪俸检讨报告书》"
+      },
+      "body": {
+        "en": "Changes to the civil service salary structure enhanced the status of degree holders and affected the recognition of post-secondary diplomas.",
+        "zh-Hant": "公務員薪酬制度調整，提高大学學位持有人的待遇，影響專上学院文憑的認受性。",
+        "zh-Hans": "公务员薪酬制度调整，提高大学学位持有人的待遇，影响专上学院文凭的认受性。"
+      }
+    },
+    {
+      "id": "B08",
+      "year": 1984,
+      "yearLabel": "1984",
+      "orderInYear": 7,
+      "title": {
+        "en": "Sino-British Joint Declaration signed on 19 Sept 1984",
+        "zh-Hant": "《中英聯合聲明》簽署",
+        "zh-Hans": "《中英联合声明》签署"
+      },
+      "body": {
+        "en": "The Joint Declaration confirmed Hong Kong's return to China in 1997.",
+        "zh-Hant": "《中英聯合聲明》確立香港於1997年回歸中國。",
+        "zh-Hans": "《中英联合声明》确立香港于1997年回归中国。"
+      }
+    },
+    {
+      "id": "B09",
+      "year": 1988,
+      "yearLabel": "1988",
+      "orderInYear": 8,
+      "title": {
+        "en": "Education Commission Report No. 3",
+        "zh-Hant": "港府發表《教育委員會第三號報告書》",
+        "zh-Hans": "港府发表《教育委员会第三号报告书》"
+      },
+      "body": {
+        "en": "1988 Report No. 3 standardised Hong Kong's undergraduate degrees to three years and entry to two years of sixth form (S6–7).",
+        "zh-Hant": "報告提出「四改三」，統一香港高等教育學制為三年制課程，入學資格則統一為兩年制預科（中六、中七）畢業。",
+        "zh-Hans": "报告提出「四改三」，统一香港高等教育学制为三年制课程，入学资格则统一为两年制预科（中六、中七）毕业。"
+      }
+    },
+    {
+      "id": "B10",
+      "year": 1989,
+      "yearLabel": "1989",
+      "orderInYear": 9,
+      "title": {
+        "en": "Hong Kong 1990 Plan",
+        "zh-Hant": "《香港1990》計劃",
+        "zh-Hans": "《香港1990》计划"
+      },
+      "body": {
+        "en": "The government announced a major expansion of university places, promoting the massification of higher education.",
+        "zh-Hant": "政府宣布大幅增加大學學額，推動高等教育由精英化走向大眾化。",
+        "zh-Hans": "政府宣布大幅增加大学学额，推动高等教育由精英化走向大众化。"
+      }
+    },
+    {
+      "id": "B11",
+      "year": 1990,
+      "yearLabel": "1990年代",
+      "orderInYear": 10,
+      "title": {
+        "en": "Wave of University Status Upgrading",
+        "zh-Hant": "香港「大學升格潮」",
+        "zh-Hans": "香港「大学升格潮」"
+      },
+      "body": {
+        "en": "Several tertiary institutions attained university status, transforming Hong Kong's higher education landscape.",
+        "zh-Hant": "政府資助的專上院校先後升格為大學，重塑香港高等教育版圖。",
+        "zh-Hans": "政府资助的专上院校先后升格为大学，重塑香港高等教育版图。"
+      }
+    },
+    {
+      "id": "B12",
+      "year": 1997,
+      "yearLabel": "1997",
+      "orderInYear": 11,
+      "title": {
+        "en": "The Establishment of HKSAR",
+        "zh-Hant": "香港回歸",
+        "zh-Hans": "香港回归"
+      },
+      "body": {
+        "en": "The establishment of the Hong Kong Special Administrative Region.",
+        "zh-Hant": "香港特別行政區成立。",
+        "zh-Hans": "香港特别行政区成立。"
+      }
+    },
+    {
+      "id": "B13",
+      "year": 1999,
+      "yearLabel": "1999",
+      "orderInYear": 12,
+      "title": {
+        "en": "Education Reform Proposals",
+        "zh-Hant": "《教育改革建議》",
+        "zh-Hans": "《教育改革建议》"
+      },
+      "body": {
+        "en": "The government proposed comprehensive education reforms emphasizing lifelong learning and educational quality.",
+        "zh-Hant": "政府提出全面教育改革，強調終身學習及提升教育質素。",
+        "zh-Hans": "政府提出全面教育改革，强调终身学习及提升教育质素。"
+      }
+    },
+    {
+      "id": "B14",
+      "year": 2000,
+      "yearLabel": "2000",
+      "orderInYear": 13,
+      "title": {
+        "en": "Reform Proposals for the Education System in Hong Kong",
+        "zh-Hant": "《教育制度檢討改革方案》",
+        "zh-Hans": "《教育制度检讨改革方案》"
+      },
+      "body": {
+        "en": "The reform proposal introduced the \"3-3-4\" academic structure, restoring four-year undergraduate education while promoting lifelong learning and whole-person development for a knowledge-based society. Hong Kong Shue Yan remained the only local higher education institution to retain a four-year undergraduate curriculum.",
+        "zh-Hant": "《教育制度檢討改革方案》提出香港教育改革的新方向，由沿用多年的三年大學學制，逐步改革為「三三四」學制（3年初中、3年高中、4年大學），並倡導由精英教育邁向終身學習及全人教育，以配合知識型社會的發展。樹仁則成為香港唯一一直堅持四年制本科教育的高等院校。",
+        "zh-Hans": "《教育制度检讨改革方案》提出香港教育改革的新方向，由沿用多年的三年大学学制，逐步改革为「三三四」学制（3年初中、3年高中、4年大学），并倡导由精英教育迈向终身学习及全人教育，以配合知识型社会的发展。树仁则成为香港唯一一直坚持四年制本科教育的高等院校。"
+      }
+    },
+    {
+      "id": "B15",
+      "year": 2000,
+      "yearLabel": "2000-2002",
+      "orderInYear": 14,
+      "title": {
+        "en": "Launch of Associate Degree Programs",
+        "zh-Hant": "推行副學士課程項目",
+        "zh-Hans": "推行副学士课程项目"
+      },
+      "body": {
+        "en": "To achieve the goal of 60% post-secondary participation, the Government introduced Associate Degree programs in 2000 and encouraged universities and private institutions to offer self-financing post-secondary programs.",
+        "zh-Hant": "為達至六成青年接受專上教育的目標，政府於2000年推出副學士課程，鼓勵大學及私立院校開辦自資專上課程。",
+        "zh-Hans": "为达至六成青年接受专上教育的目标，政府于2000年推出副学士课程，鼓励大学及私立院校开办自资专上课程。"
+      }
+    },
+    {
+      "id": "B16",
+      "year": 2004,
+      "yearLabel": "2004–2007",
+      "orderInYear": 15,
+      "title": {
+        "en": "Building Hong Kong as a Regional Education Hub",
+        "zh-Hant": "提出打造香港成爲區域教育樞紐理念",
+        "zh-Hans": "提出打造香港成为区域教育枢纽理念"
+      },
+      "body": {
+        "en": "Proposed in the 2004 Policy Address, reaffirmed in 2007, and advanced by a 2006 cross bureau steering committee, the regional education hub initiative raised the non-local student quota for UGC-funded universities from 10% to 20%, eased entry rules, offered scholarships, and promoted Hong Kong education overseas.",
+        "zh-Hant": "2004年《施政報告》首提，2006年設跨局委員會，2007年重申。主要措施包括：教資會資助院校非本地學生學額上限由10%提高至20%、、放寬入境、提供獎學金及海外推廣。",
+        "zh-Hans": "2004年《施政报告》首提，2006年设跨局委员会，2007年重申。主要措施包括：教资会资助院校非本地学生学额上限由10%提高至20%、、放宽入境、提供奖学金及海外推广。"
+      }
+    },
+    {
+      "id": "B17",
+      "year": 2009,
+      "yearLabel": "2009",
+      "orderInYear": 16,
+      "title": {
+        "en": "Advancing the Regional Education Hub Strategy",
+        "zh-Hant": "推進區域教育樞紐政策",
+        "zh-Hans": "推进区域教育枢纽政策"
+      },
+      "body": {
+        "en": "The HKSAR Government reaffirmed its commitment to developing Hong Kong as a regional education hub by promoting the internationalization of universities and expanding the recruitment of Mainland and overseas students.",
+        "zh-Hant": "香港特區政府重申發展區域教育樞紐的政策方向，推動大學國際化，擴大招收內地及海外學生。",
+        "zh-Hans": "香港特区政府重申发展区域教育枢纽的政策方向，推动大学国际化，扩大招收内地及海外学生。"
+      }
+    },
+    {
+      "id": "B18",
+      "year": 2012,
+      "yearLabel": "2012",
+      "orderInYear": 17,
+      "title": {
+        "en": "Relaxation of Admission Arrangements for Non-local Students",
+        "zh-Hant": "放寬非本地學生來港升學安排",
+        "zh-Hans": "放宽非本地学生来港升学安排"
+      },
+      "body": {
+        "en": "The Education Bureau further relaxed admission and stay arrangements for non-local students to attract international talent and strengthen Hong Kong's position as a regional education hub.",
+        "zh-Hant": "教育局進一步放寬非本地學生來港升學及留港安排，以吸引更多國際人才，鞏固香港作為區域教育樞紐的地位。",
+        "zh-Hans": "教育局进一步放宽非本地学生来港升学及留港安排，以吸引更多国际人才，巩固香港作为区域教育枢纽的地位。"
+      }
+    },
+    {
+      "id": "B19",
+      "year": 2015,
+      "yearLabel": "2015–2022",
+      "orderInYear": 18,
+      "title": {
+        "en": "Deepening the Internationalization of Higher Education",
+        "zh-Hant": "深化高等教育國際化",
+        "zh-Hans": "深化高等教育国际化"
+      },
+      "body": {
+        "en": "Hong Kong continued to promote international partnerships, student exchanges, and overseas recruitment, further enhancing the global competitiveness of its higher education sector.",
+        "zh-Hant": "香港持續推動大學拓展國際合作、學生交流及海外招生，進一步提升高等教育的國際競爭力。",
+        "zh-Hans": "香港持续推动大学拓展国际合作、学生交流及海外招生，进一步提升高等教育的国际竞争力。"
+      }
+    },
+    {
+      "id": "B20",
+      "year": 2023,
+      "yearLabel": "2023",
+      "orderInYear": 19,
+      "title": {
+        "en": "Towards an International Post-secondary Education Hub",
+        "zh-Hant": "決心打造香港為國際專上教育樞紐",
+        "zh-Hans": "决心打造香港为国际专上教育枢纽"
+      },
+      "body": {
+        "en": "The HKSAR Government announced its goal of developing Hong Kong into an international post-secondary education hub and increased the non-local student quota at UGC-funded universities from 20% to 40%.",
+        "zh-Hant": "香港特區政府提出建設香港成為國際專上教育樞紐，並將教資會資助大學非本地學生學額上限由20%提高至40%。",
+        "zh-Hans": "香港特区政府提出建设香港成为国际专上教育枢纽，并将教资会资助大学非本地学生学额上限由20%提高至40%。"
+      }
+    }
+  ]
+}

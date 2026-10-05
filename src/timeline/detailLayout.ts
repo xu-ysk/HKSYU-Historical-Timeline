@@ -8,18 +8,18 @@ export interface Rect {
   width: number;
   height: number;
 }
-export function detailRegions(view: Viewport) {
+export function detailRegions(view: Viewport, showText = true) {
   return {
     photos: {
       x: 65,
-      y: 240,
-      width: view.width * 0.61 - 65,
-      height: Math.max(180, view.height - 435),
+      y: showText ? 240 : 125,
+      width: showText ? view.width * 0.61 - 65 : view.width - 130,
+      height: showText ? Math.max(180, view.height - 435) : Math.max(220, view.height - 250),
     },
     text: {
-      x: view.width * 0.68,
+      x: showText ? view.width * 0.68 : view.width + 65,
       y: 240,
-      width: view.width * 0.32 - 65,
+      width: showText ? view.width * 0.32 - 65 : 0,
       height: Math.max(180, view.height - 435),
     },
   };
@@ -34,8 +34,8 @@ function contain(ratio: number, box: Rect): Rect {
     height,
   };
 }
-export function detailPhotoRects(cards: DisplayCard[], view: Viewport): Rect[] {
-  const box = detailRegions(view).photos,
+export function detailPhotoRects(cards: DisplayCard[], view: Viewport, showText = true): Rect[] {
+  const box = detailRegions(view, showText).photos,
     gap = 20;
   const ratios = cards.map((c) => (c.photo ? c.photo.width / c.photo.height : 1.5));
   if (cards.length <= 1) return ratios.map((r) => contain(r, box));

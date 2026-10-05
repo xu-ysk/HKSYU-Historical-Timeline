@@ -17,6 +17,7 @@ export interface EventPhoto {
 export interface SchoolEvent extends EventText {
   id: string;
   year: number;
+  yearLabel?: string;
   orderInYear: number;
   themeId: ThemeId;
   photoGroupId: string;
@@ -25,11 +26,13 @@ export interface SchoolEvent extends EventText {
 export interface UpperRailEvent extends EventText {
   id: string;
   year: number;
+  yearLabel?: string;
   orderInYear: number;
 }
 export interface EducationEvent extends EventText {
   id: string;
   year: number;
+  yearLabel?: string;
   orderInYear: number;
 }
 export interface TimelineDataset {

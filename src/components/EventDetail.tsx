@@ -17,7 +17,10 @@ export function EventDetail({
 }) {
   const dialogRef = useRef<HTMLElement>(null),
     bodyRef = useRef<HTMLDivElement>(null),
-    m = messages[locale];
+    m = messages[locale],
+    title = localized(event.title, locale),
+    body = localized(event.body, locale),
+    hasText = Boolean(title || body);
   useEffect(() => {
     dialogRef.current?.focus();
     const key = (e: KeyboardEvent) => {
@@ -39,8 +42,8 @@ export function EventDetail({
       role="dialog"
       aria-modal="true"
       tabIndex={-1}
-      aria-labelledby="event-title"
-      aria-describedby="detail-body detail-dismiss-hint"
+      aria-labelledby={hasText ? 'event-title' : undefined}
+      aria-describedby={hasText ? 'detail-body detail-dismiss-hint' : 'detail-dismiss-hint'}
       data-testid="event-detail"
       data-event={event.id}
       data-phase={phase}
@@ -52,34 +55,38 @@ export function EventDetail({
       <span className="sr-only" id="detail-dismiss-hint">
         {m.dismissDetail}
       </span>
-      <div className="detail-text" data-testid="detail-text">
-        <div className="eyebrow">
-          {m.sample} / {event.year}
+      {hasText && (
+        <div className="detail-text" data-testid="detail-text">
+          <div className="eyebrow">
+            {m.sample} / {event.yearLabel ?? event.year}
+          </div>
+          <div className="detail-year">
+            {event.yearLabel ?? event.year}
+            <span>—</span>
+          </div>
+          <div className="detail-theme" style={{ color: themes[event.themeId].color }}>
+            <span>{event.themeId}</span>
+            {themes[event.themeId].label[locale]}
+          </div>
+          {title && <h2 id="event-title">{title}</h2>}
+          {body && (
+            <div
+              ref={bodyRef}
+              id="detail-body"
+              className="detail-body"
+              data-testid="detail-body"
+              tabIndex={0}
+            >
+              {body}
+            </div>
+          )}
+          <div className="detail-caption">
+            {event.photos.length
+              ? String(event.photos.length).padStart(2, '0') + ' / ' + m.photos
+              : m.textOnly}
+          </div>
         </div>
-        <div className="detail-year">
-          {event.year}
-          <span>—</span>
-        </div>
-        <div className="detail-theme" style={{ color: themes[event.themeId].color }}>
-          <span>{event.themeId}</span>
-          {themes[event.themeId].label[locale]}
-        </div>
-        <h2 id="event-title">{localized(event.title, locale)}</h2>
-        <div
-          ref={bodyRef}
-          id="detail-body"
-          className="detail-body"
-          data-testid="detail-body"
-          tabIndex={0}
-        >
-          {localized(event.body, locale)}
-        </div>
-        <div className="detail-caption">
-          {event.photos.length
-            ? String(event.photos.length).padStart(2, '0') + ' / ' + m.photos
-            : m.textOnly}
-        </div>
-      </div>
+      )}
     </section>
   );
 }

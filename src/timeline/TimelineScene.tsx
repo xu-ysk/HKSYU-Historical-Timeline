@@ -100,7 +100,7 @@ export function TimelineScene({
         {upperRail ? (
           <div className="upper-rail-copy">
             <span className="upper-rail-year" data-testid="upper-rail-year">
-              {upperRail.year}
+              {upperRail.yearLabel ?? upperRail.year}
             </span>
             <div>
               <h2 data-testid="upper-rail-title">{localized(upperRail.title, locale)}</h2>
@@ -173,7 +173,7 @@ export function TimelineScene({
         </div>
         {education ? (
           <div className="education-copy">
-            <span className="education-year">{education.year}</span>
+            <span className="education-year">{education.yearLabel ?? education.year}</span>
             <div>
               <h2>{localized(education.title, locale)}</h2>
               <p>{localized(education.body, locale)}</p>

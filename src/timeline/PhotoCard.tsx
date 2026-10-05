@@ -15,9 +15,10 @@ export const PhotoCard = memo(
     pose: Pose;
     onSelect?: (id: string) => void;
   }) {
+    const image = card.photo?.kind === 'image' && card.photo.src ? card.photo.src : null;
     return (
       <button
-        className="photo-card"
+        className={'photo-card' + (image ? ' photo-card-image' : '')}
         data-card-id={card.id}
         data-event-id={card.event.id}
         data-theme={card.event.themeId}
@@ -27,7 +28,7 @@ export const PhotoCard = memo(
           ' · ' +
           localized(card.event.title, locale) +
           ' · ' +
-          (card.photo?.alt.en ?? 'Text only')
+          (card.photo ? localized(card.photo.alt, locale) : 'Text only')
         }
         style={
           {
@@ -40,22 +41,33 @@ export const PhotoCard = memo(
         }
         onClick={() => onSelect?.(card.event.id)}
       >
-        <span className="photo-paper">
-          <span className="photo-top">
-            HKSYU ARCHIVE <span>{card.event.year}</span>
-          </span>
-          <span className="photo-letter">
-            {card.event.themeId}
-            {card.photo && card.event.photos.length > 1 && (
-              <small>
-                {card.event.photos.findIndex((photo) => photo.id === card.photo?.id) + 1}
-              </small>
-            )}
-          </span>
-          <span className="photo-bottom">
-            {card.photo ? 'A MOMENT IN TIME' : 'A STORY IN WORDS'}
-            <span>—</span>
-          </span>
+        <span className={'photo-paper' + (image ? ' photo-image-paper' : '')}>
+          {image ? (
+            <img
+              className="photo-image"
+              src={image}
+              alt={localized(card.photo!.alt, locale)}
+              draggable={false}
+            />
+          ) : (
+            <>
+              <span className="photo-top">
+                HKSYU ARCHIVE <span>{card.event.yearLabel ?? card.event.year}</span>
+              </span>
+              <span className="photo-letter">
+                {card.event.themeId}
+                {card.photo && card.event.photos.length > 1 && (
+                  <small>
+                    {card.event.photos.findIndex((photo) => photo.id === card.photo?.id) + 1}
+                  </small>
+                )}
+              </span>
+              <span className="photo-bottom">
+                {card.photo ? 'A MOMENT IN TIME' : 'A STORY IN WORDS'}
+                <span>—</span>
+              </span>
+            </>
+          )}
         </span>
       </button>
     );

@@ -22,7 +22,7 @@ export default defineConfig({
     { name: 'edge', use: { channel: 'msedge', viewport: { width: 1440, height: 900 } } },
   ],
   webServer: {
-    command: 'npm run preview',
+    command: 'npm run build:test && npm run preview',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: false,
   },

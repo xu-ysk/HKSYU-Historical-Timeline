@@ -4,8 +4,10 @@ test-results/
 playwright-report/
 *.log
 
-# Local source materials; the first version runs entirely on mock data.
+# Local source materials; keep the workbook and original photo package outside git.
 /HKSYU Timeline.xlsx
+/~$*.xlsx
+/Historical_Timeline_Images/
 /style1.png
 /style2.png
 /style3.png
