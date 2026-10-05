@@ -212,7 +212,7 @@ h1 {
 }
 .upper-year-label {
   position: absolute;
-  bottom: calc(50% + 24px);
+  bottom: calc(50% + var(--year-offset, 24px));
   left: 50%;
   transform: translateX(-50%);
   font:
@@ -220,6 +220,21 @@ h1 {
     serif;
   color: #8f877a;
   white-space: nowrap;
+  line-height: 12px;
+}
+.upper-rail-marker::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(50% + 5px);
+  height: calc(var(--year-offset, 24px) - 9px);
+  width: 1px;
+  background: #ded9d1;
+  pointer-events: none;
+}
+.upper-rail-marker[data-label-visible='false'] .upper-year-label,
+.upper-rail-marker[data-label-visible='false']::before {
+  display: none;
 }
 .upper-year-dot {
   position: absolute;

@@ -137,6 +137,7 @@ export function TimelineScene({
             className="upper-rail-marker"
             style={{ left: p.x, top: p.y }}
             aria-label={`${event.year} · ${localized(event.title, locale)}`}
+            title={`${event.year} · ${localized(event.title, locale)}`}
             data-testid={`upper-year-${event.year}`}
             data-upper-year={event.year}
             onClick={() => controllerRef.current?.goYear(event.year)}

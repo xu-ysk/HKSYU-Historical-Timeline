@@ -49,6 +49,8 @@ npm run test:e2e
 
 完整矩陣使用 Chromium、本機 Chrome 與 Edge；後兩者需要本機已安裝。`npx playwright install chrome msedge` 可在缺少瀏覽器的驗證機器上安裝。三套測試不設自動重試、不跳過失敗。完整測試包含每個瀏覽器 30 秒性能採樣，約需數分鐘。
 
+上軌年份依可用空間最多分兩層排列；全覽時過密的數字會自動省略，事件圓點仍可點擊或懸停查看年份。放大瀏覽後會恢復顯示更多年份。`npx playwright test --config playwright.real.config.ts` 使用正式資料，驗證三種桌面尺寸下的年份間距、點擊跳轉、視圖切換與縮放。
+
 `npm run test:e2e -- tests/e2e/detail.spec.ts --project=chromium` 可針對開發中的詳情功能復測，但交付前仍須執行完整矩陣。報告見 `playwright-report/index.html`，已記錄的結果見 [docs/validation.md](./docs/validation.md)。
 
 最新標題、主題按鈕與點擊返回操作的驗證見 [docs/ui-controls-validation.md](./docs/ui-controls-validation.md)。

@@ -4,6 +4,7 @@ import { themes, themeIds } from '../config/themes';
 import { sceneConfig } from '../config/scene';
 import {
   anchor,
+  upperYearOffsets,
   browseStackZ,
   cardPose,
   direction,
@@ -446,6 +447,13 @@ export class TimelineController {
     ].join(':');
     if (trackPoseKey !== this.lastTrackPoseKey) {
       this.lastTrackPoseKey = trackPoseKey;
+      const upperOffsets = upperYearOffsets(
+        Array.from(this.root.querySelectorAll<HTMLElement>('[data-upper-year]'), (el) =>
+          Number(el.dataset.upperYear),
+        ),
+        this.view,
+        this.values,
+      );
       this.root
         .querySelectorAll<HTMLElement>(
           '[data-education-label],[data-education-year],[data-upper-year]',
@@ -462,6 +470,10 @@ export class TimelineController {
             p = anchor(year, lane, this.view, this.values);
           el.style.left = p.x + 'px';
           el.style.top = p.y + 'px';
+          if (el.dataset.upperYear) {
+            el.style.setProperty('--year-offset', `${upperOffsets.get(year) ?? 24}px`);
+            el.dataset.labelVisible = String(upperOffsets.has(year));
+          }
           const visible =
             p.x > 0 && p.x < this.view.width && p.y > 70 && p.y < this.view.height - 160;
           el.style.visibility = visible ? 'visible' : 'hidden';

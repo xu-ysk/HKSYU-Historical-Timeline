@@ -59,6 +59,24 @@ export function anchor(year: number, lane: TimelineLane, view: Viewport, values:
     y: view.height * 0.49 + direction.y * q + normal.y * offset,
   };
 }
+/** Use at most two label rows; dense years retain their interactive rail dots. */
+export function upperYearOffsets(years: number[], view: Viewport, values: SceneValues) {
+  const placed: { x: number; y: number }[] = [];
+  const offsets = new Map<number, number>();
+  for (const year of [...new Set(years)].sort((a, b) => a - b)) {
+    const p = anchor(year, 'upper', view, values);
+    const offset = [24, 46].find(
+      (candidate) =>
+        !placed.some(
+          (label) => Math.abs(label.x - p.x) < 36 && Math.abs(label.y - (p.y - candidate)) < 20,
+        ),
+    );
+    if (offset === undefined) continue;
+    placed.push({ x: p.x, y: p.y - offset });
+    offsets.set(year, offset);
+  }
+  return offsets;
+}
 export function cardPose(
   card: DisplayCard,
   view: Viewport,
