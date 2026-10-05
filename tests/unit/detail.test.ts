@@ -43,14 +43,30 @@ test('single, blank and both pair orientations preserve aspect ratios and fit le
     }
 });
 
-test('three and four photo groups use a complete non-overlapping collage inside the photo region', () => {
+test('three, four and five photo groups use a complete non-overlapping collage inside the photo region', () => {
   const data = createMockTimeline(2026),
     cards = toCards(data),
     view = { width: 1440, height: 900 },
     regions = detailRegions(view);
-  for (const count of [3, 4]) {
-    const event = data.schoolEvents.find((item) => item.photos.length === count)!;
-    const group = cards.filter((card) => card.event.id === event.id);
+  const fiveSource = data.schoolEvents.find((item) => item.photos.length === 4)!;
+  const fiveEvent = {
+    ...fiveSource,
+    id: 'five-photo-fixture',
+    photoGroupId: 'five-photo-fixture',
+    photos: [...fiveSource.photos, { ...fiveSource.photos[0], id: 'five-photo-fixture-photo-5' }],
+  };
+  for (const count of [3, 4, 5]) {
+    const event = count === 5 ? fiveEvent : data.schoolEvents.find((item) => item.photos.length === count)!;
+    const group =
+      count === 5
+        ? fiveEvent.photos.map((photo, slot) => ({
+            id: `${fiveEvent.id}/${photo.id}`,
+            event: fiveEvent,
+            photo,
+            slot,
+            countInYear: fiveEvent.photos.length,
+          }))
+        : cards.filter((card) => card.event.id === event.id);
     const rects = detailPhotoRects(group, view);
     expect(rects).toHaveLength(count);
     expect(new Set(rects.map((rect) => `${Math.round(rect.x)}:${Math.round(rect.y)}`)).size).toBe(

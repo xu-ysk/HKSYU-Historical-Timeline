@@ -81,8 +81,9 @@ describe('time and content contracts', () => {
     const oversizedGroup = createMockTimeline(2026),
       three = oversizedGroup.schoolEvents.find((event) => event.photos.length === 3)!,
       two = oversizedGroup.schoolEvents.find((event) => event.photos.length === 2)!;
+    three.photos.push({ ...three.photos[0], id: `${three.id}-photo-overflow` });
     two.photoGroupId = three.photoGroupId;
-    expect(() => normalizeTimeline(oversizedGroup, 2026)).toThrow(/exceeds four photos/);
+    expect(() => normalizeTimeline(oversizedGroup, 2026)).toThrow(/exceeds five photos/);
   });
   test('English sample copy is available in all interface languages', () => {
     expect(localized({ en: 'Sample' }, 'zh-Hant')).toBe('Sample');

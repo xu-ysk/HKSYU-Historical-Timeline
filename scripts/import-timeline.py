@@ -162,7 +162,12 @@ def jpeg_size(path: Path) -> tuple[int, int]:
 
 def photo_entries(row: dict[str, str], public_dir: Path) -> list[dict[str, object]]:
     entries: list[dict[str, object]] = []
-    for index in range(1, 5):
+    photo_indices = sorted(
+        int(match.group(1))
+        for key in row
+        if (match := re.fullmatch(r"photo-(\d+)", key))
+    )
+    for index in photo_indices:
         source = text_value(row.get(f"photo-{index}"))
         if not source:
             continue

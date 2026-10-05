@@ -67,6 +67,22 @@ export function detailPhotoRects(cards: DisplayCard[], view: Viewport, showText 
       }),
     );
   }
+  if (cards.length === 5) {
+    const rowHeight = (box.height - gap) / 2,
+      topWidth = (box.width - gap * 2) / 3,
+      bottomWidth = (box.width - gap) / 2,
+      bottomY = box.y + rowHeight + gap;
+    return ratios.map((ratio, index) => {
+      const topRow = index < 3,
+        column = topRow ? index : index - 3;
+      return contain(ratio, {
+        x: box.x + column * (topRow ? topWidth + gap : bottomWidth + gap),
+        y: topRow ? box.y : bottomY,
+        width: topRow ? topWidth : bottomWidth,
+        height: rowHeight,
+      });
+    });
+  }
   const horizontal = ratios.map((r, i) =>
     contain(r, {
       x: box.x + (i * (box.width + gap)) / cards.length,

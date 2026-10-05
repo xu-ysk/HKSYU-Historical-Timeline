@@ -4100,9 +4100,9 @@
         {
           "id": "P118-photo-3",
           "kind": "image",
-          "src": "/Historical_Timeline_Images/2026-2031/image183.jpg",
-          "width": 2840,
-          "height": 1610,
+          "src": "/Historical_Timeline_Images/2026-2031/image182.jpg",
+          "width": 2624,
+          "height": 1566,
           "alt": {
             "en": "P118 photograph 3"
           }
@@ -4110,11 +4110,21 @@
         {
           "id": "P118-photo-4",
           "kind": "image",
+          "src": "/Historical_Timeline_Images/2026-2031/image183.jpg",
+          "width": 2840,
+          "height": 1610,
+          "alt": {
+            "en": "P118 photograph 4"
+          }
+        },
+        {
+          "id": "P118-photo-5",
+          "kind": "image",
           "src": "/Historical_Timeline_Images/2026-2031/image184.jpg",
           "width": 2868,
           "height": 1570,
           "alt": {
-            "en": "P118 photograph 4"
+            "en": "P118 photograph 5"
           }
         }
       ]
