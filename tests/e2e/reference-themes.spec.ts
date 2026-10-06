@@ -1,9 +1,7 @@
 import { test, expect } from './fixtures';
 
 for (const mode of ['overview', 'browse'])
-  test(`T2: ${mode} keeps selected sleeves exposed above small ones for all five themes`, async ({
-    page,
-  }) => {
+  test(`T2: ${mode} interleaves theme sizes on one chronological photo lane`, async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto('/');
     await expect(page.getByTestId('scene')).toBeVisible();
@@ -15,12 +13,6 @@ for (const mode of ['overview', 'browse'])
       });
     }
     const focus = await page.getByTestId('scene').getAttribute('data-focus');
-    const original = await page.locator('.photo-card').evaluateAll((els) =>
-      els.map((el) => ({
-        id: (el as HTMLElement).dataset.cardId,
-        width: (el as HTMLElement).style.width,
-      })),
-    );
     for (const theme of ['A', 'B', 'C', 'D', 'E']) {
       await page.getByTestId('theme-' + theme).click();
       await expect(
@@ -33,47 +25,54 @@ for (const mode of ['overview', 'browse'])
         const visible = els.filter(
           (el) => getComputedStyle(el).visibility === 'visible',
         ) as HTMLElement[];
-        const large = visible.filter((el) => el.dataset.theme === active),
-          small = visible.filter((el) => el.dataset.theme !== active);
-        const unobscured = large.filter((el) => {
-          const b = el.getBoundingClientRect();
-          for (let x = Math.max(0, b.left) + 1; x < Math.min(innerWidth, b.right) - 1; x += 2)
-            for (
-              let y = Math.max(60, b.top) + 1;
-              y < Math.min(innerHeight - 155, b.bottom) - 1;
-              y += 2
-            )
-              if (document.elementFromPoint(x, y)?.closest('.photo-card') === el) return true;
-          return false;
-        });
+        const axis = document.querySelector<SVGLineElement>('[data-track="axis"]')!;
+        const [x1, y1, x2, y2] = ['x1', 'y1', 'x2', 'y2'].map((name) =>
+          Number(axis.getAttribute(name)),
+        );
+        const length = Math.hypot(x2 - x1, y2 - y1);
+        const maxLineDistance = Math.max(
+          ...visible.map((el) => {
+            const match = el.style.transform.match(
+              /translate3d\(\s*([-\d.e+]+)px,\s*([-\d.e+]+)px,\s*0(?:px)?\s*\)/,
+            );
+            if (!match) return Infinity;
+            const x = Number(match[1]),
+              y = Number(match[2]);
+            return Math.abs((x2 - x1) * (y - y1) - (y2 - y1) * (x - x1)) / length;
+          }),
+        );
         return {
-          minLarge: Math.min(...large.map((el) => +el.style.zIndex)),
-          maxSmall: Math.max(...small.map((el) => +el.style.zIndex)),
-          exposed: unobscured.map((el) => el.dataset.cardId),
-          visibleLarge: large
-            .filter((el) => {
-              const b = el.getBoundingClientRect();
-              return (
-                b.left > 200 &&
-                b.right < innerWidth - 20 &&
-                b.top > 90 &&
-                b.bottom < innerHeight - 160
-              );
-            })
-            .map((el) => el.dataset.cardId),
+          selected: visible.filter((el) => el.dataset.theme === active).length,
+          reduced: visible.filter((el) => el.dataset.theme !== active).length,
+          sizeTransitions: visible
+            .slice(1)
+            .filter(
+              (el, index) =>
+                (visible[index].dataset.theme === active) !== (el.dataset.theme === active),
+            ).length,
+          chronological: visible.every(
+            (el, index) => index === 0 || +visible[index - 1].style.zIndex > +el.style.zIndex,
+          ),
+          maxLineDistance,
+          widthsCorrect: visible.every(
+            (el) =>
+              Math.abs(
+                Number.parseFloat(el.style.width) -
+                  (document.querySelector<HTMLElement>('[data-testid="scene"]')!.dataset.mode ===
+                  'browse'
+                    ? 238
+                    : 36),
+              ) < 0.01,
+          ),
         };
       }, theme);
-      expect(result.minLarge).toBeGreaterThan(result.maxSmall);
-      expect(result.exposed).toEqual(expect.arrayContaining(result.visibleLarge));
+      expect(result.selected).toBeGreaterThan(0);
+      expect(result.reduced).toBeGreaterThan(0);
+      expect(result.sizeTransitions).toBeGreaterThan(0);
+      expect(result.chronological).toBe(true);
+      expect(result.maxLineDistance).toBeLessThan(0.1);
+      expect(result.widthsCorrect).toBe(true);
       await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
-      expect(
-        await page.locator('.photo-card').evaluateAll((els) =>
-          els.map((el) => ({
-            id: (el as HTMLElement).dataset.cardId,
-            width: (el as HTMLElement).style.width,
-          })),
-        ),
-      ).toEqual(original);
     }
     await page.screenshot({ path: test.info().outputPath(`T2-${mode}.png`) });
     await page.getByTestId('theme-E').click();

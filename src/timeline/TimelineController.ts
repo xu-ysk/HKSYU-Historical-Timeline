@@ -7,13 +7,12 @@ import {
   upperYearOffsets,
   browseStackZ,
   cardPose,
+  chronologicalStackZ,
   direction,
   isOnscreen,
   lengths,
-  normal,
-  groupPhotoOffset,
+  groupPhotoDisplacement,
   transform,
-  themeStackZ,
   type Viewport,
   type Pose,
 } from './layout';
@@ -32,6 +31,7 @@ export class TimelineController {
   private disposed = false;
   private dirty = true;
   private nodes: { card: DisplayCard; el: HTMLButtonElement }[];
+  private stackIndices = new Map<string, number>();
   private observer: ResizeObserver;
   private drag: { id: number; x: number; y: number; focus: number; moved: boolean } | null = null;
   private suppressClick = false;
@@ -74,6 +74,7 @@ export class TimelineController {
       ]),
     );
     this.nodes = cards.map((card) => ({ card, el: elements.get(card.id)! }));
+    this.stackIndices = new Map(cards.map((card, index) => [card.id, index]));
     this.observer = new ResizeObserver(() => {
       gsap.to(this.view, {
         width: root.clientWidth,
@@ -139,6 +140,7 @@ export class TimelineController {
       ]),
     );
     this.nodes = cards.map((card) => ({ card, el: elements.get(card.id)! }));
+    this.stackIndices = new Map(cards.map((card, index) => [card.id, index]));
     this.lastTrackPoseKey = '';
     this.dirty = true;
   }
@@ -345,16 +347,24 @@ export class TimelineController {
     const position = this.positions.get(card.event.id)!;
     const p = cardPose(card, this.view, this.values, position);
     p.scale = this.themeScales[card.event.themeId];
+    const smallestScale = Math.min(...themeIds.map((id) => this.themeScales[id]));
+    const lineMix = clamp((1 - smallestScale) / (1 - sceneConfig.themeSmall));
     if (card.event.photos.length > 1 && card.photo) {
       const index = card.event.photos.findIndex((photo) => photo.id === card.photo!.id);
-      const offset = groupPhotoOffset(index, card.event.photos.length, this.values.zoom) * p.scale;
-      p.x += normal.x * offset;
-      p.y += normal.y * offset;
+      const displacement = groupPhotoDisplacement(
+        index,
+        card.event.photos.length,
+        this.values.zoom,
+        p.scale,
+        lineMix,
+      );
+      p.x += displacement.x;
+      p.y += displacement.y;
     }
     if (this.values.zoom > 0.01) {
       p.z = browseStackZ(card, timeScale(this.values.endYear).toYear(this.values.focus), position);
     }
-    p.z = themeStackZ(p.z, p.scale);
+    if (lineMix > 0) p.z = chronologicalStackZ(this.stackIndices.get(card.id)!);
     return p;
   }
   private tick = () => {

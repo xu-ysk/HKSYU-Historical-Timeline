@@ -31,9 +31,9 @@ export interface Pose {
 export function browseStackZ(card: DisplayCard, focusYear: number, position = card.event.year) {
   return clamp(1250 + Math.round((focusYear - position) * 40) - card.slot, 200, 1550);
 }
-/** Smaller sleeves recede behind full-size sleeves, never across their faces. */
-export function themeStackZ(depth: number, scale: number) {
-  return Math.round(scale * 1000 + (depth / 1550) * 400);
+/** Theme filtering changes size, while the shared photo lane keeps its original order. */
+export function chronologicalStackZ(index: number) {
+  return 1099 - index;
 }
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 /** Keep groups of three or more sleeves compact in overview; preserve browse spacing. */
@@ -45,6 +45,19 @@ export function groupPhotoOffset(index: number, count: number, zoom: number) {
 }
 export const direction = { x: Math.cos(config.angle), y: Math.sin(config.angle) };
 export const normal = { x: -direction.y, y: direction.x };
+export function groupPhotoDisplacement(
+  index: number,
+  count: number,
+  zoom: number,
+  scale: number,
+  lineMix: number,
+) {
+  const offset = groupPhotoOffset(index, count, zoom) * scale;
+  return {
+    x: lerp(normal.x, direction.x, lineMix) * offset,
+    y: lerp(normal.y, direction.y, lineMix) * offset,
+  };
+}
 export function lengths(view: Viewport) {
   return {
     overview: Math.min((view.width - 220) / direction.x, (view.height - 455) / -direction.y),
