@@ -95,7 +95,11 @@ export default function App() {
     };
   }, [endYear, loadAttempt, provider]);
   return (
-    <main className="museum-app" data-detail-active={detailActive}>
+    <main
+      className="museum-app"
+      data-detail-active={detailActive}
+      onContextMenu={(event) => event.preventDefault()}
+    >
       <header className="masthead">
         <div className="header-top">
           <LanguageSwitcher locale={locale} onChange={setLocale} />
