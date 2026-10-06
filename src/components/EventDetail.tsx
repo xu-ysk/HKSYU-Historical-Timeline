@@ -59,15 +59,11 @@ export function EventDetail({
       </span>
       {hasText && (
         <div className="detail-text" data-testid="detail-text">
-          <div className="eyebrow">
-            {m.sample} / {localizedYearLabel(event, locale)}
-          </div>
           <div className="detail-year">
             {localizedYearLabel(event, locale)}
             <span>—</span>
           </div>
           <div className="detail-theme" style={{ color: themes[event.themeId].color }}>
-            <span>{event.themeId}</span>
             {themes[event.themeId].label[locale]}
           </div>
           {title && <h2 id="event-title">{title}</h2>}

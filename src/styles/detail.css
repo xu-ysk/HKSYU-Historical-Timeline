@@ -27,6 +27,7 @@
   height: max(180px, calc(100% - 435px));
   display: flex;
   flex-direction: column;
+  padding-top: 15px;
   pointer-events: auto;
 }
 .event-detail-placeholder .detail-text {
@@ -64,11 +65,6 @@
   font-size: 12px;
   letter-spacing: 0.5px;
   margin-bottom: 16px;
-}
-.detail-theme > span {
-  font:
-    23px Georgia,
-    serif;
 }
 .detail-text h2 {
   font:

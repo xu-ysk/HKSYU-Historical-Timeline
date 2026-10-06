@@ -2,9 +2,30 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect, test, vi } from 'vitest';
 import { EventDetail } from '../../src/components/EventDetail';
+import { themes, themeIds } from '../../src/config/themes';
 import { createMockTimeline } from '../../src/data/mockTimeline';
 
 const event = createMockTimeline(2026).schoolEvents[0];
+
+test('detail shows only each localized theme name and omits the sample label', () => {
+  for (const locale of ['zh-Hant', 'zh-Hans', 'en'] as const)
+    for (const themeId of themeIds) {
+      const { container, unmount } = render(
+        <EventDetail
+          event={{ ...event, themeId }}
+          locale={locale}
+          phase="detail"
+          onClose={vi.fn()}
+        />,
+      );
+      expect(container.querySelector('.detail-text .eyebrow')).toBeNull();
+      expect(container.querySelector('.detail-theme')).toHaveTextContent(
+        themes[themeId].label[locale],
+      );
+      expect(container.querySelector('.detail-theme span')).toBeNull();
+      unmount();
+    }
+});
 
 test('detail clicks close once without reaching underlying actions or showing a return button', async () => {
   const onClose = vi.fn(),
