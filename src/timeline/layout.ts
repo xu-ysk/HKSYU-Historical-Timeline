@@ -36,10 +36,10 @@ export function themeStackZ(depth: number, scale: number) {
   return Math.round(scale * 1000 + (depth / 1550) * 400);
 }
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-/** Keep groups of four or more sleeves compact in overview; preserve browse spacing. */
+/** Keep groups of three or more sleeves compact in overview; preserve browse spacing. */
 export function groupPhotoOffset(index: number, count: number, zoom: number) {
   const standard = (index - 0.5) * (18 + 26 * zoom);
-  if (count <= 3) return standard;
+  if (count <= 2) return standard;
   const compactOverview = (index - (count - 1) / 2) * 7;
   return lerp(compactOverview, standard, zoom);
 }
