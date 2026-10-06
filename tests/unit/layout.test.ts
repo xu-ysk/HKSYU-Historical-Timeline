@@ -5,6 +5,7 @@ import {
   cardPose,
   browseStackZ,
   upperYearOffsets,
+  groupPhotoOffset,
 } from '../../src/timeline/layout';
 import timeline from '../../public/timeline.json';
 import { createMockTimeline } from '../../src/data/mockTimeline';
@@ -77,6 +78,15 @@ test('upper rail, photo rail and education rail use equal perpendicular spacing'
       expect(photoAxis.x).toBeCloseTo((upper.x + education.x) / 2, 6);
       expect(photoAxis.y).toBeCloseTo((upper.y + education.y) / 2, 6);
     }
+});
+test('five-photo overview group stays compact without changing two-photo or browse spacing', () => {
+  expect([0, 1, 2, 3, 4].map((index) => groupPhotoOffset(index, 5, 0))).toEqual([
+    -14, -7, 0, 7, 14,
+  ]);
+  expect([0, 1].map((index) => groupPhotoOffset(index, 2, 0))).toEqual([-9, 9]);
+  expect([0, 1, 2, 3, 4].map((index) => groupPhotoOffset(index, 5, 1))).toEqual([
+    -22, 22, 66, 110, 154,
+  ]);
 });
 test('overview cards remain inside desktop windows including portrait cards', () => {
   for (const view of [

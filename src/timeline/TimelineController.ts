@@ -11,6 +11,7 @@ import {
   isOnscreen,
   lengths,
   normal,
+  groupPhotoOffset,
   transform,
   themeStackZ,
   type Viewport,
@@ -346,7 +347,7 @@ export class TimelineController {
     p.scale = this.themeScales[card.event.themeId];
     if (card.event.photos.length > 1 && card.photo) {
       const index = card.event.photos.findIndex((photo) => photo.id === card.photo!.id);
-      const offset = (index - 0.5) * (18 + 26 * this.values.zoom) * p.scale;
+      const offset = groupPhotoOffset(index, card.event.photos.length, this.values.zoom) * p.scale;
       p.x += normal.x * offset;
       p.y += normal.y * offset;
     }
