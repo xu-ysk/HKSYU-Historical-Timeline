@@ -21,7 +21,7 @@ export function EventDetail({
     title = localized(event.title, locale),
     body = localized(event.body, locale),
     hasText = Boolean(title || body),
-    placeholderOnly = !event.photos.some((photo) => photo.kind === 'image');
+    placeholderOnly = !event.photos.some((photo) => photo.kind !== 'placeholder');
   useEffect(() => {
     dialogRef.current?.focus();
     const key = (e: KeyboardEvent) => {

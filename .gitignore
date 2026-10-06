@@ -1,5 +1,8 @@
 node_modules/
+__pycache__/
+*.pyc
 dist/
+/.live-content/
 test-results/
 playwright-report/
 *.log

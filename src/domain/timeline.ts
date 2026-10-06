@@ -8,7 +8,7 @@ export interface EventText {
 }
 export interface EventPhoto {
   id: string;
-  kind: 'placeholder' | 'image';
+  kind: 'placeholder' | 'blank' | 'image';
   src?: string;
   width: number;
   height: number;

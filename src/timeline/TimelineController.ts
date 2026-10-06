@@ -388,9 +388,11 @@ export class TimelineController {
         (n) => n.card.event.photoGroupId === this.groupForEvent(this.detailState.eventId),
       ),
       selectedEvent = this.events.find((event) => event.id === this.detailState.eventId),
-      hasRealPhoto = Boolean(selectedEvent?.photos.some((photo) => photo.kind === 'image')),
+      hasPhotoSurface = Boolean(
+        selectedEvent?.photos.some((photo) => photo.kind !== 'placeholder'),
+      ),
       showDetailText = Boolean(
-        hasRealPhoto &&
+        hasPhotoSurface &&
         selectedEvent &&
         [...Object.values(selectedEvent.title), ...Object.values(selectedEvent.body)].some(
           (value) => value?.trim(),

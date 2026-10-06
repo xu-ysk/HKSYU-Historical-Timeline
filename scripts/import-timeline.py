@@ -107,11 +107,11 @@ def url_path(source: str) -> str:
     return quote(decoded, safe="/()")
 
 
-def local_photo_path(public_dir: Path, source: str) -> Path:
+def local_photo_path(photo_root: Path, source: str) -> Path:
     relative = unquote(url_path(source)).lstrip("/")
-    path = (public_dir / relative).resolve()
-    if public_dir.resolve() not in path.parents:
-        raise ValueError(f"Photo path escapes public directory: {source!r}")
+    path = (photo_root / relative).resolve()
+    if photo_root.resolve() not in path.parents:
+        raise ValueError(f"Photo path escapes photo root: {source!r}")
     return path
 
 
@@ -160,7 +160,7 @@ def jpeg_size(path: Path) -> tuple[int, int]:
     raise ValueError(f"JPEG dimensions not found: {path}")
 
 
-def photo_entries(row: dict[str, str], public_dir: Path) -> list[dict[str, object]]:
+def photo_entries(row: dict[str, str], photo_root: Path) -> list[dict[str, object]]:
     entries: list[dict[str, object]] = []
     photo_indices = sorted(
         int(match.group(1))
@@ -171,15 +171,14 @@ def photo_entries(row: dict[str, str], public_dir: Path) -> list[dict[str, objec
         source = text_value(row.get(f"photo-{index}"))
         if not source:
             continue
-        path = local_photo_path(public_dir, source)
+        path = local_photo_path(photo_root, source)
         if not path.is_file():
             raise FileNotFoundError(f"Photo referenced by {row['id']} is missing: {path}")
         width, height = jpeg_size(path)
         entries.append(
             {
                 "id": f"{row['id']}-photo-{index}",
-                "kind": "image",
-                "src": url_path(source),
+                "kind": "blank",
                 "width": width,
                 "height": height,
                 "alt": {"en": f"{row['id']} photograph {index}"},
@@ -188,7 +187,7 @@ def photo_entries(row: dict[str, str], public_dir: Path) -> list[dict[str, objec
     return entries
 
 
-def event(row: dict[str, str], order: int, public_dir: Path, category: str) -> dict[str, object]:
+def event(row: dict[str, str], order: int, photo_root: Path, category: str) -> dict[str, object]:
     label = text_value(row.get("year"))
     result: dict[str, object] = {
         "id": row["id"],
@@ -199,7 +198,7 @@ def event(row: dict[str, str], order: int, public_dir: Path, category: str) -> d
     title = localized(row, "title")
     body = localized(row, "content")
     if category == "school":
-        photos = photo_entries(row, public_dir)
+        photos = photo_entries(row, photo_root)
         if title:
             for photo in photos:
                 photo["alt"] = title
@@ -217,7 +216,7 @@ def event(row: dict[str, str], order: int, public_dir: Path, category: str) -> d
     return result
 
 
-def build(workbook: Path, public_dir: Path, revision: str) -> dict[str, object]:
+def build(workbook: Path, photo_root: Path, revision: str) -> dict[str, object]:
     with zipfile.ZipFile(workbook) as archive:
         rows = worksheet_rows(archive, shared_strings(archive))
     groups = {"upper": [], "school": [], "education": []}
@@ -233,20 +232,20 @@ def build(workbook: Path, public_dir: Path, revision: str) -> dict[str, object]:
     return {
         "schemaVersion": 1,
         "revision": revision,
-        "upperRailEvents": [event(row, i, public_dir, "upper") for i, row in enumerate(groups["upper"])],
-        "schoolEvents": [event(row, i, public_dir, "school") for i, row in enumerate(groups["school"])],
-        "educationEvents": [event(row, i, public_dir, "education") for i, row in enumerate(groups["education"])],
+        "upperRailEvents": [event(row, i, photo_root, "upper") for i, row in enumerate(groups["upper"])],
+        "schoolEvents": [event(row, i, photo_root, "school") for i, row in enumerate(groups["school"])],
+        "educationEvents": [event(row, i, photo_root, "education") for i, row in enumerate(groups["education"])],
     }
 
 
 def main(argv: Iterable[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workbook", type=Path, default=Path("HKSYU Timeline.xlsx"))
-    parser.add_argument("--public-dir", type=Path, default=Path("public"))
+    parser.add_argument("--photo-root", "--public-dir", type=Path, default=Path("."))
     parser.add_argument("--output", type=Path, default=Path("public/timeline.json"))
     parser.add_argument("--revision", default="xlsx-2026-10-05")
     args = parser.parse_args(argv)
-    data = build(args.workbook, args.public_dir, args.revision)
+    data = build(args.workbook, args.photo_root, args.revision)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     counts = ", ".join(f"{key}={len(value)}" for key, value in data.items() if isinstance(value, list))

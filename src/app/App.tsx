@@ -22,6 +22,7 @@ export default function App() {
     [eventId, setEventId] = useState('');
   const controllerRef = useRef<TimelineController | null>(null);
   const [detail, setDetail] = useState(initialDetail);
+  const detailPhaseRef = useRef(detail.phase);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
   const handleProgress = useCallback((nextYear: number, nextEventId: string) => {
     setYear(nextYear);
@@ -35,6 +36,9 @@ export default function App() {
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
+  useEffect(() => {
+    detailPhaseRef.current = detail.phase;
+  }, [detail.phase]);
   const m = messages[locale],
     endYear = useCurrentYear();
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -52,18 +56,43 @@ export default function App() {
     detailActive = detail.phase !== 'idle';
   useEffect(() => {
     const abort = new AbortController();
-    provider
-      .load(abort.signal)
-      .then((result) => {
-        if (!abort.signal.aborted) {
+    let inFlight = false;
+    let currentSnapshot: string | null = null;
+    const refresh = async () => {
+      if (
+        inFlight ||
+        (provider === realProvider && (document.hidden || detailPhaseRef.current !== 'idle'))
+      )
+        return;
+      inFlight = true;
+      try {
+        const result = await provider.load(abort.signal);
+        if (abort.signal.aborted || (provider === realProvider && detailPhaseRef.current !== 'idle'))
+          return;
+        const nextSnapshot = JSON.stringify(result);
+        if (nextSnapshot !== currentSnapshot) {
+          currentSnapshot = nextSnapshot;
           setData(result);
-          setError(false);
         }
-      })
-      .catch(() => {
+        setError(false);
+      } catch {
         if (!abort.signal.aborted) setError(true);
-      });
-    return () => abort.abort();
+      } finally {
+        inFlight = false;
+      }
+    };
+    void refresh();
+    const onVisible = () => {
+      if (!document.hidden) void refresh();
+    };
+    const timer =
+      provider === realProvider ? window.setInterval(() => void refresh(), 15000) : undefined;
+    if (provider === realProvider) document.addEventListener('visibilitychange', onVisible);
+    return () => {
+      abort.abort();
+      if (timer !== undefined) window.clearInterval(timer);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
   }, [endYear, loadAttempt, provider]);
   return (
     <main className="museum-app" data-detail-active={detailActive}>
@@ -72,6 +101,7 @@ export default function App() {
           <LanguageSwitcher locale={locale} onChange={setLocale} />
         </div>
       </header>
+      {error && data && <p className="sync-warning" role="status">{m.updateError}</p>}
       {data ? (
         <TimelineScene
           data={data}

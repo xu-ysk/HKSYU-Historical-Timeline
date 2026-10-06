@@ -24,6 +24,19 @@ button {
   z-index: 2000;
   pointer-events: none;
 }
+.sync-warning {
+  position: absolute;
+  top: 68px;
+  right: 42px;
+  z-index: 2100;
+  max-width: 280px;
+  margin: 0;
+  padding: 8px 12px;
+  background: #fff4ed;
+  color: #8a3d24;
+  border: 1px solid #d7a28c;
+  font-size: 12px;
+}
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -160,6 +173,11 @@ h1 {
 .photo-image-paper {
   padding: 0;
   background: #f1eee8;
+}
+.photo-blank {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .photo-image {
   display: block;

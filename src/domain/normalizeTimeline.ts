@@ -28,6 +28,8 @@ export function normalizeTimeline(data: TimelineDataset, endYear: number): Timel
         throw new Error(`Invalid photo size: ${photo.id}`);
       if (photo.kind === 'image' && !photo.src)
         throw new Error(`Missing photo source: ${photo.id}`);
+      if (photo.kind === 'blank' && photo.src)
+        throw new Error(`Blank photo cannot reference an image: ${photo.id}`);
     }
   }
   for (const [groupId, size] of photoGroupSizes)

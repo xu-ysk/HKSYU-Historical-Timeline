@@ -25,6 +25,7 @@ export const messages = {
     empty: '此時期暫無教育史事件',
     loading: '正在展開時間軸…',
     error: '暫時無法展開時間軸',
+    updateError: '資料更新暫時失敗，現正顯示上一次內容',
     retry: '重試',
   },
   'zh-Hans': {
@@ -52,6 +53,7 @@ export const messages = {
     empty: '此时期暂无教育史事件',
     loading: '正在展开时间轴…',
     error: '暂时无法展开时间轴',
+    updateError: '资料更新暂时失败，现正显示上一次内容',
     retry: '重试',
   },
   en: {
@@ -79,6 +81,7 @@ export const messages = {
     empty: 'No education event in this period',
     loading: 'Opening the timeline…',
     error: 'The timeline could not be loaded',
+    updateError: 'Update unavailable; showing the last loaded content',
     retry: 'Try again',
   },
 } satisfies Record<Locale, Record<string, string>>;
