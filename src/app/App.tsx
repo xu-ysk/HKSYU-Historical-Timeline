@@ -9,7 +9,7 @@ import { TimelineScene } from '../timeline/TimelineScene';
 import { TimelineController } from '../timeline/TimelineController';
 import { EventDetail } from '../components/EventDetail';
 import { initialDetail } from '../timeline/timelineReducer';
-import { localized } from '../domain/timeline';
+import { localized, localizedYearLabel } from '../domain/timeline';
 import '../styles/timeline.css';
 import '../styles/detail.css';
 export default function App() {
@@ -47,8 +47,7 @@ export default function App() {
     focusedLabel = focused
       ? localized(focused.title, locale) ||
         localized(focused.body, locale).slice(0, 72) ||
-        focused.yearLabel ||
-        String(focused.year)
+        localizedYearLabel(focused, locale)
       : '—',
     detailActive = detail.phase !== 'idle';
   useEffect(() => {

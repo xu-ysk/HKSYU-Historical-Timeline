@@ -51,3 +51,8 @@ export interface DisplayCard {
 }
 export const localized = (text: LocalizedText, locale: Locale) =>
   text[locale] ?? text.en ?? text['zh-Hant'] ?? text['zh-Hans'] ?? '';
+
+export const localizedYearLabel = (event: { year: number; yearLabel?: string }, locale: Locale) => {
+  const label = event.yearLabel ?? String(event.year);
+  return locale === 'en' ? label.replace(/(\d{4})年代/g, '$1s') : label;
+};

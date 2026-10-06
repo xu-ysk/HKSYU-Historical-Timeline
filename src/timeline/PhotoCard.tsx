@@ -1,6 +1,6 @@
 import type { DisplayCard, Locale } from '../domain/timeline';
 import { memo } from 'react';
-import { localized } from '../domain/timeline';
+import { localized, localizedYearLabel } from '../domain/timeline';
 import { themes } from '../config/themes';
 import { transform, type Pose } from './layout';
 export const PhotoCard = memo(
@@ -31,7 +31,7 @@ export const PhotoCard = memo(
         aria-label={
           card.event.year +
           ' · ' +
-          (title || body || card.event.yearLabel || card.event.year) +
+          (title || body || localizedYearLabel(card.event, locale)) +
           ' · ' +
           (placeholder ? body || title || 'Text only' : localized(card.photo!.alt, locale))
         }
@@ -59,7 +59,7 @@ export const PhotoCard = memo(
               className={'photo-placeholder-content' + (title ? '' : ' photo-placeholder-no-title')}
             >
               <span className="photo-placeholder-year">
-                {card.event.yearLabel ?? card.event.year}
+                {localizedYearLabel(card.event, locale)}
               </span>
               {title && <span className="photo-placeholder-title">{title}</span>}
               {placeholderBody && <span className="photo-placeholder-body">{placeholderBody}</span>}

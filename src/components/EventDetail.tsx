@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { Locale, SchoolEvent } from '../domain/timeline';
-import { localized } from '../domain/timeline';
+import { localized, localizedYearLabel } from '../domain/timeline';
 import { themes } from '../config/themes';
 import { messages } from '../i18n/messages';
 import type { DetailPhase } from '../timeline/timelineReducer';
@@ -60,10 +60,10 @@ export function EventDetail({
       {hasText && (
         <div className="detail-text" data-testid="detail-text">
           <div className="eyebrow">
-            {m.sample} / {event.yearLabel ?? event.year}
+            {m.sample} / {localizedYearLabel(event, locale)}
           </div>
           <div className="detail-year">
-            {event.yearLabel ?? event.year}
+            {localizedYearLabel(event, locale)}
             <span>—</span>
           </div>
           <div className="detail-theme" style={{ color: themes[event.themeId].color }}>

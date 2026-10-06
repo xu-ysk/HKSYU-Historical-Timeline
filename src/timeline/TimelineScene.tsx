@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { TimelineDataset, Locale } from '../domain/timeline';
-import { localized } from '../domain/timeline';
+import { localized, localizedYearLabel } from '../domain/timeline';
 import { toCards } from '../domain/normalizeTimeline';
 import { messages } from '../i18n/messages';
 import { anchor, cardPose } from './layout';
@@ -95,7 +95,7 @@ export function TimelineScene({
         {upperRail ? (
           <div className="upper-rail-copy">
             <span className="upper-rail-year" data-testid="upper-rail-year">
-              {upperRail.yearLabel ?? upperRail.year}
+              {localizedYearLabel(upperRail, locale)}
             </span>
             <div>
               <h2 data-testid="upper-rail-title">{localized(upperRail.title, locale)}</h2>
@@ -169,7 +169,7 @@ export function TimelineScene({
         </div>
         {education ? (
           <div className="education-copy">
-            <span className="education-year">{education.yearLabel ?? education.year}</span>
+            <span className="education-year">{localizedYearLabel(education, locale)}</span>
             <div>
               <h2>{localized(education.title, locale)}</h2>
               <p>{localized(education.body, locale)}</p>
