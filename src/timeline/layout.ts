@@ -50,10 +50,9 @@ export function anchor(year: number, lane: TimelineLane, view: Viewport, values:
   const a = length.overview * (u - 0.5),
     b = length.browse * (u - values.focus);
   const q = lerp(a, b + config.gap * Math.tanh(b / config.gapSoftness), values.zoom);
-  // Keep the three parallel rails evenly spaced around the school photo rail.
-  // The normal offsets are -110 (upper), -20 (photos), and 70 (education),
-  // so each adjacent rail is separated by the same 90px distance.
-  const offset = lane === 'upper' ? -110 : lane === 'school' ? -20 : lane === 'education' ? 70 : 25;
+  // Keep the drawn photo axis on the school card centers, midway between the
+  // upper history rail (-110) and the education rail (70).
+  const offset = lane === 'upper' ? -110 : lane === 'education' ? 70 : -20;
   return {
     x: view.width * 0.47 + direction.x * q + normal.x * offset,
     y: view.height * 0.49 + direction.y * q + normal.y * offset,

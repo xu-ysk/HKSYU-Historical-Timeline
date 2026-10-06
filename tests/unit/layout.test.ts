@@ -67,10 +67,15 @@ test('upper rail, photo rail and education rail use equal perpendicular spacing'
       const values = { focus: 0.55, zoom, endYear: 2026 };
       const upper = anchor(year, 'upper', { width: 1440, height: 900 }, values);
       const school = anchor(year, 'school', { width: 1440, height: 900 }, values);
+      const photoAxis = anchor(year, 'axis', { width: 1440, height: 900 }, values);
       const education = anchor(year, 'education', { width: 1440, height: 900 }, values);
       const upperToSchool = Math.hypot(upper.x - school.x, upper.y - school.y);
       const schoolToEducation = Math.hypot(school.x - education.x, school.y - education.y);
       expect(upperToSchool).toBeCloseTo(schoolToEducation, 6);
+      expect(photoAxis.x).toBeCloseTo(school.x, 6);
+      expect(photoAxis.y).toBeCloseTo(school.y, 6);
+      expect(photoAxis.x).toBeCloseTo((upper.x + education.x) / 2, 6);
+      expect(photoAxis.y).toBeCloseTo((upper.y + education.y) / 2, 6);
     }
 });
 test('overview cards remain inside desktop windows including portrait cards', () => {
