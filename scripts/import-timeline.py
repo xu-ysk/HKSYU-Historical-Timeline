@@ -178,7 +178,8 @@ def photo_entries(row: dict[str, str], photo_root: Path) -> list[dict[str, objec
         entries.append(
             {
                 "id": f"{row['id']}-photo-{index}",
-                "kind": "blank",
+                "kind": "image",
+                "src": url_path(source).lstrip("/"),
                 "width": width,
                 "height": height,
                 "alt": {"en": f"{row['id']} photograph {index}"},

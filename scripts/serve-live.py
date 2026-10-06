@@ -21,6 +21,13 @@ class Handler(SimpleHTTPRequestHandler):
         self.content = content
         super().__init__(*args, directory=str(directory), **kwargs)
 
+    def translate_path(self, path: str) -> str:
+        prefix = "/Historical_Timeline_Images/"
+        if urlsplit(path).path.startswith(prefix):
+            self.directory = str(self.content.photo_root / "Historical_Timeline_Images")
+            return super().translate_path("/" + path[len(prefix):])
+        return super().translate_path(path)
+
     def do_GET(self) -> None:
         if urlsplit(self.path).path == "/timeline.json":
             self.send_timeline(False)

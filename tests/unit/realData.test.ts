@@ -1,14 +1,21 @@
 import { expect, test } from 'vitest';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import timeline from '../../public/timeline.json';
 
-test('workbook text and chronology remain complete with blank photo slots', () => {
+test('workbook text and chronology remain complete with real photos', () => {
   expect(timeline.schoolEvents).toHaveLength(118);
   expect(timeline.upperRailEvents).toHaveLength(28);
   expect(timeline.educationEvents).toHaveLength(20);
 
   const photos = timeline.schoolEvents.flatMap((event) => event.photos);
   expect(photos).toHaveLength(186);
-  expect(photos.every((photo) => photo.kind === 'blank' && !('src' in photo))).toBe(true);
+  expect(
+    photos.every((photo) => photo.kind === 'image' && photo.src.startsWith('Historical_Timeline_Images/')),
+  ).toBe(true);
+  expect(
+    photos.every((photo) => existsSync(resolve('public', decodeURIComponent(photo.src)))),
+  ).toBe(true);
   expect(new Set(photos.map((photo) => photo.id)).size).toBe(186);
   expect(timeline.schoolEvents.filter((event) => event.photos.length === 3)).toHaveLength(1);
   expect(timeline.schoolEvents.filter((event) => event.photos.length === 5)).toHaveLength(1);

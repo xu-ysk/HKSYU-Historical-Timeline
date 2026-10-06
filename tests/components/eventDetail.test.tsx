@@ -9,7 +9,7 @@ import type { SchoolEvent } from '../../src/domain/timeline';
 
 const event = createMockTimeline(2026).schoolEvents[0];
 
-test('blank photo slots keep the event description in the right-side detail', () => {
+test('real photos keep the event description in the right-side detail', () => {
   const realEvent = timeline.schoolEvents.find((item) => item.id === 'P01')! as SchoolEvent;
   render(<EventDetail event={realEvent} locale="zh-Hant" phase="detail" onClose={vi.fn()} />);
   expect(screen.getByRole('dialog')).toHaveAttribute('data-placeholder-only', 'false');

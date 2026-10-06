@@ -8,6 +8,7 @@ import unittest
 from functools import partial
 from http.server import ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import quote
 from urllib.request import urlopen
 
 
@@ -88,6 +89,12 @@ class LiveContentTest(unittest.TestCase):
 
     def test_watcher_updates_the_served_json_and_keeps_dist_intact(self):
         self.content.refresh()
+        photo = self.photos / "1971/image1.jpg"
+        photo.parent.mkdir()
+        photo.write_bytes(b"original photo")
+        unicode_photo = self.photos / "1972/1972（1）/image5.jpg"
+        unicode_photo.parent.mkdir(parents=True)
+        unicode_photo.write_bytes(b"unicode photo")
         dist = self.root / "dist"
         dist.mkdir()
         (dist / "index.html").write_text("<h1>site</h1>", encoding="utf-8")
@@ -104,6 +111,11 @@ class LiveContentTest(unittest.TestCase):
         with urlopen(base + "/timeline.json") as response:
             self.assertEqual(response.headers["Cache-Control"], "no-store")
             self.assertEqual(json.load(response)["schoolEvents"][0]["body"]["en"], "first")
+        with urlopen(base + "/Historical_Timeline_Images/1971/image1.jpg") as response:
+            self.assertEqual(response.read(), b"original photo")
+        encoded_path = quote("/Historical_Timeline_Images/1972/1972（1）/image5.jpg", safe="/")
+        with urlopen(base + encoded_path) as response:
+            self.assertEqual(response.read(), b"unicode photo")
         self.workbook.write_bytes(b"second")
         deadline = time.monotonic() + 3
         while time.monotonic() < deadline:
