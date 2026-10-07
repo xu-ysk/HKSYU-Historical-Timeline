@@ -33,8 +33,16 @@ export class TimelineController {
   private nodes: { card: DisplayCard; el: HTMLButtonElement }[];
   private stackIndices = new Map<string, number>();
   private observer: ResizeObserver;
-  private drag: { id: number; x: number; y: number; focus: number; moved: boolean } | null = null;
+  private drag: {
+    id: number;
+    x: number;
+    y: number;
+    focus: number;
+    moved: boolean;
+    tappedEventId?: string;
+  } | null = null;
   private suppressClick = false;
+  private touchClick: { x: number; y: number; time: number } | null = null;
   private lastYear = -1;
   private reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   private events: SchoolEvent[];
@@ -93,7 +101,7 @@ export class TimelineController {
     root.addEventListener('pointerup', this.up);
     root.addEventListener('pointercancel', this.cancel);
     root.addEventListener('lostpointercapture', this.cancel);
-    root.addEventListener('click', this.click, true);
+    window.addEventListener('click', this.click, true);
     window.addEventListener('blur', this.cancel);
     gsap.ticker.add(this.tick);
     this.tick();
@@ -290,6 +298,7 @@ export class TimelineController {
     )
       return;
     this.suppressClick = false;
+    this.touchClick = null;
     this.wheelTarget = null;
     this.drag = {
       id: e.pointerId,
@@ -297,6 +306,11 @@ export class TimelineController {
       y: e.clientY,
       focus: this.values.focus,
       moved: false,
+      tappedEventId:
+        e.pointerType === 'touch'
+          ? (e.target instanceof Element ? e.target.closest<HTMLElement>('.photo-card') : null)
+              ?.dataset.eventId
+          : undefined,
     };
   };
   private move = (e: PointerEvent) => {
@@ -304,7 +318,7 @@ export class TimelineController {
     if (!drag || drag.id !== e.pointerId) return;
     const dx = e.clientX - drag.x,
       dy = e.clientY - drag.y;
-    if (!drag.moved && Math.hypot(dx, dy) < 6) return;
+    if (!drag.moved && Math.hypot(dx, dy) < (e.pointerType === 'touch' ? 24 : 6)) return;
     if (!drag.moved) {
       drag.moved = true;
       this.root.setPointerCapture(e.pointerId);
@@ -321,13 +335,15 @@ export class TimelineController {
   };
   private up = (e: PointerEvent) => {
     const tappedEventId =
-      e.pointerType === 'touch' && !this.drag?.moved
-        ? (e.target instanceof Element ? e.target.closest<HTMLElement>('.photo-card') : null)
-            ?.dataset.eventId
+      e.pointerType === 'touch' && this.drag?.id === e.pointerId && !this.drag.moved
+        ? this.drag.tappedEventId
         : undefined;
     if (this.drag?.moved) this.suppressClick = true;
     this.cancel();
-    if (tappedEventId) this.open(tappedEventId);
+    if (tappedEventId) {
+      this.touchClick = { x: e.clientX, y: e.clientY, time: performance.now() };
+      this.open(tappedEventId);
+    }
   };
   private cancel = () => {
     const id = this.drag?.id;
@@ -337,7 +353,14 @@ export class TimelineController {
     if (!this.blocked) this.root.dataset.phase = 'idle';
   };
   private click = (e: MouseEvent) => {
-    if (this.suppressClick) {
+    const touchClick = this.touchClick;
+    this.touchClick = null;
+    if (
+      (touchClick &&
+        performance.now() - touchClick.time < 600 &&
+        Math.hypot(e.clientX - touchClick.x, e.clientY - touchClick.y) < 32) ||
+      (this.suppressClick && e.target instanceof Node && this.root.contains(e.target))
+    ) {
       e.preventDefault();
       e.stopImmediatePropagation();
       this.suppressClick = false;
@@ -524,7 +547,7 @@ export class TimelineController {
     this.root.removeEventListener('pointerup', this.up);
     this.root.removeEventListener('pointercancel', this.cancel);
     this.root.removeEventListener('lostpointercapture', this.cancel);
-    this.root.removeEventListener('click', this.click, true);
+    window.removeEventListener('click', this.click, true);
     window.removeEventListener('blur', this.cancel);
   }
 }

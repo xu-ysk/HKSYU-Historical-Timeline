@@ -19,13 +19,15 @@ test('exhibition touch input enlarges hit areas, drags the timeline, and opens d
     const marker = document.querySelector<HTMLElement>('.upper-rail-marker');
     const dot = document.querySelector<HTMLElement>('.education-dot');
     const slider = document.querySelector<HTMLElement>('.year-slider');
+    const app = document.querySelector<HTMLElement>('.museum-app');
     return {
       marker: marker ? getComputedStyle(marker).width : '',
       dot: dot ? getComputedStyle(dot).width : '',
       slider: slider ? slider.getBoundingClientRect().height : 0,
+      selection: app ? getComputedStyle(app).userSelect : '',
     };
   });
-  expect(touchMetrics).toEqual({ marker: '44px', dot: '44px', slider: 8 });
+  expect(touchMetrics).toEqual({ marker: '44px', dot: '44px', slider: 8, selection: 'none' });
 
   const before = Number(await scene.getAttribute('data-focus'));
   const box = (await scene.boundingBox())!;
@@ -61,6 +63,33 @@ test('exhibition touch input enlarges hit areas, drags the timeline, and opens d
   expect(point).not.toBeNull();
   await page.touchscreen.tap(point!.x, point!.y);
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
+  await expect(page.locator('.detail-year')).toHaveCSS('user-select', 'none');
   await page.touchscreen.tap(12, 12);
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(scene).toHaveAttribute('data-phase', 'idle');
+
+  await cdp.send('Input.dispatchTouchEvent', {
+    type: 'touchStart',
+    touchPoints: [{ x: point!.x, y: point!.y, id: 2 }],
+  });
+  await cdp.send('Input.dispatchTouchEvent', {
+    type: 'touchMove',
+    touchPoints: [{ x: point!.x + 10, y: point!.y + 8, id: 2 }],
+  });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
+  await page.touchscreen.tap(12, 12);
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+
+  const year = page.getByTestId('upper-rail-year');
+  const yearBox = (await year.boundingBox())!;
+  const yearPoint = { x: yearBox.x + yearBox.width / 2, y: yearBox.y + yearBox.height / 2 };
+  await cdp.send('Input.dispatchTouchEvent', {
+    type: 'touchStart',
+    touchPoints: [{ ...yearPoint, id: 3 }],
+  });
+  await page.waitForTimeout(700);
+  expect(await page.evaluate(() => window.getSelection()?.toString())).toBe('');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  expect(await page.evaluate(() => window.getSelection()?.toString())).toBe('');
 });

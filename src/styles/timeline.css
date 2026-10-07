@@ -17,6 +17,9 @@ button {
   position: relative;
   overflow: hidden;
   background: var(--paper);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 .masthead {
   position: absolute;
