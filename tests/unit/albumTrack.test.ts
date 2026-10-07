@@ -1,9 +1,11 @@
 import { expect, test } from 'vitest';
 import { eventPositions } from '../../src/timeline/albumTrack';
-import { cardPose, direction } from '../../src/timeline/layout';
+import { anchor, cardPose, direction } from '../../src/timeline/layout';
 import { createMockTimeline } from '../../src/data/mockTimeline';
 import { toCards } from '../../src/domain/normalizeTimeline';
 import { timeScale } from '../../src/timeline/timeScale';
+import { sceneConfig } from '../../src/config/scene';
+import timeline from '../../public/timeline.json';
 
 const data = createMockTimeline(2026);
 const positions = eventPositions(data.schoolEvents, 2026);
@@ -42,7 +44,7 @@ test('the complete photo procession keeps its event order through the focus open
   }
 });
 
-test('a card moves in only one direction during a continuous sweep and leaves a central gap', () => {
+test('a card moves in only one direction during a continuous sweep with a compact focus opening', () => {
   const card = cards.find((item) => item.event.id === 'school-1997-0')!;
   let previous = Infinity;
   for (let year = 1996; year < 1998; year += 0.005) {
@@ -60,5 +62,19 @@ test('a card moves in only one direction during a continuous sweep and leaves a 
   const next = cards.find((item) => item.event.id === 'school-1997-1')!;
   const a = cardPose(card, view, values, positions.get(card.event.id));
   const b = cardPose(next, view, values, positions.get(next.event.id));
-  expect(Math.hypot(a.x - b.x, a.y - b.y)).toBeGreaterThan(250);
+  const sameYearGap = Math.hypot(a.x - b.x, a.y - b.y);
+  expect(sameYearGap).toBeGreaterThan(75);
+  expect(sameYearGap).toBeLessThan(150);
+});
+
+test('browse photos around a year without school events stay close across the focus', () => {
+  expect(timeline.schoolEvents.some((event) => event.year === 1981)).toBe(true);
+  expect(timeline.schoolEvents.some((event) => event.year === 1982)).toBe(false);
+  expect(timeline.schoolEvents.some((event) => event.year === 1983)).toBe(true);
+  const values = { focus: timeScale(2026).toUnit(1982), zoom: 1, endYear: 2026 };
+  const a = anchor(1981, 'school', view, values);
+  const b = anchor(1983, 'school', view, values);
+  const gap = Math.hypot(a.x - b.x, a.y - b.y);
+  expect(gap).toBeGreaterThan(sceneConfig.browseCardWidth);
+  expect(gap).toBeLessThan(sceneConfig.browseCardWidth * 2);
 });

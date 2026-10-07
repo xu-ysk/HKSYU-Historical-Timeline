@@ -1,4 +1,29 @@
 import { test, expect } from './fixtures';
+test('view buttons restart both history lanes at 1949', async ({ page }) => {
+  await page.goto('/');
+  const scene = page.getByTestId('scene');
+  const checkStart = async () => {
+    await expect(scene).toHaveAttribute('data-focus', '0.000000');
+    await expect(page.getByTestId('current-year')).toContainText('1949');
+    await expect(page.getByTestId('upper-rail-panel')).toHaveAttribute('data-has-event', 'true');
+    await expect(page.getByTestId('upper-rail-year')).toContainText('1949');
+    await expect(page.getByTestId('education-panel')).toHaveAttribute('data-has-event', 'true');
+    await expect(page.getByTestId('education-panel')).toContainText('1949');
+  };
+
+  await page.getByTestId('year-slider').fill('1997');
+  await expect(page.getByTestId('current-year')).toContainText('1997');
+  await page.getByTestId('view-overview').click();
+  await checkStart();
+
+  await page.getByTestId('view-browse').click();
+  await checkStart();
+
+  await page.getByTestId('year-slider').fill('1997');
+  await expect(page.getByTestId('current-year')).toContainText('1997');
+  await page.getByTestId('view-browse').click();
+  await checkStart();
+});
 test('wheel and drag move both lanes and stop at the end', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByTestId('scene')).toBeVisible();

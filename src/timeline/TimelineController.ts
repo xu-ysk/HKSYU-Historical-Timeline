@@ -242,6 +242,17 @@ export class TimelineController {
     this.onMode(mode);
     this.animate({ zoom: mode === 'browse' ? 1 : 0 }, 0.8);
   }
+  startMode(mode: 'overview' | 'browse') {
+    if (this.blocked) return;
+    this.wheelTarget = null;
+    gsap.killTweensOf(this.values, 'focus');
+    this.values.focus = 0;
+    this.root.dataset.targetFocus = '0';
+    this.lastYear = -1;
+    this.dirty = true;
+    this.setMode(mode);
+    this.tick();
+  }
   navigate(unit: number, id?: string) {
     if (this.blocked) return;
     this.wheelTarget = null;

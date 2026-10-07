@@ -134,7 +134,7 @@ export default function App() {
           disabled={detailActive}
           data-testid="view-overview"
           aria-pressed={mode === 'overview'}
-          onClick={() => controllerRef.current?.setMode('overview')}
+          onClick={() => controllerRef.current?.startMode('overview')}
         >
           {m.overview}
         </button>
@@ -142,7 +142,7 @@ export default function App() {
           disabled={detailActive}
           data-testid="view-browse"
           aria-pressed={mode === 'browse'}
-          onClick={() => controllerRef.current?.setMode('browse')}
+          onClick={() => controllerRef.current?.startMode('browse')}
         >
           {m.browse} ↗
         </button>
