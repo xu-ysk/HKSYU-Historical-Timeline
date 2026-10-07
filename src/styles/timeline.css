@@ -11,15 +11,21 @@ button {
   color: inherit;
 }
 .museum-app {
+  --page-background: var(--paper);
+  --page-surface: color-mix(in srgb, var(--page-background) 93%, transparent);
   width: 100%;
   height: 100%;
   min-height: 600px;
   position: relative;
   overflow: hidden;
-  background: var(--paper);
+  background: var(--page-background);
+  transition: background-color 0.45s ease;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+}
+.museum-app:not([data-active-theme='all']) {
+  --page-background: color-mix(in srgb, var(--theme-accent) 18%, var(--paper));
 }
 .masthead {
   position: absolute;
@@ -360,13 +366,13 @@ h1 {
   left: max(250px, calc(47vw - 435px));
   top: max(145px, calc(25vh - 80px));
   z-index: 1200;
-  background: #f7f5f2ed;
+  background: var(--page-surface);
   padding: 12px;
   margin: -12px;
 }
 .upper-rail-panel,
 .education-panel {
-  transition: opacity 0.24s ease, visibility 0s;
+  transition: opacity 0.24s ease, visibility 0s, background-color 0.45s ease;
 }
 .upper-rail-panel[data-has-event='false'],
 .education-panel[data-has-event='false'] {
@@ -544,7 +550,7 @@ h1 {
   min-height: 89px;
   border: 1px solid #d8d2c7;
   border-top: 2px solid var(--swatch);
-  background: #f7f5f2e8;
+  background: color-mix(in srgb, var(--page-background) 91%, transparent);
   text-align: left;
   font-size: 10px;
   line-height: 1.5;
@@ -553,7 +559,7 @@ h1 {
     border-color 0.3s;
 }
 .theme-button[aria-pressed='true'] {
-  background: color-mix(in srgb, var(--swatch) 12%, var(--paper));
+  background: color-mix(in srgb, var(--swatch) 12%, var(--page-background));
   border-color: var(--swatch);
 }
 .loading {
@@ -592,8 +598,8 @@ h1 {
   border-radius: 0;
 }
 .header-top {
-  background: #f7f5f2ed;
-  box-shadow: 0 -20px 0 20px #f7f5f2ed;
+  background: var(--page-surface);
+  box-shadow: 0 -20px 0 20px var(--page-surface);
 }
 .navigation-panel {
   position: absolute;
@@ -601,14 +607,14 @@ h1 {
   top: 260px;
   bottom: auto;
   opacity: 0;
-  background: #f7f5f2ed;
+  background: var(--page-surface);
   padding: 12px 12px 0 0;
 }
 .view-switch {
-  background: #f7f5f2ed;
+  background: var(--page-surface);
 }
 .education-panel {
-  background: #f7f5f2ed;
+  background: var(--page-surface);
   padding: 12px;
   margin: -12px;
 }

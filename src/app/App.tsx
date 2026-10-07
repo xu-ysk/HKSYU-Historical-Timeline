@@ -98,6 +98,7 @@ export default function App() {
     <main
       className="museum-app"
       data-detail-active={detailActive}
+      data-active-theme={active ?? 'all'}
       onContextMenu={(event) => event.preventDefault()}
     >
       <header className="masthead">
