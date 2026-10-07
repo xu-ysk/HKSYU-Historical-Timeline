@@ -644,22 +644,13 @@ h1 {
   }
   .upper-rail-panel .eyebrow {
     margin-bottom: 8px;
-    font-size: 12px;
   }
   .upper-rail-copy {
     gap: 12px;
     padding-top: 8px;
   }
-  .upper-rail-year {
-    font-size: 22px;
-  }
   .upper-rail-copy h2 {
     margin: 0 0 4px;
-    font-size: 13px;
-  }
-  .upper-rail-copy p {
-    font-size: 10px;
-    line-height: 1.45;
   }
   .bottom-panel {
     bottom: 20px;

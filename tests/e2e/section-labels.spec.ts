@@ -20,9 +20,19 @@ for (const size of [
     await expect(upperLabel).toBeVisible();
     await expect(upperLabel).toHaveText('01/ 樹仁校史');
     await expect(educationLabel).toBeVisible();
-    await expect(educationLabel).toHaveText('03 / 香港教育史');
-    await expect(upperLabel).toHaveCSS('font-size', size.height <= 760 ? '12px' : '14px');
+    await expect(educationLabel).toHaveText('02 / 香港教育史');
+    await expect(upperLabel).toHaveCSS('font-size', '14px');
     await expect(educationLabel).toHaveCSS('font-size', '14px');
+    for (const [upperSelector, educationSelector] of [
+      ['.upper-rail-year', '.education-year'],
+      ['.upper-rail-copy h2', '.education-copy h2'],
+      ['.upper-rail-copy p', '.education-copy p'],
+    ]) {
+      const upperSize = await page.locator(upperSelector).evaluate((element) => getComputedStyle(element).fontSize);
+      await expect(page.locator(educationSelector)).toHaveCSS('font-size', upperSize);
+    }
+    const schoolLineHeight = await page.locator('.upper-rail-copy p').evaluate((element) => getComputedStyle(element).lineHeight);
+    await expect(page.locator('.education-copy p')).toHaveCSS('line-height', schoolLineHeight);
 
     const educationBox = (await education.boundingBox())!;
     const educationLabelBox = (await educationLabel.boundingBox())!;

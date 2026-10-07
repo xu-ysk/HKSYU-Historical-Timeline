@@ -23,7 +23,7 @@ for (const size of [
     await expect(upper.locator('[data-testid="upper-rail-title"]')).toBeVisible();
     await expect(upper.locator('[data-testid="upper-rail-body"]')).toBeVisible();
     await expect(page.locator('.school-label')).toHaveCount(0);
-    await expect(education.locator('.eyebrow')).toHaveText(/03\s*\/.*香港教育史/);
+    await expect(education.locator('.eyebrow')).toHaveText(/02\s*\/.*香港教育史/);
 
     const upperBox = (await upper.boundingBox())!;
     const educationBox = (await education.boundingBox())!;

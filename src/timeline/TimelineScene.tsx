@@ -191,7 +191,7 @@ export function TimelineScene({
         aria-hidden={education?.year !== focusYear}
       >
         <div className="eyebrow">
-          <span>03 /</span> {m.education}
+          <span>02 /</span> {m.education}
         </div>
         {education ? (
           <div className="education-copy">
