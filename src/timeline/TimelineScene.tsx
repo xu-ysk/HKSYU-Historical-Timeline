@@ -88,7 +88,12 @@ export function TimelineScene({
           );
         })}
       </svg>
-      <aside className="upper-rail-panel" data-testid="upper-rail-panel">
+      <aside
+        className="upper-rail-panel"
+        data-testid="upper-rail-panel"
+        data-has-event={upperRail?.year === focusYear}
+        aria-hidden={upperRail?.year !== focusYear}
+      >
         <div className="eyebrow">
           <span>01/</span> {locale === 'en' ? 'Shue Yan history' : m.school}
         </div>
@@ -163,7 +168,12 @@ export function TimelineScene({
           </button>
         );
       })}
-      <aside className="education-panel" data-testid="education-panel">
+      <aside
+        className="education-panel"
+        data-testid="education-panel"
+        data-has-event={education?.year === focusYear}
+        aria-hidden={education?.year !== focusYear}
+      >
         <div className="eyebrow">
           <span>03 /</span> {m.education}
         </div>

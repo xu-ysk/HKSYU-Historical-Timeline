@@ -81,6 +81,9 @@ test('exhibition touch input enlarges hit areas, drags the timeline, and opens d
   await page.touchscreen.tap(12, 12);
   await expect(page.getByRole('dialog')).toHaveCount(0);
 
+  await expect(scene).toHaveAttribute('data-phase', 'idle');
+  await page.getByTestId('year-slider').fill('1949');
+  await expect(page.getByTestId('upper-rail-panel')).toHaveAttribute('data-has-event', 'true');
   const year = page.getByTestId('upper-rail-year');
   const yearBox = (await year.boundingBox())!;
   const yearPoint = { x: yearBox.x + yearBox.width / 2, y: yearBox.y + yearBox.height / 2 };

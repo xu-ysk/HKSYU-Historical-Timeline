@@ -364,6 +364,17 @@ h1 {
   padding: 12px;
   margin: -12px;
 }
+.upper-rail-panel,
+.education-panel {
+  transition: opacity 0.24s ease, visibility 0s;
+}
+.upper-rail-panel[data-has-event='false'],
+.education-panel[data-has-event='false'] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.24s ease, visibility 0s linear 0.24s;
+}
 .upper-rail-panel .eyebrow {
   display: flex;
   gap: 12px;

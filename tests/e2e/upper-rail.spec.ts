@@ -31,8 +31,14 @@ for (const size of [
     expect(upperBox.y + upperBox.height).toBeLessThan(educationBox.y);
 
     await page.getByTestId('year-slider').fill('1997');
+    await expect(upper).toHaveAttribute('data-has-event', 'false');
+    await expect(upper).toBeHidden();
+    await expect(education).toHaveAttribute('data-has-event', 'true');
+    await expect(education).toBeVisible();
+    await page.getByTestId('year-slider').fill('1999');
     await expect(page.getByTestId('upper-rail-year')).toHaveText('1999');
     await expect(page.getByTestId('upper-rail-title')).toBeVisible();
+    await expect(education).toBeHidden();
     await page.getByTestId('view-browse').click();
     await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
     await expect(page.getByTestId('upper-rail-panel')).toBeVisible();
