@@ -1,7 +1,7 @@
 .detail-scrim {
   position: absolute;
   inset: 0;
-  background: #f7f5f255;
+  background: transparent;
   z-index: 1600;
   pointer-events: none;
   opacity: var(--detail-progress, 0);
@@ -85,14 +85,6 @@
   scrollbar-width: thin;
   padding-right: 12px;
 }
-.detail-caption {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #aaa091;
-  padding-top: 18px;
-  margin-top: auto;
-}
 .photo-card[data-extracted='true'] {
   cursor: default;
   box-shadow:
@@ -102,6 +94,12 @@
 .photo-card[data-extracted='true'] .photo-top,
 .photo-card[data-extracted='true'] .photo-bottom {
   font-size: clamp(2px, calc(var(--letter-size, 12px) * 0.086), 9px);
+}
+.museum-app[data-detail-active='true'] :is(.masthead, .view-switch, .bottom-panel, .sync-warning),
+:is(.timeline-scene[data-phase='opening'], .timeline-scene[data-phase='detail'], .timeline-scene[data-phase='closing'])
+  :is(.track-lines, .year-tick, .education-dot, .upper-rail-marker, .photo-card:not([data-extracted='true'])) {
+  opacity: calc(1 - var(--detail-progress, 0));
+  pointer-events: none;
 }
 .timeline-scene[data-phase='opening'] .education-panel,
 .timeline-scene[data-phase='detail'] .education-panel,
@@ -147,8 +145,5 @@
   }
   .detail-theme {
     margin-bottom: 10px;
-  }
-  .detail-caption {
-    padding-top: 10px;
   }
 }

@@ -69,6 +69,9 @@ test('three, four and five photo groups use a complete non-overlapping collage i
         : cards.filter((card) => card.event.id === event.id);
     const rects = detailPhotoRects(group, view);
     expect(rects).toHaveLength(count);
+    const top = Math.min(...rects.map((rect) => rect.y));
+    const bottom = Math.max(...rects.map((rect) => rect.y + rect.height));
+    expect((top + bottom) / 2).toBeCloseTo(view.height / 2);
     expect(new Set(rects.map((rect) => `${Math.round(rect.x)}:${Math.round(rect.y)}`)).size).toBe(
       count,
     );

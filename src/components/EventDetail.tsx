@@ -78,11 +78,6 @@ export function EventDetail({
               {body}
             </div>
           )}
-          <div className="detail-caption">
-            {event.photos.length
-              ? String(event.photos.length).padStart(2, '0') + ' / ' + m.photos
-              : m.textOnly}
-          </div>
         </div>
       )}
     </section>

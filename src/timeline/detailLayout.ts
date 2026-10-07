@@ -9,12 +9,15 @@ export interface Rect {
   height: number;
 }
 export function detailRegions(view: Viewport, showText = true) {
+  const photosHeight = showText
+    ? Math.max(180, view.height - 435)
+    : Math.max(220, view.height - 250);
   return {
     photos: {
       x: 65,
-      y: showText ? 240 : 125,
+      y: (view.height - photosHeight) / 2,
       width: showText ? view.width * 0.61 - 65 : view.width - 130,
-      height: showText ? Math.max(180, view.height - 435) : Math.max(220, view.height - 250),
+      height: photosHeight,
     },
     text: {
       x: showText ? view.width * 0.68 : view.width + 65,
@@ -34,37 +37,54 @@ function contain(ratio: number, box: Rect): Rect {
     height,
   };
 }
+function centerVertically(rects: Rect[], box: Rect): Rect[] {
+  if (!rects.length) return rects;
+  const top = Math.min(...rects.map((rect) => rect.y));
+  const bottom = Math.max(...rects.map((rect) => rect.y + rect.height));
+  const shift = box.y + box.height / 2 - (top + bottom) / 2;
+  return rects.map((rect) => ({ ...rect, y: rect.y + shift }));
+}
 export function detailPhotoRects(cards: DisplayCard[], view: Viewport, showText = true): Rect[] {
   const box = detailRegions(view, showText).photos,
     gap = 20;
   const ratios = cards.map((c) => (c.photo ? c.photo.width / c.photo.height : 1.5));
-  if (cards.length <= 1) return ratios.map((r) => contain(r, box));
+  if (cards.length <= 1)
+    return centerVertically(
+      ratios.map((r) => contain(r, box)),
+      box,
+    );
   if (cards.length === 3) {
     const leftWidth = (box.width - gap) * 0.56,
       rightX = box.x + leftWidth + gap,
       rightWidth = box.width - leftWidth - gap,
       halfHeight = (box.height - gap) / 2;
-    return [
-      contain(ratios[0], { x: box.x, y: box.y, width: leftWidth, height: box.height }),
-      contain(ratios[1], { x: rightX, y: box.y, width: rightWidth, height: halfHeight }),
-      contain(ratios[2], {
-        x: rightX,
-        y: box.y + halfHeight + gap,
-        width: rightWidth,
-        height: halfHeight,
-      }),
-    ];
+    return centerVertically(
+      [
+        contain(ratios[0], { x: box.x, y: box.y, width: leftWidth, height: box.height }),
+        contain(ratios[1], { x: rightX, y: box.y, width: rightWidth, height: halfHeight }),
+        contain(ratios[2], {
+          x: rightX,
+          y: box.y + halfHeight + gap,
+          width: rightWidth,
+          height: halfHeight,
+        }),
+      ],
+      box,
+    );
   }
   if (cards.length === 4) {
     const halfWidth = (box.width - gap) / 2,
       halfHeight = (box.height - gap) / 2;
-    return ratios.map((ratio, index) =>
-      contain(ratio, {
-        x: box.x + (index % 2) * (halfWidth + gap),
-        y: box.y + Math.floor(index / 2) * (halfHeight + gap),
-        width: halfWidth,
-        height: halfHeight,
-      }),
+    return centerVertically(
+      ratios.map((ratio, index) =>
+        contain(ratio, {
+          x: box.x + (index % 2) * (halfWidth + gap),
+          y: box.y + Math.floor(index / 2) * (halfHeight + gap),
+          width: halfWidth,
+          height: halfHeight,
+        }),
+      ),
+      box,
     );
   }
   if (cards.length === 5) {
@@ -72,16 +92,19 @@ export function detailPhotoRects(cards: DisplayCard[], view: Viewport, showText 
       topWidth = (box.width - gap * 2) / 3,
       bottomWidth = (box.width - gap) / 2,
       bottomY = box.y + rowHeight + gap;
-    return ratios.map((ratio, index) => {
-      const topRow = index < 3,
-        column = topRow ? index : index - 3;
-      return contain(ratio, {
-        x: box.x + column * (topRow ? topWidth + gap : bottomWidth + gap),
-        y: topRow ? box.y : bottomY,
-        width: topRow ? topWidth : bottomWidth,
-        height: rowHeight,
-      });
-    });
+    return centerVertically(
+      ratios.map((ratio, index) => {
+        const topRow = index < 3,
+          column = topRow ? index : index - 3;
+        return contain(ratio, {
+          x: box.x + column * (topRow ? topWidth + gap : bottomWidth + gap),
+          y: topRow ? box.y : bottomY,
+          width: topRow ? topWidth : bottomWidth,
+          height: rowHeight,
+        });
+      }),
+      box,
+    );
   }
   const horizontal = ratios.map((r, i) =>
     contain(r, {
@@ -100,7 +123,7 @@ export function detailPhotoRects(cards: DisplayCard[], view: Viewport, showText 
     }),
   );
   const area = (rects: Rect[]) => rects.reduce((sum, r) => sum + r.width * r.height, 0);
-  return area(horizontal) >= area(vertical) ? horizontal : vertical;
+  return centerVertically(area(horizontal) >= area(vertical) ? horizontal : vertical, box);
 }
 export function detailPose(rect: Rect): Pose {
   return {
