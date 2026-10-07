@@ -5,7 +5,7 @@ for (const size of [
   { width: 1440, height: 900 },
   { width: 1920, height: 1080 },
 ])
-  test(`view switch sits below the language controls and the lower-left time box is out of the visual layout at ${size.width}px`, async ({
+  test(`view switch sits beside the language controls and the lower-left time box is out of the visual layout at ${size.width}px`, async ({
     page,
   }) => {
     await page.setViewportSize(size);
@@ -17,8 +17,12 @@ for (const size of [
     expect(languages).not.toBeNull();
     expect(viewSwitch).not.toBeNull();
     expect(navigation).not.toBeNull();
-    expect(viewSwitch!.y).toBeGreaterThanOrEqual(languages!.y + languages!.height);
-    expect(viewSwitch!.y).toBeLessThan(150);
+    expect(
+      Math.abs(
+        viewSwitch!.y + viewSwitch!.height / 2 - (languages!.y + languages!.height / 2),
+      ),
+    ).toBeLessThan(1);
+    expect(viewSwitch!.x).toBeGreaterThan(languages!.x + languages!.width);
     await expect(page.getByTestId('view-overview')).toHaveCSS('font-size', '13px');
     await expect(page.getByTestId('view-browse')).toHaveCSS('font-size', '13px');
     expect(navigation!.x).toBeGreaterThanOrEqual(0);

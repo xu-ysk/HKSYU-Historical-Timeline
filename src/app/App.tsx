@@ -105,6 +105,24 @@ export default function App() {
       <header className="masthead">
         <div className="header-top">
           <LanguageSwitcher locale={locale} onChange={setLocale} />
+          <div className="view-switch" data-testid="view-switch">
+            <button
+              disabled={detailActive}
+              data-testid="view-overview"
+              aria-pressed={mode === 'overview'}
+              onClick={() => controllerRef.current?.startMode('overview')}
+            >
+              {m.overview}
+            </button>
+            <button
+              disabled={detailActive}
+              data-testid="view-browse"
+              aria-pressed={mode === 'browse'}
+              onClick={() => controllerRef.current?.startMode('browse')}
+            >
+              {m.browse} ↗
+            </button>
+          </div>
         </div>
       </header>
       {error && data && <p className="sync-warning" role="status">{m.updateError}</p>}
@@ -129,24 +147,6 @@ export default function App() {
       {selected && (
         <EventDetail event={selected} locale={locale} phase={detail.phase} onClose={closeDetail} />
       )}
-      <div className="view-switch" data-testid="view-switch">
-        <button
-          disabled={detailActive}
-          data-testid="view-overview"
-          aria-pressed={mode === 'overview'}
-          onClick={() => controllerRef.current?.startMode('overview')}
-        >
-          {m.overview}
-        </button>
-        <button
-          disabled={detailActive}
-          data-testid="view-browse"
-          aria-pressed={mode === 'browse'}
-          onClick={() => controllerRef.current?.startMode('browse')}
-        >
-          {m.browse} ↗
-        </button>
-      </div>
       <footer className="bottom-panel">
         <div className="navigation-panel" data-testid="navigation-panel">
           <div className="current-year" data-testid="current-year">

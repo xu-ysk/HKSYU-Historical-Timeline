@@ -48,8 +48,9 @@ button {
 }
 .header-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 28px;
 }
 .languages {
   display: flex;
@@ -360,8 +361,8 @@ h1 {
 .upper-rail-panel {
   position: absolute;
   width: min(360px, 32vw);
-  left: max(250px, calc(47vw - 435px));
-  top: max(145px, calc(25vh - 80px));
+  left: 54px;
+  top: 104px;
   z-index: 1200;
   background: var(--page-surface);
   padding: 12px;
@@ -447,14 +448,12 @@ h1 {
   margin: 0;
 }
 .view-switch {
-  position: absolute;
-  left: 42px;
-  top: 92px;
-  bottom: auto;
+  position: static;
   z-index: 2000;
   display: flex;
   border-bottom: 1px solid #cfc8bd;
   gap: 24px;
+  pointer-events: auto;
 }
 .view-switch button {
   border: 0;
@@ -612,8 +611,6 @@ h1 {
   margin: -12px;
 }
 :where(.museum-app[data-mode='overview']) .upper-rail-panel {
-  left: clamp(240px, 18vw, 345px);
-  top: max(160px, calc(24vh - 45px));
   width: min(385px, 29vw);
 }
 :where(.museum-app[data-mode='overview']) .education-panel {
@@ -643,7 +640,6 @@ h1 {
     margin-bottom: 12px;
   }
   .upper-rail-panel {
-    top: 96px;
     width: 305px;
   }
   .upper-rail-panel .eyebrow {
@@ -681,6 +677,9 @@ h1 {
     left: 32px;
     right: 32px;
   }
+  .upper-rail-panel {
+    left: 44px;
+  }
   .bottom-panel {
     left: 32px;
     right: 32px;
@@ -693,16 +692,12 @@ h1 {
   .education-panel {
     right: 36px;
   }
-  :where(.museum-app[data-mode='overview']) .upper-rail-panel {
-    left: 190px;
-  }
   :where(.museum-app[data-mode='overview']) .bottom-panel {
     grid-template-columns: 1fr minmax(600px, 60%);
   }
 }
 @media (min-width: 1321px) and (max-width: 1600px) {
   :where(.museum-app[data-mode='overview']) .upper-rail-panel {
-    left: 190px;
     width: 350px;
   }
 }

@@ -52,8 +52,12 @@ for (const sample of [
     const languages = await page.locator('.languages').boundingBox(),
       viewSwitch = await page.getByTestId('view-switch').boundingBox();
     await expect(page.getByTestId('close-detail')).toHaveCount(0);
-    expect(viewSwitch!.y).toBeGreaterThanOrEqual(languages!.y + languages!.height);
-    expect(viewSwitch!.y).toBeLessThan(150);
+    expect(
+      Math.abs(
+        viewSwitch!.y + viewSwitch!.height / 2 - (languages!.y + languages!.height / 2),
+      ),
+    ).toBeLessThan(1);
+    expect(viewSwitch!.x).toBeGreaterThan(languages!.x + languages!.width);
     await expect(page.getByTestId('education-panel')).toBeHidden();
     await expect(page.getByTestId('upper-rail-panel')).toBeHidden();
     await expect(page.locator('[data-upper-year]:visible')).toHaveCount(0);
