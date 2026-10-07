@@ -4,7 +4,10 @@ import {
   direction,
   cardPose,
   browseStackZ,
-  upperYearOffsets,
+  yearLabelOffsets,
+  overviewUnit,
+  lengths,
+  trackEndpoints,
   groupPhotoOffset,
 } from '../../src/timeline/layout';
 import timeline from '../../public/timeline.json';
@@ -12,8 +15,12 @@ import { createMockTimeline } from '../../src/data/mockTimeline';
 import { toCards } from '../../src/domain/normalizeTimeline';
 import { eventPositions } from '../../src/timeline/albumTrack';
 
-test('real upper-rail years retain readable spacing through zoom, focus and resize', () => {
-  const years = timeline.upperRailEvents.map((event) => event.year);
+test('every rail year retains a label through zoom, focus and resize', () => {
+  const years = [
+    ...new Set(
+      [...timeline.upperRailEvents, ...timeline.educationEvents].map((event) => event.year),
+    ),
+  ].sort((a, b) => a - b);
   for (const view of [
     { width: 1280, height: 720 },
     { width: 1440, height: 900 },
@@ -21,20 +28,38 @@ test('real upper-rail years retain readable spacing through zoom, focus and resi
   ])
     for (const zoom of [0, 0.25, 0.5, 0.75, 1])
       for (const focus of [0, 0.4, 0.7, 1]) {
-        const values = { focus, zoom, endYear: 2026 };
-        const offsets = upperYearOffsets(years, view, values);
-        expect(offsets.size).toBeGreaterThanOrEqual(10);
-        if (zoom === 1) expect(offsets.size).toBe(years.length);
-        expect([...offsets.values()].every((offset) => offset <= 46)).toBe(true);
-        const labels = [...offsets.keys()].map((year) => {
-          const p = anchor(year, 'upper', view, values);
-          return { x: p.x, y: p.y - offsets.get(year)! };
-        });
-        labels.forEach((a, i) =>
-          labels.slice(i + 1).forEach((b) => {
-            expect(Math.abs(a.x - b.x) >= 36 || Math.abs(a.y - b.y) >= 20).toBe(true);
-          }),
-        );
+        const values = { focus, zoom, endYear: 2026, overviewYears: years };
+        for (const lane of ['upper', 'education'] as const) {
+          const laneYears = (
+            lane === 'upper' ? timeline.upperRailEvents : timeline.educationEvents
+          ).map((event) => event.year);
+          const labeledYears = lane === 'education' ? [...laneYears, 1980, 2026] : laneYears;
+          const offsets = yearLabelOffsets(labeledYears, lane, view, values);
+          expect(offsets.size).toBe(new Set(labeledYears).size);
+          const labels = [...offsets]
+            .map(([year, dy]) => {
+              const p = anchor(year, lane, view, values);
+              return {
+                x: p.x,
+                y: p.y + dy,
+                visible: p.x >= 0 && p.x <= view.width && p.y >= 0 && p.y <= view.height,
+              };
+            })
+            .filter((label) => label.visible);
+          if (zoom === 0) {
+            const visibleOffsets = [...offsets].filter(([year]) => {
+              const p = anchor(year, lane, view, values);
+              return p.x >= 0 && p.x <= view.width && p.y >= 0 && p.y <= view.height;
+            });
+            const above = visibleOffsets.filter(([, dy]) => dy < 0).length;
+            expect(Math.abs(above - (visibleOffsets.length - above))).toBeLessThanOrEqual(1);
+          }
+          labels.forEach((a, i) =>
+            labels.slice(i + 1).forEach((b) => {
+              expect(Math.abs(a.x - b.x) >= 29 || Math.abs(a.y - b.y) >= 15).toBe(true);
+            }),
+          );
+        }
       }
 });
 test('three lanes project each year onto exactly the same time axis at every zoom', () => {
@@ -61,6 +86,52 @@ test('three lanes project each year onto exactly the same time axis at every zoo
       expect((a.x - b.x) * direction.x + (a.y - b.y) * direction.y).toBeCloseTo(0);
       expect((a.x - upper.x) * direction.x + (a.y - upper.y) * direction.y).toBeCloseTo(0);
     }
+});
+test('overview rails reach the screen edges while photo endpoints remain visible', () => {
+  for (const view of [
+    { width: 1280, height: 720 },
+    { width: 1440, height: 900 },
+    { width: 1920, height: 1080 },
+  ]) {
+    const values = { focus: 0, zoom: 0, endYear: 2026 };
+    const photoEnd = anchor(2026, 'school', view, values);
+    expect(photoEnd.y).toBeGreaterThan(30);
+    expect(photoEnd.y).toBeLessThan(60);
+    for (const lane of ['upper', 'school', 'education'] as const) {
+      const { first, last } = trackEndpoints(lane, view, values);
+      expect(first.x < 0 || first.y > view.height).toBe(true);
+      expect(last.x > view.width || last.y < 0).toBe(true);
+    }
+  }
+});
+test('overview spaces every marked year across the full rail without changing browse', () => {
+  expect(overviewUnit(1949, 2026)).toBe(0);
+  expect(overviewUnit(1971, 2026)).toBeCloseTo(0.18);
+  expect(overviewUnit(2026, 2026)).toBe(1);
+  const view = { width: 1920, height: 1080 };
+  const overview = { focus: 0, zoom: 0, endYear: 2026 };
+  const browse = { ...overview, zoom: 1 };
+  const recentGap = Math.hypot(
+    anchor(2000, 'school', view, overview).x - anchor(1971, 'school', view, overview).x,
+    anchor(2000, 'school', view, overview).y - anchor(1971, 'school', view, overview).y,
+  );
+  expect(recentGap).toBeGreaterThan(750);
+  const years = [
+    ...new Set(
+      [...timeline.upperRailEvents, ...timeline.educationEvents].map((event) => event.year),
+    ),
+  ].sort((a, b) => a - b);
+  const marked = { ...overview, overviewYears: years };
+  const points = years.map((year) => anchor(year, 'upper', view, marked));
+  const minimum = (0.78 * lengths(view).overview) / years.length;
+  points.slice(1).forEach((point, index) => {
+    expect(Math.hypot(point.x - points[index].x, point.y - points[index].y)).toBeGreaterThanOrEqual(
+      minimum,
+    );
+  });
+  expect(anchor(2000, 'upper', view, { ...browse, overviewYears: years })).toEqual(
+    anchor(2000, 'upper', view, browse),
+  );
 });
 test('upper rail, photo rail and education rail use equal perpendicular spacing', () => {
   for (const zoom of [0, 0.5, 1])

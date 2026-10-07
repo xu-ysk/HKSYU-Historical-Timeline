@@ -276,7 +276,7 @@ h1 {
 }
 .year-tick {
   position: absolute;
-  transform: translate(4px, 10px);
+  transform: translate(-50%, -50%) translate(var(--year-label-x, 0px), var(--year-label-y, 20px));
   font:
     10px Georgia,
     serif;
@@ -295,29 +295,15 @@ h1 {
 }
 .upper-year-label {
   position: absolute;
-  bottom: calc(50% + var(--year-offset, 24px));
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(50% + var(--year-label-y, -20px));
+  left: calc(50% + var(--year-label-x, 0px));
+  transform: translate(-50%, -50%);
   font:
     10px Georgia,
     serif;
   color: #8f877a;
   white-space: nowrap;
   line-height: 12px;
-}
-.upper-rail-marker::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: calc(50% + 5px);
-  height: calc(var(--year-offset, 24px) - 9px);
-  width: 1px;
-  background: #ded9d1;
-  pointer-events: none;
-}
-.upper-rail-marker[data-label-visible='false'] .upper-year-label,
-.upper-rail-marker[data-label-visible='false']::before {
-  display: none;
 }
 .upper-year-dot {
   position: absolute;
@@ -343,15 +329,26 @@ h1 {
   border: 0;
   z-index: 1100;
 }
-.education-dot span {
+.education-year-dot {
   display: block;
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: #bcb3a4;
 }
-.education-dot:hover span {
+.education-dot:hover .education-year-dot {
   background: var(--theme-accent);
+}
+.education-year-label {
+  position: absolute;
+  left: calc(50% + var(--year-label-x, 0px));
+  top: calc(50% + var(--year-label-y, 20px));
+  transform: translate(-50%, -50%);
+  font: 10px Georgia, serif;
+  line-height: 12px;
+  color: #8f877a;
+  white-space: nowrap;
+  pointer-events: none;
 }
 .education-panel {
   position: absolute;
@@ -597,10 +594,6 @@ h1 {
   border: 0;
   border-radius: 0;
 }
-.header-top {
-  background: var(--page-surface);
-  box-shadow: 0 -20px 0 20px var(--page-surface);
-}
 .navigation-panel {
   position: absolute;
   left: 42px;
@@ -617,6 +610,26 @@ h1 {
   background: var(--page-surface);
   padding: 12px;
   margin: -12px;
+}
+:where(.museum-app[data-mode='overview']) .upper-rail-panel {
+  left: clamp(240px, 18vw, 345px);
+  top: max(160px, calc(24vh - 45px));
+  width: min(385px, 29vw);
+}
+:where(.museum-app[data-mode='overview']) .education-panel {
+  width: 400px;
+  right: clamp(42px, 3vw, 58px);
+  bottom: 230px;
+}
+:where(.museum-app[data-mode='overview']) .bottom-panel {
+  right: 36px;
+  bottom: 24px;
+  grid-template-columns: 1fr minmax(620px, 59%);
+}
+:where(.museum-app[data-mode='overview']) .theme-button {
+  min-height: 100px;
+  padding: 12px;
+  font-size: 11px;
 }
 @media (max-height: 760px) {
   .title-block {
@@ -655,6 +668,13 @@ h1 {
   .bottom-panel {
     bottom: 20px;
   }
+  :where(.museum-app[data-mode='overview']) .education-panel {
+    bottom: 186px;
+    width: 300px;
+  }
+  :where(.museum-app[data-mode='overview']) .upper-rail-panel {
+    width: 285px;
+  }
 }
 @media (max-width: 1320px) {
   .masthead {
@@ -672,6 +692,18 @@ h1 {
   }
   .education-panel {
     right: 36px;
+  }
+  :where(.museum-app[data-mode='overview']) .upper-rail-panel {
+    left: 190px;
+  }
+  :where(.museum-app[data-mode='overview']) .bottom-panel {
+    grid-template-columns: 1fr minmax(600px, 60%);
+  }
+}
+@media (min-width: 1321px) and (max-width: 1600px) {
+  :where(.museum-app[data-mode='overview']) .upper-rail-panel {
+    left: 190px;
+    width: 350px;
   }
 }
 

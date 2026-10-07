@@ -3,7 +3,7 @@ import type { TimelineDataset, Locale } from '../domain/timeline';
 import { localized, localizedYearLabel } from '../domain/timeline';
 import { toCards } from '../domain/normalizeTimeline';
 import { messages } from '../i18n/messages';
-import { anchor, cardPose } from './layout';
+import { anchor, cardPose, trackEndpoints } from './layout';
 import { PhotoCard } from './PhotoCard';
 import { TimelineController } from './TimelineController';
 import type { DetailState } from './timelineReducer';
@@ -31,18 +31,26 @@ export function TimelineScene({
   const ref = useRef<HTMLDivElement>(null);
   const [view] = useState(() => ({ width: window.innerWidth, height: window.innerHeight }));
   const cards = useMemo(() => toCards(data), [data]);
+  const overviewYears = useMemo(
+    () =>
+      [
+        ...new Set([...data.upperRailEvents, ...data.educationEvents].map((event) => event.year)),
+      ].sort((a, b) => a - b),
+    [data],
+  );
   useLayoutEffect(() => {
     if (!controllerRef.current)
       controllerRef.current = new TimelineController(
         ref.current!,
         cards,
         endYear,
+        overviewYears,
         onProgress,
         onMode,
         onDetail,
       );
-    else controllerRef.current.updateData(cards, endYear);
-  }, [cards, controllerRef, endYear, onMode, onProgress, onDetail]);
+    else controllerRef.current.updateData(cards, endYear, overviewYears);
+  }, [cards, controllerRef, endYear, overviewYears, onMode, onProgress, onDetail]);
   useLayoutEffect(
     () => () => {
       controllerRef.current?.destroy();
@@ -50,7 +58,7 @@ export function TimelineScene({
     },
     [controllerRef],
   );
-  const values = { focus: 0, zoom: 0, endYear },
+  const values = { focus: 0, zoom: 0, endYear, overviewYears },
     m = messages[locale];
   const education = data.educationEvents.reduce<(typeof data.educationEvents)[number] | undefined>(
     (best, event) =>
@@ -72,8 +80,7 @@ export function TimelineScene({
     >
       <svg className="track-lines" width="100%" height="100%" aria-hidden="true">
         {(['axis', 'upper', 'education'] as const).map((lane) => {
-          const a = anchor(1949, lane, view, values),
-            b = anchor(endYear, lane, view, values);
+          const { first: a, last: b } = trackEndpoints(lane, view, values);
           return (
             <line
               key={lane}
@@ -121,19 +128,21 @@ export function TimelineScene({
         />
       ))}
       <div className="detail-scrim" hidden />
-      {[1949, 1960, 1980, 2000, endYear].map((year) => {
-        const p = anchor(year, 'education', view, values);
-        return (
-          <span
-            key={year}
-            className="year-tick"
-            style={{ left: p.x, top: p.y }}
-            data-education-label={year}
-          >
-            {year}
-          </span>
-        );
-      })}
+      {[1949, 1960, 1980, 2000, endYear]
+        .filter((year) => !data.educationEvents.some((event) => event.year === year))
+        .map((year) => {
+          const p = anchor(year, 'education', view, values);
+          return (
+            <span
+              key={year}
+              className="year-tick"
+              style={{ left: p.x, top: p.y }}
+              data-education-label={year}
+            >
+              {year}
+            </span>
+          );
+        })}
       {data.upperRailEvents.map((event) => {
         const p = anchor(event.year, 'upper', view, values);
         return (
@@ -152,8 +161,10 @@ export function TimelineScene({
           </button>
         );
       })}
-      {data.educationEvents.map((event) => {
+      {data.educationEvents.map((event, index) => {
         const p = anchor(event.year, 'education', view, values);
+        const firstInYear =
+          data.educationEvents.findIndex((item) => item.year === event.year) === index;
         return (
           <button
             key={event.id}
@@ -164,7 +175,12 @@ export function TimelineScene({
             data-education-year={event.year}
             onClick={() => controllerRef.current?.goYear(event.year)}
           >
-            <span />
+            <span className="education-year-dot" aria-hidden="true" />
+            {firstInYear && (
+              <span className="education-year-label" aria-hidden="true">
+                {event.year}
+              </span>
+            )}
           </button>
         );
       })}

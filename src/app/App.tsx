@@ -97,6 +97,7 @@ export default function App() {
   return (
     <main
       className="museum-app"
+      data-mode={mode}
       data-detail-active={detailActive}
       data-active-theme={active ?? 'all'}
       onContextMenu={(event) => event.preventDefault()}

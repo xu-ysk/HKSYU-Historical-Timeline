@@ -9,6 +9,7 @@ export interface SceneValues {
   focus: number;
   zoom: number;
   endYear: number;
+  overviewYears?: readonly number[];
 }
 export interface Pose {
   x: number;
@@ -60,14 +61,42 @@ export function groupPhotoDisplacement(
 }
 export function lengths(view: Viewport) {
   return {
-    overview: Math.min((view.width - 220) / direction.x, (view.height - 455) / -direction.y),
+    overview: Math.min((view.width - 120) / direction.x, (view.height - 130) / -direction.y),
     browse: config.browseLength * Math.max(0.8, view.width / 1440),
   };
+}
+/** Spread every marked year across the overview rail while preserving chronology. */
+export function overviewUnit(year: number, endYear: number, years?: readonly number[]) {
+  if (years?.length) {
+    const knots = [...new Set([1949, ...years, endYear])]
+      .filter((item) => item >= 1949 && item <= endYear)
+      .sort((a, b) => a - b);
+    if (knots.length > 1) {
+      const gaps = knots.slice(1).map((item, index) => Math.sqrt(item - knots[index]));
+      const total = gaps.reduce((sum, gap) => sum + gap, 0);
+      const weights = gaps.map((gap) => 0.78 / gaps.length + (0.22 * gap) / total);
+      const bounded = Math.min(endYear, Math.max(1949, year));
+      let position = 0;
+      for (let index = 0; index < gaps.length; index++) {
+        const start = knots[index],
+          finish = knots[index + 1];
+        if (bounded <= finish)
+          return position + (weights[index] * (bounded - start)) / (finish - start);
+        position += weights[index];
+      }
+      return 1;
+    }
+  }
+  const scale = timeScale(endYear);
+  const unit = scale.toUnit(year);
+  const pivot = scale.toUnit(1971);
+  if (pivot <= 0 || pivot >= 1) return unit;
+  return unit <= pivot ? (unit * 0.18) / pivot : 0.18 + ((unit - pivot) * 0.82) / (1 - pivot);
 }
 export function anchor(year: number, lane: TimelineLane, view: Viewport, values: SceneValues) {
   const u = timeScale(values.endYear).toUnit(year),
     length = lengths(view);
-  const a = length.overview * (u - 0.5),
+  const a = length.overview * (overviewUnit(year, values.endYear, values.overviewYears) - 0.5),
     b = length.browse * (u - values.focus);
   const q = lerp(a, b + config.gap * Math.tanh(b / config.gapSoftness), values.zoom);
   // Keep the drawn photo axis on the school card centers, midway between the
@@ -78,21 +107,49 @@ export function anchor(year: number, lane: TimelineLane, view: Viewport, values:
     y: view.height * 0.49 + direction.y * q + normal.y * offset,
   };
 }
-/** Use at most two label rows; dense years retain their interactive rail dots. */
-export function upperYearOffsets(years: number[], view: Viewport, values: SceneValues) {
+/** Extend the drawn rails beyond the markers to the screen edges in overview. */
+export function trackEndpoints(lane: TimelineLane, view: Viewport, values: SceneValues) {
+  const first = anchor(1949, lane, view, values);
+  const last = anchor(values.endYear, lane, view, values);
+  const extra =
+    (Math.max(0, (view.width + 120) / direction.x - lengths(view).overview) / 2) *
+    (1 - values.zoom);
+  return {
+    first: { x: first.x - direction.x * extra, y: first.y - direction.y * extra },
+    last: { x: last.x + direction.x * extra, y: last.y + direction.y * extra },
+  };
+}
+/** Alternate year labels across each rail and use extra rows only for collisions. */
+export function yearLabelOffsets(
+  years: readonly number[],
+  lane: 'upper' | 'education',
+  view: Viewport,
+  values: SceneValues,
+) {
   const placed: { x: number; y: number }[] = [];
   const offsets = new Map<number, number>();
-  for (const year of [...new Set(years)].sort((a, b) => a - b)) {
-    const p = anchor(year, 'upper', view, values);
-    const offset = [24, 46].find(
-      (candidate) =>
-        !placed.some(
-          (label) => Math.abs(label.x - p.x) < 36 && Math.abs(label.y - (p.y - candidate)) < 20,
-        ),
-    );
-    if (offset === undefined) continue;
-    placed.push({ x: p.x, y: p.y - offset });
-    offsets.set(year, offset);
+  const above = [-20, -38, -56, -74, -92];
+  const below = [20, 38, 56, 74, 92];
+  for (const [index, year] of [...new Set(years)].sort((a, b) => a - b).entries()) {
+    const p = anchor(year, lane, view, values);
+    const aboveFirst = index % 2 === (lane === 'upper' ? 0 : 1);
+    if (p.x < 0 || p.x > view.width || p.y < 0 || p.y > view.height) {
+      offsets.set(year, aboveFirst ? -20 : 20);
+      continue;
+    }
+    const labelX = Math.min(view.width - 15, Math.max(15, p.x));
+    const candidates = aboveFirst ? [...above, ...below] : [...below, ...above];
+    const offset = candidates.find((candidate) => {
+      const y = p.y + candidate;
+      return (
+        y >= 8 &&
+        y <= view.height - 8 &&
+        placed.every((label) => Math.abs(label.x - labelX) >= 29 || Math.abs(label.y - y) >= 15)
+      );
+    });
+    const chosen = offset ?? (p.y > view.height / 2 ? -20 : 20);
+    placed.push({ x: labelX, y: p.y + chosen });
+    offsets.set(year, chosen);
   }
   return offsets;
 }
@@ -105,7 +162,7 @@ export function cardPose(
   const length = lengths(view),
     span = timeScale(values.endYear).span;
   const slot = card.countInYear > 1 ? card.slot / (card.countInYear - 1) - 0.5 : 0;
-  let delta = slot * 0.7;
+  let delta = slot * 0.9;
   if (card.event.year === 1949) delta += 0.35;
   if (card.event.year === values.endYear) delta -= 0.35;
   const offset = (delta * length.overview) / span;

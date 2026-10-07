@@ -4,15 +4,17 @@ import { themes, themeIds } from '../config/themes';
 import { sceneConfig } from '../config/scene';
 import {
   anchor,
-  upperYearOffsets,
+  yearLabelOffsets,
   browseStackZ,
   cardPose,
   chronologicalStackZ,
   direction,
   isOnscreen,
   lengths,
+  trackEndpoints,
   groupPhotoDisplacement,
   transform,
+  type SceneValues,
   type Viewport,
   type Pose,
 } from './layout';
@@ -23,7 +25,7 @@ import { detailPhotoRects, detailPose, extractPose, smoothStep } from './detailL
 import { eventPositions } from './albumTrack';
 
 export class TimelineController {
-  values: { focus: number; zoom: number; endYear: number };
+  values: SceneValues;
   view: Viewport;
   focusedId: string;
   mode: 'overview' | 'browse' = 'overview';
@@ -66,11 +68,12 @@ export class TimelineController {
     private root: HTMLDivElement,
     cards: DisplayCard[],
     endYear: number,
+    overviewYears: readonly number[],
     private onChange: (year: number, eventId: string) => void,
     private onMode: (mode: 'overview' | 'browse') => void,
     private onDetail: (state: DetailState) => void,
   ) {
-    this.values = { focus: 0, zoom: 0, endYear };
+    this.values = { focus: 0, zoom: 0, endYear, overviewYears };
     this.view = { width: root.clientWidth, height: root.clientHeight };
     this.events = [...new Map(cards.map((c) => [c.event.id, c.event])).values()];
     this.positions = eventPositions(this.events, endYear);
@@ -137,8 +140,9 @@ export class TimelineController {
       .closest<HTMLElement>('.museum-app')
       ?.style.setProperty('--theme-accent', theme ? themes[theme].color : '#796e5d');
   }
-  updateData(cards: DisplayCard[], endYear: number) {
+  updateData(cards: DisplayCard[], endYear: number, overviewYears: readonly number[]) {
     if (this.values.endYear !== endYear) this.rebase(endYear);
+    this.values.overviewYears = overviewYears;
     this.events = [...new Map(cards.map((c) => [c.event.id, c.event])).values()];
     this.positions = eventPositions(this.events, endYear);
     const elements = new Map(
@@ -485,10 +489,20 @@ export class TimelineController {
     ].join(':');
     if (trackPoseKey !== this.lastTrackPoseKey) {
       this.lastTrackPoseKey = trackPoseKey;
-      const upperOffsets = upperYearOffsets(
+      const upperOffsets = yearLabelOffsets(
         Array.from(this.root.querySelectorAll<HTMLElement>('[data-upper-year]'), (el) =>
           Number(el.dataset.upperYear),
         ),
+        'upper',
+        this.view,
+        this.values,
+      );
+      const educationOffsets = yearLabelOffsets(
+        Array.from(
+          this.root.querySelectorAll<HTMLElement>('[data-education-year],[data-education-label]'),
+          (el) => Number(el.dataset.educationYear ?? el.dataset.educationLabel),
+        ),
+        'education',
         this.view,
         this.values,
       );
@@ -508,12 +522,15 @@ export class TimelineController {
             p = anchor(year, lane, this.view, this.values);
           el.style.left = p.x + 'px';
           el.style.top = p.y + 'px';
-          if (el.dataset.upperYear) {
-            el.style.setProperty('--year-offset', `${upperOffsets.get(year) ?? 24}px`);
-            el.dataset.labelVisible = String(upperOffsets.has(year));
-          }
-          const visible =
-            p.x > 0 && p.x < this.view.width && p.y > 70 && p.y < this.view.height - 160;
+          el.style.setProperty(
+            '--year-label-y',
+            `${lane === 'upper' ? (upperOffsets.get(year) ?? -20) : (educationOffsets.get(year) ?? 20)}px`,
+          );
+          el.style.setProperty(
+            '--year-label-x',
+            `${Math.min(this.view.width - 15, Math.max(15, p.x)) - p.x}px`,
+          );
+          const visible = p.x >= 0 && p.x <= this.view.width && p.y >= 0 && p.y <= this.view.height;
           el.style.visibility = visible ? 'visible' : 'hidden';
           const interactive = Boolean(el.dataset.upperYear || el.dataset.educationYear);
           el.tabIndex = interactive && visible && !this.blocked ? 0 : -1;
@@ -521,8 +538,7 @@ export class TimelineController {
         });
       this.root.querySelectorAll<SVGLineElement>('[data-track]').forEach((el) => {
         const lane = el.dataset.track as 'axis' | 'upper' | 'education',
-          a = anchor(1949, lane, this.view, this.values),
-          b = anchor(this.values.endYear, lane, this.view, this.values);
+          { first: a, last: b } = trackEndpoints(lane, this.view, this.values);
         el.setAttribute('x1', String(a.x));
         el.setAttribute('y1', String(a.y));
         el.setAttribute('x2', String(b.x));

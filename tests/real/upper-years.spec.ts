@@ -29,7 +29,7 @@ for (const size of [
     await expect(page.locator('[data-upper-year]')).toHaveCount(28);
     await checkLabels(page);
     await page.screenshot({ path: test.info().outputPath('real-overview.png') });
-    const target = page.locator('[data-upper-year][data-label-visible="true"]:visible').last();
+    const target = page.locator('[data-upper-year]:visible').last();
     const year = await target.getAttribute('data-upper-year');
     await target.locator('.upper-year-label').click();
     await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
