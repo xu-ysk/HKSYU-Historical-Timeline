@@ -22,7 +22,9 @@ test('event copy follows the same focused year while both timelines remain', asy
     }
     if (hasEducation) {
       await expect(education).toBeVisible();
-      await expect(education.locator('.education-year')).toContainText(String(year));
+      await expect(education.locator('.education-year')).toHaveText(
+        year === 1949 ? '1949–1950' : String(year),
+      );
     } else {
       await expect(education).toBeHidden();
       await expect(education).toHaveCSS('opacity', '0');

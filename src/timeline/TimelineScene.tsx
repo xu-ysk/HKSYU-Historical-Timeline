@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { TimelineDataset, Locale } from '../domain/timeline';
-import { localized, localizedYearLabel } from '../domain/timeline';
+import { educationYearLabel, localized, localizedYearLabel } from '../domain/timeline';
 import { toCards } from '../domain/normalizeTimeline';
 import { messages } from '../i18n/messages';
 import { anchor, cardPose, trackEndpoints } from './layout';
@@ -195,7 +195,7 @@ export function TimelineScene({
         </div>
         {education ? (
           <div className="education-copy">
-            <span className="education-year">{localizedYearLabel(education, locale)}</span>
+            <span className="education-year">{educationYearLabel(education, locale)}</span>
             <div>
               <h2>{localized(education.title, locale)}</h2>
               <p>{localized(education.body, locale)}</p>

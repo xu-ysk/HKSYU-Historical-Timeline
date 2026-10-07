@@ -43,39 +43,21 @@ test('single, blank and both pair orientations preserve aspect ratios and fit le
     }
 });
 
-test('three, four and five photo groups use a complete non-overlapping collage inside the photo region', () => {
+test('photo pairs remain centered and non-overlapping inside the photo region', () => {
   const data = createMockTimeline(2026),
     cards = toCards(data),
     view = { width: 1440, height: 900 },
     regions = detailRegions(view);
-  const fiveSource = data.schoolEvents.find((item) => item.photos.length === 4)!;
-  const fiveEvent = {
-    ...fiveSource,
-    id: 'five-photo-fixture',
-    photoGroupId: 'five-photo-fixture',
-    photos: [...fiveSource.photos, { ...fiveSource.photos[0], id: 'five-photo-fixture-photo-5' }],
-  };
-  for (const count of [3, 4, 5]) {
-    const event = count === 5 ? fiveEvent : data.schoolEvents.find((item) => item.photos.length === count)!;
-    const group =
-      count === 5
-        ? fiveEvent.photos.map((photo, slot) => ({
-            id: `${fiveEvent.id}/${photo.id}`,
-            event: fiveEvent,
-            photo,
-            slot,
-            countInYear: fiveEvent.photos.length,
-          }))
-        : cards.filter((card) => card.event.id === event.id);
+  for (const event of data.schoolEvents.filter((item) => item.photos.length === 2).slice(0, 8)) {
+    const group = cards.filter((card) => card.event.id === event.id);
     const rects = detailPhotoRects(group, view);
-    expect(rects).toHaveLength(count);
+    expect(rects).toHaveLength(2);
     const top = Math.min(...rects.map((rect) => rect.y));
     const bottom = Math.max(...rects.map((rect) => rect.y + rect.height));
     expect((top + bottom) / 2).toBeCloseTo(view.height / 2);
     expect(new Set(rects.map((rect) => `${Math.round(rect.x)}:${Math.round(rect.y)}`)).size).toBe(
-      count,
+      2,
     );
-    expect(new Set(rects.map((rect) => Math.round(rect.y))).size).toBeGreaterThan(1);
     for (const rect of rects) {
       expect(rect.x).toBeGreaterThanOrEqual(regions.photos.x - 0.001);
       expect(rect.y).toBeGreaterThanOrEqual(regions.photos.y - 0.001);
@@ -97,6 +79,8 @@ test('three, four and five photo groups use a complete non-overlapping collage i
         expect(overlap).toBeLessThan(0.01);
       }
   }
+  const pair = cards.filter((card) => card.event.id === data.schoolEvents.find((item) => item.photos.length === 2)!.id);
+  expect(() => detailPhotoRects([...pair, pair[0]], view)).toThrow(/exceeds two photos/);
 });
 
 test('photo-only details use a centered full-width photo region', () => {

@@ -26,8 +26,6 @@ for (const sample of [
   { year: 1949, order: 1, count: 1, name: 'single' },
   { year: 1953, order: 3, count: 2, name: 'portrait-pair' },
   { year: 1956, order: 2, count: 2, name: 'landscape-pair' },
-  { year: 1956, order: 3, count: 3, name: 'three-photo-collage' },
-  { year: 1958, order: 1, count: 4, name: 'four-photo-collage' },
 ])
   test('extract and return ' + sample.name, async ({ page }) => {
     await page.goto('/');
@@ -75,7 +73,7 @@ for (const sample of [
         expect(box!.y + box!.height).toBeLessThan(710);
       }
     }
-    if (sample.count >= 3) {
+    if (sample.count === 2) {
       const boxes = await page.locator('[data-extracted=true]').evaluateAll((items) =>
         items.map((item) => {
           const box = item.getBoundingClientRect();

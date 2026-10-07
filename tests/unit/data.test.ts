@@ -43,7 +43,7 @@ describe('time and content contracts', () => {
       false,
     );
   });
-  test('V1.1 fixtures provide the upper rail and stable two-to-four photo groups', () => {
+  test('fixtures provide the upper rail and only blank, single or paired photos', () => {
     const data = normalizeTimeline(createMockTimeline(2026), 2026);
     expect(data.upperRailEvents.length).toBeGreaterThan(0);
     expect(data.upperRailEvents.every((event) => event.year >= 1949 && event.year <= 2026)).toBe(
@@ -58,12 +58,8 @@ describe('time and content contracts', () => {
       ),
     ).toBe(true);
     expect(data.schoolEvents.every((event) => event.photoGroupId.length > 0)).toBe(true);
-    expect(
-      data.schoolEvents.filter((event) => event.photos.length === 3).length,
-    ).toBeGreaterThanOrEqual(3);
-    expect(
-      data.schoolEvents.filter((event) => event.photos.length === 4).length,
-    ).toBeGreaterThanOrEqual(3);
+    expect(data.schoolEvents.every((event) => event.photos.length <= 2)).toBe(true);
+    expect(data.schoolEvents.filter((event) => event.photos.length === 2).length).toBeGreaterThan(3);
     expect(new Set(data.schoolEvents.map((event) => event.photoGroupId)).size).toBe(
       data.schoolEvents.length,
     );
@@ -79,11 +75,9 @@ describe('time and content contracts', () => {
     bad.schoolEvents[1].photos[0].width = 0;
     expect(() => normalizeTimeline(bad, 2026)).toThrow(/size/);
     const oversizedGroup = createMockTimeline(2026),
-      three = oversizedGroup.schoolEvents.find((event) => event.photos.length === 3)!,
-      two = oversizedGroup.schoolEvents.find((event) => event.photos.length === 2)!;
-    three.photos.push({ ...three.photos[0], id: `${three.id}-photo-overflow` });
-    two.photoGroupId = three.photoGroupId;
-    expect(() => normalizeTimeline(oversizedGroup, 2026)).toThrow(/exceeds five photos/);
+      pair = oversizedGroup.schoolEvents.find((event) => event.photos.length === 2)!;
+    pair.photos.push({ ...pair.photos[0], id: `${pair.id}-photo-overflow` });
+    expect(() => normalizeTimeline(oversizedGroup, 2026)).toThrow(/exceeds two photos/);
   });
   test('English sample copy is available in all interface languages', () => {
     expect(localized({ en: 'Sample' }, 'zh-Hant')).toBe('Sample');

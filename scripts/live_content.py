@@ -78,8 +78,8 @@ def validate(data: dict[str, object]) -> None:
                     for key in ("width", "height")
                 ):
                     raise ValueError(f"Invalid photo size: {photo_id}")
-    if any(size > 5 for size in groups.values()):
-        raise ValueError("Photo group exceeds five photos")
+    if any(size > 2 for size in groups.values()):
+        raise ValueError("Photo group exceeds two photos")
 
 
 class LiveContent:

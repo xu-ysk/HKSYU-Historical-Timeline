@@ -150,16 +150,10 @@ test('upper rail, photo rail and education rail use equal perpendicular spacing'
       expect(photoAxis.y).toBeCloseTo((upper.y + education.y) / 2, 6);
     }
 });
-test('three- and five-photo overview groups stay compact without changing two-photo or browse spacing', () => {
-  expect([0, 1, 2].map((index) => groupPhotoOffset(index, 3, 0))).toEqual([-7, 0, 7]);
-  expect([0, 1, 2, 3, 4].map((index) => groupPhotoOffset(index, 5, 0))).toEqual([
-    -14, -7, 0, 7, 14,
-  ]);
+test('paired photos retain their overview and browse spacing', () => {
   expect([0, 1].map((index) => groupPhotoOffset(index, 2, 0))).toEqual([-9, 9]);
-  expect([0, 1, 2].map((index) => groupPhotoOffset(index, 3, 1))).toEqual([-22, 22, 66]);
-  expect([0, 1, 2, 3, 4].map((index) => groupPhotoOffset(index, 5, 1))).toEqual([
-    -22, 22, 66, 110, 154,
-  ]);
+  expect([0, 1].map((index) => groupPhotoOffset(index, 2, 1))).toEqual([-22, 22]);
+  expect(() => groupPhotoOffset(0, 3, 0)).toThrow(/exceeds two photos/);
 });
 test('overview cards remain inside desktop windows including portrait cards', () => {
   for (const view of [

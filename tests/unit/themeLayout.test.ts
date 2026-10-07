@@ -11,7 +11,7 @@ import { toCards } from '../../src/domain/normalizeTimeline';
 
 test('photo group offsets align with the shared timeline during theme filtering', () => {
   for (const zoom of [0, 0.5, 1])
-    for (const count of [2, 3, 5])
+    for (const count of [1, 2])
       for (const scale of [0.35, 1])
         for (let index = 0; index < count; index++) {
           const offset = groupPhotoDisplacement(index, count, zoom, scale, 1);

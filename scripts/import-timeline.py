@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Build public/timeline.json from the supplied Excel workbook and photo mirror.
 
-The workbook currently contains malformed style metadata that makes some Excel
-readers reject it.  This importer only needs cell values, so it reads the
-standard worksheet XML directly and does not depend on workbook styling.
+Read the workbook XML directly so the marked editorial corrections can be
+applied without introducing an Excel dependency into the live publisher.
 """
 
 from __future__ import annotations
@@ -36,19 +35,32 @@ def text_value(value: object) -> str:
     return str(value).replace("\r\n", "\n").strip()
 
 
-def shared_strings(archive: zipfile.ZipFile) -> list[str]:
+def shared_strings(archive: zipfile.ZipFile) -> list[tuple[str, list[str]]]:
     root = ET.fromstring(archive.read("xl/sharedStrings.xml"))
-    values: list[str] = []
+    values: list[tuple[str, list[str]]] = []
     for item in root.findall(Q("si")):
-        values.append("".join(node.text or "" for node in item.iter(Q("t"))))
+        value = "".join(node.text or "" for node in item.iter(Q("t")))
+        red_spans: list[str] = []
+        red_text = ""
+        for run in item.findall(Q("r")):
+            text = "".join(node.text or "" for node in run.iter(Q("t")))
+            color = run.find(f"{Q('rPr')}/{Q('color')}")
+            if color is not None and (color.get("rgb") or "").upper().endswith("FF0000"):
+                red_text += text
+            elif red_text:
+                red_spans.append(red_text)
+                red_text = ""
+        if red_text:
+            red_spans.append(red_text)
+        values.append((value, red_spans))
     return values
 
 
-def cell_value(cell: ET.Element, strings: list[str]) -> str:
+def cell_value(cell: ET.Element, strings: list[tuple[str, list[str]]]) -> str:
     value = cell.find(Q("v"))
     raw = "" if value is None else value.text or ""
     if cell.get("t") == "s" and raw:
-        return strings[int(raw)]
+        return strings[int(raw)][0]
     if cell.get("t") == "inlineStr":
         return "".join(node.text or "" for node in cell.iter(Q("t")))
     return raw
@@ -58,9 +70,73 @@ def column_name(reference: str) -> str:
     return re.match(r"[A-Z]+", reference).group(0)  # type: ignore[union-attr]
 
 
-def worksheet_rows(archive: zipfile.ZipFile, strings: list[str]) -> list[dict[str, str]]:
+def yellow_style_ids(archive: zipfile.ZipFile) -> set[int]:
+    root = ET.fromstring(archive.read("xl/styles.xml"))
+    fills = root.find(Q("fills"))
+    styles = root.find(Q("cellXfs"))
+    if fills is None or styles is None:
+        return set()
+    yellow_fills = {
+        index
+        for index, fill in enumerate(fills)
+        if (color := fill.find(f"{Q('patternFill')}/{Q('fgColor')}")) is not None
+        and (color.get("rgb") or "").upper() in {"FFFFFF00", "00FFFF00"}
+    }
+    return {
+        index
+        for index, style in enumerate(styles)
+        if int(style.get("fillId", "0")) in yellow_fills
+    }
+
+
+# These two entire-cell annotations cannot be inferred from a short red run.
+WHOLE_CELL_CORRECTIONS = {
+    ("xl/worksheets/sheet1.xml", "C12"): (
+        "A Test of Graduate Qualifications and Professional Recognition (Recognition of Graduates' Professional Qualification)",
+        "A Test of Recognition of Graduates' Professional Qualification",
+    ),
+    ("xl/worksheets/sheet1.xml", "C28"): (
+        "Retitled as Hong Kong Shue Yan University: Hong Kong's First Private University (Title Changed to Hong Kong Shue Yan University—Hong Kong's First Private University)",
+        "Title Changed to Hong Kong Shue Yan University—Hong Kong's First Private University",
+    ),
+}
+
+
+def corrected_cell_value(
+    cell: ET.Element,
+    strings: list[tuple[str, list[str]]],
+    yellow_styles: set[int],
+    sheet_name: str,
+) -> str:
+    value = cell_value(cell, strings)
+    if int(cell.get("s", "0")) not in yellow_styles:
+        return value
+    key = (sheet_name, cell.get("r", ""))
+    if key in WHOLE_CELL_CORRECTIONS:
+        original, replacement = WHOLE_CELL_CORRECTIONS[key]
+        if value != original:
+            raise ValueError(f"Marked correction changed; review {key}: {value!r}")
+        return replacement
+    # An editor's note on the English semicolon is an instruction, not copy.
+    value = value.replace("；(change this to the english semicolon)", ";")
+    # In this one cell the old and replacement clauses occupy separate runs.
+    value = value.replace("be retitled as (change its title to)", "change its title to")
+    raw = cell.find(Q("v"))
+    red_spans = strings[int(raw.text)][1] if cell.get("t") == "s" and raw is not None and raw.text else []
+    for span in red_spans:
+        if span not in value:
+            continue
+        match = re.search(r"^(\s*)(.+?)\s*[（(]([^()（）]+)[）)]", span)
+        if match:
+            corrected = match.group(1) + match.group(3) + span[match.end():]
+            value = value.replace(span, corrected, 1)
+    return value
+
+
+def worksheet_rows(archive: zipfile.ZipFile, strings: list[tuple[str, list[str]]]) -> list[dict[str, str]]:
     """Return rows keyed by their header names, preserving worksheet order."""
     rows: list[dict[str, str]] = []
+    yellow_styles = yellow_style_ids(archive)
     for sheet_name in sorted(
         name for name in archive.namelist() if re.fullmatch(r"xl/worksheets/sheet\d+\.xml", name)
     ):
@@ -75,7 +151,9 @@ def worksheet_rows(archive: zipfile.ZipFile, strings: list[str]) -> list[dict[st
             continue
         for row in sheet_rows[1:]:
             values = {
-                headers[column_name(cell.get("r", ""))]: text_value(cell_value(cell, strings))
+                headers[column_name(cell.get("r", ""))]: text_value(
+                    corrected_cell_value(cell, strings, yellow_styles, sheet_name)
+                )
                 for cell in row.findall(Q("c"))
                 if column_name(cell.get("r", "")) in headers
             }
@@ -167,6 +245,8 @@ def photo_entries(row: dict[str, str], photo_root: Path) -> list[dict[str, objec
         for key in row
         if (match := re.fullmatch(r"photo-(\d+)", key))
     )
+    if sum(bool(text_value(row.get(f"photo-{index}"))) for index in photo_indices) > 2:
+        raise ValueError(f"Photo group exceeds two photos: {row['id']}")
     for index in photo_indices:
         source = text_value(row.get(f"photo-{index}"))
         if not source:
@@ -244,7 +324,7 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser.add_argument("--workbook", type=Path, default=Path("HKSYU Timeline.xlsx"))
     parser.add_argument("--photo-root", "--public-dir", type=Path, default=Path("."))
     parser.add_argument("--output", type=Path, default=Path("public/timeline.json"))
-    parser.add_argument("--revision", default="xlsx-2026-10-05")
+    parser.add_argument("--revision", default="xlsx-2026-10-07")
     args = parser.parse_args(argv)
     data = build(args.workbook, args.photo_root, args.revision)
     args.output.parent.mkdir(parents=True, exist_ok=True)

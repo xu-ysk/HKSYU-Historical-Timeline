@@ -13,15 +13,11 @@ export function createMockTimeline(endYear: number): TimelineDataset {
       const count =
         index === 0
           ? 0
-          : index % 29 === 0
-            ? 4
-            : index % 23 === 0
-              ? 3
-              : index % 13 === 0
-                ? 0
-                : index % 11 === 0
-                  ? 2
-                  : 1;
+          : index % 13 === 0
+            ? 0
+            : index % 11 === 0
+              ? 2
+              : 1;
       schoolEvents.push({
         id,
         year,

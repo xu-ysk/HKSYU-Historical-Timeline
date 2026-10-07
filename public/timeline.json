@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-2026-10-05",
+  "revision": "xlsx-2026-10-07",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -8,7 +8,7 @@
       "yearLabel": "1949",
       "orderInYear": 0,
       "title": {
-        "en": "Hu Hung Lick and Chung Chi Yung Study in Europe: From Law to Educational Commitment",
+        "en": "Hu Hung Lick and Chung Chi Yung Studied in Europe: From Law to Educational Commitment",
         "zh-Hant": "胡鴻烈、鍾期榮赴歐深造：從法律走向教育關懷",
         "zh-Hans": "胡鸿烈、钟期荣赴欧深造：从法律走向教育关怀"
       },
@@ -24,7 +24,7 @@
       "yearLabel": "1955",
       "orderInYear": 1,
       "title": {
-        "en": "The Couple Moves to Hong Kong: Toward Education and Public Service",
+        "en": "The Couple Moved to Hong Kong: Toward Education and Public Service",
         "zh-Hant": "兩人移居香港：走向教育與公共服務",
         "zh-Hans": "两人移居香港：走向教育与公共服务"
       },
@@ -72,12 +72,12 @@
       "yearLabel": "1972",
       "orderInYear": 4,
       "title": {
-        "en": "Shue Yan Secondary School Founded: Extending the Educational Ladder",
+        "en": "Shue Yan Secondary School Founded: Extending the Educational Spectrum",
         "zh-Hant": "樹仁中學創辦：延伸辦學階梯",
         "zh-Hans": "树仁中学创办：延伸办学阶梯"
       },
       "body": {
-        "en": "In 1972, Dr. Chung Chi Yung founded Shue Yan Secondary School, extending her educational practice from early childhood and primary education and youth nurturing to secondary education, gradually forming an articulated educational pathway from basic education to post-secondary education.",
+        "en": "In 1972, Dr. Chung Chi Yung founded Shue Yan Secondary School, which extended her educational practice from early childhood and primary education and youth nurturing to secondary education, gradually forming an articulated educational pathway from basic education to post-secondary education.",
         "zh-Hant": "1972年，鍾期榮博士創辦樹仁中學，使其教育實踐由幼小教育、青年培育延伸至中學教育，逐步形成由基礎教育至專上教育相連的辦學脈絡。",
         "zh-Hans": "1972年，钟期荣博士创办树仁中学，使其教育实践由幼小教育、青年培育延伸至中学教育，逐步形成由基础教育至专上教育相连的办学脉络。"
       }
@@ -152,7 +152,7 @@
       "yearLabel": "1980",
       "orderInYear": 9,
       "title": {
-        "en": "Braemar Hill Campus Construction Begins",
+        "en": "Braemar Hill Campus Construction Began",
         "zh-Hant": "寶馬山校園建設展開",
         "zh-Hans": "宝马山校园建设展开"
       },
@@ -168,14 +168,14 @@
       "yearLabel": "1982",
       "orderInYear": 10,
       "title": {
-        "en": "A Test of Graduate Qualifications and Professional Recognition",
-        "zh-Hant": "畢業生資格與專業認受的考驗",
-        "zh-Hans": "毕业生资格与专业认受的考验"
+        "en": "A Test of Recognition of Graduates' Professional Qualification",
+        "zh-Hant": "畢業生資格與專業認可的考驗",
+        "zh-Hans": "毕业生资格与专业认可的考验"
       },
       "body": {
         "en": "In the early 1980s, Shue Yan graduates continued to face institutional constraints in terms of remuneration, professional prospects, and qualification recognition, reflecting the complex position of private post-secondary education within Hong Kong's higher education system.",
-        "zh-Hant": "1980年代初，樹仁畢業生在薪酬待遇、專業出路及資格認受上仍面對制度限制，反映私立專上教育在香港高等教育體系中的複雜位置。",
-        "zh-Hans": "1980年代初，树仁毕业生在薪酬待遇、专业出路及资格认受上仍面对制度限制，反映私立专上教育在香港高等教育体系中的复杂位置。"
+        "zh-Hant": "1980年代初，樹仁畢業生在薪酬待遇、專業出路及資格認可上仍面對制度限制，反映私立專上教育在香港高等教育體系中的複雜位置。",
+        "zh-Hans": "1980年代初，树仁毕业生在薪酬待遇、专业出路及资格认可上仍面对制度限制，反映私立专上教育在香港高等教育体系中的复杂位置。"
       }
     },
     {
@@ -184,7 +184,7 @@
       "yearLabel": "1983",
       "orderInYear": 11,
       "title": {
-        "en": "New Campus Foundation Stone Laid: The Engineering Challenge of Building on a Steep Slope",
+        "en": "New Campus Foundation Stone Laid: The Construction Challenge of Building on a Steep Slope",
         "zh-Hant": "新校奠基：陡坡建校的工程考驗",
         "zh-Hans": "新校奠基：陡坡建校的工程考验"
       },
@@ -216,7 +216,7 @@
       "yearLabel": "1986",
       "orderInYear": 13,
       "title": {
-        "en": "New Campus Opening: Campus Development Enters a Stable Phase",
+        "en": "New Campus Opening: Campus Development Entered a Stable Phase",
         "zh-Hant": "新校舍開幕：校園發展進入穩定階段",
         "zh-Hans": "新校舍开幕：校园发展进入稳定阶段"
       },
@@ -312,12 +312,12 @@
       "yearLabel": "1999",
       "orderInYear": 19,
       "title": {
-        "en": "The Retitling Campaign under Higher Education Reform",
+        "en": "The Change of Title Campaign under Higher Education Reform",
         "zh-Hant": "高等教育改革下的正名行動",
         "zh-Hans": "高等教育改革下的正名行动"
       },
       "body": {
-        "en": "In 1999, Shue Yan established the Committee for the Attainment of Private University Status, advancing the demand for university retitling to the levels of policy advocacy, government response, and institutional review.",
+        "en": "In 1999, Shue Yan established the Committee for the Attainment of Private University Status, advancing the demand for the change of the university's title to the levels of policy advocacy, government response, and institutional review.",
         "zh-Hant": "1999年，樹仁成立「爭取私立大學地位委員會」，把大學正名訴求推進至政策倡議、政府回應與制度評審層面。",
         "zh-Hans": "1999年，树仁成立「争取私立大学地位委员会」，把大学正名要求推进至政策倡议、政府响应与制度评审层面。"
       }
@@ -328,12 +328,12 @@
       "yearLabel": "2000",
       "orderInYear": 20,
       "title": {
-        "en": "Academic Accreditation Begins: From Advocacy to Institutional Procedure",
+        "en": "Academic Accreditation Began: From Advocacy to Institutional Procedure",
         "zh-Hant": "展開學術評審：由倡議進入制度程序",
         "zh-Hans": "展开学术评审：由倡议进入制度程序"
       },
       "body": {
-        "en": "In 2000, Shue Yan applied to the Hong Kong Council for Academic Accreditation for institutional review, transforming the public demand for university retitling into a review process covering programmes, faculty, resources, and management systems.",
+        "en": "In 2000, Shue Yan applied to the Hong Kong Council for Academic Accreditation for institutional review, transforming the public demand for the change of the university's title into a review process covering programmes, faculty, resources, and management systems.",
         "zh-Hant": "2000年，樹仁向香港學術評審局申請院校評審，將大學正名的公共訴求轉化為課程、師資、資源及管理制度的審查程序。",
         "zh-Hans": "2000年，树仁向香港学术评审局申请院校评审，将大学正名的公共要求转化为课程、师资、资源及管理制度的审查程序。"
       }
@@ -408,7 +408,7 @@
       "yearLabel": "2005",
       "orderInYear": 25,
       "title": {
-        "en": "Multiple Programmes Complete Accreditation; First Cohort of Bachelor's Students Graduates",
+        "en": "Multiple Programmes Complete Accreditation; First Cohort of Bachelor's Students Graduated",
         "zh-Hant": "多個課程完成評審，首批學士學生畢業",
         "zh-Hans": "多个课程完成评审，首批学士学生毕业"
       },
@@ -424,12 +424,12 @@
       "yearLabel": "2006",
       "orderInYear": 26,
       "title": {
-        "en": "Retitled as Hong Kong Shue Yan University: Hong Kong's First Private University",
+        "en": "Title Changed to Hong Kong Shue Yan University—Hong Kong's First Private University",
         "zh-Hant": "正名為香港樹仁大學：香港首間私立大學",
         "zh-Hans": "正名为香港树仁大学：香港首间私立大学"
       },
       "body": {
-        "en": "In 2006, Shue Yan was approved by the Chief Executive in Council to be retitled as Hong Kong Shue Yan University, becoming Hong Kong's first private university.",
+        "en": "In 2006, Shue Yan was approved by the Chief Executive-in-Council to change its title to Hong Kong Shue Yan University, becoming Hong Kong's first private university.",
         "zh-Hant": "2006年，樹仁獲行政長官會同行政會議批准正名為香港樹仁大學，成為香港首間私立大學。",
         "zh-Hans": "2006年，树仁获行政长官会同行政会议批准正名为香港树仁大学，成为香港首间私立大学。"
       }
@@ -445,7 +445,7 @@
         "zh-Hans": "新校名正式启用：进入大学发展阶段"
       },
       "body": {
-        "en": "In February 2007, Hong Kong Shue Yan University held its retitling ceremony, officially adopting its new name and marking Shue Yan's transition from a post-secondary college to a new stage of university development.",
+        "en": "In February 2007, Hong Kong Shue Yan University held its change of title ceremony, officially adopting its new name and marking Shue Yan's transition from a post-secondary college to a new stage of university development.",
         "zh-Hant": "2007年2月，香港樹仁大學舉行正名典禮，新校名正式啟用，標誌樹仁由專上學院進入大學發展的新階段。",
         "zh-Hans": "2007年2月，香港树仁大学举行正名典礼，新校名正式启用，标志树仁由专上学院进入大学发展的新阶段。"
       }
@@ -465,8 +465,8 @@
         "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以响应本地专上教育学额不足。"
       },
       "body": {
-        "en": "Shue Yan established its Board of Governors, bringing together prominent leaders to advance university affairs and campus development. The Board of Governors included Chairman Wilfred Wong Sien-bing, and other members such as Sir Run Run Shaw, Ms. Aw Sian from Sing Tao Daily, Mr. Ngan Shing-kwan, founder of China Motor Corporation, Mr. Ting Hsiung-chao, one of the founders of the Hong Kong Plastics Manufacturers Association, Dr. Maurice J. Anderson, Mr. T. K. Ann, Bishop Gilbert Baker, Barrister Brook Bernacchi, Mr. Cha Chi Ming, Mr. Chan Po Fun, Mr. Chen Cunren, Dr. Chung Chi-yung, Rev. Fergus Cronin, Mr. Henry Hu, Mr. Huo Pao-tsai, Barrister Henry Litton, Mr. Liu Han-tang, Mr. Y. B. Loo, Mr. Peter P. K. Ng, Mr. Shum Choi Sang, Mr. Shum Wai-yau, Mr. Peter H. M. Tsang, Mr. C. S. Wan, and Mr. Yuen Ngan Ming.",
-        "zh-Hant": "樹仁成立校董會，匯聚賢達，推動校務與校舍建設。校董會成員包括主席黃宣平議員，校董成員包括邵逸夫先生、來自《星島日報》的胡仙女士、中華汽車創辦人顏成坤議員、香港塑膠業廠商會創會人之一丁熊照先生、晏務理博士、安子介議員、白約翰主教、貝納祺御用大律師、查濟民先生、陳普芬議員、陳存仁先生、鍾期榮博士、龔樂年神父、胡鴻烈議員、霍寶材先生、烈顯倫御用大律師、劉漢棟先生、陸蔭百先生、伍秉堅議員、岑才生先生、岑維休先生、曾漢文先生、萬基春先先生、阮雁鳴先生",
+        "en": "Shue Yan established its Board of Governors, bringing together prominent leaders to advance university affairs and campus development. The Board of Governors included Chairman Wilfred Wong Sien-bing, and other members such as Sir Run Run Shaw, Ms. Aw Sian from Sing Tao Daily, Mr. Ngan Shing-kwan, founder of China Motor Corporation, Mr. Ting Hsiung-chao, one of the founders of the Hong Kong Plastics Manufacturers Association, Dr. Maurice J. Anderson, Mr. T. K. Ann, Bishop Gilbert Baker, Barrister Brook Bernacchi, Mr. Cha Chi Ming, Mr. Chan Po Fun, Mr. Chen Chan-yen, Dr. Chung Chi-yung, Rev. Fergus Cronin, Mr. Henry Hu, Mr. Huo Pao-tsai, Barrister Henry Litton, Mr. Liu Han-tang, Mr. Y. B. Loo, Mr. Peter P. K. Ng, Mr. Shum Choi Sang, Mr. Shum Wai-yau, Mr. Peter H. M. Tsang, Mr. C. S. Wan, and Mr. Yuen Ngan Ming.",
+        "zh-Hant": "樹仁成立校董會，匯聚賢達，推動校務與校舍建設。校董會成員包括主席黃宣平議員，校董成員包括邵逸夫先生、來自《星島日報》的胡仙女士、中華汽車創辦人顏成坤議員、香港塑膠業廠商會創會人之一丁熊照先生、晏務理博士、安子介議員、白約翰主教、貝納祺御用大律師、查濟民先生、陳普芬議員、陳存仁先生、鍾期榮博士、龔樂年神父、胡鴻烈議員、霍寶材先生、烈顯倫御用大律師、劉漢棟先生、陸蔭百先生、伍秉堅議員、岑才生先生、岑維休先生、曾漢文先生、萬春先先生、阮雁鳴先生",
         "zh-Hans": "树仁成立校董会，汇聚贤达，推动校务与校舍建设。校董会成员包括主席黄宣平议员，校董成员包括邵逸夫先生、来自《星岛日报》的胡仙女士、中华汽车创办人颜成坤议员、香港塑料业厂商会创会人之一丁熊照先生、晏务理博士、安子介议员、白约翰主教、贝纳祺御用大律师、查济民先生、陈普芬议员、陈存仁先生、钟期荣博士、龚乐年神父、胡鸿烈议员、霍宝材先生、烈显伦御用大律师、刘汉栋先生、陆荫百先生、伍秉坚议员、岑才生先生、岑维休先生、曾汉文先生、万春先先生、阮雁鸣先生。"
       },
       "photos": [
@@ -1071,7 +1071,7 @@
       "photoGroupId": "P18",
       "title": {},
       "body": {
-        "en": "Shue Yan and the University of Alabama in the US jointly launched their first Master of Social Work programme to meet the demand forprofessionals in the field.",
+        "en": "Shue Yan and the University of Alabama in the US jointly launched their first Master of Social Work programme to meet the demand for professionals in the field.",
         "zh-Hant": "樹仁與美國阿拉巴馬大學合辦首個社會工作碩士課程，回應專業人才需求。",
         "zh-Hans": "树仁与美国阿拉巴马大学合办首个社会工作硕士课程，响应专业人才需求。"
       },
@@ -1671,7 +1671,7 @@
       "body": {
         "en": "Governor Chris Patten presented Principal Chung Chi-yung with the Badge of Honour in recognition of her community contributions.",
         "zh-Hant": "港督彭定康向校長鍾期榮頒授榮譽勳章，表揚其社區貢獻。",
-        "zh-Hans": "港督彭定康向校长钟期荣颁授荣誉勋章，表扬其小区贡献。"
+        "zh-Hans": "港督彭定康向校长钟期荣颁授荣誉勋章，表扬其社区贡献。"
       },
       "photos": [
         {
@@ -1741,9 +1741,9 @@
       "photoGroupId": "P38",
       "title": {},
       "body": {
-        "en": "Governor Chris Patten joined Chung Chi-yung and Henry Hu in hosting the opening of Shue Yan’s HK$100-million Library Complex, which greatly expanding campus resources.",
+        "en": "Governor Chris Patten joined Chung Chi-yung and Henry Hu in hosting the opening of Shue Yan’s HK$100-million Library Complex, which greatly expanded campus resources.",
         "zh-Hant": "港督彭定康與鍾期榮、胡鴻烈主持耗資一億元的圖書館綜合大樓啟用，顯著擴充校園資源。",
-        "zh-Hans": "港督彭定康与钟期荣、胡鸿烈主持耗资一亿元的图书馆综合大楼启用，显着扩充校园资源。"
+        "zh-Hans": "港督彭定康与钟期荣、胡鸿烈主持耗资一亿元的图书馆综合大楼启用，显著扩充校园资源。"
       },
       "photos": [
         {
@@ -2167,16 +2167,6 @@
           "alt": {
             "en": "P52 photograph 2"
           }
-        },
-        {
-          "id": "P52-photo-3",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2001/2001%EF%BC%882%EF%BC%89/image95.jpg",
-          "width": 1156,
-          "height": 728,
-          "alt": {
-            "en": "P52 photograph 3"
-          }
         }
       ]
     },
@@ -2497,7 +2487,7 @@
       "body": {
         "en": "The Faculty of Social Sciences underwent its five-year periodic programme review on 16 and 17 May.",
         "zh-Hant": "社會科學院於5月16至17日進行課程五年定期覆審。",
-        "zh-Hans": "社会科学院于5月16至17日进行课程五年定期覆审。"
+        "zh-Hans": "社会科学院于5月16至17日进行课程五年定期复审。"
       },
       "photos": [
         {
@@ -2523,7 +2513,7 @@
       "body": {
         "en": "The Faculty of Arts underwent its five-year periodic programme review on 22 and 23 May.",
         "zh-Hant": "文學院於5月22至23日進行課程五年定期覆審。",
-        "zh-Hans": "文学院于5月22至23日进行课程五年定期覆审。"
+        "zh-Hans": "文学院于5月22至23日进行课程五年定期复审。"
       },
       "photos": [
         {
@@ -2549,7 +2539,7 @@
       "body": {
         "en": "The  Faculty of Commerce underwent its five-year periodic programme review on 29 and 30 May.",
         "zh-Hant": "商學院於5月29至30日進行課程五年定期覆審。",
-        "zh-Hans": "商学院于5月29至30日进行课程五年定期覆审。"
+        "zh-Hans": "商学院于5月29至30日进行课程五年定期复审。"
       },
       "photos": [
         {
@@ -2573,7 +2563,7 @@
       "photoGroupId": "P67",
       "title": {},
       "body": {
-        "en": "The Hong Kong Government approved the renaming of Shue Yan College to Hong Kong Shue Yan University, making It the city’s first private university.",
+        "en": "The Hong Kong Government approved the change of title from Shue Yan College to Hong Kong Shue Yan University, making it the city’s first private university.",
         "zh-Hant": "香港政府批准樹仁學院正名為香港樹仁大學，成為全港首所私立大學。",
         "zh-Hans": "香港政府批准树仁学院正名为香港树仁大学，成为全港首所私立大学。"
       },
@@ -3217,7 +3207,7 @@
       "photoGroupId": "P88",
       "title": {},
       "body": {
-        "en": "Shue Yan received HK$20 million  from the iFREE Group to develop robotics laboratory and big-data facilities.",
+        "en": "Shue Yan received HK$20 million  from the iFREE Group to develop a robotics laboratory and big-data facilities.",
         "zh-Hant": "樹仁獲iFREE集團捐款二千萬港元，建設機械人實驗室及大數據設施。",
         "zh-Hans": "树仁获iFREE集团捐款二千万港元，建设机械人实验室及大数据设施。"
       },
@@ -3254,8 +3244,8 @@
       "title": {},
       "body": {
         "en": "Hong Kong Shue Yan University entered the QS Asia University Rankings for the first time in the 401–450 band, marking a new stage in its recognition in Asian higher education.",
-        "zh-Hant": "香港樹仁大學首次進入 QS 亞洲大學排名，位列 401–450 組別，標誌大學在亞洲高等教育界的認受性邁進新階段。",
-        "zh-Hans": "香港树仁大学首次进入 QS 亚洲大学排名，位列 401–450 组别，标志大学在亚洲高等教育界的认受性迈进新阶段。"
+        "zh-Hant": "香港樹仁大學首次進入 QS 亞洲大學排名，位列 401–450 組別，標誌大學在亞洲高等教育界的認可性邁進新階段。",
+        "zh-Hans": "香港树仁大学首次进入 QS 亚洲大学排名，位列 401–450 组别，标志大学在亚洲高等教育界的认可性迈进新阶段。"
       },
       "photos": []
     },
@@ -3537,8 +3527,8 @@
       "title": {},
       "body": {
         "en": "An interdisciplinary conference on youth-identity translated longitudinal research into practical insights for programmes, policy, and evidence-based youth development.",
-        "zh-Hant": "跨學科青年身份認同會議把縱向研究轉化為課程、政策及循證青年發展的實務洞見。",
-        "zh-Hans": "跨学科青年身份认同会议把纵向研究转化为课程、政策及循证青年发展的实务洞见。"
+        "zh-Hant": "跨學科青年身份認同會議把縱向研究轉化為課程、政策及循證青年發展的實務洞察。",
+        "zh-Hans": "跨学科青年身份认同会议把纵向研究转化为课程、政策及循证青年发展的实务洞察。"
       },
       "photos": [
         {
@@ -3820,7 +3810,7 @@
       "photoGroupId": "P107",
       "title": {},
       "body": {
-        "en": "The Bridging Grey Digital Divide and diversity in older ICT users post-COVID project advanced research on older adults’ use of technologyand promoted age-inclusive digital innovation.",
+        "en": "The Bridging Grey Digital Divide and diversity in older ICT users post-COVID project advanced research on older adults’ use of technology and promoted age-inclusive digital innovation.",
         "zh-Hant": "跨越灰色數碼鴻溝研究長者科技使用，推動年齡共融的數碼創新。",
         "zh-Hans": "跨越灰色数码鸿沟研究长者科技使用，推动年龄共融的数码创新。"
       },
@@ -4057,7 +4047,7 @@
       "photoGroupId": "P115",
       "title": {},
       "body": {
-        "en": "A one-stop internship platform began trial operation, integrating e-portfolios, employer connections, learning resources, and AI-assisted job matching.",
+        "en": "A one-stop internship platform began its trial operation, integrating e-portfolios, employer connections, learning resources, and AI-assisted job matching.",
         "zh-Hant": "一站式實習平台投入試行，整合電子履歷、僱主聯繫、學習資源及人工智能職位配對。",
         "zh-Hans": "一站式实习平台投入试行，整合电子履历、雇主联系、学习资源及人工智能职位配对。"
       },
@@ -4129,7 +4119,7 @@
       "photoGroupId": "P117",
       "title": {},
       "body": {
-        "en": "Shue Yan established its fourth Faculty, the Faculty of Communication, Information and Creative Industries. The faculty comprises the Department of Journalism and Communication and the Department of Data Science and Digital Innovation, formerly known as Applied Data Science.",
+        "en": "Shue Yan established its fourth Faculty, the Faculty of Communication, Information and Creative Industries. The faculty comprises the Department of Journalism and Communication and the Department of Data Science and Digital Innovation, formerly known as the Department of Applied Data Science.",
         "zh-Hant": "仁大成立第四個學院——傳播、資訊及創意產業學院。該學院由新聞與傳播學系，以及前稱應用數據科學的數據科學及數碼創新學系組成。",
         "zh-Hans": "仁大成立第四个学院——传播、资讯及创意产业学院。该学院由新闻与传播学系，以及前称应用数据科学的数据科学及数码创新学系组成。"
       },
@@ -4157,46 +4147,6 @@
           "height": 1380,
           "alt": {
             "en": "P118 photograph 1"
-          }
-        },
-        {
-          "id": "P118-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image181.jpg",
-          "width": 2508,
-          "height": 1382,
-          "alt": {
-            "en": "P118 photograph 2"
-          }
-        },
-        {
-          "id": "P118-photo-3",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image182.jpg",
-          "width": 2624,
-          "height": 1566,
-          "alt": {
-            "en": "P118 photograph 3"
-          }
-        },
-        {
-          "id": "P118-photo-4",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image183.jpg",
-          "width": 2840,
-          "height": 1610,
-          "alt": {
-            "en": "P118 photograph 4"
-          }
-        },
-        {
-          "id": "P118-photo-5",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image184.jpg",
-          "width": 2868,
-          "height": 1570,
-          "alt": {
-            "en": "P118 photograph 5"
           }
         }
       ]
@@ -4241,7 +4191,7 @@
       "yearLabel": "1957",
       "orderInYear": 2,
       "title": {
-        "en": "Association of Hong Kong Chinese Colleges Established；Chinese University of Hong Kong Established in 1963",
+        "en": "Association of Hong Kong Chinese Colleges Established; Chinese University of Hong Kong Established in 1963",
         "zh-Hant": "崇基學院、新亞書院和聯合書院組成「香港中文專上學校協會」，1963年香港中文大學成立",
         "zh-Hans": "崇基学院、新亚书院和联合书院组成「香港中文专上学校协会」，1963年香港中文大学成立"
       },
@@ -4342,7 +4292,7 @@
         "zh-Hans": "港府发表《教育委员会第三号报告书》"
       },
       "body": {
-        "en": "1988 Report No. 3 standardised Hong Kong's undergraduate degrees to three years and entry to two years of sixth form (S6–7).",
+        "en": "1988 Report No. 3 standardised Hong Kong's undergraduate degrees to three years and entry to two years of A-level (S6–7).",
         "zh-Hant": "報告提出「四改三」，統一香港高等教育學制為三年制課程，入學資格則統一為兩年制預科（中六、中七）畢業。",
         "zh-Hans": "报告提出「四改三」，统一香港高等教育学制为三年制课程，入学资格则统一为两年制预科（中六、中七）毕业。"
       }
@@ -4369,7 +4319,7 @@
       "yearLabel": "1990年代",
       "orderInYear": 10,
       "title": {
-        "en": "Wave of University Status Upgrading",
+        "en": "Wave of Upgrading into University",
         "zh-Hant": "香港「大學升格潮」",
         "zh-Hans": "香港「大学升格潮」"
       },
@@ -4433,12 +4383,12 @@
       "yearLabel": "2000-2002",
       "orderInYear": 14,
       "title": {
-        "en": "Launch of Associate Degree Programs",
+        "en": "Launch of Associate Degree Programmes",
         "zh-Hant": "推行副學士課程項目",
         "zh-Hans": "推行副学士课程项目"
       },
       "body": {
-        "en": "To achieve the goal of 60% post-secondary participation, the Government introduced Associate Degree programs in 2000 and encouraged universities and private institutions to offer self-financing post-secondary programs.",
+        "en": "To achieve the goal of 60% post-secondary participation, the Government introduced Associate Degree programmes in 2000 and encouraged universities and private institutions to offer self-financing post-secondary programmes.",
         "zh-Hant": "為達至六成青年接受專上教育的目標，政府於2000年推出副學士課程，鼓勵大學及私立院校開辦自資專上課程。",
         "zh-Hans": "为达至六成青年接受专上教育的目标，政府于2000年推出副学士课程，鼓励大学及私立院校开办自资专上课程。"
       }
@@ -4454,7 +4404,7 @@
         "zh-Hans": "提出打造香港成为区域教育枢纽理念"
       },
       "body": {
-        "en": "Proposed in the 2004 Policy Address, reaffirmed in 2007, and advanced by a 2006 cross bureau steering committee, the regional education hub initiative raised the non-local student quota for UGC-funded universities from 10% to 20%, eased entry rules, offered scholarships, and promoted Hong Kong education overseas.",
+        "en": "Proposed in the 2004 Policy Address, advanced by a 2006 cross bureau steering committee, and reaffirmed in 2007, the regional education hub initiative raised the non-local student quota for UGC-funded universities from 10% to 20%, eased entry rules, offered scholarships, and promoted Hong Kong education overseas.",
         "zh-Hant": "2004年《施政報告》首提，2006年設跨局委員會，2007年重申。主要措施包括：教資會資助院校非本地學生學額上限由10%提高至20%、、放寬入境、提供獎學金及海外推廣。",
         "zh-Hans": "2004年《施政报告》首提，2006年设跨局委员会，2007年重申。主要措施包括：教资会资助院校非本地学生学额上限由10%提高至20%、、放宽入境、提供奖学金及海外推广。"
       }

@@ -56,3 +56,6 @@ export const localizedYearLabel = (event: { year: number; yearLabel?: string }, 
   const label = event.yearLabel ?? String(event.year);
   return locale === 'en' ? label.replace(/(\d{4})年代/g, '$1s') : label;
 };
+
+export const educationYearLabel = (event: { year: number; yearLabel?: string }, locale: Locale) =>
+  localizedYearLabel(event, locale).replace(/(\d)(?:年代|s)$/, '$1');

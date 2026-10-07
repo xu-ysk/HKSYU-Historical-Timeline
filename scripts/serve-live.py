@@ -16,6 +16,11 @@ from live_content import LiveContent
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
+class TimelineHTTPServer(ThreadingHTTPServer):
+    # The overview requests many photographs at once on an exhibition screen.
+    request_queue_size = 256
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args: object, content: LiveContent, directory: Path, **kwargs: object) -> None:
         self.content = content
@@ -80,7 +85,7 @@ def main() -> None:
     watcher = threading.Thread(target=content.watch, args=(stop, args.poll_seconds), daemon=True)
     watcher.start()
     handler = partial(Handler, content=content, directory=args.dist)
-    server = ThreadingHTTPServer((args.host, args.port), handler)
+    server = TimelineHTTPServer((args.host, args.port), handler)
     print(f"Live site: http://{args.host}:{args.port}/", flush=True)
     try:
         server.serve_forever()

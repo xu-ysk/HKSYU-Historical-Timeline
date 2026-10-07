@@ -33,7 +33,7 @@ export function normalizeTimeline(data: TimelineDataset, endYear: number): Timel
     }
   }
   for (const [groupId, size] of photoGroupSizes)
-    if (size > 5) throw new Error(`Photo group exceeds five photos: ${groupId}`);
+    if (size > 2) throw new Error(`Photo group exceeds two photos: ${groupId}`);
   const compare = (a: { year: number; orderInYear: number; id: string }, b: typeof a) =>
     a.year - b.year || a.orderInYear - b.orderInYear || a.id.localeCompare(b.id);
   return {

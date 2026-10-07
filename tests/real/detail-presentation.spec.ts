@@ -5,7 +5,7 @@ test.use({ viewport: { width: 1920, height: 1080 } });
 for (const { id, year, count } of [
   { id: 'P58', year: 2004, count: 1 },
   { id: 'P54', year: 2001, count: 2 },
-  { id: 'P118', year: 2026, count: 5 },
+  { id: 'P118', year: 2026, count: 1 },
 ]) {
   test(`${id} keeps only centered left photos and right text in detail`, async ({ page }) => {
     await page.goto('/');
