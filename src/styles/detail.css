@@ -2,8 +2,8 @@
   position: absolute;
   inset: 0;
   background: transparent;
-  z-index: 1600;
-  pointer-events: none;
+  z-index: 2050;
+  pointer-events: auto;
   opacity: var(--detail-progress, 0);
 }
 .detail-scrim[hidden] {
@@ -12,10 +12,39 @@
 .event-detail {
   position: absolute;
   inset: 0;
-  pointer-events: auto;
+  pointer-events: none;
   z-index: 2100;
-  cursor: zoom-out;
+  cursor: default;
   outline: none;
+}
+.detail-close {
+  position: absolute;
+  left: 68%;
+  top: 184px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 8px;
+  border: 1px solid #c5bcab;
+  border-radius: 50%;
+  background: var(--paper);
+  color: #6b665a;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.detail-close svg {
+  width: 26px;
+  height: 26px;
+}
+.detail-close:hover,
+.detail-close:focus-visible {
+  border-color: var(--theme-accent);
+  color: var(--theme-accent);
+}
+.detail-close:focus-visible {
+  outline: 2px solid var(--theme-accent);
+  outline-offset: 3px;
 }
 .detail-text {
   opacity: clamp(0, calc((var(--detail-progress, 0) - 0.62) * 2.632), 1);
@@ -45,16 +74,14 @@
 }
 .detail-year {
   font:
-    58px Georgia,
-    serif;
+    58px var(--font-family);
   color: #6b665a;
   margin: 12px 0 20px;
   letter-spacing: -2px;
 }
 .detail-year > span {
   font:
-    22px Georgia,
-    serif;
+    22px var(--font-family);
   color: #c5bcab;
   margin-left: 18px;
 }
@@ -68,15 +95,13 @@
 }
 .detail-text h2 {
   font:
-    24px Georgia,
-    serif;
+    24px var(--font-family);
   font-weight: 400;
   margin: 0 0 18px;
 }
 .detail-body {
   font:
-    13px/1.85 'Segoe UI',
-    sans-serif;
+    13px/1.85 var(--font-family);
   white-space: pre-line;
   color: #827b6f;
   overflow-y: auto;
@@ -90,6 +115,16 @@
   box-shadow:
     0 2px 5px #473e3110,
     0 18px 45px #473e3112;
+}
+.photo-card-image[data-extracted='true'] {
+  cursor: zoom-in;
+  touch-action: none;
+}
+.photo-card-image[data-extracted='true'][data-photo-zoomed='true'] {
+  cursor: grab;
+}
+.photo-card-image[data-extracted='true'][data-photo-panning='true'] {
+  cursor: grabbing;
 }
 .photo-card[data-extracted='true'] .photo-top,
 .photo-card[data-extracted='true'] .photo-bottom {
@@ -127,14 +162,16 @@
 .event-navigation .open-focused {
   border: 0;
   font:
-    10px Georgia,
-    serif;
+    10px var(--font-family);
   max-width: 190px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 @media (max-height: 760px) {
+  .detail-close {
+    top: 190px;
+  }
   .detail-year {
     font-size: 42px;
     margin: 8px 0 10px;

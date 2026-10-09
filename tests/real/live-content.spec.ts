@@ -15,12 +15,14 @@ test('an open page receives a new workbook publication without navigation', asyn
   await expect(page.getByTestId('scene')).toBeVisible();
   await page.getByTestId('year-slider').fill('1971');
   await page.getByTestId('theme-B').click();
+  await page.clock.runFor(1500);
   const before = await page.getByTestId('focused-event').textContent();
+  const displayedYear = Number(await page.getByTestId('upper-rail-year').textContent());
   const updated = structuredClone(timeline);
-  updated.upperRailEvents.find((event) => event.year === 1971)!.title['zh-Hant'] =
+  updated.upperRailEvents.find((event) => event.year === displayedYear)!.title['zh-Hant'] =
     '已自動更新的校史內容';
   current = updated;
-  await page.clock.runFor(15000);
+  await page.clock.fastForward(15000);
   await expect(page.getByTestId('upper-rail-title')).toHaveText('已自動更新的校史內容');
   await expect(page.getByTestId('focused-event')).toHaveText(before!);
   await expect(page.getByTestId('theme-B')).toHaveAttribute('aria-pressed', 'true');

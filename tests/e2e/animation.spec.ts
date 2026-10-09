@@ -27,7 +27,7 @@ test('extracting a photo travels through intermediate positions using the origin
   expect(Math.max(...positions.slice(1).map((x, i) => Math.abs(x - positions[i])))).toBeLessThan(
     200,
   );
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 test('both photographs of a pair have an exposed mouse target', async ({ page }) => {
@@ -82,7 +82,7 @@ test('both photographs of a pair have an exposed mouse target', async ({ page })
     await page.mouse.click(point!.x, point!.y);
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
     await expect(page.locator('[data-extracted=true]')).toHaveCount(2);
-    await page.keyboard.press('Escape');
+    await page.getByTestId('close-detail').click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
   }
 });

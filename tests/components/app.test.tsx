@@ -8,13 +8,13 @@ test('application identifies the museum and marks sample content', () => {
   expect(screen.queryByText('HKSYU Museum Timeline')).not.toBeInTheDocument();
   expect(screen.getByRole('button', { name: '繁' })).toBeInTheDocument();
   expect(screen.getByRole('button', { name: '简' })).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: '英' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'EN' })).toBeInTheDocument();
   expect(screen.getByText(/展示內容為示例/)).toBeInTheDocument();
 });
 
 test('right-click menu is suppressed while ordinary clicks still work', () => {
   render(<App />);
-  const englishButton = screen.getByRole('button', { name: '英' });
+  const englishButton = screen.getByRole('button', { name: 'EN' });
   const contextMenu = new MouseEvent('contextmenu', {
     bubbles: true,
     cancelable: true,

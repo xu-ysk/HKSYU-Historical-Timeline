@@ -8,15 +8,16 @@ export interface Rect {
   width: number;
   height: number;
 }
-export function detailRegions(view: Viewport, showText = true) {
+export function detailRegions(view: Viewport, showText = true, photoCount = 3) {
+  const enlarged = showText && (photoCount <= 2 || photoCount === 5);
   const photosHeight = showText
-    ? Math.max(180, view.height - 435)
+    ? Math.max(180, view.height - (enlarged ? 300 : 435))
     : Math.max(220, view.height - 250);
   return {
     photos: {
       x: 65,
       y: (view.height - photosHeight) / 2,
-      width: showText ? view.width * 0.61 - 65 : view.width - 130,
+      width: showText ? view.width * (enlarged ? 0.65 : 0.61) - 65 : view.width - 130,
       height: photosHeight,
     },
     text: {
@@ -44,34 +45,101 @@ function centerVertically(rects: Rect[], box: Rect): Rect[] {
   const shift = box.y + box.height / 2 - (top + bottom) / 2;
   return rects.map((rect) => ({ ...rect, y: rect.y + shift }));
 }
-export function detailPhotoRects(cards: DisplayCard[], view: Viewport, showText = true): Rect[] {
-  const box = detailRegions(view, showText).photos,
+function capAdditionalUpscaling(
+  rect: Rect,
+  previous: Rect,
+  photo: DisplayCard['photo'],
+  pixelRatio: number,
+): Rect {
+  if (photo?.kind !== 'image') return rect;
+  // The published photo copy is limited to 2200 pixels on its longest side.
+  const publishedScale = Math.min(1, 2200 / Math.max(photo.width, photo.height));
+  const maxWidth = Math.max(previous.width, (photo.width * publishedScale) / pixelRatio);
+  const maxHeight = Math.max(previous.height, (photo.height * publishedScale) / pixelRatio);
+  const scale = Math.min(1, maxWidth / rect.width, maxHeight / rect.height);
+  return {
+    x: rect.x + (rect.width * (1 - scale)) / 2,
+    y: rect.y + (rect.height * (1 - scale)) / 2,
+    width: rect.width * scale,
+    height: rect.height * scale,
+  };
+}
+export function detailPhotoRects(
+  cards: DisplayCard[],
+  view: Viewport,
+  showText = true,
+  pixelRatio = 1,
+): Rect[] {
+  if (!cards.length) return [];
+  const box = detailRegions(view, showText, cards.length).photos,
     gap = 20;
   const ratios = cards.map((c) => (c.photo ? c.photo.width / c.photo.height : 1.5));
-  if (cards.length <= 1)
+  if (cards.length <= 1) {
+    const previous = contain(ratios[0], detailRegions(view, showText).photos);
     return centerVertically(
-      ratios.map((r) => contain(r, box)),
+      ratios.map((r, i) => capAdditionalUpscaling(contain(r, box), previous, cards[i].photo, pixelRatio)),
       box,
     );
-  if (cards.length > 2) throw new Error('Photo group exceeds two photos');
-  const horizontal = ratios.map((r, i) =>
-    contain(r, {
-      x: box.x + (i * (box.width + gap)) / cards.length,
-      y: box.y,
-      width: (box.width - gap * (cards.length - 1)) / cards.length,
-      height: box.height,
-    }),
+  }
+  if (cards.length > 5) throw new Error('Photo group exceeds five photos');
+  if (cards.length === 5) {
+    const rowGap = 16;
+    const cellWidth = (box.width - gap * 2) / 3;
+    const cellHeight = (box.height - rowGap) / 2;
+    const cells = ratios.map((ratio, i) =>
+      contain(ratio, {
+        x: box.x + (i < 3 ? i : i - 3 + 0.5) * (cellWidth + gap),
+        y: box.y + (i < 3 ? 0 : cellHeight + rowGap),
+        width: cellWidth,
+        height: cellHeight,
+      }),
+    );
+    return centerVertically(cells, box);
+  }
+  if (cards.length > 2) {
+    const columns = Math.ceil(cards.length / 2);
+    const rows = Math.ceil(cards.length / columns);
+    const cellWidth = (box.width - gap * (columns - 1)) / columns;
+    const cellHeight = (box.height - gap * (rows - 1)) / rows;
+    return centerVertically(
+      ratios.map((ratio, i) =>
+        contain(ratio, {
+          x: box.x + (i % columns) * (cellWidth + gap),
+          y: box.y + Math.floor(i / columns) * (cellHeight + gap),
+          width: cellWidth,
+          height: cellHeight,
+        }),
+      ),
+      box,
+    );
+  }
+  const pairRects = (region: Rect) => {
+    const horizontal = ratios.map((r, i) =>
+      contain(r, {
+        x: region.x + (i * (region.width + gap)) / cards.length,
+        y: region.y,
+        width: (region.width - gap * (cards.length - 1)) / cards.length,
+        height: region.height,
+      }),
+    );
+    const vertical = ratios.map((r, i) =>
+      contain(r, {
+        x: region.x,
+        y: region.y + (i * (region.height + gap)) / cards.length,
+        width: region.width,
+        height: (region.height - gap * (cards.length - 1)) / cards.length,
+      }),
+    );
+    const area = (rects: Rect[]) => rects.reduce((sum, r) => sum + r.width * r.height, 0);
+    return centerVertically(area(horizontal) >= area(vertical) ? horizontal : vertical, region);
+  };
+  const rects = pairRects(box);
+  if (!showText) return rects;
+  const previous = pairRects(detailRegions(view, showText).photos);
+  return centerVertically(
+    rects.map((rect, i) => capAdditionalUpscaling(rect, previous[i], cards[i].photo, pixelRatio)),
+    box,
   );
-  const vertical = ratios.map((r, i) =>
-    contain(r, {
-      x: box.x,
-      y: box.y + (i * (box.height + gap)) / cards.length,
-      width: box.width,
-      height: (box.height - gap * (cards.length - 1)) / cards.length,
-    }),
-  );
-  const area = (rects: Rect[]) => rects.reduce((sum, r) => sum + r.width * r.height, 0);
-  return centerVertically(area(horizontal) >= area(vertical) ? horizontal : vertical, box);
 }
 export function detailPose(rect: Rect): Pose {
   return {

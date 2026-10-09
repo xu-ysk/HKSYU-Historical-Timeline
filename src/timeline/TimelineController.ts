@@ -22,6 +22,14 @@ import { clamp, timeScale, rebaseFocus } from './timeScale';
 import { wheelPixels, dragProjection } from './input';
 import { detailReducer, initialDetail, type DetailState } from './timelineReducer';
 import { detailPhotoRects, detailPose, extractPose, smoothStep } from './detailLayout';
+import {
+  constrainPhotoPan,
+  initialPhotoZoom,
+  maxSharpScale,
+  zoomPhotoAt,
+  type PhotoSize,
+  type PhotoZoomState,
+} from './photoZoom';
 import { eventPositions } from './albumTrack';
 
 export class TimelineController {
@@ -49,6 +57,7 @@ export class TimelineController {
   private reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   private events: SchoolEvent[];
   private themeScales: Record<ThemeId, number> = { A: 1, B: 1, C: 1, D: 1, E: 1 };
+  private activeTheme: ThemeId | null = null;
   private detailState: DetailState = initialDetail;
   private detail = { progress: 0 };
   private returnFocus: HTMLElement | null = null;
@@ -61,6 +70,15 @@ export class TimelineController {
   private closingSources = new Map<string, Pose>();
   private closeStart = 1;
   private lastTrackPoseKey = '';
+  private photoZooms = new Map<string, PhotoZoomState>();
+  private photoPointers = new Map<number, { cardId: string; x: number; y: number }>();
+  private photoGesture: {
+    cardId: string;
+    start: PhotoZoomState;
+    centerX: number;
+    centerY: number;
+    distance: number;
+  } | null = null;
   private groupForEvent(eventId: string | null) {
     return this.events.find((event) => event.id === eventId)?.photoGroupId;
   }
@@ -121,6 +139,7 @@ export class TimelineController {
     });
   }
   setTheme(theme: ThemeId | null) {
+    this.activeTheme = theme;
     const target = Object.fromEntries(
       themeIds.map((id) => [
         id,
@@ -157,9 +176,16 @@ export class TimelineController {
     this.dirty = true;
   }
   open(eventId: string) {
-    if (this.blocked || this.drag?.moved || !this.events.some((e) => e.id === eventId)) return;
+    if (
+      this.blocked ||
+      this.drag?.moved ||
+      !this.events.some((e) => e.id === eventId) ||
+      (this.activeTheme && this.events.find((event) => event.id === eventId)?.themeId !== this.activeTheme)
+    )
+      return;
     const next = detailReducer(this.detailState, { type: 'open', eventId });
     if (next === this.detailState) return;
+    this.resetPhotoZoom();
     this.returnFocus = document.activeElement as HTMLElement;
     gsap.killTweensOf(this.values);
     this.wheelTarget = null;
@@ -195,6 +221,7 @@ export class TimelineController {
   close() {
     const next = detailReducer(this.detailState, { type: 'close' });
     if (next === this.detailState) return;
+    this.resetPhotoZoom();
     this.closeStart = this.detail.progress;
     this.closingSources = new Map(
       this.nodes
@@ -288,8 +315,165 @@ export class TimelineController {
         : best,
     );
   }
+  private photoSize(card: HTMLButtonElement): PhotoSize | null {
+    const image = card.querySelector<HTMLImageElement>('.photo-image');
+    if (!image?.naturalWidth || !image.naturalHeight || !card.clientWidth || !card.clientHeight)
+      return null;
+    return {
+      imageWidth: image.naturalWidth,
+      imageHeight: image.naturalHeight,
+      viewportWidth: card.clientWidth,
+      viewportHeight: card.clientHeight,
+    };
+  }
+  private photoAnchor(card: HTMLButtonElement, x: number, y: number) {
+    const rect = card.getBoundingClientRect();
+    return { x: x - rect.left - rect.width / 2, y: y - rect.top - rect.height / 2 };
+  }
+  private applyPhotoZoom(card: HTMLButtonElement, state: PhotoZoomState) {
+    this.photoZooms.set(card.dataset.cardId!, state);
+    const image = card.querySelector<HTMLImageElement>('.photo-image');
+    if (image) {
+      if (state.scale > 1.001)
+        image.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) scale(${state.scale})`;
+      else image.style.removeProperty('transform');
+    }
+    card.dataset.photoScale = state.scale.toFixed(3);
+    card.dataset.photoZoomed = String(state.scale > 1.001);
+  }
+  private resetPhotoZoom() {
+    const pointerIds = [...this.photoPointers.keys()];
+    this.photoPointers.clear();
+    this.photoGesture = null;
+    for (const id of pointerIds)
+      if (this.root.hasPointerCapture(id)) this.root.releasePointerCapture(id);
+    for (const { el } of this.nodes) {
+      el.querySelector<HTMLElement>('.photo-image')?.style.removeProperty('transform');
+      delete el.dataset.photoScale;
+      delete el.dataset.photoZoomed;
+      delete el.dataset.photoPanning;
+    }
+    this.photoZooms.clear();
+  }
+  private beginPhotoGesture(cardId: string) {
+    const card = this.nodes.find(({ card }) => card.id === cardId)?.el;
+    const points = [...this.photoPointers.values()].filter((point) => point.cardId === cardId);
+    if (!card || !points.length) {
+      this.photoGesture = null;
+      return;
+    }
+    const center = this.photoAnchor(
+      card,
+      points.reduce((sum, point) => sum + point.x, 0) / points.length,
+      points.reduce((sum, point) => sum + point.y, 0) / points.length,
+    );
+    this.photoGesture = {
+      cardId,
+      start: { ...(this.photoZooms.get(cardId) ?? initialPhotoZoom) },
+      centerX: center.x,
+      centerY: center.y,
+      distance: points.length === 2 ? Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y) : 0,
+    };
+  }
+  private startPhotoPointer(e: PointerEvent) {
+    if (this.detailState.phase !== 'detail' || e.button !== 0 || !(e.target instanceof Element))
+      return;
+    const card = e.target.closest<HTMLButtonElement>('.photo-card-image[data-extracted="true"]');
+    if (!card || !this.photoSize(card) || this.photoPointers.size >= 2) return;
+    const cardId = card.dataset.cardId!;
+    if ([...this.photoPointers.values()].some((point) => point.cardId !== cardId)) return;
+    if (e.pointerType === 'mouse' && (this.photoZooms.get(cardId)?.scale ?? 1) <= 1) return;
+    this.photoPointers.set(e.pointerId, { cardId, x: e.clientX, y: e.clientY });
+    this.root.setPointerCapture(e.pointerId);
+    this.beginPhotoGesture(cardId);
+    card.dataset.photoPanning = String((this.photoZooms.get(cardId)?.scale ?? 1) > 1);
+    e.preventDefault();
+  }
+  private movePhotoPointer(e: PointerEvent) {
+    const pointer = this.photoPointers.get(e.pointerId);
+    if (!pointer) return false;
+    pointer.x = e.clientX;
+    pointer.y = e.clientY;
+    const card = this.nodes.find(({ card }) => card.id === pointer.cardId)?.el;
+    const size = card && this.photoSize(card);
+    const gesture = this.photoGesture;
+    if (!card || !size || !gesture || gesture.cardId !== pointer.cardId) return true;
+    const points = [...this.photoPointers.values()].filter((point) => point.cardId === pointer.cardId);
+    const center = this.photoAnchor(
+      card,
+      points.reduce((sum, point) => sum + point.x, 0) / points.length,
+      points.reduce((sum, point) => sum + point.y, 0) / points.length,
+    );
+    let state: PhotoZoomState;
+    if (points.length === 2 && gesture.distance > 0) {
+      const distance = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+      const zoomed = zoomPhotoAt(
+        gesture.start,
+        (gesture.start.scale * distance) / gesture.distance,
+        gesture.centerX,
+        gesture.centerY,
+        size,
+        window.devicePixelRatio || 1,
+      );
+      state = constrainPhotoPan(
+        {
+          ...zoomed,
+          x: zoomed.x + center.x - gesture.centerX,
+          y: zoomed.y + center.y - gesture.centerY,
+        },
+        size,
+      );
+    } else {
+      state = constrainPhotoPan(
+        {
+          scale: gesture.start.scale,
+          x: gesture.start.x + center.x - gesture.centerX,
+          y: gesture.start.y + center.y - gesture.centerY,
+        },
+        size,
+      );
+    }
+    this.applyPhotoZoom(card, state);
+    e.preventDefault();
+    return true;
+  }
+  private endPhotoPointer(id: number) {
+    const pointer = this.photoPointers.get(id);
+    if (!pointer) return false;
+    this.photoPointers.delete(id);
+    if (this.root.hasPointerCapture(id)) this.root.releasePointerCapture(id);
+    const card = this.nodes.find(({ card }) => card.id === pointer.cardId)?.el;
+    if (card) card.dataset.photoPanning = 'false';
+    this.beginPhotoGesture(pointer.cardId);
+    return true;
+  }
   private wheel = (e: WheelEvent) => {
-    if (this.blocked || (e.target as HTMLElement).closest('.education-panel')) return;
+    if (this.blocked) {
+      const card =
+        this.detailState.phase === 'detail' && e.target instanceof Element
+          ? e.target.closest<HTMLButtonElement>('.photo-card-image[data-extracted="true"]')
+          : null;
+      if (card) {
+        e.preventDefault();
+        const size = this.photoSize(card);
+        if (!size) return;
+        const previous = this.photoZooms.get(card.dataset.cardId!) ?? initialPhotoZoom;
+        const anchor = this.photoAnchor(card, e.clientX, e.clientY);
+        this.applyPhotoZoom(
+          card,
+          zoomPhotoAt(
+            previous,
+            previous.scale * Math.exp(-wheelPixels(0, e.deltaY, e.deltaMode, this.view.height) * 0.002),
+            anchor.x,
+            anchor.y,
+            size,
+            window.devicePixelRatio || 1,
+          ),
+        );
+      }
+      return;
+    }
+    if ((e.target as HTMLElement).closest('.education-panel')) return;
     e.preventDefault();
     this.setMode('browse');
     const current = this.wheelTarget ?? Number(this.root.dataset.targetFocus ?? this.values.focus);
@@ -306,8 +490,11 @@ export class TimelineController {
     this.animate({ focus: target }, sceneConfig.wheelDuration);
   };
   private down = (e: PointerEvent) => {
+    if (this.blocked) {
+      this.startPhotoPointer(e);
+      return;
+    }
     if (
-      this.blocked ||
       e.button !== 0 ||
       (e.target as HTMLElement).closest('.education-panel,.education-dot,.upper-rail-marker')
     )
@@ -329,6 +516,7 @@ export class TimelineController {
     };
   };
   private move = (e: PointerEvent) => {
+    if (this.movePhotoPointer(e)) return;
     const drag = this.drag;
     if (!drag || drag.id !== e.pointerId) return;
     const dx = e.clientX - drag.x,
@@ -349,6 +537,7 @@ export class TimelineController {
     this.dirty = true;
   };
   private up = (e: PointerEvent) => {
+    if (this.endPhotoPointer(e.pointerId) || this.blocked) return;
     const tappedEventId =
       e.pointerType === 'touch' && this.drag?.id === e.pointerId && !this.drag.moved
         ? this.drag.tappedEventId
@@ -360,7 +549,11 @@ export class TimelineController {
       this.open(tappedEventId);
     }
   };
-  private cancel = () => {
+  private cancel = (e?: Event) => {
+    if (e && 'pointerId' in e && this.endPhotoPointer(Number(e.pointerId))) return;
+    if (!e || e.type === 'blur') {
+      for (const id of [...this.photoPointers.keys()]) this.endPhotoPointer(id);
+    }
     const id = this.drag?.id;
     if (this.drag?.moved) this.suppressClick = true;
     this.drag = null;
@@ -405,6 +598,66 @@ export class TimelineController {
     if (lineMix > 0) p.z = chronologicalStackZ(this.stackIndices.get(card.id)!);
     return p;
   }
+  private placeUpperYearLabels() {
+    const markers = Array.from(this.root.querySelectorAll<HTMLElement>('[data-upper-year]'));
+    if (this.values.zoom < 0.9 || this.blocked) {
+      markers.forEach((marker) => (marker.dataset.labelVisible = 'true'));
+      return;
+    }
+    const visibleCards = this.nodes.filter(({ el }) => el.style.visibility === 'visible');
+    const cardBoxes = new Map<HTMLElement, DOMRect>();
+    type Box = Pick<DOMRect, 'left' | 'right' | 'top' | 'bottom'>;
+    const placedLabels: Box[] = [];
+    const updates: { marker: HTMLElement; offset: number; visible: boolean }[] = [];
+    const overlaps = (a: Box, b: Box) =>
+      a.left < b.right + 2 && a.right + 2 > b.left && a.top < b.bottom + 2 && a.bottom + 2 > b.top;
+    for (const marker of markers) {
+      if (marker.style.visibility !== 'visible') continue;
+      const label = marker.querySelector<HTMLElement>('.upper-year-label');
+      if (!label) continue;
+      const x = Number.parseFloat(marker.style.left);
+      const y = Number.parseFloat(marker.style.top);
+      const nearby = visibleCards.filter(({ card }) => {
+        const pose = this.rendered.get(card.id);
+        return pose && Math.abs(pose.x - x) < 260 && Math.abs(pose.y - y) < 260;
+      });
+      const preferred = Number.parseFloat(marker.style.getPropertyValue('--year-label-y'));
+      const offsets = [...new Set([preferred, -20, -38, -56, -74, -92, -110])];
+      // Measure once, then test translated boxes without forcing a layout after each candidate.
+      const original = label.getBoundingClientRect();
+      let placed = false;
+      for (const offset of offsets) {
+        const delta = offset - preferred;
+        const box = {
+          left: original.left,
+          right: original.right,
+          top: original.top + delta,
+          bottom: original.bottom + delta,
+        };
+        if (box.top < 0 || box.bottom > this.view.height) continue;
+        if (placedLabels.some((other) => overlaps(box, other))) continue;
+        if (nearby.some(({ el }) => {
+          let cardBox = cardBoxes.get(el);
+          if (!cardBox) {
+            cardBox = el.getBoundingClientRect();
+            cardBoxes.set(el, cardBox);
+          }
+          return overlaps(box, cardBox);
+        })) continue;
+        placedLabels.push(box);
+        placed = true;
+        updates.push({ marker, offset, visible: true });
+        break;
+      }
+      if (!placed) updates.push({ marker, offset: preferred, visible: false });
+    }
+    for (const marker of markers)
+      if (marker.style.visibility !== 'visible') marker.dataset.labelVisible = 'true';
+    for (const { marker, offset, visible } of updates) {
+      marker.style.setProperty('--year-label-y', `${offset}px`);
+      marker.dataset.labelVisible = String(visible);
+    }
+  }
   private tick = () => {
     if (!this.dirty || this.disposed) return;
     this.dirty = false;
@@ -440,6 +693,7 @@ export class TimelineController {
         selected.map((n) => n.card),
         this.view,
         showDetailText,
+        window.devicePixelRatio || 1,
       );
     const scrim = this.root.querySelector<HTMLElement>('.detail-scrim');
     if (scrim) scrim.hidden = !this.blocked;
@@ -468,9 +722,10 @@ export class TimelineController {
         p.y += direction.y * retreat;
       }
       const visible = extracted || isOnscreen(p, this.view);
-      const visibility = visible ? 'visible' : 'hidden',
-        tabIndex = visible && !this.blocked ? 0 : -1,
-        pointer = this.blocked ? 'none' : '';
+      const themeVisible = !this.activeTheme || card.event.themeId === this.activeTheme,
+        visibility = visible ? 'visible' : 'hidden',
+        tabIndex = visible && themeVisible && !this.blocked ? 0 : -1,
+        pointer = (this.blocked && !(extracted && this.detailState.phase === 'detail' && card.photo?.kind === 'image')) || !themeVisible ? 'none' : '';
       if (el.style.visibility !== visibility) {
         el.style.visibility = visibility;
         el.style.willChange = visible ? 'transform' : 'auto';
@@ -484,9 +739,22 @@ export class TimelineController {
         letter = Number((p.width * 0.34).toFixed(2)) + 'px';
       if (el.style.width !== width) el.style.width = width;
       if (el.style.height !== height) el.style.height = height;
+      const zoom = this.photoZooms.get(card.id);
+      if (zoom && extracted && this.detailState.phase === 'detail') {
+        const size = this.photoSize(el);
+        if (size) {
+          const adjusted = constrainPhotoPan(
+            { ...zoom, scale: Math.min(zoom.scale, maxSharpScale(size, window.devicePixelRatio || 1)) },
+            size,
+          );
+          if (adjusted.scale !== zoom.scale || adjusted.x !== zoom.x || adjusted.y !== zoom.y)
+            this.applyPhotoZoom(el, adjusted);
+        }
+      }
       el.style.transform = transform(p);
       this.rendered.set(card.id, { ...p });
-      if (el.style.zIndex !== String(p.z)) el.style.zIndex = String(p.z);
+      const zIndex = extracted && this.detailState.phase === 'detail' && card.photo?.kind === 'image' ? 2075 : p.z;
+      if (el.style.zIndex !== String(zIndex)) el.style.zIndex = String(zIndex);
       if (el.style.getPropertyValue('--letter-size') !== letter)
         el.style.setProperty('--letter-size', letter);
     }
@@ -497,6 +765,7 @@ export class TimelineController {
       this.view.width,
       this.view.height,
       this.blocked,
+      this.activeTheme,
     ].join(':');
     if (trackPoseKey !== this.lastTrackPoseKey) {
       this.lastTrackPoseKey = trackPoseKey;
@@ -555,6 +824,7 @@ export class TimelineController {
         el.setAttribute('x2', String(b.x));
         el.setAttribute('y2', String(b.y));
       });
+      this.placeUpperYearLabels();
     }
   };
   destroy() {
@@ -567,6 +837,7 @@ export class TimelineController {
     gsap.killTweensOf(this.root.closest('.museum-app'));
     gsap.ticker.remove(this.tick);
     this.observer.disconnect();
+    this.resetPhotoZoom();
     this.cancel();
     this.root.removeEventListener('wheel', this.wheel);
     this.root.removeEventListener('pointerdown', this.down);

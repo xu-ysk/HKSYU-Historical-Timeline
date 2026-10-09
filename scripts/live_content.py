@@ -11,6 +11,8 @@ from math import isfinite
 from pathlib import Path
 from typing import Callable
 
+from photo_assets import sync_photos
+
 
 def load_importer() -> Callable[[Path, Path, str], dict[str, object]]:
     path = Path(__file__).with_name("import-timeline.py")
@@ -78,8 +80,8 @@ def validate(data: dict[str, object]) -> None:
                     for key in ("width", "height")
                 ):
                     raise ValueError(f"Invalid photo size: {photo_id}")
-    if any(size > 2 for size in groups.values()):
-        raise ValueError("Photo group exceeds two photos")
+    if any(size > 5 for size in groups.values()):
+        raise ValueError("Photo group exceeds five photos")
 
 
 class LiveContent:
@@ -89,11 +91,13 @@ class LiveContent:
         photo_root: Path,
         output: Path,
         builder: Callable[[Path, Path, str], dict[str, object]] | None = None,
+        optimize_photos: bool = False,
     ) -> None:
         self.workbook = workbook
         self.photo_root = photo_root
         self.output = output
         self.builder = builder or load_importer()
+        self.optimize_photos = optimize_photos
         self.signature: str | None = None
         self.last_error: str | None = None
 
@@ -113,6 +117,8 @@ class LiveContent:
             return False
         data = self.builder(self.workbook, self.photo_root, f"xlsx-{signature[:16]}")
         validate(data)
+        if self.optimize_photos:
+            sync_photos(data, self.photo_root, self.output.parent / "Historical_Timeline_Images")
         payload = (json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
         self.output.parent.mkdir(parents=True, exist_ok=True)
         temporary = self.output.with_name(self.output.name + ".tmp")

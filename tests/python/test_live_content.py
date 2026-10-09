@@ -14,6 +14,7 @@ from urllib.request import urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from live_content import LiveContent  # noqa: E402
+from photo_assets import sync_photos  # noqa: E402
 
 
 serve_path = Path(__file__).resolve().parents[2] / "scripts/serve-live.py"
@@ -60,6 +61,60 @@ class LiveContentTest(unittest.TestCase):
 
     def read(self):
         return json.loads(self.output.read_text(encoding="utf-8"))
+
+    def test_web_photo_copies_are_cached_and_originals_stay_unchanged(self):
+        from PIL import Image
+
+        source = self.photos / "1971/image1.jpg"
+        source.parent.mkdir()
+        Image.new("RGB", (2600, 1600), "#7591a2").save(source, format="JPEG")
+        original = source.read_bytes()
+        data = {"schoolEvents": [{"photos": [
+            {"src": "Historical_Timeline_Images/1971/image1.jpg"}
+        ]}]}
+        target = self.root / "public/Historical_Timeline_Images"
+        self.assertEqual(sync_photos(data, self.root, target), 1)
+        with Image.open(target / "1971/image1.jpg") as image:
+            self.assertLessEqual(max(image.size), 2200)
+        self.assertEqual(source.read_bytes(), original)
+        self.assertEqual(sync_photos(data, self.root, target), 0)
+        self.assertEqual(sync_photos({"schoolEvents": []}, self.root, target), 0)
+        self.assertFalse((target / "1971/image1.jpg").exists())
+
+    def test_live_server_serves_the_optimized_photo_copy(self):
+        from PIL import Image
+
+        source = self.photos / "1971/image1.jpg"
+        source.parent.mkdir()
+        Image.new("RGB", (2600, 1600), "#7591a2").save(source, format="JPEG")
+        original = source.read_bytes()
+        build = self.content.builder
+
+        def with_photo(workbook, photo_root, revision):
+            data = build(workbook, photo_root, revision)
+            data["schoolEvents"][0]["photos"] = [{
+                "id": "P01-photo-1", "kind": "image",
+                "src": "Historical_Timeline_Images/1971/image1.jpg",
+                "width": 2600, "height": 1600,
+            }]
+            return data
+
+        self.content.builder = with_photo
+        self.content.optimize_photos = True
+        self.content.refresh()
+        dist = self.root / "dist"
+        dist.mkdir()
+        server = ThreadingHTTPServer(
+            ("127.0.0.1", 0), partial(Handler, content=self.content, directory=dist)
+        )
+        serving = threading.Thread(target=server.serve_forever, daemon=True)
+        serving.start()
+        self.addCleanup(server.server_close)
+        self.addCleanup(server.shutdown)
+        with urlopen(f"http://127.0.0.1:{server.server_port}/Historical_Timeline_Images/1971/image1.jpg") as response:
+            delivered = response.read()
+        self.assertNotEqual(delivered, original)
+        self.assertEqual(delivered, (self.output.parent / "Historical_Timeline_Images/1971/image1.jpg").read_bytes())
 
     def test_publishes_changed_source_without_rebuilding_site(self):
         self.assertTrue(self.content.refresh())

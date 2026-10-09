@@ -1,5 +1,5 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
-import type { TimelineDataset, Locale } from '../domain/timeline';
+import type { TimelineDataset, Locale, ThemeId } from '../domain/timeline';
 import { educationYearLabel, localized, localizedYearLabel } from '../domain/timeline';
 import { toCards } from '../domain/normalizeTimeline';
 import { messages } from '../i18n/messages';
@@ -16,6 +16,7 @@ export function TimelineScene({
   onProgress,
   controllerRef,
   focusYear,
+  activeTheme,
   onDetail,
 }: {
   data: TimelineDataset;
@@ -26,11 +27,23 @@ export function TimelineScene({
   onProgress: (year: number, eventId: string) => void;
   controllerRef: React.RefObject<TimelineController | null>;
   focusYear: number;
+  activeTheme: ThemeId | null;
   onDetail: (state: DetailState) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [view] = useState(() => ({ width: window.innerWidth, height: window.innerHeight }));
   const cards = useMemo(() => toCards(data), [data]);
+  const activeThemeYears = useMemo(
+    () =>
+      activeTheme
+        ? new Set(
+            data.schoolEvents
+              .filter((event) => event.themeId === activeTheme)
+              .map((event) => event.year),
+          )
+        : null,
+    [activeTheme, data.schoolEvents],
+  );
   const overviewYears = useMemo(
     () =>
       [
@@ -60,12 +73,18 @@ export function TimelineScene({
   );
   const values = { focus: 0, zoom: 0, endYear, overviewYears },
     m = messages[locale];
-  const education = data.educationEvents.reduce<(typeof data.educationEvents)[number] | undefined>(
+  const visibleEducationEvents = activeThemeYears
+    ? data.educationEvents.filter((event) => activeThemeYears.has(event.year))
+    : data.educationEvents;
+  const visibleUpperRailEvents = activeThemeYears
+    ? data.upperRailEvents.filter((event) => activeThemeYears.has(event.year))
+    : data.upperRailEvents;
+  const education = visibleEducationEvents.reduce<(typeof data.educationEvents)[number] | undefined>(
     (best, event) =>
       !best || Math.abs(event.year - focusYear) < Math.abs(best.year - focusYear) ? event : best,
     undefined,
   );
-  const upperRail = data.upperRailEvents.reduce<(typeof data.upperRailEvents)[number] | undefined>(
+  const upperRail = visibleUpperRailEvents.reduce<(typeof data.upperRailEvents)[number] | undefined>(
     (best, event) =>
       !best || Math.abs(event.year - focusYear) < Math.abs(best.year - focusYear) ? event : best,
     undefined,
@@ -123,13 +142,15 @@ export function TimelineScene({
           key={card.id}
           card={card}
           locale={locale}
+          revision={data.revision}
           pose={cardPose(card, view, values)}
           onSelect={(id) => controllerRef.current?.open(id)}
         />
       ))}
       <div className="detail-scrim" hidden />
       {[1949, 1960, 1980, 2000, endYear]
-        .filter((year) => !data.educationEvents.some((event) => event.year === year))
+        .filter((year) => !visibleEducationEvents.some((event) => event.year === year))
+        .filter((year) => !activeThemeYears || activeThemeYears.has(year))
         .map((year) => {
           const p = anchor(year, 'education', view, values);
           return (
@@ -143,7 +164,7 @@ export function TimelineScene({
             </span>
           );
         })}
-      {data.upperRailEvents.map((event) => {
+      {visibleUpperRailEvents.map((event) => {
         const p = anchor(event.year, 'upper', view, values);
         return (
           <button
@@ -161,10 +182,10 @@ export function TimelineScene({
           </button>
         );
       })}
-      {data.educationEvents.map((event, index) => {
+      {visibleEducationEvents.map((event, index) => {
         const p = anchor(event.year, 'education', view, values);
         const firstInYear =
-          data.educationEvents.findIndex((item) => item.year === event.year) === index;
+          visibleEducationEvents.findIndex((item) => item.year === event.year) === index;
         return (
           <button
             key={event.id}

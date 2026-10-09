@@ -153,7 +153,13 @@ test('upper rail, photo rail and education rail use equal perpendicular spacing'
 test('paired photos retain their overview and browse spacing', () => {
   expect([0, 1].map((index) => groupPhotoOffset(index, 2, 0))).toEqual([-9, 9]);
   expect([0, 1].map((index) => groupPhotoOffset(index, 2, 1))).toEqual([-22, 22]);
-  expect(() => groupPhotoOffset(0, 3, 0)).toThrow(/exceeds two photos/);
+  expect([0, 1, 2, 3, 4].map((index) => groupPhotoOffset(index, 5, 0))).toEqual([
+    -16, -8, 0, 8, 16,
+  ]);
+  expect([0, 1, 2, 3, 4].map((index) => groupPhotoOffset(index, 5, 1))).toEqual([
+    -88, -44, 0, 44, 88,
+  ]);
+  expect(() => groupPhotoOffset(0, 6, 0)).toThrow(/exceeds five photos/);
 });
 test('overview cards remain inside desktop windows including portrait cards', () => {
   for (const view of [

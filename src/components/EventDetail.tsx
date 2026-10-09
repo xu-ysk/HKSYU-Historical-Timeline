@@ -15,7 +15,7 @@ export function EventDetail({
   phase: DetailPhase;
   onClose: () => void;
 }) {
-  const dialogRef = useRef<HTMLElement>(null),
+  const closeRef = useRef<HTMLButtonElement>(null),
     bodyRef = useRef<HTMLDivElement>(null),
     m = messages[locale],
     title = localized(event.title, locale),
@@ -23,40 +23,47 @@ export function EventDetail({
     hasText = Boolean(title || body),
     placeholderOnly = !event.photos.some((photo) => photo.kind !== 'placeholder');
   useEffect(() => {
-    dialogRef.current?.focus();
+    closeRef.current?.focus();
     const key = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Tab') {
         e.preventDefault();
-        onClose();
-      } else if (e.key === 'Tab') {
-        e.preventDefault();
-        bodyRef.current?.focus({ preventScroll: true });
+        if (body && !placeholderOnly && bodyRef.current && document.activeElement === closeRef.current)
+          bodyRef.current.focus({ preventScroll: true });
+        else closeRef.current?.focus({ preventScroll: true });
       }
     };
     window.addEventListener('keydown', key);
     return () => window.removeEventListener('keydown', key);
-  }, [onClose]);
+  }, [body, placeholderOnly]);
   return (
     <section
-      ref={dialogRef}
       className={'event-detail' + (placeholderOnly ? ' event-detail-placeholder' : '')}
       role="dialog"
       aria-modal="true"
-      tabIndex={-1}
       aria-labelledby={hasText ? 'event-title' : undefined}
       aria-describedby={hasText ? 'detail-body detail-dismiss-hint' : 'detail-dismiss-hint'}
       data-testid="event-detail"
       data-event={event.id}
       data-phase={phase}
       data-placeholder-only={placeholderOnly ? 'true' : 'false'}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClose();
-      }}
+      onClick={(e) => e.stopPropagation()}
     >
       <span className="sr-only" id="detail-dismiss-hint">
         {m.dismissDetail}
       </span>
+      <button
+        ref={closeRef}
+        type="button"
+        className="detail-close"
+        data-testid="close-detail"
+        aria-label={m.close}
+        title={m.close}
+        onClick={onClose}
+      >
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M25 16H7m0 0 7-7m-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
       {hasText && (
         <div className="detail-text" data-testid="detail-text">
           <div className="detail-year">

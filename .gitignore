@@ -7,10 +7,9 @@ test-results/
 playwright-report/
 *.log
 
-# Local source materials; keep the workbook and original photo package outside git.
-/HKSYU Timeline.xlsx
+# Keep temporary Excel lock files and generated photo stamps out of git.
 /~$*.xlsx
-/Historical_Timeline_Images/
+/public/.photo-source-stamps.json
 /style1.png
 /style2.png
 /style3.png

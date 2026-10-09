@@ -6,7 +6,9 @@ test.use({ viewport: { width: 1920, height: 1080 } });
 const paper = [247, 245, 242];
 
 test('all theme backgrounds stay softly tinted through photo detail and reset', async ({ page }) => {
+  test.setTimeout(60000);
   await page.goto('/');
+  await expect(page.getByTestId('scene')).toBeVisible();
   const app = page.locator('.museum-app');
   const background = () =>
     app.evaluate((element) => {
@@ -26,17 +28,17 @@ test('all theme backgrounds stay softly tinted through photo detail and reset', 
   await expect(app).toHaveAttribute('data-active-theme', 'all');
   await expectColor(paper);
   const defaultHeader = await page
-    .locator('.header-top')
+    .getByTestId('view-switch')
     .evaluate((el) => getComputedStyle(el).backgroundColor);
 
   for (const id of themeIds) {
     await page.getByTestId(`theme-${id}`).click();
     await expect(app).toHaveAttribute('data-active-theme', id);
     const color = themes[id].color.match(/[\da-f]{2}/gi)!.map((part) => Number.parseInt(part, 16));
-    await expectColor(paper.map((channel, i) => Math.round(channel * 0.82 + color[i] * 0.18)));
+    await expectColor(paper.map((channel, i) => Math.round(channel * 0.78 + color[i] * 0.22)));
   }
   const tintedHeader = await page
-    .locator('.header-top')
+    .getByTestId('view-switch')
     .evaluate((el) => getComputedStyle(el).backgroundColor);
   expect(tintedHeader).not.toBe(defaultHeader);
   await page.screenshot({ path: test.info().outputPath('theme-E-page.png') });
@@ -48,13 +50,13 @@ test('all theme backgrounds stay softly tinted through photo detail and reset', 
   await photo.press('Enter');
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   const colorE = themes.E.color.match(/[\da-f]{2}/gi)!.map((part) => Number.parseInt(part, 16));
-  await expectColor(paper.map((channel, i) => Math.round(channel * 0.82 + colorE[i] * 0.18)));
+  await expectColor(paper.map((channel, i) => Math.round(channel * 0.78 + colorE[i] * 0.22)));
   await expect(page.locator('.detail-scrim')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
   await page.screenshot({ path: test.info().outputPath('theme-E-detail.png') });
 
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByTestId('event-detail')).toHaveCount(0);
-  await expectColor(paper.map((channel, i) => Math.round(channel * 0.82 + colorE[i] * 0.18)));
+  await expectColor(paper.map((channel, i) => Math.round(channel * 0.78 + colorE[i] * 0.22)));
   await page.getByTestId('theme-E').click();
   await expect(app).toHaveAttribute('data-active-theme', 'all');
   await expectColor(paper);

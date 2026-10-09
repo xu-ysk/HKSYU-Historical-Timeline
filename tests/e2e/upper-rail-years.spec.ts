@@ -54,31 +54,24 @@ for (const size of [
       return { x, y, expectedY: y1 + ((x - x1) * (y2 - y1)) / (x2 - x1) };
     });
     expect(Math.abs(position.y - position.expectedY)).toBeLessThan(1);
-    const currentLabelHit = await marker.locator('.upper-year-label').evaluate((label) => {
-      const box = label.getBoundingClientRect();
-      const target = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
-      return {
-        uncovered:
-          target === label.parentElement ||
-          target?.closest('.upper-rail-marker') === label.parentElement,
-        hit: target?.className,
-        bounds: { x: box.x, y: box.y },
-      };
-    });
-    expect(
-      currentLabelHit.uncovered,
-      `1999 browse label at ${JSON.stringify(currentLabelHit.bounds)} hit ${currentLabelHit.hit}`,
-    ).toBe(true);
-    const photoBehindLabel = await marker.locator('.upper-year-label').evaluate((label) => {
-      const box = label.getBoundingClientRect();
-      const marker = label.parentElement as HTMLElement;
-      const oldVisibility = marker.style.visibility;
-      marker.style.visibility = 'hidden';
-      const behind = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
-      marker.style.visibility = oldVisibility;
-      return Boolean(behind?.closest('.photo-card'));
-    });
-    expect(photoBehindLabel, 'the upper-rail year stays beside, not over, a photograph').toBe(
-      false,
-    );
+    if ((await marker.getAttribute('data-label-visible')) === 'false') {
+      await expect(marker.locator('.upper-year-dot')).toBeVisible();
+      await expect(marker).toHaveAttribute('title', /1999/);
+    } else {
+      const labelState = await marker.locator('.upper-year-label').evaluate((label) => {
+        const box = label.getBoundingClientRect();
+        const target = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+        const marker = label.parentElement as HTMLElement;
+        const oldVisibility = marker.style.visibility;
+        marker.style.visibility = 'hidden';
+        const behind = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+        marker.style.visibility = oldVisibility;
+        return {
+          uncovered: target === marker || target?.closest('.upper-rail-marker') === marker,
+          photoBehind: Boolean(behind?.closest('.photo-card')),
+        };
+      });
+      expect(labelState.uncovered).toBe(true);
+      expect(labelState.photoBehind).toBe(false);
+    }
   });

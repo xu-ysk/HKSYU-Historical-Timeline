@@ -7,7 +7,10 @@ test('all themes change photo scale without changing time or hiding other events
   const scene = page.getByTestId('scene'),
     cards = page.locator('.photo-card'),
     total = await cards.count();
-  const anchor = await page.locator('[data-education-year="1997"]').getAttribute('style');
+  const anchor = await page.locator('[data-education-year="1997"]').evaluate((el: HTMLElement) => ({
+    left: el.style.left,
+    top: el.style.top,
+  }));
   for (const theme of ['A', 'B', 'C', 'D', 'E']) {
     await page.getByTestId('theme-' + theme).click();
     await expect(page.locator('.photo-card[data-theme="' + theme + '"]').first()).toHaveAttribute(
@@ -19,7 +22,19 @@ test('all themes change photo scale without changing time or hiding other events
     ).toHaveAttribute('style', /scale\(0.35\)/);
     await expect(cards).toHaveCount(total);
     await expect(scene).toHaveAttribute('data-focus', '0.000000');
-    expect(await page.locator('[data-education-year="1997"]').getAttribute('style')).toBe(anchor);
+    const activeYears = await page.locator(`.photo-card[data-theme="${theme}"]`).evaluateAll((els) =>
+      [...new Set(els.map((el) => Number(el.getAttribute('aria-label')?.slice(0, 4))))],
+    );
+    for (const selector of ['[data-education-year]', '[data-upper-year]']) {
+      const years = await page.locator(selector).evaluateAll((els) =>
+        els.map((el) => Number(el.getAttribute('data-education-year') ?? el.getAttribute('data-upper-year'))),
+      );
+      expect(years.every((year) => activeYears.includes(year))).toBe(true);
+    }
+    const marker = page.locator('[data-education-year="1997"]');
+    if (activeYears.includes(1997))
+      expect(await marker.evaluate((el: HTMLElement) => ({ left: el.style.left, top: el.style.top }))).toEqual(anchor);
+    else await expect(marker).toHaveCount(0);
   }
   await page.getByTestId('theme-A').click();
   await expect(page.locator('.photo-card[data-theme="A"]').first()).toHaveAttribute(

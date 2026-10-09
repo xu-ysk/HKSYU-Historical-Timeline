@@ -12,11 +12,13 @@ export const PhotoCard = memo(
   function PhotoCard({
     card,
     locale,
+    revision,
     pose,
     onSelect,
   }: {
     card: DisplayCard;
     locale: Locale;
+    revision?: string;
     pose: Pose;
     onSelect?: (id: string) => void;
   }) {
@@ -61,7 +63,7 @@ export const PhotoCard = memo(
           {image ? (
             <img
               className="photo-image"
-              src={image}
+              src={revision ? `${image}?v=${encodeURIComponent(revision)}` : image}
               alt={localized(card.photo!.alt, locale)}
               draggable={false}
             />
@@ -82,5 +84,8 @@ export const PhotoCard = memo(
       </button>
     );
   },
-  (before, after) => before.card === after.card && before.locale === after.locale,
+  (before, after) =>
+    before.card === after.card &&
+    before.locale === after.locale &&
+    before.revision === after.revision,
 );

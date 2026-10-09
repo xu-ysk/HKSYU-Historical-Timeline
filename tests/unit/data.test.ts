@@ -76,8 +76,9 @@ describe('time and content contracts', () => {
     expect(() => normalizeTimeline(bad, 2026)).toThrow(/size/);
     const oversizedGroup = createMockTimeline(2026),
       pair = oversizedGroup.schoolEvents.find((event) => event.photos.length === 2)!;
-    pair.photos.push({ ...pair.photos[0], id: `${pair.id}-photo-overflow` });
-    expect(() => normalizeTimeline(oversizedGroup, 2026)).toThrow(/exceeds two photos/);
+    for (let index = 3; index <= 6; index++)
+      pair.photos.push({ ...pair.photos[0], id: `${pair.id}-photo-${index}` });
+    expect(() => normalizeTimeline(oversizedGroup, 2026)).toThrow(/exceeds five photos/);
   });
   test('English sample copy is available in all interface languages', () => {
     expect(localized({ en: 'Sample' }, 'zh-Hant')).toBe('Sample');

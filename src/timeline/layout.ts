@@ -37,10 +37,11 @@ export function chronologicalStackZ(index: number) {
   return 1099 - index;
 }
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-/** Keep the two sleeves of a photo pair on the shared rail. */
+/** Keep the sleeves of a photo group on the shared rail. */
 export function groupPhotoOffset(index: number, count: number, zoom: number) {
-  if (count > 2) throw new Error('Photo group exceeds two photos');
-  return (index - 0.5) * (18 + 26 * zoom);
+  if (count > 5) throw new Error('Photo group exceeds five photos');
+  const spacing = count === 5 ? 8 + 36 * zoom : 18 + 26 * zoom;
+  return (index - (count - 1) / 2) * spacing;
 }
 export const direction = { x: Math.cos(config.angle), y: Math.sin(config.angle) };
 export const normal = { x: -direction.y, y: direction.x };

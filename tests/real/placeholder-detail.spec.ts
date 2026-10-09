@@ -6,12 +6,12 @@ test('a text-only school event opens as a centered, readable card and returns', 
 }) => {
   await page.goto('/');
   const timeline = (await (await page.request.get('/timeline.json')).json()) as TimelineDataset;
-  const event = timeline.schoolEvents.find((item) => item.id === 'P39')!;
-  await page.getByTestId('year-slider').fill('1995');
+  const event = timeline.schoolEvents.find((item) => item.id === 'P44')!;
+  await page.getByTestId('year-slider').fill(String(event.year));
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
-  const source = page.locator('.photo-card[data-event-id="P39"]');
+  const source = page.locator('.photo-card[data-event-id="P44"]');
   await expect(source).toBeVisible();
-  await expect(source.locator('.photo-placeholder-year')).toHaveText('1995');
+  await expect(source.locator('.photo-placeholder-year')).toHaveText(String(event.year));
   await expect(source.locator('.photo-placeholder-body')).toHaveText(event.body['zh-Hant']!);
   expect(await source.locator('.photo-letter').count()).toBe(0);
   const originalStyle = await source.getAttribute('style');
@@ -30,7 +30,7 @@ test('a text-only school event opens as a centered, readable card and returns', 
   await expect(body).toHaveText(event.body['zh-Hant']!);
   expect(await body.evaluate((element) => getComputedStyle(element).webkitLineClamp)).toBe('none');
 
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByTestId('event-detail')).toHaveCount(0);
   await expect(source).toHaveAttribute('data-extracted', 'false');
   await expect(source).toHaveAttribute('style', originalStyle!);

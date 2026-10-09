@@ -16,10 +16,10 @@ for (const size of [
     await expect(page.getByTestId('theme-all')).toHaveCount(0);
     await expect(panel.locator('.theme-letter')).toHaveCount(0);
     const box = (await panel.boundingBox())!;
-    const inset = size.width < 1320 ? 32 : 42;
+    const inset = size.width < 1320 ? 32 : 36;
     expect(box.x).toBeGreaterThan(size.width * 0.4);
     expect(box.x + box.width).toBeCloseTo(size.width - inset, 0);
-    expect(box.y + box.height).toBeCloseTo(size.height - (size.height <= 760 ? 20 : 28), 0);
+    expect(box.y + box.height).toBeCloseTo(size.height - (size.height <= 760 ? 20 : 24), 0);
     const education = (await page.getByTestId('education-panel').boundingBox())!;
     expect(education.y + education.height).toBeLessThan(box.y);
     const focus = await page.getByTestId('scene').getAttribute('data-focus');

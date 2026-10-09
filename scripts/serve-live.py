@@ -29,7 +29,12 @@ class Handler(SimpleHTTPRequestHandler):
     def translate_path(self, path: str) -> str:
         prefix = "/Historical_Timeline_Images/"
         if urlsplit(path).path.startswith(prefix):
-            self.directory = str(self.content.photo_root / "Historical_Timeline_Images")
+            photo_root = (
+                self.content.output.parent
+                if self.content.optimize_photos
+                else self.content.photo_root
+            )
+            self.directory = str(photo_root / "Historical_Timeline_Images")
             return super().translate_path("/" + path[len(prefix):])
         return super().translate_path(path)
 
@@ -74,7 +79,7 @@ def main() -> None:
         parser.error(f"Built site missing: {args.dist / 'index.html'}; run npm run build once")
     if args.poll_seconds <= 0:
         parser.error("--poll-seconds must be positive")
-    content = LiveContent(args.workbook, args.photo_root, args.output)
+    content = LiveContent(args.workbook, args.photo_root, args.output, optimize_photos=True)
     try:
         content.refresh()
     except Exception as error:

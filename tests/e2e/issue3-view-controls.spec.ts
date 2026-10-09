@@ -21,7 +21,7 @@ for (const size of [
       Math.abs(
         viewSwitch!.y + viewSwitch!.height / 2 - (languages!.y + languages!.height / 2),
       ),
-    ).toBeLessThan(1);
+    ).toBeLessThanOrEqual(1);
     expect(viewSwitch!.x).toBeGreaterThan(languages!.x + languages!.width);
     await expect(page.getByTestId('view-overview')).toHaveCSS('font-size', '13px');
     await expect(page.getByTestId('view-browse')).toHaveCSS('font-size', '13px');

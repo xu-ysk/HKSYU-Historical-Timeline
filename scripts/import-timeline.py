@@ -8,14 +8,16 @@ applied without introducing an Excel dependency into the live publisher.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
 import zipfile
 from pathlib import Path
 from typing import Iterable
-from urllib.parse import quote, unquote
+from urllib.parse import quote, unquote, urlsplit
 from xml.etree import ElementTree as ET
+
 
 NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
 R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -179,9 +181,20 @@ def year_number(label: str) -> int:
 
 
 def url_path(source: str) -> str:
+    parsed = urlsplit(source.strip())
+    if parsed.scheme:
+        if parsed.scheme not in {"http", "https"} or parsed.hostname != "umtimeline.hksyu.edu":
+            raise ValueError(f"Unsupported photo URL: {source!r}")
+        source = parsed.path
     decoded = unquote(source.strip()).replace("\\", "/")
     if not decoded.startswith("/"):
         decoded = "/" + decoded
+    if not decoded.startswith("/Historical_Timeline_Images/"):
+        raise ValueError(f"Photo is outside Historical_Timeline_Images: {source!r}")
+    parts = decoded.split("/")
+    # A few workbook cells still name the retired event subfolders.
+    if len(parts) == 5 and re.fullmatch(rf"{re.escape(parts[2])}[（(]\d+[）)]", parts[3]):
+        decoded = "/".join(["", parts[1], parts[2], parts[4]])
     return quote(decoded, safe="/()")
 
 
@@ -245,8 +258,8 @@ def photo_entries(row: dict[str, str], photo_root: Path) -> list[dict[str, objec
         for key in row
         if (match := re.fullmatch(r"photo-(\d+)", key))
     )
-    if sum(bool(text_value(row.get(f"photo-{index}"))) for index in photo_indices) > 2:
-        raise ValueError(f"Photo group exceeds two photos: {row['id']}")
+    if sum(bool(text_value(row.get(f"photo-{index}"))) for index in photo_indices) > 5:
+        raise ValueError(f"Photo group exceeds five photos: {row['id']}")
     for index in photo_indices:
         source = text_value(row.get(f"photo-{index}"))
         if not source:
@@ -301,13 +314,16 @@ def build(workbook: Path, photo_root: Path, revision: str) -> dict[str, object]:
     with zipfile.ZipFile(workbook) as archive:
         rows = worksheet_rows(archive, shared_strings(archive))
     groups = {"upper": [], "school": [], "education": []}
+    sheet_categories = {
+        "xl/worksheets/sheet1.xml": "upper",
+        "xl/worksheets/sheet2.xml": "school",
+        "xl/worksheets/sheet3.xml": "education",
+    }
     for row in rows:
-        if "photo-1" in row:
-            groups["school"].append(row)
-        elif "category" in row:
-            groups["upper"].append(row)
-        else:
-            groups["education"].append(row)
+        sheet_name = row["__sheet"]
+        if sheet_name not in sheet_categories:
+            raise ValueError(f"Unexpected timeline worksheet: {sheet_name}")
+        groups[sheet_categories[sheet_name]].append(row)
     if not groups["school"] or not groups["upper"] or not groups["education"]:
         raise ValueError("Workbook must contain upper, school, and education sheets")
     return {
@@ -319,14 +335,33 @@ def build(workbook: Path, photo_root: Path, revision: str) -> dict[str, object]:
     }
 
 
+def source_revision(workbook: Path, photo_root: Path) -> str:
+    digest = hashlib.sha256(workbook.read_bytes())
+    originals = photo_root / "Historical_Timeline_Images"
+    for path in sorted(originals.rglob("*")):
+        if path.is_file():
+            stat = path.stat()
+            digest.update(path.relative_to(photo_root).as_posix().encode("utf-8"))
+            digest.update(f"\0{stat.st_size}\0{stat.st_mtime_ns}".encode("ascii"))
+    return f"xlsx-{digest.hexdigest()[:16]}"
+
+
 def main(argv: Iterable[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workbook", type=Path, default=Path("HKSYU Timeline.xlsx"))
     parser.add_argument("--photo-root", "--public-dir", type=Path, default=Path("."))
     parser.add_argument("--output", type=Path, default=Path("public/timeline.json"))
-    parser.add_argument("--revision", default="xlsx-2026-10-07")
+    parser.add_argument("--revision")
+    parser.add_argument("--prepare-photos", action="store_true")
     args = parser.parse_args(argv)
-    data = build(args.workbook, args.photo_root, args.revision)
+    data = build(args.workbook, args.photo_root, args.revision or source_revision(args.workbook, args.photo_root))
+    if args.prepare_photos:
+        from photo_assets import sync_photos
+
+        updated = sync_photos(
+            data, args.photo_root, args.output.parent / "Historical_Timeline_Images"
+        )
+        print(f"Prepared {updated} web-sized photos", flush=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     counts = ", ".join(f"{key}={len(value)}" for key, value in data.items() if isinstance(value, list))

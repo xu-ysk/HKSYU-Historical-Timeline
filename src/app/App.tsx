@@ -24,6 +24,11 @@ export default function App() {
   const [detail, setDetail] = useState(initialDetail);
   const detailPhaseRef = useRef(detail.phase);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
+  useEffect(() => {
+    if (!detail.eventId) return;
+    const timer = window.setTimeout(closeDetail, 3 * 60 * 1000);
+    return () => window.clearTimeout(timer);
+  }, [detail.eventId, closeDetail]);
   const handleProgress = useCallback((nextYear: number, nextEventId: string) => {
     setYear(nextYear);
     setEventId(nextEventId);
@@ -136,6 +141,7 @@ export default function App() {
           onProgress={handleProgress}
           controllerRef={controllerRef}
           focusYear={year}
+          activeTheme={active}
           onDetail={setDetail}
         />
       ) : (

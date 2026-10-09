@@ -65,6 +65,9 @@ test('exhibition touch input enlarges hit areas, drags the timeline, and opens d
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   await expect(page.locator('.detail-year')).toHaveCSS('user-select', 'none');
   await page.touchscreen.tap(12, 12);
+  await expect(page.getByRole('dialog')).toHaveCount(1);
+  let closeBox = (await page.getByTestId('close-detail').boundingBox())!;
+  await page.touchscreen.tap(closeBox.x + closeBox.width / 2, closeBox.y + closeBox.height / 2);
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(scene).toHaveAttribute('data-phase', 'idle');
 
@@ -78,7 +81,8 @@ test('exhibition touch input enlarges hit areas, drags the timeline, and opens d
   });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
-  await page.touchscreen.tap(12, 12);
+  closeBox = (await page.getByTestId('close-detail').boundingBox())!;
+  await page.touchscreen.tap(closeBox.x + closeBox.width / 2, closeBox.y + closeBox.height / 2);
   await expect(page.getByRole('dialog')).toHaveCount(0);
 
   await expect(scene).toHaveAttribute('data-phase', 'idle');

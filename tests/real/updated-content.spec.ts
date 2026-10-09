@@ -9,7 +9,7 @@ test('upper rail displays the newly imported English text', async ({ page }) => 
 
 for (const sample of [
   { id: 'P54', year: 2001, photos: 2, locale: 'zh-Hant', width: 1440, height: 900 },
-  { id: 'P58', year: 2004, photos: 1, locale: 'zh-Hans', width: 1280, height: 720 },
+  { id: 'P58', year: 2004, photos: 2, locale: 'zh-Hans', width: 1280, height: 720 },
   { id: 'P59', year: 2004, photos: 1, locale: 'en', width: 1440, height: 900 },
   { id: 'P67', year: 2006, photos: 2, locale: 'zh-Hant', width: 1280, height: 720 },
 ])
@@ -41,6 +41,6 @@ for (const sample of [
     await page.screenshot({
       path: test.info().outputPath(`${sample.id}-left-photo-right-text.png`),
     });
-    await page.keyboard.press('Escape');
+    await page.getByTestId('close-detail').click();
     await expect(page.getByTestId('event-detail')).toHaveCount(0);
   });

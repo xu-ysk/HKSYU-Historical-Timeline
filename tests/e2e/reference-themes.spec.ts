@@ -61,7 +61,7 @@ for (const mode of ['overview', 'browse'])
                   (document.querySelector<HTMLElement>('[data-testid="scene"]')!.dataset.mode ===
                   'browse'
                     ? 238
-                    : 36),
+                    : 42),
               ) < 0.01,
           ),
         };
@@ -88,18 +88,20 @@ test('T2: rapid retargeting scales continuously and leaves every photograph avai
   test.setTimeout(60_000);
   await page.goto('/');
   await expect(page.getByTestId('scene')).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
   const cards = page.locator('.photo-card');
   const count = await cards.count();
   // Confirm the recorder is armed before clicking; an unresolved evaluate
   // races its locator lookup against the first theme change and can miss frames.
   await cards.first().evaluate((el) => {
-    const capture = { values: [] as number[], done: false };
+    const capture = { values: [] as { t: number; scale: number }[], done: false };
     (el as HTMLElement & { themeCapture: typeof capture }).themeCapture = capture;
     const start = performance.now();
     const frame = () => {
-      capture.values.push(
-        Number((el as HTMLElement).style.transform.match(/scale\(([^)]+)\)/)?.[1]),
-      );
+      capture.values.push({
+        t: performance.now() - start,
+        scale: Number((el as HTMLElement).style.transform.match(/scale\(([^)]+)\)/)?.[1]),
+      });
       if (performance.now() - start < 2500) requestAnimationFrame(frame);
       else capture.done = true;
     };
@@ -121,10 +123,12 @@ test('T2: rapid retargeting scales continuously and leaves every photograph avai
   const scales = await cards
     .first()
     .evaluate(
-      (el) => (el as HTMLElement & { themeCapture: { values: number[] } }).themeCapture.values,
+      (el) => (el as HTMLElement & { themeCapture: { values: { t: number; scale: number }[] } }).themeCapture.values,
     );
-  expect(scales.filter((s) => s > 0.4 && s < 0.95).length).toBeGreaterThan(5);
-  expect(Math.max(...scales.slice(1).map((s, i) => Math.abs(s - scales[i])))).toBeLessThan(0.2);
+  expect(scales.filter((sample) => sample.scale > 0.4 && sample.scale < 0.95).length).toBeGreaterThan(5);
+  expect(Math.max(...scales.slice(1).map((sample, i) =>
+    Math.abs(sample.scale - scales[i].scale) / Math.max(1, sample.t - scales[i].t),
+  ))).toBeLessThan(0.005);
   await expect(cards).toHaveCount(count);
   await expect(page.getByTestId('theme-C')).toHaveAttribute('aria-pressed', 'true');
 });

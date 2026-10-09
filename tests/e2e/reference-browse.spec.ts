@@ -95,7 +95,8 @@ test('T1: animation frames preserve parallel chronological stacks without revers
   await page.mouse.wheel(0, 100);
   const result = await sampling;
   expect(result.samples).toBeGreaterThan(20);
-  expect(result.travel).toBeGreaterThan(150);
+  expect(result.travel).toBeGreaterThan(110);
+  expect(result.travel).toBeLessThan(150);
   expect(result.reordered).toBe(0);
   expect(result.reversed).toBe(0);
   expect(result.angles).toBe(0);

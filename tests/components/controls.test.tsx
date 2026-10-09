@@ -5,8 +5,9 @@ import { LanguageSwitcher, ThemeSwitcher } from '../../src/components/Controls';
 test('language controls identify the current language and emit the requested locale', async () => {
   const onChange = vi.fn();
   render(<LanguageSwitcher locale="zh-Hant" onChange={onChange} />);
+  expect(screen.getAllByRole('button').map((button) => button.textContent)).toEqual(['EN', '繁', '简']);
   expect(screen.getByRole('button', { name: '繁' })).toHaveAttribute('aria-pressed', 'true');
-  await userEvent.click(screen.getByRole('button', { name: '英' }));
+  await userEvent.click(screen.getByRole('button', { name: 'EN' }));
   expect(onChange).toHaveBeenCalledWith('en');
 });
 test('all five English themes remain present when selecting one or restoring all', async () => {

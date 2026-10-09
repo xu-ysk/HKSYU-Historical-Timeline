@@ -32,12 +32,13 @@ for (const sample of [
     await expect(page.getByTestId('scene')).toBeVisible();
     const initialCount = await page.locator('.photo-card').count();
     await selectEvent(page, sample.year, sample.order);
-    // Any detail click now dismisses it; choose language and theme before opening.
+    // Choose language and the event's theme before opening.
     await page.getByTestId('language-en').click();
-    await page.getByTestId('theme-E').click();
     const focus = await page.getByTestId('scene').getAttribute('data-focus');
     const eventId = `school-${sample.year}-${sample.order}`;
     const source = page.locator(`.photo-card[data-event-id="${eventId}"]`).first();
+    const theme = await source.getAttribute('data-theme');
+    await page.getByTestId(`theme-${theme}`).click();
     await source.evaluate((el) => el.setAttribute('data-original-node', 'yes'));
     await source.focus();
     await source.press('Enter');
@@ -51,7 +52,7 @@ for (const sample of [
     const text = placeholderOnly ? null : await page.getByTestId('detail-text').boundingBox();
     const languages = await page.locator('.languages').boundingBox(),
       viewSwitch = await page.getByTestId('view-switch').boundingBox();
-    await expect(page.getByTestId('close-detail')).toHaveCount(0);
+    await expect(page.getByTestId('close-detail')).toBeVisible();
     expect(
       Math.abs(
         viewSwitch!.y + viewSwitch!.height / 2 - (languages!.y + languages!.height / 2),
@@ -97,11 +98,11 @@ for (const sample of [
     await page.screenshot({ path: test.info().outputPath('stage5-' + sample.name + '.png') });
     await expect(page.getByRole('dialog')).toBeVisible();
     await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
-    await page.mouse.click(1400, 100);
+    await page.getByTestId('close-detail').click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(page.locator('[data-extracted=true]')).toHaveCount(0);
     await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
-    await expect(page.getByTestId('theme-E')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByTestId(`theme-${theme}`)).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   });
 test('either placeholder card opens the same pair without moving the timeline', async ({
@@ -121,7 +122,7 @@ test('either placeholder card opens the same pair without moving the timeline', 
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-placeholder-only', 'true');
   await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
   await page.screenshot({ path: test.info().outputPath('stage5-compact-english-pair.png') });
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(source).toBeFocused();
 });
@@ -131,11 +132,11 @@ test('close during opening and dragging across a photograph never leaves a stuck
   await page.goto('/');
   await expect(page.getByTestId('scene')).toBeVisible();
   await page.getByTestId('open-focused').click();
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByTestId('open-focused').click();
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await page.getByTestId('view-browse').click();
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-2026-10-07",
+  "revision": "xlsx-f80f61e82ab85924",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -168,7 +168,7 @@
       "yearLabel": "1982",
       "orderInYear": 10,
       "title": {
-        "en": "A Test of Recognition of Graduates' Professional Qualification",
+        "en": "Recognition of Graduates' Professional Qualification",
         "zh-Hant": "畢業生資格與專業認可的考驗",
         "zh-Hans": "毕业生资格与专业认可的考验"
       },
@@ -429,7 +429,7 @@
         "zh-Hans": "正名为香港树仁大学：香港首间私立大学"
       },
       "body": {
-        "en": "In 2006, Shue Yan was approved by the Chief Executive-in-Council to change its title to Hong Kong Shue Yan University, becoming Hong Kong's first private university.",
+        "en": "In 2006, Shue Yan was approved by the Chief Executive-in-Council to be retitled as change its title to Hong Kong Shue Yan University, becoming Hong Kong's first private university.",
         "zh-Hant": "2006年，樹仁獲行政長官會同行政會議批准正名為香港樹仁大學，成為香港首間私立大學。",
         "zh-Hans": "2006年，树仁获行政长官会同行政会议批准正名为香港树仁大学，成为香港首间私立大学。"
       }
@@ -505,9 +505,9 @@
       "photoGroupId": "P02",
       "title": {},
       "body": {
-        "en": "Shue Yan had already established scholarships in its early years and entered into an academic collaboration with Northeast Louisiana University in the United States, thereby expanding overseas learning opportunities for students.",
-        "zh-Hant": "樹仁開辦初期已經設獎學金，並且與美國路易斯安洲立東北那東北路易斯安那大學展開學術合作，為學生開拓海外學習機會。",
-        "zh-Hans": "树仁开办初期已经设奖学金，并且与美国东北路易斯安那大学展开学术合作，为学生开拓海外学习机会。"
+        "en": "Shue Yan had already established scholarships in its early years and entered into an academic collaboration with Northeast Louisiana University in the United States, thereby expanding overseas learning opportunities for students.\n\nSource: (Left) Wah Kiu Yat Po, 29 June 1971 ; (Right) Wah Kiu Yat Po, 4 August 1971",
+        "zh-Hant": "樹仁開辦初期已經設獎學金，並且與美國路易斯安洲立東北那東北路易斯安那大學展開學術合作，為學生開拓海外學習機會。\n\n來源: (左)《華僑日報》1971年6月29日, (右) 《華僑日報》1971年8月4日",
+        "zh-Hans": "树仁开办初期已经设奖学金，并且与美国东北路易斯安那大学展开学术合作，为学生开拓海外学习机会。\n\n来源: (左)《华侨日报》1971年6月29日, (右) 《华侨日报》1971年8月4日"
       },
       "photos": [
         {
@@ -549,21 +549,11 @@
         {
           "id": "P03-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%881%EF%BC%89/image5.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1972/image6.jpg",
+          "width": 449,
+          "height": 621,
           "alt": {
             "en": "P03 photograph 1"
-          }
-        },
-        {
-          "id": "P03-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%881%EF%BC%89/image6.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P03 photograph 2"
           }
         }
       ]
@@ -585,9 +575,9 @@
         {
           "id": "P04-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%882%EF%BC%89/image7.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1972/image7.jpg",
+          "width": 1535,
+          "height": 1036,
           "alt": {
             "en": "P04 photograph 1"
           }
@@ -595,7 +585,7 @@
         {
           "id": "P04-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%882%EF%BC%89/image8.jpg",
+          "src": "Historical_Timeline_Images/1972/image8.jpg",
           "width": 1572,
           "height": 1125,
           "alt": {
@@ -621,9 +611,9 @@
         {
           "id": "P05-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%883%EF%BC%89/image9.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1972/image9.jpg",
+          "width": 7653,
+          "height": 5518,
           "alt": {
             "en": "P05 photograph 1"
           }
@@ -631,9 +621,9 @@
         {
           "id": "P05-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%883%EF%BC%89/image10.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1972/image10.jpg",
+          "width": 4832,
+          "height": 4760,
           "alt": {
             "en": "P05 photograph 2"
           }
@@ -657,9 +647,9 @@
         {
           "id": "P06-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%884%EF%BC%89/image11.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1972/image11.jpg",
+          "width": 4492,
+          "height": 6774,
           "alt": {
             "en": "P06 photograph 1"
           }
@@ -667,9 +657,9 @@
         {
           "id": "P06-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/1972%EF%BC%884%EF%BC%89/image12.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1972/image12.jpg",
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P06 photograph 2"
           }
@@ -693,9 +683,9 @@
         {
           "id": "P07-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/1974%EF%BC%881%EF%BC%89/image13.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1974/image13.jpg",
+          "width": 3691,
+          "height": 2627,
           "alt": {
             "en": "P07 photograph 1"
           }
@@ -703,9 +693,9 @@
         {
           "id": "P07-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/1974%EF%BC%881%EF%BC%89/image14.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1974/image14.jpg",
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P07 photograph 2"
           }
@@ -729,9 +719,9 @@
         {
           "id": "P08-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/1974%EF%BC%882%EF%BC%89/image15.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1974/image15.jpg",
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P08 photograph 1"
           }
@@ -739,9 +729,9 @@
         {
           "id": "P08-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/1974%EF%BC%882%EF%BC%89/image16.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1974/image16.jpg",
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P08 photograph 2"
           }
@@ -766,8 +756,8 @@
           "id": "P09-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1975/image17.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P09 photograph 1"
           }
@@ -776,8 +766,8 @@
           "id": "P09-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1975/image18.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P09 photograph 2"
           }
@@ -801,21 +791,11 @@
         {
           "id": "P10-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1976/1976%EF%BC%881%EF%BC%89/image19.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1976/image20.jpg",
+          "width": 6140,
+          "height": 8121,
           "alt": {
             "en": "P10 photograph 1"
-          }
-        },
-        {
-          "id": "P10-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/1976/1976%EF%BC%881%EF%BC%89/image20.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P10 photograph 2"
           }
         }
       ]
@@ -837,9 +817,9 @@
         {
           "id": "P11-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1976/1976%EF%BC%882%EF%BC%89/image21.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1976/image21.jpg",
+          "width": 4499,
+          "height": 6768,
           "alt": {
             "en": "P11 photograph 1"
           }
@@ -864,8 +844,8 @@
           "id": "P12-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1977/image22.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 2301,
+          "height": 2950,
           "alt": {
             "en": "P12 photograph 1"
           }
@@ -874,8 +854,8 @@
           "id": "P12-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1977/image23.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 1400,
+          "height": 932,
           "alt": {
             "en": "P12 photograph 2"
           }
@@ -891,16 +871,16 @@
       "photoGroupId": "P13",
       "title": {},
       "body": {
-        "en": "Students overwhelmingly backed the four-year curriculum; the College declined government funding and rejected the proposed 2-2-1 system.",
-        "zh-Hant": "學生以壓倒性多數支持四年制；學院拒絕政府資助，不接受建議的「二二一」學制。",
-        "zh-Hans": "学生以压倒性多数支持四年制；学院拒绝政府资助，不接受建议的「二二一」学制。"
+        "en": "Students overwhelmingly backed the four-year curriculum; the College declined government funding and rejected the proposed 2-2-1 system.\n\nSource: (Right) The Kung Sheung Daily News, 4 November 1978",
+        "zh-Hant": "學生以壓倒性多數支持四年制；學院拒絕政府資助，不接受建議的「二二一」學制。\n\n來源: (右) 《香港工商日報》1978年11月4日",
+        "zh-Hans": "学生以压倒性多数支持四年制；学院拒绝政府资助，不接受建议的「二二一」学制。\n\n来源: (右) 《香港工商日报》1978年11月4日"
       },
       "photos": [
         {
           "id": "P13-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1978/image24.jpg",
-          "width": 1100,
+          "width": 398,
           "height": 620,
           "alt": {
             "en": "P13 photograph 1"
@@ -935,9 +915,9 @@
         {
           "id": "P14-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/1979%EF%BC%881%EF%BC%89/image26.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1979/image26.jpg",
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P14 photograph 1"
           }
@@ -945,7 +925,7 @@
         {
           "id": "P14-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/1979%EF%BC%881%EF%BC%89/image27.jpg",
+          "src": "Historical_Timeline_Images/1979/image27.jpg",
           "width": 1612,
           "height": 1125,
           "alt": {
@@ -971,9 +951,9 @@
         {
           "id": "P15-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/1979%EF%BC%882%EF%BC%89/image28.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1979/image28.jpg",
+          "width": 6118,
+          "height": 4157,
           "alt": {
             "en": "P15 photograph 1"
           }
@@ -981,9 +961,9 @@
         {
           "id": "P15-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/1979%EF%BC%882%EF%BC%89/image29.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1979/image29.jpg",
+          "width": 6080,
+          "height": 4086,
           "alt": {
             "en": "P15 photograph 2"
           }
@@ -1007,9 +987,9 @@
         {
           "id": "P16-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/1979%EF%BC%883%EF%BC%89/image30.jpg",
-          "width": 1492,
-          "height": 999,
+          "src": "Historical_Timeline_Images/1979/image30.jpg",
+          "width": 3001,
+          "height": 2009,
           "alt": {
             "en": "P16 photograph 1"
           }
@@ -1017,9 +997,9 @@
         {
           "id": "P16-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/1979%EF%BC%883%EF%BC%89/image31.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1979/image31.jpg",
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P16 photograph 2"
           }
@@ -1044,8 +1024,8 @@
           "id": "P17-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1980/image32.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 6774,
+          "height": 4492,
           "alt": {
             "en": "P17 photograph 1"
           }
@@ -1054,8 +1034,8 @@
           "id": "P17-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1980/image33.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5472,
+          "height": 3576,
           "alt": {
             "en": "P17 photograph 2"
           }
@@ -1080,8 +1060,8 @@
           "id": "P18-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1981/image34.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5807,
+          "height": 4095,
           "alt": {
             "en": "P18 photograph 1"
           }
@@ -1090,8 +1070,8 @@
           "id": "P18-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1981/image35.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5818,
+          "height": 4167,
           "alt": {
             "en": "P18 photograph 2"
           }
@@ -1116,8 +1096,8 @@
           "id": "P19-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1983/image36.jpg",
-          "width": 1400,
-          "height": 932,
+          "width": 1465,
+          "height": 1007,
           "alt": {
             "en": "P19 photograph 1"
           }
@@ -1126,8 +1106,8 @@
           "id": "P19-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1983/image37.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5784,
+          "height": 3960,
           "alt": {
             "en": "P19 photograph 2"
           }
@@ -1151,9 +1131,9 @@
         {
           "id": "P20-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1984/1984%EF%BC%881%EF%BC%89/image38.jpg",
-          "width": 1264,
-          "height": 894,
+          "src": "Historical_Timeline_Images/1984/image38.jpg",
+          "width": 2873,
+          "height": 2045,
           "alt": {
             "en": "P20 photograph 1"
           }
@@ -1161,9 +1141,9 @@
         {
           "id": "P20-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1984/1984%EF%BC%881%EF%BC%89/image39.jpg",
-          "width": 1314,
-          "height": 831,
+          "src": "Historical_Timeline_Images/1984/image39.jpg",
+          "width": 5664,
+          "height": 3960,
           "alt": {
             "en": "P20 photograph 2"
           }
@@ -1187,9 +1167,9 @@
         {
           "id": "P21-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1984/1984%EF%BC%882%EF%BC%89/image40.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1984/image40.jpg",
+          "width": 5664,
+          "height": 3960,
           "alt": {
             "en": "P21 photograph 1"
           }
@@ -1214,8 +1194,8 @@
           "id": "P22-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1985/image41.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5976,
+          "height": 3696,
           "alt": {
             "en": "P22 photograph 1"
           }
@@ -1239,9 +1219,9 @@
         {
           "id": "P23-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/1986%EF%BC%881%EF%BC%89/image42.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1986/image42.jpg",
+          "width": 2528,
+          "height": 1664,
           "alt": {
             "en": "P23 photograph 1"
           }
@@ -1249,9 +1229,9 @@
         {
           "id": "P23-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/1986%EF%BC%881%EF%BC%89/image43.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1986/image43.jpg",
+          "width": 5760,
+          "height": 3960,
           "alt": {
             "en": "P23 photograph 2"
           }
@@ -1275,9 +1255,9 @@
         {
           "id": "P24-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/1986%EF%BC%882%EF%BC%89/image44.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1986/image44.jpg",
+          "width": 5760,
+          "height": 4008,
           "alt": {
             "en": "P24 photograph 1"
           }
@@ -1285,9 +1265,9 @@
         {
           "id": "P24-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/1986%EF%BC%882%EF%BC%89/image45.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1986/image45.jpg",
+          "width": 5807,
+          "height": 3983,
           "alt": {
             "en": "P24 photograph 2"
           }
@@ -1311,21 +1291,11 @@
         {
           "id": "P25-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/1987%EF%BC%881%EF%BC%89/image46.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1987/image46.jpg",
+          "width": 5783,
+          "height": 4103,
           "alt": {
             "en": "P25 photograph 1"
-          }
-        },
-        {
-          "id": "P25-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/1987/1987%EF%BC%881%EF%BC%89/image47.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P25 photograph 2"
           }
         }
       ]
@@ -1347,7 +1317,7 @@
         {
           "id": "P26-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/1987%EF%BC%882%EF%BC%89/image48.jpg",
+          "src": "Historical_Timeline_Images/1987/image48.jpg",
           "width": 208,
           "height": 301,
           "alt": {
@@ -1373,9 +1343,9 @@
         {
           "id": "P27-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/1987%EF%BC%883%EF%BC%89/image49.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1987/image49.jpg",
+          "width": 5798,
+          "height": 3926,
           "alt": {
             "en": "P27 photograph 1"
           }
@@ -1383,9 +1353,9 @@
         {
           "id": "P27-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/1987%EF%BC%883%EF%BC%89/image50.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1987/image50.jpg",
+          "width": 5794,
+          "height": 3846,
           "alt": {
             "en": "P27 photograph 2"
           }
@@ -1410,20 +1380,10 @@
           "id": "P28-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1987-1988/image51.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 9072,
+          "height": 4967,
           "alt": {
             "en": "P28 photograph 1"
-          }
-        },
-        {
-          "id": "P28-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/1987-1988/image52.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P28 photograph 2"
           }
         }
       ]
@@ -1445,9 +1405,9 @@
         {
           "id": "P29-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1988/1988%EF%BC%881%EF%BC%89/image53.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1988/image53.jpg",
+          "width": 5760,
+          "height": 3552,
           "alt": {
             "en": "P29 photograph 1"
           }
@@ -1455,9 +1415,9 @@
         {
           "id": "P29-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1988/1988%EF%BC%881%EF%BC%89/image54.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1988/image54.jpg",
+          "width": 5760,
+          "height": 3552,
           "alt": {
             "en": "P29 photograph 2"
           }
@@ -1481,21 +1441,11 @@
         {
           "id": "P30-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1988/1988%EF%BC%882%EF%BC%89/image55.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1988/image55.jpg",
+          "width": 1119,
+          "height": 786,
           "alt": {
             "en": "P30 photograph 1"
-          }
-        },
-        {
-          "id": "P30-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/1988/1988%EF%BC%882%EF%BC%89/image56.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P30 photograph 2"
           }
         }
       ]
@@ -1518,8 +1468,8 @@
           "id": "P31-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1990/image57.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 1074,
+          "height": 628,
           "alt": {
             "en": "P31 photograph 1"
           }
@@ -1528,8 +1478,8 @@
           "id": "P31-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1990/image58.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 2743,
+          "height": 1888,
           "alt": {
             "en": "P31 photograph 2"
           }
@@ -1553,9 +1503,9 @@
         {
           "id": "P32-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1991/1991%EF%BC%881%EF%BC%89/image59.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1991/image59.jpg",
+          "width": 11064,
+          "height": 5448,
           "alt": {
             "en": "P32 photograph 1"
           }
@@ -1579,9 +1529,9 @@
         {
           "id": "P33-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1991/1991%EF%BC%882%EF%BC%89/image60.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1991/image60.jpg",
+          "width": 12735,
+          "height": 17936,
           "alt": {
             "en": "P33 photograph 1"
           }
@@ -1605,9 +1555,9 @@
         {
           "id": "P34-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/1992%EF%BC%881%EF%BC%89/image61.jpg",
-          "width": 1106,
-          "height": 646,
+          "src": "Historical_Timeline_Images/1992/image61.jpg",
+          "width": 2048,
+          "height": 1200,
           "alt": {
             "en": "P34 photograph 1"
           }
@@ -1615,9 +1565,9 @@
         {
           "id": "P34-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/1992%EF%BC%881%EF%BC%89/image62.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1992/image62.jpg",
+          "width": 5687,
+          "height": 3983,
           "alt": {
             "en": "P34 photograph 2"
           }
@@ -1641,9 +1591,9 @@
         {
           "id": "P35-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/1992%EF%BC%882%EF%BC%89/image63.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1992/image63.jpg",
+          "width": 432,
+          "height": 612,
           "alt": {
             "en": "P35 photograph 1"
           }
@@ -1651,8 +1601,8 @@
         {
           "id": "P35-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/1992%EF%BC%882%EF%BC%89/image64.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/1992/image64.jpg",
+          "width": 430,
           "height": 620,
           "alt": {
             "en": "P35 photograph 2"
@@ -1678,20 +1628,10 @@
           "id": "P36-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1993/image65.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5856,
+          "height": 8232,
           "alt": {
             "en": "P36 photograph 1"
-          }
-        },
-        {
-          "id": "P36-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/1993/image66.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P36 photograph 2"
           }
         }
       ]
@@ -1714,8 +1654,8 @@
           "id": "P37-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1994/image67.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5760,
+          "height": 3960,
           "alt": {
             "en": "P37 photograph 1"
           }
@@ -1724,8 +1664,8 @@
           "id": "P37-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1994/image68.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5330,
+          "height": 3321,
           "alt": {
             "en": "P37 photograph 2"
           }
@@ -1749,7 +1689,7 @@
         {
           "id": "P38-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1995/1995%EF%BC%881%EF%BC%89/image69.jpg",
+          "src": "Historical_Timeline_Images/1995/image69.jpg",
           "width": 962,
           "height": 659,
           "alt": {
@@ -1759,7 +1699,7 @@
         {
           "id": "P38-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1995/1995%EF%BC%881%EF%BC%89/image70.jpg",
+          "src": "Historical_Timeline_Images/1995/image70.jpg",
           "width": 581,
           "height": 859,
           "alt": {
@@ -1781,7 +1721,18 @@
         "zh-Hant": "畢業生自本年起獲頒榮譽文憑，取代此前頒授的文憑。",
         "zh-Hans": "毕业生自本年起获颁荣誉文凭，取代此前颁授的文凭。"
       },
-      "photos": []
+      "photos": [
+        {
+          "id": "P39-photo-1",
+          "kind": "image",
+          "src": "Historical_Timeline_Images/1995/image70A.jpg",
+          "width": 2234,
+          "height": 1652,
+          "alt": {
+            "en": "P39 photograph 1"
+          }
+        }
+      ]
     },
     {
       "id": "P40",
@@ -1800,7 +1751,7 @@
         {
           "id": "P40-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1995/1995%EF%BC%883%EF%BC%89/image71.jpg",
+          "src": "Historical_Timeline_Images/1995/image71.jpg",
           "width": 951,
           "height": 654,
           "alt": {
@@ -1827,8 +1778,8 @@
           "id": "P41-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1996/image72.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 2048,
+          "height": 1359,
           "alt": {
             "en": "P41 photograph 1"
           }
@@ -1837,8 +1788,8 @@
           "id": "P41-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1996/image73.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5567,
+          "height": 3600,
           "alt": {
             "en": "P41 photograph 2"
           }
@@ -1862,9 +1813,9 @@
         {
           "id": "P42-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1997/1997%EF%BC%881%EF%BC%89/image74.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1997/image74.jpg",
+          "width": 4096,
+          "height": 3343,
           "alt": {
             "en": "P42 photograph 1"
           }
@@ -1872,9 +1823,9 @@
         {
           "id": "P42-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1997/1997%EF%BC%881%EF%BC%89/image75.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1997/image75.jpg",
+          "width": 1921,
+          "height": 2085,
           "alt": {
             "en": "P42 photograph 2"
           }
@@ -1898,9 +1849,9 @@
         {
           "id": "P43-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1997/1997%EF%BC%882%EF%BC%89/image76.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1997/image76.jpg",
+          "width": 2953,
+          "height": 1977,
           "alt": {
             "en": "P43 photograph 1"
           }
@@ -1940,8 +1891,8 @@
           "id": "P45-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/1998/image77.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5832,
+          "height": 8184,
           "alt": {
             "en": "P45 photograph 1"
           }
@@ -1950,8 +1901,8 @@
           "id": "P45-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/1998/image78.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 9200,
+          "height": 13255,
           "alt": {
             "en": "P45 photograph 2"
           }
@@ -1975,9 +1926,9 @@
         {
           "id": "P46-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1999/1999%EF%BC%881%EF%BC%89/image79.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1999/image79.jpg",
+          "width": 720,
+          "height": 567,
           "alt": {
             "en": "P46 photograph 1"
           }
@@ -1985,9 +1936,9 @@
         {
           "id": "P46-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1999/1999%EF%BC%881%EF%BC%89/image80.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/1999/image80.jpg",
+          "width": 7080,
+          "height": 4680,
           "alt": {
             "en": "P46 photograph 2"
           }
@@ -2011,9 +1962,9 @@
         {
           "id": "P47-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1999/1999%EF%BC%882%EF%BC%89/image81.jpg",
-          "width": 1698,
-          "height": 1110,
+          "src": "Historical_Timeline_Images/1999/image81.jpg",
+          "width": 7056,
+          "height": 4608,
           "alt": {
             "en": "P47 photograph 1"
           }
@@ -2037,9 +1988,9 @@
         {
           "id": "P48-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/2000%EF%BC%881%EF%BC%89/image82.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2000/image82.jpg",
+          "width": 372,
+          "height": 542,
           "alt": {
             "en": "P48 photograph 1"
           }
@@ -2063,9 +2014,9 @@
         {
           "id": "P49-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/2000%EF%BC%882%EF%BC%89/image83.jpg",
-          "width": 154,
-          "height": 271,
+          "src": "Historical_Timeline_Images/2000/image83.jpg",
+          "width": 597,
+          "height": 1164,
           "alt": {
             "en": "P49 photograph 1"
           }
@@ -2089,9 +2040,9 @@
         {
           "id": "P50-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/2000%EF%BC%883%EF%BC%89/image84.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2000/image84.jpg",
+          "width": 5688,
+          "height": 4056,
           "alt": {
             "en": "P50 photograph 1"
           }
@@ -2099,9 +2050,9 @@
         {
           "id": "P50-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/2000%EF%BC%883%EF%BC%89/image85.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2000/image85.jpg",
+          "width": 5736,
+          "height": 3480,
           "alt": {
             "en": "P50 photograph 2"
           }
@@ -2125,9 +2076,9 @@
         {
           "id": "P51-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/2001%EF%BC%881%EF%BC%89/image86.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2001/image86.jpg",
+          "width": 1467,
+          "height": 986,
           "alt": {
             "en": "P51 photograph 1"
           }
@@ -2151,21 +2102,11 @@
         {
           "id": "P52-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/2001%EF%BC%882%EF%BC%89/image87.jpg",
+          "src": "Historical_Timeline_Images/2001/image87.jpg",
           "width": 558,
           "height": 824,
           "alt": {
             "en": "P52 photograph 1"
-          }
-        },
-        {
-          "id": "P52-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2001/2001%EF%BC%882%EF%BC%89/image91.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P52 photograph 2"
           }
         }
       ]
@@ -2187,9 +2128,9 @@
         {
           "id": "P53-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/2001%EF%BC%883%EF%BC%89/image88.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2001/image88.jpg",
+          "width": 1489,
+          "height": 984,
           "alt": {
             "en": "P53 photograph 1"
           }
@@ -2213,9 +2154,9 @@
         {
           "id": "P54-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/2001%EF%BC%884%EF%BC%89/image100.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2001/image89.jpg",
+          "width": 5592,
+          "height": 3695,
           "alt": {
             "en": "P54 photograph 1"
           }
@@ -2223,9 +2164,9 @@
         {
           "id": "P54-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/2001%EF%BC%884%EF%BC%89/image101.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2001/image90.jpg",
+          "width": 2058,
+          "height": 1458,
           "alt": {
             "en": "P54 photograph 2"
           }
@@ -2249,21 +2190,11 @@
         {
           "id": "P55-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2003/2003%EF%BC%881%EF%BC%89/image89.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2003/image91.jpg",
+          "width": 7080,
+          "height": 4296,
           "alt": {
             "en": "P55 photograph 1"
-          }
-        },
-        {
-          "id": "P55-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2003/2003%EF%BC%881%EF%BC%89/image90.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P55 photograph 2"
           }
         }
       ]
@@ -2285,9 +2216,9 @@
         {
           "id": "P56-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2003/2003%EF%BC%882%EF%BC%89/image91.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2003/image92.jpg",
+          "width": 2523,
+          "height": 1682,
           "alt": {
             "en": "P56 photograph 1"
           }
@@ -2311,9 +2242,9 @@
         {
           "id": "P57-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2004/2004%EF%BC%881%EF%BC%89/image92.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2004/image94.jpg",
+          "width": 6867,
+          "height": 4110,
           "alt": {
             "en": "P57 photograph 1"
           }
@@ -2337,11 +2268,21 @@
         {
           "id": "P58-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2004/2004%EF%BC%882%EF%BC%89/image102.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2004/image95.jpg",
+          "width": 678,
+          "height": 904,
           "alt": {
             "en": "P58 photograph 1"
+          }
+        },
+        {
+          "id": "P58-photo-2",
+          "kind": "image",
+          "src": "Historical_Timeline_Images/2004/image96.jpg",
+          "width": 7008,
+          "height": 4680,
+          "alt": {
+            "en": "P58 photograph 2"
           }
         }
       ]
@@ -2363,9 +2304,9 @@
         {
           "id": "P59-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2004/2004%EF%BC%883%EF%BC%89/image103.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2004/image97.jpg",
+          "width": 4224,
+          "height": 6816,
           "alt": {
             "en": "P59 photograph 1"
           }
@@ -2389,9 +2330,9 @@
         {
           "id": "P60-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2005/2005%EF%BC%881%EF%BC%89/image93.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2005/image97.jpg",
+          "width": 3008,
+          "height": 2000,
           "alt": {
             "en": "P60 photograph 1"
           }
@@ -2415,9 +2356,9 @@
         {
           "id": "P61-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2005/2005%EF%BC%882%EF%BC%89/image94.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2005/image98.jpg",
+          "width": 3008,
+          "height": 2000,
           "alt": {
             "en": "P61 photograph 1"
           }
@@ -2441,7 +2382,7 @@
         {
           "id": "P62-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2005/2005%EF%BC%883%EF%BC%89/image95.JPG",
+          "src": "Historical_Timeline_Images/2005/image99.jpg",
           "width": 3008,
           "height": 2000,
           "alt": {
@@ -2467,9 +2408,9 @@
         {
           "id": "P63-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/2006(1)/image96.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2006/image100.jpg",
+          "width": 901,
+          "height": 400,
           "alt": {
             "en": "P63 photograph 1"
           }
@@ -2493,9 +2434,9 @@
         {
           "id": "P64-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/2006(2)/image97.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2006/image101.jpg",
+          "width": 7056,
+          "height": 4296,
           "alt": {
             "en": "P64 photograph 1"
           }
@@ -2519,9 +2460,9 @@
         {
           "id": "P65-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/2006(3)/image98.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2006/image102.jpg",
+          "width": 7056,
+          "height": 4296,
           "alt": {
             "en": "P65 photograph 1"
           }
@@ -2545,9 +2486,9 @@
         {
           "id": "P66-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/2006%EF%BC%884%EF%BC%89/image99.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2006/image104.jpg",
+          "width": 7055,
+          "height": 4296,
           "alt": {
             "en": "P66 photograph 1"
           }
@@ -2571,7 +2512,7 @@
         {
           "id": "P67-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/2006%EF%BC%885%EF%BC%89/image104.jpg",
+          "src": "Historical_Timeline_Images/2006/image105.jpg",
           "width": 344,
           "height": 536,
           "alt": {
@@ -2581,9 +2522,9 @@
         {
           "id": "P67-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/2006%EF%BC%885%EF%BC%89/image105.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2006/image106.jpg",
+          "width": 500,
+          "height": 335,
           "alt": {
             "en": "P67 photograph 2"
           }
@@ -2607,9 +2548,9 @@
         {
           "id": "P68-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/2007%EF%BC%881%EF%BC%89/image106.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2007/image107.jpg",
+          "width": 4368,
+          "height": 2912,
           "alt": {
             "en": "P68 photograph 1"
           }
@@ -2617,9 +2558,9 @@
         {
           "id": "P68-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/2007%EF%BC%881%EF%BC%89/image107.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2007/image108.jpg",
+          "width": 2544,
+          "height": 1696,
           "alt": {
             "en": "P68 photograph 2"
           }
@@ -2643,9 +2584,9 @@
         {
           "id": "P69-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/2007%EF%BC%882%EF%BC%89/image108.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2007/image109.jpg",
+          "width": 3648,
+          "height": 2736,
           "alt": {
             "en": "P69 photograph 1"
           }
@@ -2653,9 +2594,9 @@
         {
           "id": "P69-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/2007%EF%BC%882%EF%BC%89/image109.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2007/image110.jpg",
+          "width": 3648,
+          "height": 2736,
           "alt": {
             "en": "P69 photograph 2"
           }
@@ -2679,7 +2620,7 @@
         {
           "id": "P70-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/2007%EF%BC%883%EF%BC%89/image110.jpg",
+          "src": "Historical_Timeline_Images/2007/image111.jpg",
           "width": 996,
           "height": 765,
           "alt": {
@@ -2705,9 +2646,9 @@
         {
           "id": "P71-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2008/image111.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2008/image112.jpg",
+          "width": 2832,
+          "height": 4256,
           "alt": {
             "en": "P71 photograph 1"
           }
@@ -2715,9 +2656,9 @@
         {
           "id": "P71-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2008/image112.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2008/image113.jpg",
+          "width": 3888,
+          "height": 2592,
           "alt": {
             "en": "P71 photograph 2"
           }
@@ -2733,17 +2674,17 @@
       "photoGroupId": "P72",
       "title": {},
       "body": {
-        "en": "The University launched its first independently offered master’s degree programme —  the Master of Social Sciences in Counselling Psychology.",
-        "zh-Hant": "大學首次獨立開辦碩士學位課程——輔導心理學社會科學碩士。",
-        "zh-Hans": "大学首次独立开办硕士学位课程——辅导心理学社会科学硕士。"
+        "en": "The University launched its first independently offered master’s degree programme —  the Master of Social Sciences in Counselling Psychology.\n\nSource: Shue Yan Newsletter May 2010 Issue",
+        "zh-Hant": "大學首次獨立開辦碩士學位課程——輔導心理學社會科學碩士。 \n\n來源： 《樹仁簡訊》2010年5月刊",
+        "zh-Hans": "大学首次独立开办硕士学位课程——辅导心理学社会科学硕士。\n\n來源： 《樹仁簡訊》2010年5月刊"
       },
       "photos": [
         {
           "id": "P72-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2010/2010%EF%BC%881%EF%BC%89/image113.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2010/image114.jpg",
+          "width": 4964,
+          "height": 7020,
           "alt": {
             "en": "P72 photograph 1"
           }
@@ -2767,9 +2708,9 @@
         {
           "id": "P73-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2010/2010%EF%BC%882%EF%BC%89/image114.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2010/image115.jpg",
+          "width": 2592,
+          "height": 3888,
           "alt": {
             "en": "P73 photograph 1"
           }
@@ -2794,8 +2735,8 @@
           "id": "P74-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/2011/image115.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5216,
+          "height": 6862,
           "alt": {
             "en": "P74 photograph 1"
           }
@@ -2804,8 +2745,8 @@
           "id": "P74-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/2011/image116.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 5120,
+          "height": 6862,
           "alt": {
             "en": "P74 photograph 2"
           }
@@ -2829,7 +2770,7 @@
         {
           "id": "P75-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2012/image117.jpg",
+          "src": "Historical_Timeline_Images/2012/image118.jpg",
           "width": 878,
           "height": 462,
           "alt": {
@@ -2839,7 +2780,7 @@
         {
           "id": "P75-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2012/image118.jpg",
+          "src": "Historical_Timeline_Images/2012/image119.jpg",
           "width": 749,
           "height": 426,
           "alt": {
@@ -2880,9 +2821,9 @@
         {
           "id": "P77-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2014/image119.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2014/image120.jpg",
+          "width": 2452,
+          "height": 2360,
           "alt": {
             "en": "P77 photograph 1"
           }
@@ -2890,9 +2831,9 @@
         {
           "id": "P77-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2014/image120.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2014/image121.jpg",
+          "width": 2788,
+          "height": 1944,
           "alt": {
             "en": "P77 photograph 2"
           }
@@ -2916,21 +2857,11 @@
         {
           "id": "P78-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/2015%EF%BC%881%EF%BC%89/image121.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2015/image122.jpg",
+          "width": 824,
           "height": 620,
           "alt": {
             "en": "P78 photograph 1"
-          }
-        },
-        {
-          "id": "P78-photo-2",
-          "kind": "image",
-          "src": "Historical_Timeline_Images/2015/2015%EF%BC%881%EF%BC%89/image122.jpg",
-          "width": 1100,
-          "height": 620,
-          "alt": {
-            "en": "P78 photograph 2"
           }
         }
       ]
@@ -2952,9 +2883,9 @@
         {
           "id": "P79-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/2015%EF%BC%882%EF%BC%89/image123.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2015/image123.jpg",
+          "width": 400,
+          "height": 266,
           "alt": {
             "en": "P79 photograph 1"
           }
@@ -2962,9 +2893,9 @@
         {
           "id": "P79-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/2015%EF%BC%882%EF%BC%89/image124.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2015/image124.jpg",
+          "width": 664,
+          "height": 443,
           "alt": {
             "en": "P79 photograph 2"
           }
@@ -2988,8 +2919,8 @@
         {
           "id": "P80-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/2015%EF%BC%883%EF%BC%89/image125.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2015/image125.jpg",
+          "width": 864,
           "height": 620,
           "alt": {
             "en": "P80 photograph 1"
@@ -3014,7 +2945,7 @@
         {
           "id": "P81-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/2017%EF%BC%881%EF%BC%89/image126.jpg",
+          "src": "Historical_Timeline_Images/2017/image126.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -3055,9 +2986,9 @@
         {
           "id": "P83-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/2017%EF%BC%883%EF%BC%89/image127.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2017/image127.jpg",
+          "width": 1456,
+          "height": 780,
           "alt": {
             "en": "P83 photograph 1"
           }
@@ -3081,9 +3012,9 @@
         {
           "id": "P84-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/2017%EF%BC%884%EF%BC%89/image128.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2017/image128.jpg",
+          "width": 1491,
+          "height": 1061,
           "alt": {
             "en": "P84 photograph 1"
           }
@@ -3107,9 +3038,9 @@
         {
           "id": "P85-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/2017%EF%BC%885%EF%BC%89/image129.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2017/image129.jpg",
+          "width": 600,
+          "height": 400,
           "alt": {
             "en": "P85 photograph 1"
           }
@@ -3117,9 +3048,9 @@
         {
           "id": "P85-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/2017%EF%BC%885%EF%BC%89/image130.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2017/image130.jpg",
+          "width": 768,
+          "height": 511,
           "alt": {
             "en": "P85 photograph 2"
           }
@@ -3144,7 +3075,7 @@
           "id": "P86-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/2017-2018/image131.jpg",
-          "width": 1100,
+          "width": 1019,
           "height": 620,
           "alt": {
             "en": "P86 photograph 1"
@@ -3154,7 +3085,7 @@
           "id": "P86-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/2017-2018/image132.jpg",
-          "width": 1100,
+          "width": 1038,
           "height": 620,
           "alt": {
             "en": "P86 photograph 2"
@@ -3171,17 +3102,17 @@
       "photoGroupId": "P87",
       "title": {},
       "body": {
-        "en": "Shue Yan enrolled its first cohort of Master of Philosophy and Doctor of Philosophy research students.",
-        "zh-Hant": "樹仁招收首屆哲學碩士及哲學博士研究生。",
-        "zh-Hans": "树仁招收首届哲学硕士及哲学博士研究生。"
+        "en": "Shue Yan enrolled its first cohort of Master of Philosophy and Doctor of Philosophy research students.\n\nSource: Shue Yan Newsletter November 2017 Issue",
+        "zh-Hant": "樹仁招收首屆哲學碩士及哲學博士研究生。 \n\n來源：《樹仁簡訊》2017年11月刊",
+        "zh-Hans": "树仁招收首届哲学硕士及哲学博士研究生。 \n\n来源：《树仁简讯》2017年11月刊"
       },
       "photos": [
         {
           "id": "P87-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/2018/image133.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 4932,
+          "height": 6990,
           "alt": {
             "en": "P87 photograph 1"
           }
@@ -3190,8 +3121,8 @@
           "id": "P87-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/2018/image134.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 4932,
+          "height": 6990,
           "alt": {
             "en": "P87 photograph 2"
           }
@@ -3216,8 +3147,8 @@
           "id": "P88-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/2019-2020/image135.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 1014,
+          "height": 582,
           "alt": {
             "en": "P88 photograph 1"
           }
@@ -3226,8 +3157,8 @@
           "id": "P88-photo-2",
           "kind": "image",
           "src": "Historical_Timeline_Images/2019-2020/image136.jpg",
-          "width": 1100,
-          "height": 620,
+          "width": 510,
+          "height": 340,
           "alt": {
             "en": "P88 photograph 2"
           }
@@ -3266,8 +3197,8 @@
         {
           "id": "P90-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2020/2020%EF%BC%882%EF%BC%89/image137.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2020/image137.jpg",
+          "width": 824,
           "height": 620,
           "alt": {
             "en": "P90 photograph 1"
@@ -3276,7 +3207,7 @@
         {
           "id": "P90-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2020/2020%EF%BC%882%EF%BC%89/image138.jpg",
+          "src": "Historical_Timeline_Images/2020/image138.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -3302,8 +3233,8 @@
         {
           "id": "P91-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/2021%EF%BC%881%EF%BC%89/image139.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2021/image139.jpg",
+          "width": 542,
           "height": 620,
           "alt": {
             "en": "P91 photograph 1"
@@ -3312,8 +3243,8 @@
         {
           "id": "P91-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/2021%EF%BC%881%EF%BC%89/image140.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2021/image140.jpg",
+          "width": 388,
           "height": 620,
           "alt": {
             "en": "P91 photograph 2"
@@ -3338,7 +3269,7 @@
         {
           "id": "P92-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/2021%EF%BC%882%EF%BC%89/image141.jpg",
+          "src": "Historical_Timeline_Images/2021/image141.jpg",
           "width": 860,
           "height": 1144,
           "alt": {
@@ -3348,7 +3279,7 @@
         {
           "id": "P92-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/2021%EF%BC%882%EF%BC%89/image142.jpg",
+          "src": "Historical_Timeline_Images/2021/image142.jpg",
           "width": 1724,
           "height": 1146,
           "alt": {
@@ -3375,7 +3306,7 @@
           "id": "P93-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/2021-2025/image143.jpg",
-          "width": 1100,
+          "width": 946,
           "height": 620,
           "alt": {
             "en": "P93 photograph 1"
@@ -3410,8 +3341,8 @@
         {
           "id": "P94-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2022/2022%EF%BC%881%EF%BC%89/image145.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2022/image145.jpg",
+          "width": 928,
           "height": 620,
           "alt": {
             "en": "P94 photograph 1"
@@ -3436,9 +3367,9 @@
         {
           "id": "P95-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2022/2022%EF%BC%882%EF%BC%89/image146.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2022/image146.jpg",
+          "width": 1024,
+          "height": 683,
           "alt": {
             "en": "P95 photograph 1"
           }
@@ -3446,7 +3377,7 @@
         {
           "id": "P95-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2022/2022%EF%BC%882%EF%BC%89/image147.jpg",
+          "src": "Historical_Timeline_Images/2022/image147.jpg",
           "width": 6000,
           "height": 4500,
           "alt": {
@@ -3472,7 +3403,7 @@
         {
           "id": "P96-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/2023%EF%BC%881%EF%BC%89/image148.jpg",
+          "src": "Historical_Timeline_Images/2023/image148.jpg",
           "width": 792,
           "height": 1076,
           "alt": {
@@ -3482,7 +3413,7 @@
         {
           "id": "P96-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/2023%EF%BC%881%EF%BC%89/image149.jpg",
+          "src": "Historical_Timeline_Images/2023/image149.jpg",
           "width": 1594,
           "height": 1078,
           "alt": {
@@ -3508,8 +3439,8 @@
         {
           "id": "P97-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/2023%EF%BC%882%EF%BC%89/image150.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2023/image150.jpg",
+          "width": 918,
           "height": 620,
           "alt": {
             "en": "P97 photograph 1"
@@ -3534,7 +3465,7 @@
         {
           "id": "P98-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/2023%EF%BC%883%EF%BC%89/image151.jpg",
+          "src": "Historical_Timeline_Images/2023/image151.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -3560,7 +3491,7 @@
         {
           "id": "P99-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%881%EF%BC%89/image152.jpg",
+          "src": "Historical_Timeline_Images/2024/image152.jpg",
           "width": 280,
           "height": 358,
           "alt": {
@@ -3570,7 +3501,7 @@
         {
           "id": "P99-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%881%EF%BC%89/image153.jpg",
+          "src": "Historical_Timeline_Images/2024/image153.jpg",
           "width": 2050,
           "height": 1386,
           "alt": {
@@ -3596,9 +3527,9 @@
         {
           "id": "P100-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%882%EF%BC%89/image154.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2024/image154.jpg",
+          "width": 1024,
+          "height": 683,
           "alt": {
             "en": "P100 photograph 1"
           }
@@ -3622,8 +3553,8 @@
         {
           "id": "P101-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%883%EF%BC%89/image155.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image155.jpg",
+          "width": 928,
           "height": 620,
           "alt": {
             "en": "P101 photograph 1"
@@ -3632,8 +3563,8 @@
         {
           "id": "P101-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%883%EF%BC%89/image156.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image156.jpg",
+          "width": 1015,
           "height": 620,
           "alt": {
             "en": "P101 photograph 2"
@@ -3658,8 +3589,8 @@
         {
           "id": "P102-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%884%EF%BC%89/image157.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image157.jpg",
+          "width": 406,
           "height": 620,
           "alt": {
             "en": "P102 photograph 1"
@@ -3668,9 +3599,9 @@
         {
           "id": "P102-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%884%EF%BC%89/image158.jpg",
+          "src": "Historical_Timeline_Images/2024/image158.jpg",
           "width": 1100,
-          "height": 620,
+          "height": 592,
           "alt": {
             "en": "P102 photograph 2"
           }
@@ -3694,9 +3625,9 @@
         {
           "id": "P103-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%885%EF%BC%89/image159.jpg",
+          "src": "Historical_Timeline_Images/2024/image159.jpg",
           "width": 1100,
-          "height": 620,
+          "height": 572,
           "alt": {
             "en": "P103 photograph 1"
           }
@@ -3704,8 +3635,8 @@
         {
           "id": "P103-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%885%EF%BC%89/image160.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image160.jpg",
+          "width": 930,
           "height": 620,
           "alt": {
             "en": "P103 photograph 2"
@@ -3730,9 +3661,9 @@
         {
           "id": "P104-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%886%EF%BC%89/image161.jpg",
-          "width": 1100,
-          "height": 620,
+          "src": "Historical_Timeline_Images/2024/image161.jpg",
+          "width": 808,
+          "height": 604,
           "alt": {
             "en": "P104 photograph 1"
           }
@@ -3740,8 +3671,8 @@
         {
           "id": "P104-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%886%EF%BC%89/image162.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image162.jpg",
+          "width": 826,
           "height": 620,
           "alt": {
             "en": "P104 photograph 2"
@@ -3766,8 +3697,8 @@
         {
           "id": "P105-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%887%EF%BC%89/image163.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image163.jpg",
+          "width": 928,
           "height": 620,
           "alt": {
             "en": "P105 photograph 1"
@@ -3792,8 +3723,8 @@
         {
           "id": "P106-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%888%EF%BC%89/image164.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image164.jpg",
+          "width": 930,
           "height": 620,
           "alt": {
             "en": "P106 photograph 1"
@@ -3818,8 +3749,8 @@
         {
           "id": "P107-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/2024%EF%BC%889%EF%BC%89/image165.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2024/image165.jpg",
+          "width": 822,
           "height": 620,
           "alt": {
             "en": "P107 photograph 1"
@@ -3844,8 +3775,8 @@
         {
           "id": "P108-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/2025%EF%BC%881%EF%BC%89/image166.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2025/image166.jpg",
+          "width": 920,
           "height": 620,
           "alt": {
             "en": "P108 photograph 1"
@@ -3870,8 +3801,8 @@
         {
           "id": "P109-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/2025%EF%BC%882%EF%BC%89/image167.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2025/image167.jpg",
+          "width": 618,
           "height": 620,
           "alt": {
             "en": "P109 photograph 1"
@@ -3880,8 +3811,8 @@
         {
           "id": "P109-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/2025%EF%BC%882%EF%BC%89/image168.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2025/image168.jpg",
+          "width": 926,
           "height": 620,
           "alt": {
             "en": "P109 photograph 2"
@@ -3906,7 +3837,7 @@
         {
           "id": "P111-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/2025%EF%BC%883%EF%BC%89/image170.jpg",
+          "src": "Historical_Timeline_Images/2025/image170.jpg",
           "width": 1272,
           "height": 705,
           "alt": {
@@ -3916,7 +3847,7 @@
         {
           "id": "P111-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/2025%EF%BC%883%EF%BC%89/image171.jpg",
+          "src": "Historical_Timeline_Images/2025/image171.jpg",
           "width": 1091,
           "height": 705,
           "alt": {
@@ -3942,7 +3873,7 @@
         {
           "id": "P112-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/2025%EF%BC%884%EF%BC%89/image172.jpg",
+          "src": "Historical_Timeline_Images/2025/image172.jpg",
           "width": 325,
           "height": 460,
           "alt": {
@@ -3952,7 +3883,7 @@
         {
           "id": "P112-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/2025%EF%BC%884%EF%BC%89/image173.jpg",
+          "src": "Historical_Timeline_Images/2025/image173.jpg",
           "width": 946,
           "height": 939,
           "alt": {
@@ -3979,7 +3910,7 @@
           "id": "P110-photo-1",
           "kind": "image",
           "src": "Historical_Timeline_Images/2025-2026/image169.jpg",
-          "width": 1100,
+          "width": 408,
           "height": 620,
           "alt": {
             "en": "P110 photograph 1"
@@ -4019,7 +3950,7 @@
         {
           "id": "P114-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/2026%EF%BC%882%EF%BC%89/image174.jpg",
+          "src": "Historical_Timeline_Images/2026/image174.jpg",
           "width": 2220,
           "height": 1476,
           "alt": {
@@ -4029,7 +3960,7 @@
         {
           "id": "P114-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/2026%EF%BC%882%EF%BC%89/image175.jpg",
+          "src": "Historical_Timeline_Images/2026/image175.jpg",
           "width": 2306,
           "height": 1476,
           "alt": {
@@ -4055,8 +3986,8 @@
         {
           "id": "P115-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/2026%EF%BC%883%EF%BC%89/image176.jpg",
-          "width": 1100,
+          "src": "Historical_Timeline_Images/2026/image176.jpg",
+          "width": 752,
           "height": 620,
           "alt": {
             "en": "P115 photograph 1"
@@ -4065,7 +3996,7 @@
         {
           "id": "P115-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/2026%EF%BC%883%EF%BC%89/image177.jpg",
+          "src": "Historical_Timeline_Images/2026/image177.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -4091,7 +4022,7 @@
         {
           "id": "P116-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2027/2026-2027%EF%BC%881%EF%BC%89/image178.jpg",
+          "src": "Historical_Timeline_Images/2026-2027/image178.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -4101,7 +4032,7 @@
         {
           "id": "P116-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2027/2026-2027%EF%BC%881%EF%BC%89/image179.jpg",
+          "src": "Historical_Timeline_Images/2026-2027/image179.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -4147,6 +4078,46 @@
           "height": 1380,
           "alt": {
             "en": "P118 photograph 1"
+          }
+        },
+        {
+          "id": "P118-photo-2",
+          "kind": "image",
+          "src": "Historical_Timeline_Images/2026-2031/image181.jpg",
+          "width": 2508,
+          "height": 1382,
+          "alt": {
+            "en": "P118 photograph 2"
+          }
+        },
+        {
+          "id": "P118-photo-3",
+          "kind": "image",
+          "src": "Historical_Timeline_Images/2026-2031/image182.jpg",
+          "width": 2624,
+          "height": 1566,
+          "alt": {
+            "en": "P118 photograph 3"
+          }
+        },
+        {
+          "id": "P118-photo-4",
+          "kind": "image",
+          "src": "Historical_Timeline_Images/2026-2031/image183.jpg",
+          "width": 2840,
+          "height": 1610,
+          "alt": {
+            "en": "P118 photograph 4"
+          }
+        },
+        {
+          "id": "P118-photo-5",
+          "kind": "image",
+          "src": "Historical_Timeline_Images/2026-2031/image184.jpg",
+          "width": 2868,
+          "height": 1570,
+          "alt": {
+            "en": "P118 photograph 5"
           }
         }
       ]

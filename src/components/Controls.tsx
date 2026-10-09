@@ -10,14 +10,14 @@ export function LanguageSwitcher({
 }) {
   return (
     <nav className="languages" aria-label={messages[locale].language}>
-      {(['zh-Hant', 'zh-Hans', 'en'] as Locale[]).map((l, i) => (
+      {(['en', 'zh-Hant', 'zh-Hans'] as Locale[]).map((l) => (
         <button
           key={l}
           data-testid={'language-' + l}
           aria-pressed={locale === l}
           onClick={() => onChange(l)}
         >
-          {['繁', '简', '英'][i]}
+          {{ en: 'EN', 'zh-Hant': '繁', 'zh-Hans': '简' }[l]}
         </button>
       ))}
     </nav>

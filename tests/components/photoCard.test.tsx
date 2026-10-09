@@ -38,7 +38,18 @@ test('real photo slots display the image without placeholder text', () => {
   expect(element.querySelector('.photo-placeholder-content')).toBeNull();
 });
 
-for (const id of ['P39', 'P44', 'P76', 'P82', 'P89', 'P113', 'P117']) {
+test('a new content revision reloads a photo even when its path stays the same', () => {
+  const event = timeline.schoolEvents.find((item) => item.id === 'P01')! as SchoolEvent;
+  const photo = event.photos[0];
+  const card = { id: `${event.id}/${photo.id}`, event, photo, slot: 0, countInYear: 2 };
+  const pose = { x: 100, y: 100, width: 240, height: 160, ry: 0, rz: 0, scale: 1, z: 1 };
+  const view = render(<PhotoCard card={card} locale="en" revision="first" pose={pose} />);
+  expect(screen.getByRole('img')).toHaveAttribute('src', `${photo.src}?v=first`);
+  view.rerender(<PhotoCard card={card} locale="en" revision="second" pose={pose} />);
+  expect(screen.getByRole('img')).toHaveAttribute('src', `${photo.src}?v=second`);
+});
+
+for (const id of ['P44', 'P76', 'P82', 'P89', 'P113', 'P117']) {
   test(`${id} displays its imported description in every language`, () => {
     const event = timeline.schoolEvents.find((item) => item.id === id)!;
     const card = {

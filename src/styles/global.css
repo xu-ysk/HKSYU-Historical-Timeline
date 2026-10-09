@@ -1,8 +1,16 @@
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('/fonts/NotoSansSC-Variable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
 * {
   box-sizing: border-box;
 }
 :root {
-  font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+  --font-family: 'Noto Sans SC', sans-serif;
+  font-family: var(--font-family);
   color: #36352f;
   background: #f7f5f2;
   font-synthesis: none;

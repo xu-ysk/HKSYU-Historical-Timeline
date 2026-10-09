@@ -1,6 +1,6 @@
 export const sceneConfig = {
   angle: (-32 * Math.PI) / 180,
-  overviewCardWidth: 36,
+  overviewCardWidth: 42,
   // Keep the browsing cards compact enough for the parallel education lane to remain visible.
   browseCardWidth: 238,
   browseLength: 6500,

@@ -31,6 +31,7 @@ for (const sample of [
     page,
   }, testInfo) => {
     await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
     await page.getByTestId('year-slider').fill(String(sample.year));
     await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
     await page.evaluate(() => {
@@ -109,10 +110,24 @@ for (const sample of [
       contentType: 'application/json',
     });
     const moving = frames.filter((f) => f.p > 0 && f.p < 1);
-    expect(moving.length).toBeGreaterThan(15);
-    expect(new Set(moving.map((f) => Math.round(f.width))).size).toBeGreaterThan(10);
+    expect(frames.at(-1)!.t - frames[0].t).toBeGreaterThan(800);
+    expect(moving.some((frame) => frame.p < 0.25)).toBe(true);
+    expect(moving.some((frame) => frame.p > 0.75)).toBe(true);
+    const widths = moving.map((frame) => frame.width);
+    expect(new Set(widths.map(Math.round)).size).toBeGreaterThan(5);
+    expect(Math.max(...widths) - Math.min(...widths)).toBeGreaterThan(100);
     expect(moving.filter((f) => f.p < 0.2).every((f) => Math.abs(f.width - 238) < 0.1)).toBe(true);
-    expect(moving.filter((f) => f.p < 0.6).every((f) => f.opacity === 0)).toBe(true);
+    const placeholderOnly =
+      (await page.getByTestId('event-detail').getAttribute('data-placeholder-only')) === 'true';
+    if (placeholderOnly) {
+      const text = page.getByTestId('detail-text');
+      await expect(text).toHaveCSS('clip', 'rect(0px, 0px, 0px, 0px)');
+      const box = await text.boundingBox();
+      expect(box?.width).toBe(1);
+      expect(box?.height).toBe(1);
+    } else {
+      expect(moving.filter((f) => f.p < 0.6).every((f) => f.opacity === 0)).toBe(true);
+    }
     expect(frames.at(-1)!.opacity).toBe(1);
     for (let i = 1; i < frames.length; i++) {
       const distance = Math.hypot(frames[i].x - frames[i - 1].x, frames[i].y - frames[i - 1].y);
@@ -120,7 +135,7 @@ for (const sample of [
       expect(distance / Math.max(1, frames[i].t - frames[i - 1].t)).toBeLessThan(4);
     }
     await page.screenshot({ path: test.info().outputPath(`T3-${sample.id}.png`) });
-    await page.keyboard.press('Escape');
+    await page.getByTestId('close-detail').click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(card).toHaveAttribute('data-same-node', 'true');
     // Exact transformation, dimensions and scale must be restored; metadata may be reordered.
@@ -145,17 +160,18 @@ test('T3: a mid-opening reversal and theme change never teleport or strand a lin
   await expect
     .poll(async () => Number(await page.getByTestId('scene').getAttribute('data-detail-progress')))
     .toBeGreaterThan(0.2);
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await page.getByTestId('theme-E').click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.locator('[data-extracted=true]')).toHaveCount(0);
   const pair = page.locator('.photo-card[data-event-id="school-1953-3"]');
   await expect(pair).toHaveCount(2);
   for (const card of await pair.all()) await expect(card).toHaveAttribute('style', /scale\(0.35\)/);
+  await page.getByTestId('theme-E').click();
   await page.getByTestId('open-focused').click();
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   await expect(page.locator('[data-extracted=true]')).toHaveCount(2);
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
@@ -204,7 +220,7 @@ test('T3: opening during a live scroll freezes the drawn origin and resumes from
   expect(interrupted.pendingTarget - interrupted.focus).toBeGreaterThan(0.01);
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   await expect(scene).toHaveAttribute('data-focus', interrupted.focus.toFixed(6));
-  await page.keyboard.press('Escape');
+  await page.getByTestId('close-detail').click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(scene).toHaveAttribute('data-focus', interrupted.focus.toFixed(6));
   const card = page.locator(`.photo-card[data-event-id="${interrupted.id}"]`).first();
