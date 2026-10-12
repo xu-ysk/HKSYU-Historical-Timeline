@@ -10,6 +10,7 @@ import { TimelineController } from '../timeline/TimelineController';
 import { EventDetail } from '../components/EventDetail';
 import { initialDetail } from '../timeline/timelineReducer';
 import { localized, localizedYearLabel } from '../domain/timeline';
+import { detailYearNeighbors } from '../domain/detailNavigation';
 import '../styles/timeline.css';
 import '../styles/detail.css';
 export default function App() {
@@ -59,6 +60,9 @@ export default function App() {
         localizedYearLabel(focused, locale)
       : '—',
     detailActive = detail.phase !== 'idle';
+  const detailNeighbors = selected && data
+    ? detailYearNeighbors(data.schoolEvents, selected, active)
+    : null;
   useEffect(() => {
     const abort = new AbortController();
     let inFlight = false;
@@ -151,7 +155,18 @@ export default function App() {
         </div>
       )}
       {selected && (
-        <EventDetail event={selected} locale={locale} phase={detail.phase} onClose={closeDetail} />
+        <EventDetail
+          event={selected}
+          locale={locale}
+          phase={detail.phase}
+          onClose={closeDetail}
+          onPrevious={detailNeighbors?.previous
+            ? () => controllerRef.current?.switchDetail(detailNeighbors.previous!.id)
+            : undefined}
+          onNext={detailNeighbors?.next
+            ? () => controllerRef.current?.switchDetail(detailNeighbors.next!.id)
+            : undefined}
+        />
       )}
       <footer className="bottom-panel">
         <div className="navigation-panel" data-testid="navigation-panel">

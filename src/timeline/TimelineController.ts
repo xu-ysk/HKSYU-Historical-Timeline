@@ -218,6 +218,20 @@ export class TimelineController {
     });
     this.dirty = true;
   }
+  switchDetail(eventId: string) {
+    const event = this.events.find((item) => item.id === eventId);
+    if (
+      this.detailState.phase !== 'detail' ||
+      !event ||
+      event.id === this.detailState.eventId ||
+      (this.activeTheme && event.themeId !== this.activeTheme)
+    ) return;
+    this.resetPhotoZoom();
+    this.detailState = { ...this.detailState, eventId, token: this.detailState.token + 1 };
+    this.onDetail(this.detailState);
+    this.dirty = true;
+    this.tick();
+  }
   close() {
     const next = detailReducer(this.detailState, { type: 'close' });
     if (next === this.detailState) return;
@@ -695,6 +709,13 @@ export class TimelineController {
         showDetailText,
         window.devicePixelRatio || 1,
       );
+    if (rects.length && selectedEvent && !hasPhotoSurface) {
+      const app = this.root.closest<HTMLElement>('.museum-app');
+      app?.style.setProperty('--detail-photo-left', `${Math.min(...rects.map((rect) => rect.x))}px`);
+      app?.style.setProperty('--detail-photo-right', `${Math.max(...rects.map((rect) => rect.x + rect.width))}px`);
+      app?.style.setProperty('--detail-photo-top', `${Math.min(...rects.map((rect) => rect.y))}px`);
+      app?.style.setProperty('--detail-photo-bottom', `${Math.max(...rects.map((rect) => rect.y + rect.height))}px`);
+    }
     const scrim = this.root.querySelector<HTMLElement>('.detail-scrim');
     if (scrim) scrim.hidden = !this.blocked;
     for (const { card, el } of this.nodes) {

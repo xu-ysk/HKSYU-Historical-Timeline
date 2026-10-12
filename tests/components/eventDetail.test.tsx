@@ -36,7 +36,7 @@ test('detail shows only each localized theme name and omits the sample label', (
     }
 });
 
-test('only the return arrow closes detail without reaching underlying actions', async () => {
+test('only the home button closes detail without reaching underlying actions', async () => {
   const onClose = vi.fn(),
     underlyingAction = vi.fn();
   render(
@@ -48,7 +48,8 @@ test('only the return arrow closes detail without reaching underlying actions', 
   expect(close).toHaveFocus();
   expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true');
   expect(close).toHaveAttribute('aria-label', '返回时间轴');
-  expect(screen.getByText('点击年代上方的返回箭头返回时间轴；三分钟后自动返回。')).toHaveClass('sr-only');
+  expect(close.querySelector('path')).toHaveAttribute('d', expect.stringContaining('M5 14.5 16 6'));
+  expect(screen.getByText('点击小房子返回时间轴，或使用左右箭头切换年份；三分钟后自动返回。')).toHaveClass('sr-only');
   await userEvent.click(screen.getByTestId('detail-body'));
   await userEvent.click(screen.getByRole('dialog'));
   expect(onClose).not.toHaveBeenCalled();
@@ -56,6 +57,57 @@ test('only the return arrow closes detail without reaching underlying actions', 
   await userEvent.click(close);
   expect(onClose).toHaveBeenCalledTimes(1);
   expect(underlyingAction).not.toHaveBeenCalled();
+});
+
+test('year arrows switch records without closing and remain keyboard accessible', async () => {
+  const onClose = vi.fn();
+  const onPrevious = vi.fn();
+  const onNext = vi.fn();
+  const realEvent = timeline.schoolEvents.find((item) => item.id === 'P03')! as SchoolEvent;
+  render(
+    <EventDetail
+      event={realEvent}
+      locale="zh-Hant"
+      phase="detail"
+      onClose={onClose}
+      onPrevious={onPrevious}
+      onNext={onNext}
+    />,
+  );
+  const previous = screen.getByRole('button', { name: '上一年照片' });
+  const next = screen.getByRole('button', { name: '下一年照片' });
+  expect(previous).toBeVisible();
+  expect(next).toBeVisible();
+  await userEvent.tab();
+  expect(screen.getByTestId('detail-body')).toHaveFocus();
+  await userEvent.tab();
+  expect(previous).toHaveFocus();
+  await userEvent.keyboard('{Enter}');
+  await userEvent.click(next);
+  expect(onPrevious).toHaveBeenCalledTimes(1);
+  expect(onNext).toHaveBeenCalledTimes(1);
+  expect(onClose).not.toHaveBeenCalled();
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
+});
+
+test('a boundary year displays only its available arrow', () => {
+  const first = timeline.schoolEvents.find((item) => item.id === 'P01')! as SchoolEvent;
+  const view = render(
+    <EventDetail event={first} locale="en" phase="detail" onClose={vi.fn()} onNext={vi.fn()} />,
+  );
+  expect(screen.queryByTestId('detail-previous')).not.toBeInTheDocument();
+  expect(screen.getByTestId('detail-next')).toBeVisible();
+  view.rerender(
+    <EventDetail
+      event={timeline.schoolEvents.find((item) => item.id === 'P118')! as SchoolEvent}
+      locale="en"
+      phase="detail"
+      onClose={vi.fn()}
+      onPrevious={vi.fn()}
+    />,
+  );
+  expect(screen.getByTestId('detail-previous')).toBeVisible();
+  expect(screen.queryByTestId('detail-next')).not.toBeInTheDocument();
 });
 
 test('keyboard focus stays on the arrow and description while Escape does not close', async () => {
@@ -88,7 +140,7 @@ test('placeholder-only details keep the description accessible while marking the
   expect(screen.getByTestId('close-detail')).toHaveFocus();
 });
 
-test('photos without descriptions still have a keyboard-accessible return arrow', async () => {
+test('photos without descriptions still have a keyboard-accessible home button', async () => {
   const onClose = vi.fn();
   render(
     <EventDetail

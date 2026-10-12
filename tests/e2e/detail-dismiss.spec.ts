@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures';
 
-test('only the return arrow closes detail without changing underlying controls', async ({
+test('only the home button closes detail without changing underlying controls', async ({
   page,
 }) => {
   test.setTimeout(45000);
@@ -54,7 +54,7 @@ test('only the return arrow closes detail without changing underlying controls',
   }
 });
 
-test('return arrow during pair extraction reverses smoothly without reopening', async ({
+test('home button during pair extraction reverses smoothly without reopening', async ({
   page,
 }) => {
   await page.goto('/');
@@ -115,7 +115,7 @@ test('reopening detail starts a fresh three-minute timer', async ({ page }) => {
 test.describe('touch screen', () => {
   test.use({ hasTouch: true });
 
-  test('only tapping the return arrow closes detail', async ({ page }) => {
+  test('only tapping the home button closes detail', async ({ page }) => {
     await page.goto('/');
     await page.getByTestId('open-focused').tap();
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
