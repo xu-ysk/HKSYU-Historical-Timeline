@@ -128,12 +128,6 @@
   margin: 12px 0 20px;
   letter-spacing: -2px;
 }
-.detail-year > span {
-  font:
-    22px var(--font-family);
-  color: #c5bcab;
-  margin-left: 18px;
-}
 .detail-theme {
   display: flex;
   align-items: center;
@@ -248,4 +242,8 @@
   .detail-theme {
     margin-bottom: 10px;
   }
+}
+.event-detail[data-year='1971']:not(.event-detail-no-copy) .detail-navigation {
+  top: calc(var(--detail-copy-bottom) + 24px);
+  bottom: auto;
 }

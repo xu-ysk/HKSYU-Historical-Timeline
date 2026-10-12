@@ -365,6 +365,16 @@ h1 {
   padding: 12px;
   margin: -12px;
 }
+@media (min-width: 900px) {
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .upper-rail-panel[data-has-event='true']:is([data-event-year='1983'], [data-event-year='1990']) {
+    width: 400px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .upper-rail-panel[data-has-event='true'][data-event-year='2007'] {
+    width: 440px;
+  }
+}
 .upper-rail-panel,
 .education-panel {
   transition: opacity 0.24s ease, visibility 0s, background-color 0.45s ease;
@@ -554,6 +564,9 @@ h1 {
   width: 100%;
   min-width: 0;
   overflow-wrap: anywhere;
+}
+html[lang='en'] .theme-button {
+  font-size: clamp(14px, 1.2vw, 18px);
 }
 .theme-button[aria-pressed='true'] {
   background: color-mix(in srgb, var(--swatch) 12%, var(--page-background));

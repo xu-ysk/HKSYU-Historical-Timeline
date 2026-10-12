@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { Locale, SchoolEvent } from '../domain/timeline';
 import { localized, localizedYearLabel } from '../domain/timeline';
 import { themes } from '../config/themes';
@@ -20,6 +20,8 @@ export function EventDetail({
   onNext?: () => void;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null),
+    detailRef = useRef<HTMLElement>(null),
+    textRef = useRef<HTMLDivElement>(null),
     previousRef = useRef<HTMLButtonElement>(null),
     nextRef = useRef<HTMLButtonElement>(null),
     bodyRef = useRef<HTMLDivElement>(null),
@@ -28,6 +30,23 @@ export function EventDetail({
     body = localized(event.body, locale),
     hasText = Boolean(title || body),
     placeholderOnly = !event.photos.some((photo) => photo.kind !== 'placeholder');
+  useLayoutEffect(() => {
+    const detail = detailRef.current;
+    const text = textRef.current;
+    if (event.year !== 1971 || placeholderOnly || !detail || !text) return;
+    const positionNavigation = () => {
+      const bottom = Math.max(
+        text.getBoundingClientRect().bottom,
+        bodyRef.current?.getBoundingClientRect().bottom ?? 0,
+      );
+      detail.style.setProperty('--detail-copy-bottom', `${bottom - detail.getBoundingClientRect().top}px`);
+    };
+    const observer = new ResizeObserver(positionNavigation);
+    observer.observe(text);
+    for (const child of text.children) observer.observe(child);
+    positionNavigation();
+    return () => observer.disconnect();
+  }, [event.year, body, title, locale, phase, placeholderOnly]);
   useEffect(() => {
     closeRef.current?.focus();
   }, []);
@@ -54,6 +73,7 @@ export function EventDetail({
   }, [body, event.id, placeholderOnly]);
   return (
     <section
+      ref={detailRef}
       className={'event-detail' +
         (placeholderOnly ? ' event-detail-placeholder' : '') +
         (!hasText || placeholderOnly ? ' event-detail-no-copy' : '')}
@@ -63,6 +83,7 @@ export function EventDetail({
       aria-describedby={hasText ? 'detail-body detail-dismiss-hint' : 'detail-dismiss-hint'}
       data-testid="event-detail"
       data-event={event.id}
+      data-year={event.year}
       data-phase={phase}
       data-placeholder-only={placeholderOnly ? 'true' : 'false'}
       onClick={(e) => e.stopPropagation()}
@@ -84,10 +105,9 @@ export function EventDetail({
         </svg>
       </button>
       {hasText && (
-        <div className="detail-text" data-testid="detail-text">
+        <div ref={textRef} className="detail-text" data-testid="detail-text">
           <div className="detail-year">
             {localizedYearLabel(event, locale)}
-            <span>—</span>
           </div>
           <div className="detail-theme" style={{ color: themes[event.themeId].color }}>
             {themes[event.themeId].label[locale]}

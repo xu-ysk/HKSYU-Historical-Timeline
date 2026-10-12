@@ -96,6 +96,7 @@ export function TimelineScene({
       data-testid="scene"
       data-phase="idle"
       data-mode={mode}
+      data-locale={locale}
     >
       <svg className="track-lines" width="100%" height="100%" aria-hidden="true">
         {(['axis', 'upper', 'education'] as const).map((lane) => {
@@ -117,6 +118,7 @@ export function TimelineScene({
       <aside
         className="upper-rail-panel"
         data-testid="upper-rail-panel"
+        data-event-year={upperRail?.year}
         data-has-event={upperRail?.year === focusYear}
         aria-hidden={upperRail?.year !== focusYear}
       >
@@ -148,7 +150,8 @@ export function TimelineScene({
         />
       ))}
       <div className="detail-scrim" hidden />
-      {[1949, 1960, 1980, 2000, endYear]
+      {[1949, 1960, 2000, endYear]
+        .filter((year) => year !== 2026)
         .filter((year) => !visibleEducationEvents.some((event) => event.year === year))
         .filter((year) => !activeThemeYears || activeThemeYears.has(year))
         .map((year) => {
