@@ -1,0 +1,180 @@
+.help-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(39 38 34 / 58%);
+  backdrop-filter: blur(5px);
+}
+.help-dialog {
+  width: min(900px, 100%);
+  max-height: min(820px, calc(100dvh - 40px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #d4cbbc;
+  background: #f8f6f1;
+  color: #38372f;
+  box-shadow: 0 24px 80px rgb(21 21 19 / 24%);
+}
+.help-topline {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: none;
+  padding: 14px 34px;
+  border-bottom: 1px solid #ded8cd;
+  color: #777164;
+  font-size: 13px;
+  letter-spacing: 0.13em;
+}
+.help-language {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  letter-spacing: 0;
+}
+.help-language select {
+  min-height: 44px;
+  padding: 5px 7px;
+  border: 1px solid #d4cbbc;
+  background: #fffdf9;
+  color: #38372f;
+}
+.help-close {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #d4cbbc;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 25px;
+  line-height: 1;
+}
+.help-close:hover { background: #e9e5dc; }
+.help-body {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px 34px;
+  overscroll-behavior: contain;
+}
+.help-step {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 17px 0;
+  border-bottom: 1px solid #ded8cd;
+}
+.help-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 74px;
+  border: 1px solid #dad1c3;
+  background: #eeeae2;
+  color: #6e675a;
+  font-size: 19px;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+.help-visual span { color: #8e7555; }
+.help-swipe { font-size: 31px; }
+.help-views {
+  flex-direction: row;
+  gap: 7px;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.help-views span {
+  padding: 7px 10px;
+  border: 1px solid #c2b9ac;
+  background: #f9f7f2;
+  color: #514d44;
+}
+.help-photo {
+  display: grid;
+  grid-template-columns: 28px 28px;
+  grid-template-rows: 24px 24px;
+  justify-content: center;
+  align-content: center;
+  column-gap: 22px;
+  row-gap: 10px;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+}
+.help-photo-home { grid-column: 1; grid-row: 1; }
+.help-photo-left { grid-column: 1; grid-row: 2; }
+.help-photo-right { grid-column: 2; grid-row: 2; }
+.help-themes {
+  flex-direction: row;
+  gap: 8px;
+}
+.help-themes i {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+.help-step h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.help-step p {
+  margin: 0;
+  color: #6c685e;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.help-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  flex: none;
+  padding: 17px 34px;
+  border-top: 1px solid #ded8cd;
+}
+.help-actions p {
+  margin: 0;
+  color: #7a756b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.help-start {
+  flex: none;
+  min-height: 52px;
+  padding: 12px 22px;
+  border: 1px solid #48483f;
+  background: #48483f;
+  color: #fffdf8;
+  font-size: 15px;
+}
+.help-start:hover { background: #6a6558; }
+.help-start span { margin-left: 16px; }
+@media (max-width: 600px) {
+  .help-overlay { padding: 10px; }
+  .help-dialog { max-height: calc(100dvh - 20px); }
+  .help-topline { padding: 10px 14px; gap: 9px; font-size: 9px; }
+  .help-language span { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+  .help-body { padding: 18px 17px; }
+  .help-step { grid-template-columns: 94px minmax(0, 1fr); gap: 12px; }
+  .help-visual { min-height: 62px; font-size: 13px; }
+  .help-views { gap: 4px; font-size: 10px; }
+  .help-views span { padding: 6px 3px; }
+  .help-themes { gap: 4px; }
+  .help-themes i { width: 13px; height: 13px; }
+  .help-step h3 { font-size: 13px; }
+  .help-step p { font-size: 11px; }
+  .help-actions { padding: 12px 17px; }
+  .help-actions p { display: none; }
+  .help-start { width: 100%; }
+}

@@ -561,6 +561,33 @@ h1 {
   color: var(--ink);
   border-bottom: 1px solid var(--ink);
 }
+.help-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid #cfc8bd;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--paper) 85%, transparent);
+  color: var(--ink);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  pointer-events: auto;
+}
+.help-trigger:hover {
+  border-color: #786f61;
+  background: #fffdf9;
+}
+.help-trigger span {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 1;
+}
 .museum-app[data-detail-active='true'] .view-switch {
   pointer-events: none;
 }
@@ -803,6 +830,11 @@ html[lang='en'] .theme-button {
     min-height: 44px;
     padding: 12px 4px 13px;
     font-size: 15px;
+  }
+  .help-trigger {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14px;
   }
   .upper-rail-marker {
     width: 44px;
