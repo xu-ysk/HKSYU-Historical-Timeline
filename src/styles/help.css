@@ -87,12 +87,13 @@
 .help-swipe { font-size: 31px; }
 .help-views {
   flex-direction: row;
-  gap: 7px;
-  font-size: 14px;
+  gap: 8px;
+  font-size: 12px;
   letter-spacing: 0;
 }
 .help-views span {
-  padding: 7px 10px;
+  flex: 0 0 auto;
+  padding: 5px 7px;
   border: 1px solid #c2b9ac;
   background: #f9f7f2;
   color: #514d44;
