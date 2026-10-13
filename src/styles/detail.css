@@ -37,27 +37,6 @@
   width: 26px;
   height: 26px;
 }
-.detail-help {
-  position: absolute;
-  left: calc(68% + 58px);
-  top: 190px;
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: 1px solid #c5bcab;
-  border-radius: 50%;
-  background: var(--paper);
-  color: #6b665a;
-  font-size: 19px;
-  pointer-events: auto;
-}
-.detail-help:hover { background: #e9e5dc; }
-.detail-help:focus-visible {
-  outline: 2px solid var(--theme-accent);
-  outline-offset: 3px;
-}
 .detail-close:hover,
 .detail-close:focus-visible,
 .detail-navigation button:hover,
@@ -251,9 +230,6 @@
   }
   .event-detail-placeholder .detail-close {
     top: max(16px, calc(var(--detail-photo-top) - 66px));
-  }
-  .event-detail-placeholder .detail-help {
-    top: max(22px, calc(var(--detail-photo-top) - 60px));
   }
   .detail-year {
     font-size: 42px;

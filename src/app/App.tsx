@@ -25,7 +25,6 @@ export default function App() {
   });
   const appRef = useRef<HTMLElement>(null);
   const helpButtonRef = useRef<HTMLButtonElement>(null);
-  const helpReturnRef = useRef<HTMLButtonElement | null>(null);
   const [data, setData] = useState<TimelineDataset | null>(null),
     [locale, setLocale] = useState<Locale>('zh-Hant'),
     [active, setActive] = useState<ThemeId | null>(null),
@@ -44,13 +43,9 @@ export default function App() {
       // The guide remains usable when browser storage is unavailable.
     }
     setHelpOpen(false);
-    window.requestAnimationFrame(() => {
-      const target = helpReturnRef.current?.isConnected
-        ? helpReturnRef.current
-        : document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current;
-      target?.focus();
-      helpReturnRef.current = null;
-    });
+    window.requestAnimationFrame(() =>
+      (document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current)?.focus(),
+    );
   }, []);
   useLayoutEffect(() => {
     const app = appRef.current;
@@ -195,10 +190,7 @@ export default function App() {
             type="button"
             className="help-trigger"
             data-testid="help-trigger"
-            onClick={(event) => {
-              helpReturnRef.current = event.currentTarget;
-              setHelpOpen(true);
-            }}
+            onClick={() => setHelpOpen(true)}
           >
             <span aria-hidden="true">?</span> {m.help}
           </button>
@@ -230,10 +222,6 @@ export default function App() {
           locale={locale}
           phase={detail.phase}
           onClose={closeDetail}
-          onHelp={(button) => {
-            helpReturnRef.current = button;
-            setHelpOpen(true);
-          }}
           onPrevious={detailNeighbors?.previous
             ? () => controllerRef.current?.switchDetail(detailNeighbors.previous!.id)
             : undefined}

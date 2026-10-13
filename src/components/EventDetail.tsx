@@ -9,7 +9,6 @@ export function EventDetail({
   locale,
   phase,
   onClose,
-  onHelp,
   onPrevious,
   onNext,
 }: {
@@ -17,7 +16,6 @@ export function EventDetail({
   locale: Locale;
   phase: DetailPhase;
   onClose: () => void;
-  onHelp?: (button: HTMLButtonElement) => void;
   onPrevious?: () => void;
   onNext?: () => void;
 }) {
@@ -25,7 +23,6 @@ export function EventDetail({
     detailRef = useRef<HTMLElement>(null),
     textRef = useRef<HTMLDivElement>(null),
     previousRef = useRef<HTMLButtonElement>(null),
-    helpRef = useRef<HTMLButtonElement>(null),
     nextRef = useRef<HTMLButtonElement>(null),
     bodyRef = useRef<HTMLDivElement>(null),
     m = messages[locale],
@@ -61,7 +58,6 @@ export function EventDetail({
       if (e.key === 'Tab') {
         const candidates: (HTMLElement | null)[] = [
           closeRef.current,
-          helpRef.current,
           body && !placeholderOnly ? bodyRef.current : null,
           previousRef.current?.disabled ? null : previousRef.current,
           nextRef.current?.disabled ? null : nextRef.current,
@@ -108,19 +104,6 @@ export function EventDetail({
           <path d="M5 14.5 16 6l11 8.5M8 13.5V26h16V13.5M13 26v-8h6v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      {onHelp && (
-        <button
-          ref={helpRef}
-          type="button"
-          className="detail-help"
-          data-testid="detail-help"
-          aria-label={m.help}
-          title={m.help}
-          onClick={(event) => onHelp(event.currentTarget)}
-        >
-          ?
-        </button>
-      )}
       {hasText && (
         <div ref={textRef} className="detail-text" data-testid="detail-text">
           <div className="detail-year">

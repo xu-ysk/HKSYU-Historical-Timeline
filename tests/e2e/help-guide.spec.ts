@@ -54,10 +54,10 @@ test('first visitor sees the guide, can reopen it, and gets it again after inact
 
   await page.getByTestId('open-focused').click();
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
-  await page.getByTestId('detail-help').click();
-  await expect(page.getByTestId('help-overlay')).toBeVisible();
-  await page.getByRole('button', { name: 'Close guide' }).click();
-  await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
+  await expect(page.getByTestId('detail-help')).toHaveCount(0);
+  await expect(page.getByTestId('help-overlay')).toHaveCount(0);
+  await page.getByTestId('close-detail').click();
+  await expect(page.getByTestId('event-detail')).toHaveCount(0);
 
   await page.reload();
   await expect(page.getByTestId('help-overlay')).toHaveCount(0);
