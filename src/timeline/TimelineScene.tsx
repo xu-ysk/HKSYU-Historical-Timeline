@@ -211,6 +211,7 @@ export function TimelineScene({
       <aside
         className="education-panel"
         data-testid="education-panel"
+        data-event-year={education?.year}
         data-has-event={education?.year === focusYear}
         aria-hidden={education?.year !== focusYear}
       >

@@ -84,4 +84,10 @@ describe('time and content contracts', () => {
     expect(localized({ en: 'Sample' }, 'zh-Hant')).toBe('Sample');
     expect(localized({ en: 'Sample', 'zh-Hans': '示例' }, 'zh-Hans')).toBe('示例');
   });
+  test('English possessives render without a gap after the apostrophe', () => {
+    expect(localized({ en: 'Council’s, College‘ s, and University’  s' }, 'en')).toBe(
+      "Council's, College's, and University's",
+    );
+    expect(localized({ 'zh-Hans': '中文说明', en: 'College’s' }, 'zh-Hans')).toBe('中文说明');
+  });
 });

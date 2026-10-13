@@ -366,6 +366,21 @@ h1 {
   margin: -12px;
 }
 @media (min-width: 900px) {
+  .timeline-scene[data-mode='overview'][data-locale='en']
+    .upper-rail-panel[data-has-event='true'][data-event-year='1949'] {
+    width: max(340px, min(385px, 29vw));
+  }
+  .timeline-scene[data-mode='overview'][data-locale='en']
+    .upper-rail-panel[data-has-event='true'][data-event-year='1949'] .upper-rail-copy h2 {
+    font-size: 14px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .timeline-scene[data-mode='overview'][data-locale='en']
+    .upper-rail-panel[data-has-event='true'][data-event-year='1949'] .upper-rail-copy p {
+    font-size: 10px;
+    line-height: 1.5;
+  }
   .timeline-scene[data-mode='browse'][data-locale='en']
     .upper-rail-panel[data-has-event='true']:is([data-event-year='1983'], [data-event-year='1990']) {
     width: 400px;
@@ -373,6 +388,82 @@ h1 {
   .timeline-scene[data-mode='browse'][data-locale='en']
     .upper-rail-panel[data-has-event='true'][data-event-year='2007'] {
     width: 440px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2000'], [data-event-year='2004'], [data-event-year='2023']) .eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.8px;
+    margin-bottom: 14px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2000'], [data-event-year='2004'], [data-event-year='2023']) .education-copy {
+    gap: 14px;
+    padding-top: 10px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2000'], [data-event-year='2004'], [data-event-year='2023']) .education-year {
+    font-size: 24px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2000'], [data-event-year='2004'], [data-event-year='2023']) .education-copy h2 {
+    font-size: 14px;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2000'], [data-event-year='2004'], [data-event-year='2023']) .education-copy p {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2004'], [data-event-year='2023']) .eyebrow {
+    margin-bottom: 10px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2004'], [data-event-year='2023']) .education-copy {
+    padding-top: 8px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2004'], [data-event-year='2023']) .education-copy h2 {
+    font-size: 13px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2004'], [data-event-year='2023']) .education-copy p {
+    font-size: 9.5px;
+    line-height: 1.4;
+  }
+}
+@media (min-width: 900px) and (max-width: 1320px) {
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true'][data-event-year='2023'] {
+    right: 20px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1000px) {
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true']:is([data-event-year='2000'], [data-event-year='2004']) .eyebrow {
+    margin-left: 82px;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true'][data-event-year='2000'] {
+    bottom: 140px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true'][data-event-year='2000'] .education-copy p {
+    line-height: 1.4;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true'][data-event-year='2004'] {
+    bottom: 155px;
+  }
+  .timeline-scene[data-mode='browse'][data-locale='en']
+    .education-panel[data-has-event='true'][data-event-year='2023'] {
+    bottom: 166px;
   }
 }
 .upper-rail-panel,

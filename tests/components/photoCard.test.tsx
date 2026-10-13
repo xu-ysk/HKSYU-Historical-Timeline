@@ -3,7 +3,7 @@ import { expect, test } from 'vitest';
 import { PhotoCard } from '../../src/timeline/PhotoCard';
 import { createMockTimeline } from '../../src/data/mockTimeline';
 import { toCards } from '../../src/domain/normalizeTimeline';
-import type { SchoolEvent } from '../../src/domain/timeline';
+import { localized, type SchoolEvent } from '../../src/domain/timeline';
 import timeline from '../../public/timeline.json';
 
 test('placeholder cards use the event year and description instead of archive lettering', () => {
@@ -68,7 +68,7 @@ for (const id of ['P44', 'P76', 'P82', 'P89', 'P113', 'P117']) {
         String(event.year),
       );
       expect(element.querySelector('.photo-placeholder-body')?.textContent).toBe(
-        event.body[locale]!,
+        localized(event.body, locale),
       );
       expect(element.querySelector('.photo-letter')).toBeNull();
     }
