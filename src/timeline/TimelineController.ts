@@ -13,6 +13,7 @@ import {
   lengths,
   trackEndpoints,
   groupPhotoDisplacement,
+  normal,
   transform,
   type SceneValues,
   type Viewport,
@@ -844,6 +845,23 @@ export class TimelineController {
         el.setAttribute('y1', String(a.y));
         el.setAttribute('x2', String(b.x));
         el.setAttribute('y2', String(b.y));
+      });
+      this.root.querySelectorAll<HTMLElement>('[data-swipe-guide]').forEach((el) => {
+        const upper = el.dataset.swipeGuide === 'upper';
+        const lane = upper ? 'upper' : 'education';
+        const rail = anchor(1949, lane, this.view, this.values);
+        // Place the hints in the open diagonal corridors beside the rails.
+        // On the narrower display, keep them clear of the header and theme buttons.
+        const screenScale = clamp((this.view.width - 920) / 1000);
+        const railX = this.view.width * (upper
+          ? 0.5 - 0.086 * screenScale
+          : 0.478 + 0.105 * screenScale);
+        const railY = rail.y + ((railX - rail.x) * direction.y) / direction.x;
+        const offset = upper ? -115 - 115 * screenScale : 110 + 100 * screenScale;
+        const narrowClearance = (upper ? 65 : 75) * (1 - screenScale);
+        const themeClearance = upper ? 0 : 30 * (1 - screenScale);
+        el.style.left = `${railX + normal.x * offset + narrowClearance}px`;
+        el.style.top = `${railY + normal.y * offset - themeClearance}px`;
       });
       this.placeUpperYearLabels();
     }
