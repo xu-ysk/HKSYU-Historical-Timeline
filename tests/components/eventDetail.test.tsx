@@ -16,6 +16,24 @@ test('real photos keep the event description in the right-side detail', () => {
   expect(screen.getByTestId('detail-body')).toHaveTextContent(realEvent.body['zh-Hant']!);
 });
 
+test('detail language buttons switch the open event without closing it', async () => {
+  const realEvent = timeline.schoolEvents.find((item) => item.id === 'P01')! as SchoolEvent;
+  const onLocaleChange = vi.fn();
+  const onClose = vi.fn();
+  const view = render(
+    <EventDetail event={realEvent} locale="zh-Hant" onLocaleChange={onLocaleChange} phase="detail" onClose={onClose} />,
+  );
+  await userEvent.click(screen.getByTestId('detail-language-en'));
+  expect(onLocaleChange).toHaveBeenCalledWith('en');
+  view.rerender(
+    <EventDetail event={realEvent} locale="en" onLocaleChange={onLocaleChange} phase="detail" onClose={onClose} />,
+  );
+  expect(screen.getByTestId('event-detail')).toHaveAttribute('data-event', 'P01');
+  expect(screen.getByTestId('detail-body')).toHaveTextContent(realEvent.body.en!);
+  expect(screen.getByTestId('detail-language-en')).toHaveAttribute('aria-pressed', 'true');
+  expect(onClose).not.toHaveBeenCalled();
+});
+
 test('detail shows only each localized theme name and omits the sample label', () => {
   for (const locale of ['zh-Hant', 'zh-Hans', 'en'] as const)
     for (const themeId of themeIds) {
@@ -49,7 +67,7 @@ test('only the home button closes detail without reaching underlying actions', a
   expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true');
   expect(close).toHaveAttribute('aria-label', '返回时间轴');
   expect(close.querySelector('path')).toHaveAttribute('d', expect.stringContaining('M5 14.5 16 6'));
-  expect(screen.getByText('点击小房子返回时间轴，或使用左右箭头切换年份；三分钟后自动返回。')).toHaveClass('sr-only');
+  expect(screen.getByText('点击小房子返回时间轴，或使用左右箭头切换事件；三分钟后自动返回。')).toHaveClass('sr-only');
   await userEvent.click(screen.getByTestId('detail-body'));
   await userEvent.click(screen.getByRole('dialog'));
   expect(onClose).not.toHaveBeenCalled();
@@ -59,7 +77,7 @@ test('only the home button closes detail without reaching underlying actions', a
   expect(underlyingAction).not.toHaveBeenCalled();
 });
 
-test('year arrows switch records without closing and remain keyboard accessible', async () => {
+test('event arrows switch records without closing and remain keyboard accessible', async () => {
   const onClose = vi.fn();
   const onPrevious = vi.fn();
   const onNext = vi.fn();
@@ -74,8 +92,8 @@ test('year arrows switch records without closing and remain keyboard accessible'
       onNext={onNext}
     />,
   );
-  const previous = screen.getByRole('button', { name: '上一年照片' });
-  const next = screen.getByRole('button', { name: '下一年照片' });
+  const previous = screen.getByRole('button', { name: '上一事件' });
+  const next = screen.getByRole('button', { name: '下一事件' });
   expect(previous).toBeVisible();
   expect(next).toBeVisible();
   await userEvent.tab();

@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { test, expect } from 'vitest';
 import App from '../../src/app/App';
 test('application identifies the museum and marks sample content', () => {
+  window.sessionStorage.setItem('museum-help-seen', 'true');
   render(<App />);
   expect(screen.queryByRole('heading', { name: '時光之間' })).not.toBeInTheDocument();
   expect(screen.queryByText('一所大學，與一座城市的成長')).not.toBeInTheDocument();
@@ -13,6 +14,7 @@ test('application identifies the museum and marks sample content', () => {
 });
 
 test('right-click menu is suppressed while ordinary clicks still work', () => {
+  window.sessionStorage.setItem('museum-help-seen', 'true');
   render(<App />);
   const englishButton = screen.getByRole('button', { name: 'EN' });
   const contextMenu = new MouseEvent('contextmenu', {

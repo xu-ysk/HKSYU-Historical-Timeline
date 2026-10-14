@@ -2,6 +2,11 @@ import { test as base, expect } from '@playwright/test';
 export { expect };
 export type { Page } from '@playwright/test';
 export const test = base.extend<{ runtimeAudit: void }>({
+  page: async ({ page }, use) => {
+    // Existing interaction checks begin after the visitor has read the guide.
+    await page.addInitScript(() => sessionStorage.setItem('museum-help-seen', 'true'));
+    await use(page);
+  },
   runtimeAudit: [
     async ({ page }, use) => {
       const errors: string[] = [],

@@ -4,16 +4,19 @@ import { messages } from '../i18n/messages';
 export function LanguageSwitcher({
   locale,
   onChange,
+  testIdPrefix = 'language-',
 }: {
   locale: Locale;
   onChange: (locale: Locale) => void;
+  testIdPrefix?: string;
 }) {
   return (
     <nav className="languages" aria-label={messages[locale].language}>
       {(['en', 'zh-Hant', 'zh-Hans'] as Locale[]).map((l) => (
         <button
           key={l}
-          data-testid={'language-' + l}
+          type="button"
+          data-testid={testIdPrefix + l}
           aria-pressed={locale === l}
           onClick={() => onChange(l)}
         >

@@ -3,10 +3,12 @@ import type { Locale, SchoolEvent } from '../domain/timeline';
 import { localized, localizedYearLabel } from '../domain/timeline';
 import { themes } from '../config/themes';
 import { messages } from '../i18n/messages';
+import { LanguageSwitcher } from './Controls';
 import type { DetailPhase } from '../timeline/timelineReducer';
 export function EventDetail({
   event,
   locale,
+  onLocaleChange,
   phase,
   onClose,
   onPrevious,
@@ -14,6 +16,7 @@ export function EventDetail({
 }: {
   event: SchoolEvent;
   locale: Locale;
+  onLocaleChange?: (locale: Locale) => void;
   phase: DetailPhase;
   onClose: () => void;
   onPrevious?: () => void;
@@ -58,6 +61,7 @@ export function EventDetail({
       if (e.key === 'Tab') {
         const candidates: (HTMLElement | null)[] = [
           closeRef.current,
+          ...Array.from(detailRef.current?.querySelectorAll<HTMLButtonElement>('.detail-languages button') ?? []),
           body && !placeholderOnly ? bodyRef.current : null,
           previousRef.current?.disabled ? null : previousRef.current,
           nextRef.current?.disabled ? null : nextRef.current,
@@ -84,6 +88,7 @@ export function EventDetail({
       data-testid="event-detail"
       data-event={event.id}
       data-year={event.year}
+      data-locale={locale}
       data-phase={phase}
       data-placeholder-only={placeholderOnly ? 'true' : 'false'}
       onClick={(e) => e.stopPropagation()}
@@ -91,19 +96,26 @@ export function EventDetail({
       <span className="sr-only" id="detail-dismiss-hint">
         {m.dismissDetail}
       </span>
-      <button
-        ref={closeRef}
-        type="button"
-        className="detail-close"
-        data-testid="close-detail"
-        aria-label={m.close}
-        title={m.close}
-        onClick={onClose}
-      >
-        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M5 14.5 16 6l11 8.5M8 13.5V26h16V13.5M13 26v-8h6v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
+      <div className="detail-toolbar">
+        <button
+          ref={closeRef}
+          type="button"
+          className="detail-close"
+          data-testid="close-detail"
+          aria-label={m.close}
+          title={m.close}
+          onClick={onClose}
+        >
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M5 14.5 16 6l11 8.5M8 13.5V26h16V13.5M13 26v-8h6v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        {onLocaleChange && (
+          <div className="detail-languages">
+            <LanguageSwitcher locale={locale} onChange={onLocaleChange} testIdPrefix="detail-language-" />
+          </div>
+        )}
+      </div>
       {hasText && (
         <div ref={textRef} className="detail-text" data-testid="detail-text">
           <div className="detail-year">
@@ -132,8 +144,8 @@ export function EventDetail({
             ref={previousRef}
             type="button"
             data-testid="detail-previous"
-            aria-label={m.previousYear}
-            title={m.previousYear}
+            aria-label={m.previousEvent}
+            title={m.previousEvent}
             disabled={phase !== 'detail'}
             onClick={onPrevious}
           >
@@ -147,8 +159,8 @@ export function EventDetail({
             ref={nextRef}
             type="button"
             data-testid="detail-next"
-            aria-label={m.nextYear}
-            title={m.nextYear}
+            aria-label={m.nextEvent}
+            title={m.nextEvent}
             disabled={phase !== 'detail'}
             onClick={onNext}
           >

@@ -9,20 +9,23 @@ test('workbook text and chronology remain complete with real photos', () => {
   expect(timeline.educationEvents).toHaveLength(20);
 
   const photos = timeline.schoolEvents.flatMap((event) => event.photos);
-  expect(photos).toHaveLength(178);
+  expect(photos).toHaveLength(179);
   expect(
     photos.every((photo) => photo.kind === 'image' && photo.src.startsWith('Historical_Timeline_Images/')),
   ).toBe(true);
   expect(
     photos.every((photo) => existsSync(resolve('public', decodeURIComponent(photo.src)))),
   ).toBe(true);
-  expect(new Set(photos.map((photo) => photo.id)).size).toBe(178);
+  expect(new Set(photos.map((photo) => photo.id)).size).toBe(179);
   expect(timeline.schoolEvents.every((event) => event.photos.length <= 5)).toBe(true);
-  expect(timeline.schoolEvents.filter((event) => event.photos.length === 0)).toHaveLength(6);
-  expect(timeline.schoolEvents.filter((event) => event.photos.length === 1)).toHaveLength(49);
+  expect(timeline.schoolEvents.filter((event) => event.photos.length === 0)).toHaveLength(5);
+  expect(timeline.schoolEvents.filter((event) => event.photos.length === 1)).toHaveLength(50);
   expect(timeline.schoolEvents.filter((event) => event.photos.length === 2)).toHaveLength(62);
   expect(timeline.schoolEvents.filter((event) => event.photos.length === 5)).toHaveLength(1);
   expect(timeline.schoolEvents.find((event) => event.id === 'P52')?.photos).toHaveLength(1);
+  expect(timeline.schoolEvents.find((event) => event.id === 'P113')?.photos[0]?.src).toBe(
+    'Historical_Timeline_Images/2026/image170.jpg',
+  );
   expect(timeline.schoolEvents.some((event) => event.id === 'P82')).toBe(true);
   expect(
     timeline.schoolEvents

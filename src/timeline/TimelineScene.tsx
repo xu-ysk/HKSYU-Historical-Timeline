@@ -115,6 +115,26 @@ export function TimelineScene({
           );
         })}
       </svg>
+      {(['upper', 'education'] as const).map((lane) => (
+        <div
+          key={lane}
+          className={`swipe-guide swipe-guide-${lane}`}
+          data-swipe-guide={lane}
+          aria-hidden="true"
+        >
+          {lane === 'education' && (
+            <svg viewBox="0 0 54 16" aria-hidden="true">
+              <path d="M53 8H2m0 0 7-6M2 8l7 6" />
+            </svg>
+          )}
+          <span>{m.swipeBlank}</span>
+          {lane === 'upper' && (
+            <svg viewBox="0 0 54 16" aria-hidden="true">
+              <path d="M1 8h51m0 0-7-6m7 6-7 6" />
+            </svg>
+          )}
+        </div>
+      ))}
       <aside
         className="upper-rail-panel"
         data-testid="upper-rail-panel"

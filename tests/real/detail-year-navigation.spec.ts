@@ -25,7 +25,7 @@ async function expectButtonsAtPhotoCorners(page: import('@playwright/test').Page
   }
 }
 
-test('home and year arrows navigate real photos without returning to the timeline', async ({ page }) => {
+test('home and event arrows navigate every real event without returning to the timeline', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId('year-slider').fill('1971');
   const first = page.locator('.photo-card[data-event-id="P01"]').first();
@@ -43,11 +43,16 @@ test('home and year arrows navigate real photos without returning to the timelin
   expect(arrow.y).toBeGreaterThan(text.y + text.height);
   expect(arrow.x).toBeGreaterThan(text.x);
   await next.click();
-  await expect(detail).toHaveAttribute('data-event', 'P03');
+  await expect(detail).toHaveAttribute('data-event', 'P02');
   await expect(page.getByTestId('scene')).toHaveAttribute('data-phase', 'detail');
-  await expect(page.locator('.photo-card[data-event-id="P03"][data-extracted="true"]')).toHaveCount(1);
+  await expect(page.locator('.photo-card[data-event-id="P02"][data-extracted="true"]')).toHaveCount(2);
   await expect(page.getByTestId('detail-body')).not.toHaveText(initialDescription!);
+  await page.getByTestId('detail-next').click();
+  await expect(detail).toHaveAttribute('data-event', 'P03');
+  await expect(page.locator('.photo-card[data-event-id="P03"][data-extracted="true"]')).toHaveCount(1);
   await expect(page.getByTestId('detail-previous')).toBeVisible();
+  await page.getByTestId('detail-previous').click();
+  await expect(detail).toHaveAttribute('data-event', 'P02');
   await page.getByTestId('detail-previous').click();
   await expect(detail).toHaveAttribute('data-event', 'P01');
   await expect(page.locator('.photo-card[data-event-id="P01"][data-extracted="true"]')).toHaveCount(2);
@@ -55,7 +60,7 @@ test('home and year arrows navigate real photos without returning to the timelin
   await expect(detail).toHaveCount(0);
 });
 
-test('theme navigation stays within the theme and final year has no next arrow', async ({ page }) => {
+test('theme navigation stays within the theme and final event has no next arrow', async ({ page }) => {
   await page.goto('/');
   await page.getByTestId('theme-A').click();
   await page.getByTestId('year-slider').fill('1971');
@@ -79,14 +84,32 @@ test('theme navigation stays within the theme and final year has no next arrow',
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', 'P118');
   await expect(page.getByTestId('detail-next')).toHaveCount(0);
   await page.getByTestId('detail-previous').click();
-  await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', 'P108');
+  await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', 'P117');
   await expect(page.getByTestId('scene')).toHaveAttribute('data-phase', 'detail');
+});
+
+test('all 2026 events show their own text and photos in sequence', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('year-slider').fill('2026');
+  const first = page.locator('.photo-card[data-event-id="P113"]').first();
+  await first.focus();
+  await first.press('Enter');
+  const detail = page.getByTestId('event-detail');
+  for (const [index, [id, count]] of ([
+    ['P113', 1], ['P114', 2], ['P115', 2], ['P116', 2], ['P117', 1], ['P118', 5],
+  ] as [string, number][]).entries()) {
+    await expect(detail).toHaveAttribute('data-event', id);
+    await expect(page.getByTestId('detail-body')).not.toBeEmpty();
+    await expect(page.locator(`.photo-card[data-event-id="${id}"][data-extracted="true"]`)).toHaveCount(count);
+    if (index < 5) await page.getByTestId('detail-next').click();
+  }
+  await expect(page.getByTestId('detail-next')).toHaveCount(0);
 });
 
 test.describe('touch screen', () => {
   test.use({ hasTouch: true });
 
-  test('visitors can tap through years and return with the home button', async ({ page }) => {
+  test('visitors can tap through events and return with the home button', async ({ page }) => {
     await page.goto('/');
     await page.getByTestId('year-slider').fill('1971');
     const first = page.locator('.photo-card[data-event-id="P01"]').first();
@@ -94,7 +117,7 @@ test.describe('touch screen', () => {
     await first.tap();
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', 'P01');
     await page.getByTestId('detail-next').tap();
-    await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', 'P03');
+    await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', 'P02');
     await expect(page.getByTestId('scene')).toHaveAttribute('data-phase', 'detail');
     await page.getByTestId('close-detail').tap();
     await expect(page.getByTestId('event-detail')).toHaveCount(0);

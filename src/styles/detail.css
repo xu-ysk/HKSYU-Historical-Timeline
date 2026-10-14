@@ -17,10 +17,17 @@
   cursor: default;
   outline: none;
 }
-.detail-close {
+.detail-toolbar {
   position: absolute;
   left: 68%;
   top: 184px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+.detail-close {
+  flex: none;
   display: grid;
   place-items: center;
   width: 48px;
@@ -32,6 +39,13 @@
   color: #6b665a;
   cursor: pointer;
   pointer-events: auto;
+}
+.detail-languages {
+  pointer-events: auto;
+}
+.detail-languages .languages button {
+  min-width: 34px;
+  padding: 8px 9px;
 }
 .detail-close svg {
   width: 26px;
@@ -85,7 +99,7 @@
   top: auto;
   bottom: 35px;
 }
-.event-detail-placeholder .detail-close {
+.event-detail-placeholder .detail-toolbar {
   left: var(--detail-photo-left);
   top: max(16px, calc(var(--detail-photo-top) - 66px));
 }
@@ -141,6 +155,10 @@
     24px var(--font-family);
   font-weight: 400;
   margin: 0 0 18px;
+}
+.event-detail[data-locale='en'] .detail-text h2 {
+  font-size: 20px;
+  line-height: 1.4;
 }
 .detail-body {
   font:
@@ -225,10 +243,10 @@
   }
 }
 @media (max-height: 760px) {
-  .detail-close {
+  .detail-toolbar {
     top: 190px;
   }
-  .event-detail-placeholder .detail-close {
+  .event-detail-placeholder .detail-toolbar {
     top: max(16px, calc(var(--detail-photo-top) - 66px));
   }
   .detail-year {
@@ -238,6 +256,9 @@
   .detail-text h2 {
     font-size: 19px;
     margin-bottom: 10px;
+  }
+  .event-detail[data-locale='en'] .detail-text h2 {
+    font-size: 17px;
   }
   .detail-theme {
     margin-bottom: 10px;

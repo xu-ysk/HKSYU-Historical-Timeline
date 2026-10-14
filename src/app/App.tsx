@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { Locale, TimelineDataset, ThemeId } from '../domain/timeline';
 import { useCurrentYear } from '../domain/useCurrentYear';
 import { mockProvider } from '../data/mockProvider';
@@ -8,12 +8,23 @@ import { LanguageSwitcher, ThemeSwitcher } from '../components/Controls';
 import { TimelineScene } from '../timeline/TimelineScene';
 import { TimelineController } from '../timeline/TimelineController';
 import { EventDetail } from '../components/EventDetail';
+import { HelpOverlay } from '../components/HelpOverlay';
 import { initialDetail } from '../timeline/timelineReducer';
 import { localized, localizedYearLabel } from '../domain/timeline';
-import { detailYearNeighbors } from '../domain/detailNavigation';
+import { detailEventNeighbors } from '../domain/detailNavigation';
 import '../styles/timeline.css';
 import '../styles/detail.css';
+import '../styles/help.css';
 export default function App() {
+  const [helpOpen, setHelpOpen] = useState(() => {
+    try {
+      return window.sessionStorage.getItem('museum-help-seen') !== 'true';
+    } catch {
+      return true;
+    }
+  });
+  const appRef = useRef<HTMLElement>(null);
+  const helpButtonRef = useRef<HTMLButtonElement>(null);
   const [data, setData] = useState<TimelineDataset | null>(null),
     [locale, setLocale] = useState<Locale>('zh-Hant'),
     [active, setActive] = useState<ThemeId | null>(null),
@@ -25,6 +36,47 @@ export default function App() {
   const [detail, setDetail] = useState(initialDetail);
   const detailPhaseRef = useRef(detail.phase);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
+  const closeHelp = useCallback(() => {
+    try {
+      window.sessionStorage.setItem('museum-help-seen', 'true');
+    } catch {
+      // The guide remains usable when browser storage is unavailable.
+    }
+    setHelpOpen(false);
+    window.requestAnimationFrame(() =>
+      (document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current)?.focus(),
+    );
+  }, []);
+  useLayoutEffect(() => {
+    const app = appRef.current;
+    if (app) app.inert = helpOpen;
+    return () => {
+      if (app) app.inert = false;
+    };
+  }, [helpOpen]);
+  useEffect(() => {
+    if (helpOpen) return;
+    let idleTimer: number;
+    const restart = () => {
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => setHelpOpen(true), 3 * 60 * 1000);
+    };
+    const onPointerMove = (event: PointerEvent) => {
+      if (event.buttons) restart();
+    };
+    window.addEventListener('pointerdown', restart);
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('wheel', restart);
+    window.addEventListener('keydown', restart);
+    restart();
+    return () => {
+      window.clearTimeout(idleTimer);
+      window.removeEventListener('pointerdown', restart);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('wheel', restart);
+      window.removeEventListener('keydown', restart);
+    };
+  }, [helpOpen]);
   useEffect(() => {
     if (!detail.eventId) return;
     const timer = window.setTimeout(closeDetail, 3 * 60 * 1000);
@@ -61,7 +113,7 @@ export default function App() {
       : '—',
     detailActive = detail.phase !== 'idle';
   const detailNeighbors = selected && data
-    ? detailYearNeighbors(data.schoolEvents, selected, active)
+    ? detailEventNeighbors(data.schoolEvents, selected, active)
     : null;
   useEffect(() => {
     const abort = new AbortController();
@@ -105,6 +157,7 @@ export default function App() {
   }, [endYear, loadAttempt, provider]);
   return (
     <main
+      ref={appRef}
       className="museum-app"
       data-mode={mode}
       data-detail-active={detailActive}
@@ -132,6 +185,15 @@ export default function App() {
               {m.browse} ↗
             </button>
           </div>
+          <button
+            ref={helpButtonRef}
+            type="button"
+            className="help-trigger"
+            data-testid="help-trigger"
+            onClick={() => setHelpOpen(true)}
+          >
+            <span aria-hidden="true">?</span> {m.help}
+          </button>
         </div>
       </header>
       {error && data && <p className="sync-warning" role="status">{m.updateError}</p>}
@@ -158,6 +220,7 @@ export default function App() {
         <EventDetail
           event={selected}
           locale={locale}
+          onLocaleChange={setLocale}
           phase={detail.phase}
           onClose={closeDetail}
           onPrevious={detailNeighbors?.previous
@@ -223,6 +286,7 @@ export default function App() {
         </div>
         <ThemeSwitcher locale={locale} active={active} onChange={handleTheme} />
       </footer>
+      <HelpOverlay open={helpOpen} locale={locale} onClose={closeHelp} onLocaleChange={setLocale} />
     </main>
   );
 }
