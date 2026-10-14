@@ -11,7 +11,7 @@ import { EventDetail } from '../components/EventDetail';
 import { HelpOverlay } from '../components/HelpOverlay';
 import { initialDetail } from '../timeline/timelineReducer';
 import { localized, localizedYearLabel } from '../domain/timeline';
-import { detailYearNeighbors } from '../domain/detailNavigation';
+import { detailEventNeighbors } from '../domain/detailNavigation';
 import '../styles/timeline.css';
 import '../styles/detail.css';
 import '../styles/help.css';
@@ -113,7 +113,7 @@ export default function App() {
       : '—',
     detailActive = detail.phase !== 'idle';
   const detailNeighbors = selected && data
-    ? detailYearNeighbors(data.schoolEvents, selected, active)
+    ? detailEventNeighbors(data.schoolEvents, selected, active)
     : null;
   useEffect(() => {
     const abort = new AbortController();

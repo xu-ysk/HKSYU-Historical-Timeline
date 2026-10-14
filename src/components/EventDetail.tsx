@@ -144,8 +144,8 @@ export function EventDetail({
             ref={previousRef}
             type="button"
             data-testid="detail-previous"
-            aria-label={m.previousYear}
-            title={m.previousYear}
+            aria-label={m.previousEvent}
+            title={m.previousEvent}
             disabled={phase !== 'detail'}
             onClick={onPrevious}
           >
@@ -159,8 +159,8 @@ export function EventDetail({
             ref={nextRef}
             type="button"
             data-testid="detail-next"
-            aria-label={m.nextYear}
-            title={m.nextYear}
+            aria-label={m.nextEvent}
+            title={m.nextEvent}
             disabled={phase !== 'detail'}
             onClick={onNext}
           >
