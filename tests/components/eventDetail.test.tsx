@@ -16,6 +16,24 @@ test('real photos keep the event description in the right-side detail', () => {
   expect(screen.getByTestId('detail-body')).toHaveTextContent(realEvent.body['zh-Hant']!);
 });
 
+test('detail language buttons switch the open event without closing it', async () => {
+  const realEvent = timeline.schoolEvents.find((item) => item.id === 'P01')! as SchoolEvent;
+  const onLocaleChange = vi.fn();
+  const onClose = vi.fn();
+  const view = render(
+    <EventDetail event={realEvent} locale="zh-Hant" onLocaleChange={onLocaleChange} phase="detail" onClose={onClose} />,
+  );
+  await userEvent.click(screen.getByTestId('detail-language-en'));
+  expect(onLocaleChange).toHaveBeenCalledWith('en');
+  view.rerender(
+    <EventDetail event={realEvent} locale="en" onLocaleChange={onLocaleChange} phase="detail" onClose={onClose} />,
+  );
+  expect(screen.getByTestId('event-detail')).toHaveAttribute('data-event', 'P01');
+  expect(screen.getByTestId('detail-body')).toHaveTextContent(realEvent.body.en!);
+  expect(screen.getByTestId('detail-language-en')).toHaveAttribute('aria-pressed', 'true');
+  expect(onClose).not.toHaveBeenCalled();
+});
+
 test('detail shows only each localized theme name and omits the sample label', () => {
   for (const locale of ['zh-Hant', 'zh-Hans', 'en'] as const)
     for (const themeId of themeIds) {

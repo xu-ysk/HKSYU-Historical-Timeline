@@ -220,6 +220,7 @@ export default function App() {
         <EventDetail
           event={selected}
           locale={locale}
+          onLocaleChange={setLocale}
           phase={detail.phase}
           onClose={closeDetail}
           onPrevious={detailNeighbors?.previous
