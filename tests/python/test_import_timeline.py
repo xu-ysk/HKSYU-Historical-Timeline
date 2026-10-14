@@ -74,9 +74,11 @@ class ImportTimelineTest(unittest.TestCase):
         self.assertEqual(len(upper), 28)
         self.assertEqual(len(school), 118)
         self.assertEqual(len(education), 20)
-        self.assertEqual(sum(len(event["photos"]) for event in school.values()), 178)
+        self.assertEqual(sum(len(event["photos"]) for event in school.values()), 179)
         self.assertTrue(all(len(event["photos"]) <= 5 for event in school.values()))
         self.assertEqual(len(school["P52"]["photos"]), 1)
+        self.assertEqual(school["P113"]["photos"][0]["src"],
+                         "Historical_Timeline_Images/2026/image170.jpg")
         self.assertEqual(len(school["P118"]["photos"]), 5)
         self.assertIn("P82", school)
         for event in school.values():
