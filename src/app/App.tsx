@@ -35,6 +35,7 @@ export default function App() {
   const controllerRef = useRef<TimelineController | null>(null);
   const [detail, setDetail] = useState(initialDetail);
   const detailPhaseRef = useRef(detail.phase);
+  const returnToOverviewRef = useRef(false);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
   const closeHelp = useCallback(() => {
     try {
@@ -82,12 +83,32 @@ export default function App() {
     const timer = window.setTimeout(closeDetail, 3 * 60 * 1000);
     return () => window.clearTimeout(timer);
   }, [detail.eventId, closeDetail]);
+  useEffect(() => {
+    if (!active) return;
+    const timer = window.setTimeout(() => {
+      setActive(null);
+      controllerRef.current?.setTheme(null);
+      if (detailPhaseRef.current === 'idle') {
+        controllerRef.current?.startMode('overview');
+      } else {
+        returnToOverviewRef.current = true;
+        controllerRef.current?.close();
+      }
+    }, 3 * 60 * 1000);
+    return () => window.clearTimeout(timer);
+  }, [active]);
+  useEffect(() => {
+    if (detail.phase !== 'idle' || !returnToOverviewRef.current) return;
+    returnToOverviewRef.current = false;
+    controllerRef.current?.startMode('overview');
+  }, [detail.phase]);
   const handleProgress = useCallback((nextYear: number, nextEventId: string) => {
     setYear(nextYear);
     setEventId(nextEventId);
   }, []);
   const handleMode = useCallback((nextMode: 'overview' | 'browse') => setMode(nextMode), []);
   const handleTheme = (theme: ThemeId | null) => {
+    returnToOverviewRef.current = false;
     setActive(theme);
     controllerRef.current?.setTheme(theme);
   };

@@ -89,9 +89,9 @@ test('detail returns automatically after three minutes', async ({ page }) => {
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   const focus = await page.getByTestId('scene').getAttribute('data-focus');
   await page.clock.fastForward(178_000);
-  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.getByTestId('event-detail')).toBeVisible();
   await page.clock.fastForward(3_000);
-  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByTestId('event-detail')).toHaveCount(0);
   await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
 });
 
@@ -102,14 +102,14 @@ test('reopening detail starts a fresh three-minute timer', async ({ page }) => {
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   await page.clock.fastForward(60_000);
   await page.getByTestId('close-detail').click();
-  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByTestId('event-detail')).toHaveCount(0);
 
   await page.getByTestId('open-focused').click();
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   await page.clock.fastForward(118_000);
-  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.getByTestId('event-detail')).toBeVisible();
   await page.clock.fastForward(63_000);
-  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByTestId('event-detail')).toHaveCount(0);
 });
 
 test.describe('touch screen', () => {

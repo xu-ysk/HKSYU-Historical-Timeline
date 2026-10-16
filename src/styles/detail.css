@@ -264,7 +264,39 @@
     margin-bottom: 10px;
   }
 }
-.event-detail[data-year='1971']:not(.event-detail-no-copy) .detail-navigation {
+.event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-text {
+  height: auto;
+}
+.event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-body {
+  flex: none;
+  overflow: visible;
+  padding-right: 0;
+}
+.event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-navigation {
   top: calc(var(--detail-copy-bottom) + 24px);
   bottom: auto;
+}
+@media (max-height: 760px) {
+  .event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-toolbar {
+    top: 54px;
+  }
+  .event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-text {
+    top: 110px;
+    padding-top: 8px;
+  }
+  .event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-year {
+    font-size: 38px;
+    margin: 5px 0 6px;
+  }
+  .event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-theme {
+    margin-bottom: 7px;
+  }
+  .event-detail:is([data-event='P01'], [data-event='P118']):not(.event-detail-no-copy) .detail-body {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .event-detail:is([data-event='P01'], [data-event='P118'])[data-locale='en'] .detail-body {
+    font-size: 11px;
+    line-height: 1.45;
+  }
 }

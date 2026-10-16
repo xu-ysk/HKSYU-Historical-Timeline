@@ -36,7 +36,7 @@ export function EventDetail({
   useLayoutEffect(() => {
     const detail = detailRef.current;
     const text = textRef.current;
-    if (event.year !== 1971 || placeholderOnly || !detail || !text) return;
+    if (!['P01', 'P118'].includes(event.id) || placeholderOnly || !detail || !text) return;
     const positionNavigation = () => {
       const bottom = Math.max(
         text.getBoundingClientRect().bottom,
