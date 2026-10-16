@@ -710,7 +710,7 @@ export class TimelineController {
         showDetailText,
         window.devicePixelRatio || 1,
       );
-    if (rects.length && selectedEvent && !hasPhotoSurface) {
+    if (rects.length && selectedEvent) {
       const app = this.root.closest<HTMLElement>('.museum-app');
       app?.style.setProperty('--detail-photo-left', `${Math.min(...rects.map((rect) => rect.x))}px`);
       app?.style.setProperty('--detail-photo-right', `${Math.max(...rects.map((rect) => rect.x + rect.width))}px`);

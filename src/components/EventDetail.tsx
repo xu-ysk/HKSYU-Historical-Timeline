@@ -36,7 +36,7 @@ export function EventDetail({
   useLayoutEffect(() => {
     const detail = detailRef.current;
     const text = textRef.current;
-    if (!['P01', 'P118'].includes(event.id) || placeholderOnly || !detail || !text) return;
+    if (placeholderOnly || !detail || !text) return;
     const positionNavigation = () => {
       const bottom = Math.max(
         text.getBoundingClientRect().bottom,
@@ -49,12 +49,18 @@ export function EventDetail({
     for (const child of text.children) observer.observe(child);
     positionNavigation();
     return () => observer.disconnect();
-  }, [event.year, body, title, locale, phase, placeholderOnly]);
+  }, [event.id, body, title, locale, phase, placeholderOnly]);
   useEffect(() => {
     closeRef.current?.focus();
   }, []);
   useEffect(() => {
-    if (bodyRef.current) bodyRef.current.scrollTop = 0;
+    const app = detailRef.current?.closest<HTMLElement>('.museum-app');
+    if (app) app.scrollTop = 0;
+    return () => {
+      if (app) app.scrollTop = 0;
+    };
+  }, [event.id, locale]);
+  useEffect(() => {
     if (!(document.activeElement as HTMLElement | null)?.closest('.event-detail'))
       closeRef.current?.focus();
     const key = (e: KeyboardEvent) => {
@@ -62,7 +68,6 @@ export function EventDetail({
         const candidates: (HTMLElement | null)[] = [
           closeRef.current,
           ...Array.from(detailRef.current?.querySelectorAll<HTMLButtonElement>('.detail-languages button') ?? []),
-          body && !placeholderOnly ? bodyRef.current : null,
           previousRef.current?.disabled ? null : previousRef.current,
           nextRef.current?.disabled ? null : nextRef.current,
         ];
@@ -131,7 +136,6 @@ export function EventDetail({
               id="detail-body"
               className="detail-body"
               data-testid="detail-body"
-              tabIndex={0}
             >
               {body}
             </div>

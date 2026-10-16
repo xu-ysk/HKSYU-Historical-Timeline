@@ -124,7 +124,7 @@ test.describe('touch screen', () => {
   });
 });
 
-test('year arrows remain below the text in the narrow browser view', async ({ page }) => {
+test('narrow browser view scrolls the full detail page without an inner text scrollbar', async ({ page }) => {
   await page.setViewportSize({ width: 738, height: 668 });
   await page.goto('/');
   await page.getByTestId('year-slider').fill('1971');
@@ -135,8 +135,23 @@ test('year arrows remain below the text in the narrow browser view', async ({ pa
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
   const text = (await page.getByTestId('detail-text').boundingBox())!;
   const next = (await page.getByTestId('detail-next').boundingBox())!;
+  const photoBottom = await page.locator('.photo-card[data-event-id="P01"][data-extracted="true"]')
+    .evaluateAll((photos) => Math.max(...photos.map((photo) => photo.getBoundingClientRect().bottom)));
+  expect(text.y).toBeGreaterThan(photoBottom);
   expect(next.y).toBeGreaterThan(text.y + text.height);
-  expect(next.y + next.height).toBeLessThan(668);
+  expect(await page.getByTestId('detail-body').evaluate((element) =>
+    element.scrollHeight === element.clientHeight && getComputedStyle(element).overflowY === 'visible',
+  )).toBe(true);
+  await page.getByTestId('detail-next').scrollIntoViewIfNeeded();
+  expect(await page.locator('.museum-app').evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+  const visibleNext = (await page.getByTestId('detail-next').boundingBox())!;
+  expect(visibleNext.y + visibleNext.height).toBeLessThan(668);
+  await page.getByTestId('detail-next').click();
+  await expect(page.getByTestId('event-detail')).toHaveAttribute('data-event', 'P02');
+  await expect.poll(() => page.locator('.museum-app').evaluate((element) => element.scrollTop)).toBe(0);
+  await page.getByTestId('close-detail').click();
+  await expect(page.getByTestId('event-detail')).toHaveCount(0);
+  await expect.poll(() => page.locator('.museum-app').evaluate((element) => element.scrollTop)).toBe(0);
 });
 
 test('text placeholder positions all three buttons around the card', async ({ page }) => {
