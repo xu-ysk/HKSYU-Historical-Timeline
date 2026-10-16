@@ -2,10 +2,14 @@ import { test, expect } from '../e2e/fixtures';
 
 test.use({ viewport: { width: 1920, height: 1080 } });
 
-test('shorter details, including 1971–1972, use a compact centered text column', async ({ page }) => {
+test('1971 and other details use a compact centered text column', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 900 });
   await page.goto('/');
-  for (const { id, year } of [{ id: 'P02', year: 1971 }, { id: 'P03', year: 1972 }]) {
+  for (const { id, year } of [
+    { id: 'P01', year: 1971 },
+    { id: 'P02', year: 1971 },
+    { id: 'P03', year: 1972 },
+  ]) {
     await page.getByTestId('year-slider').fill(String(year));
     const source = page.locator(`.photo-card[data-event-id="${id}"]`).first();
     await source.focus();
@@ -40,12 +44,6 @@ test('shorter details, including 1971–1972, use a compact centered text column
     await expect(page.getByTestId('event-detail')).toHaveCount(0);
   }
 
-  await page.getByTestId('year-slider').fill('1971');
-  const longSource = page.locator('.photo-card[data-event-id="P01"]').first();
-  await longSource.focus();
-  await longSource.press('Enter');
-  await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
-  expect((await page.getByTestId('detail-text').boundingBox())!.width).toBeGreaterThan(500);
 });
 
 for (const { id, minimum, count } of [
