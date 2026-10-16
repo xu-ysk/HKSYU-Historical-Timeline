@@ -54,7 +54,10 @@ button {
 }
 .languages {
   display: flex;
-  gap: 2px;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--theme-accent) 36%, #eee9df);
+  border-radius: 7px;
   pointer-events: auto;
 }
 .languages button {
@@ -64,10 +67,12 @@ button {
   font-size: 12px;
   color: #8e8b82;
 }
+.languages button + button {
+  border-left: 1px solid color-mix(in srgb, var(--theme-accent) 28%, #eee9df);
+}
 .languages button[aria-pressed='true'] {
   color: var(--ink);
   background: #e9e5df;
-  border-radius: 3px;
 }
 .title-block {
   margin-top: 37px;
@@ -156,8 +161,23 @@ h1 {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.timeline-scene[data-phase='idle'] .swipe-guide {
+  animation: swipe-guide-pulse 4.2s ease-in-out infinite;
+  will-change: opacity;
+}
 .timeline-scene:is([data-phase='opening'], [data-phase='detail'], [data-phase='closing'], [data-phase='dragging']) .swipe-guide {
   opacity: 0;
+}
+@keyframes swipe-guide-pulse {
+  0%,
+  15%,
+  100% {
+    opacity: 1;
+  }
+  45%,
+  65% {
+    opacity: 0;
+  }
 }
 .photo-card {
   position: absolute;

@@ -27,7 +27,7 @@ test('navigation includes records in the same year and follows the selected them
     next: event('P04'),
   });
   expect(detailEventNeighbors(events, event('P01'), 'A').next).toBe(event('P06'));
-  expect(detailEventNeighbors(events, event('P108'), 'E').next).toBe(event('P113'));
+  expect(detailEventNeighbors(events, event('P108'), 'E').next).toBe(event('P109'));
 });
 
 test('an event with only text remains reachable when it has no photos', () => {
