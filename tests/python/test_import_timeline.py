@@ -7,7 +7,8 @@ import tempfile
 import unittest
 import zipfile
 from pathlib import Path
-from urllib.parse import unquote
+from unittest.mock import patch
+from urllib.parse import unquote, urlsplit
 from xml.etree import ElementTree as ET
 
 
@@ -19,6 +20,70 @@ spec.loader.exec_module(importer)
 
 
 class ImportTimelineTest(unittest.TestCase):
+    def test_school_url_keeps_query_and_exact_folder_structure(self):
+        source = 'https://umtimeline.hksyu.edu/Historical_Timeline_Images/1995/1995%EF%BC%883%EF%BC%89/image71.jpg?token=abc%2Fdef'
+        self.assertEqual(importer.school_photo_url(source), source)
+        self.assertEqual(importer.school_photo_url('/Historical_Timeline_Images/1971/image1.jpg'),
+                         'https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/image1.jpg')
+        for invalid in ['https://example.com/Historical_Timeline_Images/a.jpg',
+                        'file:///Historical_Timeline_Images/a.jpg',
+                        'https://umtimeline.hksyu.edu/Historical_Timeline_Images/../secret.jpg',
+                        'https://umtimeline.hksyu.edu/Historical_Timeline_Images/%2e%2e/secret.jpg']:
+            with self.subTest(source=invalid), self.assertRaises(ValueError):
+                importer.school_photo_url(invalid)
+
+    def test_remote_photo_headers_are_cached_without_saving_files(self):
+        from PIL import Image
+        source = 'https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/header-test.jpg'
+        data = io.BytesIO()
+        Image.new('RGB', (640, 480)).save(data, format='JPEG')
+        response = io.BytesIO(data.getvalue())
+        response.geturl = lambda: source
+        importer.remote_photo_size.cache_clear()
+        self.addCleanup(importer.remote_photo_size.cache_clear)
+        with patch.object(importer, 'urlopen', return_value=response) as request:
+            self.assertEqual(importer.remote_photo_size(source), (640, 480))
+            self.assertEqual(importer.remote_photo_size(source), (640, 480))
+            request.assert_called_once()
+
+    def test_unreachable_or_non_image_url_is_not_published(self):
+        importer.remote_photo_size.cache_clear()
+        self.addCleanup(importer.remote_photo_size.cache_clear)
+        source = 'https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/bad.jpg'
+        with patch.object(importer, 'urlopen', side_effect=OSError('HTTP 404')):
+            with self.assertRaisesRegex(ValueError, 'HTTP 404'):
+                importer.remote_photo_size(source)
+        response = io.BytesIO(b'<html>not an image</html>')
+        response.geturl = lambda: source
+        with patch.object(importer, 'urlopen', return_value=response):
+            with self.assertRaisesRegex(ValueError, 'dimensions'):
+                importer.remote_photo_size(source)
+
+    def test_remote_photo_entries_need_no_local_mirror(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with patch.object(importer, 'remote_photo_size', return_value=(640, 480)):
+                photos = importer.photo_entries({
+                    'id': 'P01', 'photo-1': '/Historical_Timeline_Images/1971/new.jpg',
+                    'photo-2': '', 'photo-5': '/Historical_Timeline_Images/1971/second.jpg',
+                }, root)
+            self.assertEqual([photo['id'] for photo in photos], ['P01-photo-1', 'P01-photo-5'])
+            self.assertTrue(all(photo['src'].startswith('https://umtimeline.hksyu.edu/') for photo in photos))
+            self.assertEqual(list(root.iterdir()), [])
+
+    def test_default_revision_ignores_local_photo_changes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            workbook = root / 'timeline.xlsx'
+            workbook.write_bytes(b'first')
+            first = importer.source_revision(workbook, root)
+            photos = root / 'Historical_Timeline_Images'
+            photos.mkdir()
+            (photos / 'unrelated.jpg').write_bytes(b'unused')
+            self.assertEqual(first, importer.source_revision(workbook, root))
+            workbook.write_bytes(b'second')
+            self.assertNotEqual(first, importer.source_revision(workbook, root))
+
     def test_revision_changes_when_a_photo_changes_at_the_same_path(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -27,9 +92,9 @@ class ImportTimelineTest(unittest.TestCase):
             photo.parent.mkdir(parents=True)
             workbook.write_bytes(b"workbook")
             photo.write_bytes(b"first")
-            first = importer.source_revision(workbook, root)
+            first = importer.source_revision(workbook, root, local_photos=True)
             photo.write_bytes(b"second photo")
-            self.assertNotEqual(first, importer.source_revision(workbook, root))
+            self.assertNotEqual(first, importer.source_revision(workbook, root, local_photos=True))
 
     def test_red_editorial_replacements_apply_only_to_marked_cells(self):
         xml = f"""<sst xmlns="{importer.NS}"><si>
@@ -78,13 +143,15 @@ class ImportTimelineTest(unittest.TestCase):
         self.assertTrue(all(len(event["photos"]) <= 5 for event in school.values()))
         self.assertEqual(len(school["P52"]["photos"]), 1)
         self.assertEqual(school["P113"]["photos"][0]["src"],
-                         "Historical_Timeline_Images/2026/image170.jpg")
+                         "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026/image170.jpg")
         self.assertEqual(len(school["P118"]["photos"]), 5)
         self.assertIn("P82", school)
         for event in school.values():
             for photo in event["photos"]:
-                self.assertEqual(len(unquote(photo["src"]).split("/")), 3, photo["src"])
-                self.assertTrue((ROOT / "public" / unquote(photo["src"])).is_file(), photo["src"])
+                url = urlsplit(photo['src'])
+                self.assertEqual(url.hostname, 'umtimeline.hksyu.edu')
+                self.assertEqual(len(unquote(url.path).lstrip('/').split('/')), 3, photo['src'])
+                self.assertGreater(min(photo['width'], photo['height']), 0)
 
 
 if __name__ == "__main__":

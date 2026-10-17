@@ -5,11 +5,13 @@ import tempfile
 import threading
 import time
 import unittest
+import zipfile
 from functools import partial
 from http.server import ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import quote
 from urllib.request import urlopen
+from unittest.mock import patch
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
@@ -57,10 +59,70 @@ class LiveContentTest(unittest.TestCase):
                 "educationEvents": [education],
             }
 
-        self.content = LiveContent(self.workbook, self.root, self.output, builder)
+        self.content = LiveContent(self.workbook, self.root, self.output, builder, local_photos=True)
 
     def read(self):
         return json.loads(self.output.read_text(encoding="utf-8"))
+
+    def test_default_publication_uses_only_workbook_and_never_prepares_photos(self):
+        self.photos.rmdir()
+        content = LiveContent(self.workbook, self.root, self.output, self.content.builder)
+        with patch('live_content.sync_photos', side_effect=AssertionError('local photos accessed')):
+            self.assertTrue(content.refresh())
+            self.photos.mkdir()
+            (self.photos / 'unused.jpg').write_bytes(b'not read')
+            self.assertFalse(content.refresh())
+            self.workbook.write_bytes(b'updated')
+            self.assertTrue(content.refresh())
+        self.assertEqual(self.read()['schoolEvents'][0]['body']['en'], 'updated')
+        self.assertFalse((self.output.parent / 'Historical_Timeline_Images').exists())
+
+    def test_real_importer_republishes_excel_text_and_new_url_without_a_photo_directory(self):
+        from xml.etree import ElementTree as ET
+
+        self.photos.rmdir()
+        namespace = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'
+        first = 'https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/first.jpg'
+        second = 'https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/second.jpg'
+
+        def save_workbook(title, source):
+            with zipfile.ZipFile(self.workbook, 'w') as archive:
+                archive.writestr('xl/sharedStrings.xml', f'<sst xmlns="{namespace}"/>')
+                archive.writestr('xl/styles.xml', f'<styleSheet xmlns="{namespace}"/>')
+                for index, event_id in enumerate(['T01', 'P01', 'B01'], 1):
+                    root = ET.Element('worksheet', xmlns=namespace)
+                    rows = ET.SubElement(root, 'sheetData')
+                    for row_index, values in enumerate([
+                        ['id', 'year', 'title-TC', 'photo-1', 'category'],
+                        [event_id, '1971', title, source if index == 2 else '', 'A'],
+                    ], 1):
+                        row = ET.SubElement(rows, 'row', r=str(row_index))
+                        for column, value in zip('ABCDE', values):
+                            cell = ET.SubElement(row, 'c', r=f'{column}{row_index}', t='inlineStr')
+                            ET.SubElement(ET.SubElement(cell, 'is'), 't').text = value
+                    archive.writestr(f'xl/worksheets/sheet{index}.xml', ET.tostring(root))
+
+        content = LiveContent(self.workbook, self.root, self.output)
+        importer = content.builder.func.__globals__
+        with patch.dict(importer, remote_photo_size=lambda _source: (800, 600)):
+            save_workbook('Original title', first)
+            self.assertTrue(content.refresh())
+            first_revision = self.read()['revision']
+            save_workbook('Edited title', second)
+            self.assertTrue(content.refresh())
+            event = self.read()['schoolEvents'][0]
+            self.assertEqual(event['title']['zh-Hant'], 'Edited title')
+            self.assertEqual(event['photos'][0]['src'], second)
+            self.assertNotEqual(first_revision, self.read()['revision'])
+            good_data = self.output.read_bytes()
+            save_workbook('Invalid URL', 'https://example.com/not-school.jpg')
+            with self.assertRaisesRegex(ValueError, 'Unsupported school photo URL'):
+                content.refresh()
+            self.assertEqual(self.output.read_bytes(), good_data)
+            save_workbook('Corrected title', first)
+            self.assertTrue(content.refresh())
+        self.assertFalse(self.photos.exists())
+        self.assertFalse((self.output.parent / 'Historical_Timeline_Images').exists())
 
     def test_web_photo_copies_are_cached_and_originals_stay_unchanged(self):
         from PIL import Image

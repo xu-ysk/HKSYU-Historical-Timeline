@@ -1,4 +1,4 @@
-import { test, expect } from '../e2e/fixtures';
+import { test, expect } from './fixtures';
 
 test.use({ viewport: { width: 1920, height: 1080 } });
 
@@ -155,10 +155,10 @@ for (const { id, year, size } of [
     await page.setViewportSize(size);
     await page.goto('/');
     await page.getByTestId('year-slider').fill(String(year));
-    await page.locator(`.photo-card[data-event-id="${id}"]`).first().evaluate((element: HTMLElement) =>
-      element.focus({ preventScroll: true }),
-    );
-    await page.keyboard.press('Enter');
+    await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
+    const source = page.locator(`.photo-card[data-event-id="${id}"]`).first();
+    await expect(source).toBeVisible();
+    await source.press('Enter');
     await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
 
     for (const locale of ['en', 'zh-Hant', 'zh-Hans']) {

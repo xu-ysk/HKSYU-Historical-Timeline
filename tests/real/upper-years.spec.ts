@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '../e2e/fixtures';
+import { test, expect, type Page } from './fixtures';
 
 async function checkLabels(page: Page) {
   const boxes = await page.locator('.upper-year-label:visible').evaluateAll((labels) =>

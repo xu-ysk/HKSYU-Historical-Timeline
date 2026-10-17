@@ -69,6 +69,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workbook", type=Path, default=PROJECT_ROOT / "HKSYU Timeline.xlsx")
     parser.add_argument("--photo-root", type=Path, default=PROJECT_ROOT)
+    parser.add_argument("--local-photos", action="store_true", help="Use the legacy local photo mirror")
     parser.add_argument("--dist", type=Path, default=PROJECT_ROOT / "dist")
     parser.add_argument("--output", type=Path, default=PROJECT_ROOT / ".live-content/timeline.json")
     parser.add_argument("--host", default="127.0.0.1")
@@ -79,7 +80,8 @@ def main() -> None:
         parser.error(f"Built site missing: {args.dist / 'index.html'}; run npm run build once")
     if args.poll_seconds <= 0:
         parser.error("--poll-seconds must be positive")
-    content = LiveContent(args.workbook, args.photo_root, args.output, optimize_photos=True)
+    content = LiveContent(args.workbook, args.photo_root, args.output,
+                          optimize_photos=args.local_photos, local_photos=args.local_photos)
     try:
         content.refresh()
     except Exception as error:

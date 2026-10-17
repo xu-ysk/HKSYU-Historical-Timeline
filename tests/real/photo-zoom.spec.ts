@@ -1,4 +1,4 @@
-import { expect, test } from '../e2e/fixtures';
+import { expect, test } from './fixtures';
 
 test.use({ viewport: { width: 1920, height: 1080 } });
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-bc52557a8c1f8f96",
+  "revision": "xlsx-9d61a33ebfa7f46b",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -473,7 +473,7 @@
         {
           "id": "P01-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1971/image1.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/image1.jpg",
           "width": 901,
           "height": 617,
           "alt": {
@@ -485,7 +485,7 @@
         {
           "id": "P01-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1971/image2.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/image2.jpg",
           "width": 1354,
           "height": 827,
           "alt": {
@@ -513,7 +513,7 @@
         {
           "id": "P02-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1971-1972/image3.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971-1972/image3.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -523,7 +523,7 @@
         {
           "id": "P02-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1971-1972/image4.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971-1972/image4.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -549,7 +549,7 @@
         {
           "id": "P03-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/image6.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1972/image6.jpg",
           "width": 449,
           "height": 621,
           "alt": {
@@ -575,7 +575,7 @@
         {
           "id": "P04-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/image7.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1972/image7.jpg",
           "width": 1535,
           "height": 1036,
           "alt": {
@@ -585,7 +585,7 @@
         {
           "id": "P04-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/image8.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1972/image8.jpg",
           "width": 1572,
           "height": 1125,
           "alt": {
@@ -611,9 +611,9 @@
         {
           "id": "P05-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/image9.jpg",
-          "width": 7653,
-          "height": 5518,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1972/image9.jpg",
+          "width": 2200,
+          "height": 1586,
           "alt": {
             "en": "P05 photograph 1"
           }
@@ -621,9 +621,9 @@
         {
           "id": "P05-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/image10.jpg",
-          "width": 4832,
-          "height": 4760,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1972/image10.jpg",
+          "width": 2200,
+          "height": 2167,
           "alt": {
             "en": "P05 photograph 2"
           }
@@ -647,9 +647,9 @@
         {
           "id": "P06-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/image11.jpg",
-          "width": 4492,
-          "height": 6774,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1972/image11.jpg",
+          "width": 1459,
+          "height": 2200,
           "alt": {
             "en": "P06 photograph 1"
           }
@@ -657,9 +657,9 @@
         {
           "id": "P06-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1972/image12.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1972/image12.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P06 photograph 2"
           }
@@ -683,9 +683,9 @@
         {
           "id": "P07-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/image13.jpg",
-          "width": 3691,
-          "height": 2627,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1974/image13.jpg",
+          "width": 2200,
+          "height": 1566,
           "alt": {
             "en": "P07 photograph 1"
           }
@@ -693,9 +693,9 @@
         {
           "id": "P07-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/image14.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1974/image14.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P07 photograph 2"
           }
@@ -719,9 +719,9 @@
         {
           "id": "P08-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/image15.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1974/image15.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P08 photograph 1"
           }
@@ -729,9 +729,9 @@
         {
           "id": "P08-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1974/image16.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1974/image16.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P08 photograph 2"
           }
@@ -755,9 +755,9 @@
         {
           "id": "P09-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1975/image17.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1975/image17.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P09 photograph 1"
           }
@@ -765,9 +765,9 @@
         {
           "id": "P09-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1975/image18.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1975/image18.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P09 photograph 2"
           }
@@ -791,9 +791,9 @@
         {
           "id": "P10-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1976/image20.jpg",
-          "width": 6140,
-          "height": 8121,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1976/image20.jpg",
+          "width": 1663,
+          "height": 2200,
           "alt": {
             "en": "P10 photograph 1"
           }
@@ -817,9 +817,9 @@
         {
           "id": "P11-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1976/image21.jpg",
-          "width": 4499,
-          "height": 6768,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1976/image21.jpg",
+          "width": 1463,
+          "height": 2200,
           "alt": {
             "en": "P11 photograph 1"
           }
@@ -843,9 +843,9 @@
         {
           "id": "P12-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1977/image22.jpg",
-          "width": 2301,
-          "height": 2950,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1977/image22.jpg",
+          "width": 1716,
+          "height": 2200,
           "alt": {
             "en": "P12 photograph 1"
           }
@@ -853,7 +853,7 @@
         {
           "id": "P12-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1977/image23.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1977/image23.jpg",
           "width": 1400,
           "height": 932,
           "alt": {
@@ -879,7 +879,7 @@
         {
           "id": "P13-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1978/image24.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1978/image24.jpg",
           "width": 398,
           "height": 620,
           "alt": {
@@ -889,7 +889,7 @@
         {
           "id": "P13-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1978/image25.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1978/image25.jpg",
           "width": 821,
           "height": 609,
           "alt": {
@@ -915,9 +915,9 @@
         {
           "id": "P14-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/image26.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1979/image26.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P14 photograph 1"
           }
@@ -925,7 +925,7 @@
         {
           "id": "P14-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/image27.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1979/image27.jpg",
           "width": 1612,
           "height": 1125,
           "alt": {
@@ -951,9 +951,9 @@
         {
           "id": "P15-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/image28.jpg",
-          "width": 6118,
-          "height": 4157,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1979/image28.jpg",
+          "width": 2200,
+          "height": 1495,
           "alt": {
             "en": "P15 photograph 1"
           }
@@ -961,9 +961,9 @@
         {
           "id": "P15-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/image29.jpg",
-          "width": 6080,
-          "height": 4086,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1979/image29.jpg",
+          "width": 2200,
+          "height": 1478,
           "alt": {
             "en": "P15 photograph 2"
           }
@@ -987,9 +987,9 @@
         {
           "id": "P16-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/image30.jpg",
-          "width": 3001,
-          "height": 2009,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1979/image30.jpg",
+          "width": 2200,
+          "height": 1473,
           "alt": {
             "en": "P16 photograph 1"
           }
@@ -997,9 +997,9 @@
         {
           "id": "P16-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1979/image31.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1979/image31.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P16 photograph 2"
           }
@@ -1023,9 +1023,9 @@
         {
           "id": "P17-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1980/image32.jpg",
-          "width": 6774,
-          "height": 4492,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1980/image32.jpg",
+          "width": 2200,
+          "height": 1459,
           "alt": {
             "en": "P17 photograph 1"
           }
@@ -1033,9 +1033,9 @@
         {
           "id": "P17-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1980/image33.jpg",
-          "width": 5472,
-          "height": 3576,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1980/image33.jpg",
+          "width": 2200,
+          "height": 1438,
           "alt": {
             "en": "P17 photograph 2"
           }
@@ -1059,9 +1059,9 @@
         {
           "id": "P18-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1981/image34.jpg",
-          "width": 5807,
-          "height": 4095,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1981/image34.jpg",
+          "width": 2200,
+          "height": 1551,
           "alt": {
             "en": "P18 photograph 1"
           }
@@ -1069,9 +1069,9 @@
         {
           "id": "P18-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1981/image35.jpg",
-          "width": 5818,
-          "height": 4167,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1981/image35.jpg",
+          "width": 2200,
+          "height": 1576,
           "alt": {
             "en": "P18 photograph 2"
           }
@@ -1095,7 +1095,7 @@
         {
           "id": "P19-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1983/image36.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1983/image36.jpg",
           "width": 1465,
           "height": 1007,
           "alt": {
@@ -1105,9 +1105,9 @@
         {
           "id": "P19-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1983/image37.jpg",
-          "width": 5784,
-          "height": 3960,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1983/image37.jpg",
+          "width": 2200,
+          "height": 1506,
           "alt": {
             "en": "P19 photograph 2"
           }
@@ -1131,9 +1131,9 @@
         {
           "id": "P20-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1984/image38.jpg",
-          "width": 2873,
-          "height": 2045,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1984/image38.jpg",
+          "width": 2200,
+          "height": 1566,
           "alt": {
             "en": "P20 photograph 1"
           }
@@ -1141,9 +1141,9 @@
         {
           "id": "P20-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1984/image39.jpg",
-          "width": 5664,
-          "height": 3960,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1984/image39.jpg",
+          "width": 2200,
+          "height": 1538,
           "alt": {
             "en": "P20 photograph 2"
           }
@@ -1167,9 +1167,9 @@
         {
           "id": "P21-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1984/image40.jpg",
-          "width": 5664,
-          "height": 3960,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1984/image40.jpg",
+          "width": 2200,
+          "height": 1538,
           "alt": {
             "en": "P21 photograph 1"
           }
@@ -1193,9 +1193,9 @@
         {
           "id": "P22-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1985/image41.jpg",
-          "width": 5976,
-          "height": 3696,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1985/image41.jpg",
+          "width": 2200,
+          "height": 1361,
           "alt": {
             "en": "P22 photograph 1"
           }
@@ -1219,9 +1219,9 @@
         {
           "id": "P23-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/image42.jpg",
-          "width": 2528,
-          "height": 1664,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1986/image42.jpg",
+          "width": 2200,
+          "height": 1448,
           "alt": {
             "en": "P23 photograph 1"
           }
@@ -1229,9 +1229,9 @@
         {
           "id": "P23-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/image43.jpg",
-          "width": 5760,
-          "height": 3960,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1986/image43.jpg",
+          "width": 2200,
+          "height": 1513,
           "alt": {
             "en": "P23 photograph 2"
           }
@@ -1255,9 +1255,9 @@
         {
           "id": "P24-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/image44.jpg",
-          "width": 5760,
-          "height": 4008,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1986/image44.jpg",
+          "width": 2200,
+          "height": 1531,
           "alt": {
             "en": "P24 photograph 1"
           }
@@ -1265,9 +1265,9 @@
         {
           "id": "P24-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1986/image45.jpg",
-          "width": 5807,
-          "height": 3983,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1986/image45.jpg",
+          "width": 2200,
+          "height": 1509,
           "alt": {
             "en": "P24 photograph 2"
           }
@@ -1291,9 +1291,9 @@
         {
           "id": "P25-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/image46.jpg",
-          "width": 5783,
-          "height": 4103,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1987/image46.jpg",
+          "width": 2200,
+          "height": 1561,
           "alt": {
             "en": "P25 photograph 1"
           }
@@ -1317,7 +1317,7 @@
         {
           "id": "P26-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/image48.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1987/image48.jpg",
           "width": 208,
           "height": 301,
           "alt": {
@@ -1343,9 +1343,9 @@
         {
           "id": "P27-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/image49.jpg",
-          "width": 5798,
-          "height": 3926,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1987/image49.jpg",
+          "width": 2200,
+          "height": 1490,
           "alt": {
             "en": "P27 photograph 1"
           }
@@ -1353,9 +1353,9 @@
         {
           "id": "P27-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987/image50.jpg",
-          "width": 5794,
-          "height": 3846,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1987/image50.jpg",
+          "width": 2200,
+          "height": 1460,
           "alt": {
             "en": "P27 photograph 2"
           }
@@ -1379,9 +1379,9 @@
         {
           "id": "P28-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1987-1988/image51.jpg",
-          "width": 9072,
-          "height": 4967,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1987-1988/image51.jpg",
+          "width": 2200,
+          "height": 1205,
           "alt": {
             "en": "P28 photograph 1"
           }
@@ -1405,9 +1405,9 @@
         {
           "id": "P29-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1988/image53.jpg",
-          "width": 5760,
-          "height": 3552,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1988/image53.jpg",
+          "width": 2200,
+          "height": 1357,
           "alt": {
             "en": "P29 photograph 1"
           }
@@ -1415,9 +1415,9 @@
         {
           "id": "P29-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1988/image54.jpg",
-          "width": 5760,
-          "height": 3552,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1988/image54.jpg",
+          "width": 2200,
+          "height": 1357,
           "alt": {
             "en": "P29 photograph 2"
           }
@@ -1441,7 +1441,7 @@
         {
           "id": "P30-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1988/image55.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1988/image55.jpg",
           "width": 1119,
           "height": 786,
           "alt": {
@@ -1467,7 +1467,7 @@
         {
           "id": "P31-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1990/image57.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1990/image57.jpg",
           "width": 1074,
           "height": 628,
           "alt": {
@@ -1477,9 +1477,9 @@
         {
           "id": "P31-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1990/image58.jpg",
-          "width": 2743,
-          "height": 1888,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1990/image58.jpg",
+          "width": 2200,
+          "height": 1514,
           "alt": {
             "en": "P31 photograph 2"
           }
@@ -1503,9 +1503,9 @@
         {
           "id": "P32-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1991/image59.jpg",
-          "width": 11064,
-          "height": 5448,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1991/image59.jpg",
+          "width": 2200,
+          "height": 1083,
           "alt": {
             "en": "P32 photograph 1"
           }
@@ -1529,9 +1529,9 @@
         {
           "id": "P33-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1991/image60.jpg",
-          "width": 12735,
-          "height": 17936,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1991/image60.jpg",
+          "width": 1562,
+          "height": 2200,
           "alt": {
             "en": "P33 photograph 1"
           }
@@ -1555,7 +1555,7 @@
         {
           "id": "P34-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/image61.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1992/image61.jpg",
           "width": 2048,
           "height": 1200,
           "alt": {
@@ -1565,9 +1565,9 @@
         {
           "id": "P34-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/image62.jpg",
-          "width": 5687,
-          "height": 3983,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1992/image62.jpg",
+          "width": 2200,
+          "height": 1541,
           "alt": {
             "en": "P34 photograph 2"
           }
@@ -1591,7 +1591,7 @@
         {
           "id": "P35-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/image63.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1992/image63.jpg",
           "width": 432,
           "height": 612,
           "alt": {
@@ -1601,7 +1601,7 @@
         {
           "id": "P35-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1992/image64.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1992/image64.jpg",
           "width": 430,
           "height": 620,
           "alt": {
@@ -1627,9 +1627,9 @@
         {
           "id": "P36-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1993/image65.jpg",
-          "width": 5856,
-          "height": 8232,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1993/image65.jpg",
+          "width": 1565,
+          "height": 2200,
           "alt": {
             "en": "P36 photograph 1"
           }
@@ -1653,9 +1653,9 @@
         {
           "id": "P37-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1994/image67.jpg",
-          "width": 5760,
-          "height": 3960,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1994/image67.jpg",
+          "width": 2200,
+          "height": 1513,
           "alt": {
             "en": "P37 photograph 1"
           }
@@ -1663,9 +1663,9 @@
         {
           "id": "P37-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1994/image68.jpg",
-          "width": 5330,
-          "height": 3321,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1994/image68.jpg",
+          "width": 2200,
+          "height": 1371,
           "alt": {
             "en": "P37 photograph 2"
           }
@@ -1689,7 +1689,7 @@
         {
           "id": "P38-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1995/image69.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1995/image69.jpg",
           "width": 962,
           "height": 659,
           "alt": {
@@ -1699,7 +1699,7 @@
         {
           "id": "P38-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1995/image70.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1995/image70.jpg",
           "width": 581,
           "height": 859,
           "alt": {
@@ -1725,9 +1725,9 @@
         {
           "id": "P39-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1995/image70A.jpg",
-          "width": 2234,
-          "height": 1652,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1995/image70A.jpg",
+          "width": 2200,
+          "height": 1627,
           "alt": {
             "en": "P39 photograph 1"
           }
@@ -1751,7 +1751,7 @@
         {
           "id": "P40-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1995/image71.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1995/image71.jpg",
           "width": 951,
           "height": 654,
           "alt": {
@@ -1777,7 +1777,7 @@
         {
           "id": "P41-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1996/image71.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1996/image71.jpg",
           "width": 296,
           "height": 799,
           "alt": {
@@ -1787,9 +1787,9 @@
         {
           "id": "P41-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1996/image73.jpg",
-          "width": 5567,
-          "height": 3600,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1996/image73.jpg",
+          "width": 2200,
+          "height": 1423,
           "alt": {
             "en": "P41 photograph 2"
           }
@@ -1813,9 +1813,9 @@
         {
           "id": "P42-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1997/image74.jpg",
-          "width": 4096,
-          "height": 3343,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1997/image74.jpg",
+          "width": 2200,
+          "height": 1796,
           "alt": {
             "en": "P42 photograph 1"
           }
@@ -1823,7 +1823,7 @@
         {
           "id": "P42-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1997/image75.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1997/image75.jpg",
           "width": 1921,
           "height": 2085,
           "alt": {
@@ -1849,9 +1849,9 @@
         {
           "id": "P43-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1997/image76.jpg",
-          "width": 2953,
-          "height": 1977,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1997/image76.jpg",
+          "width": 2200,
+          "height": 1473,
           "alt": {
             "en": "P43 photograph 1"
           }
@@ -1890,9 +1890,9 @@
         {
           "id": "P45-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1998/image77.jpg",
-          "width": 5832,
-          "height": 8184,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1998/image77.jpg",
+          "width": 1568,
+          "height": 2200,
           "alt": {
             "en": "P45 photograph 1"
           }
@@ -1900,9 +1900,9 @@
         {
           "id": "P45-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1998/image78.jpg",
-          "width": 9200,
-          "height": 13255,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1998/image78.jpg",
+          "width": 1527,
+          "height": 2200,
           "alt": {
             "en": "P45 photograph 2"
           }
@@ -1926,7 +1926,7 @@
         {
           "id": "P46-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1999/image79.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1999/image79.jpg",
           "width": 720,
           "height": 567,
           "alt": {
@@ -1936,9 +1936,9 @@
         {
           "id": "P46-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1999/image80.jpg",
-          "width": 7080,
-          "height": 4680,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1999/image80.jpg",
+          "width": 2200,
+          "height": 1454,
           "alt": {
             "en": "P46 photograph 2"
           }
@@ -1962,9 +1962,9 @@
         {
           "id": "P47-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/1999/image81.jpg",
-          "width": 7056,
-          "height": 4608,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/1999/image81.jpg",
+          "width": 2200,
+          "height": 1437,
           "alt": {
             "en": "P47 photograph 1"
           }
@@ -1988,7 +1988,7 @@
         {
           "id": "P48-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/image82.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2000/image82.jpg",
           "width": 372,
           "height": 542,
           "alt": {
@@ -2014,7 +2014,7 @@
         {
           "id": "P49-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/image83.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2000/image83.jpg",
           "width": 597,
           "height": 1164,
           "alt": {
@@ -2040,9 +2040,9 @@
         {
           "id": "P50-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/image84.jpg",
-          "width": 5688,
-          "height": 4056,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2000/image84.jpg",
+          "width": 2200,
+          "height": 1569,
           "alt": {
             "en": "P50 photograph 1"
           }
@@ -2050,9 +2050,9 @@
         {
           "id": "P50-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2000/image85.jpg",
-          "width": 5736,
-          "height": 3480,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2000/image85.jpg",
+          "width": 2200,
+          "height": 1335,
           "alt": {
             "en": "P50 photograph 2"
           }
@@ -2076,7 +2076,7 @@
         {
           "id": "P51-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/image86.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2001/image86.jpg",
           "width": 1467,
           "height": 986,
           "alt": {
@@ -2102,7 +2102,7 @@
         {
           "id": "P52-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/image87.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2001/image87.jpg",
           "width": 558,
           "height": 824,
           "alt": {
@@ -2128,7 +2128,7 @@
         {
           "id": "P53-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/image88.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2001/image88.jpg",
           "width": 1489,
           "height": 984,
           "alt": {
@@ -2154,9 +2154,9 @@
         {
           "id": "P54-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/image89.jpg",
-          "width": 5592,
-          "height": 3695,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2001/image89.jpg",
+          "width": 2200,
+          "height": 1454,
           "alt": {
             "en": "P54 photograph 1"
           }
@@ -2164,7 +2164,7 @@
         {
           "id": "P54-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2001/image90.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2001/image90.jpg",
           "width": 2058,
           "height": 1458,
           "alt": {
@@ -2190,9 +2190,9 @@
         {
           "id": "P55-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2003/image91.jpg",
-          "width": 7080,
-          "height": 4296,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2003/image91.jpg",
+          "width": 2200,
+          "height": 1335,
           "alt": {
             "en": "P55 photograph 1"
           }
@@ -2216,9 +2216,9 @@
         {
           "id": "P56-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2003/image92.jpg",
-          "width": 2523,
-          "height": 1682,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2003/image92.jpg",
+          "width": 2200,
+          "height": 1467,
           "alt": {
             "en": "P56 photograph 1"
           }
@@ -2242,9 +2242,9 @@
         {
           "id": "P57-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2004/image94.jpg",
-          "width": 6867,
-          "height": 4110,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2004/image94.jpg",
+          "width": 2200,
+          "height": 1317,
           "alt": {
             "en": "P57 photograph 1"
           }
@@ -2268,7 +2268,7 @@
         {
           "id": "P58-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2004/image95.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2004/image95.jpg",
           "width": 678,
           "height": 904,
           "alt": {
@@ -2278,9 +2278,9 @@
         {
           "id": "P58-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2004/image96.jpg",
-          "width": 7008,
-          "height": 4680,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2004/image96.jpg",
+          "width": 2200,
+          "height": 1469,
           "alt": {
             "en": "P58 photograph 2"
           }
@@ -2304,9 +2304,9 @@
         {
           "id": "P59-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2004/image97.jpg",
-          "width": 4224,
-          "height": 6816,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2004/image97.jpg",
+          "width": 1363,
+          "height": 2200,
           "alt": {
             "en": "P59 photograph 1"
           }
@@ -2330,9 +2330,9 @@
         {
           "id": "P60-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2005/image97.jpg",
-          "width": 3008,
-          "height": 2000,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2005/image97.jpg",
+          "width": 2200,
+          "height": 1463,
           "alt": {
             "en": "P60 photograph 1"
           }
@@ -2356,9 +2356,9 @@
         {
           "id": "P61-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2005/image98.jpg",
-          "width": 3008,
-          "height": 2000,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2005/image98.jpg",
+          "width": 2200,
+          "height": 1463,
           "alt": {
             "en": "P61 photograph 1"
           }
@@ -2382,9 +2382,9 @@
         {
           "id": "P62-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2005/image99.jpg",
-          "width": 3008,
-          "height": 2000,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2005/image99.jpg",
+          "width": 2200,
+          "height": 1463,
           "alt": {
             "en": "P62 photograph 1"
           }
@@ -2408,7 +2408,7 @@
         {
           "id": "P63-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/image100.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2006/image100.jpg",
           "width": 901,
           "height": 400,
           "alt": {
@@ -2434,9 +2434,9 @@
         {
           "id": "P64-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/image101.jpg",
-          "width": 7056,
-          "height": 4296,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2006/image101.jpg",
+          "width": 2200,
+          "height": 1339,
           "alt": {
             "en": "P64 photograph 1"
           }
@@ -2460,9 +2460,9 @@
         {
           "id": "P65-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/image102.jpg",
-          "width": 7056,
-          "height": 4296,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2006/image102.jpg",
+          "width": 2200,
+          "height": 1339,
           "alt": {
             "en": "P65 photograph 1"
           }
@@ -2486,9 +2486,9 @@
         {
           "id": "P66-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/image104.jpg",
-          "width": 7055,
-          "height": 4296,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2006/image104.jpg",
+          "width": 2200,
+          "height": 1340,
           "alt": {
             "en": "P66 photograph 1"
           }
@@ -2512,7 +2512,7 @@
         {
           "id": "P67-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/image105.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2006/image105.jpg",
           "width": 344,
           "height": 536,
           "alt": {
@@ -2522,7 +2522,7 @@
         {
           "id": "P67-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2006/image106.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2006/image106.jpg",
           "width": 500,
           "height": 335,
           "alt": {
@@ -2548,9 +2548,9 @@
         {
           "id": "P68-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/image107.jpg",
-          "width": 4368,
-          "height": 2912,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2007/image107.jpg",
+          "width": 2200,
+          "height": 1467,
           "alt": {
             "en": "P68 photograph 1"
           }
@@ -2558,9 +2558,9 @@
         {
           "id": "P68-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/image108.jpg",
-          "width": 2544,
-          "height": 1696,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2007/image108.jpg",
+          "width": 2200,
+          "height": 1467,
           "alt": {
             "en": "P68 photograph 2"
           }
@@ -2584,9 +2584,9 @@
         {
           "id": "P69-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/image109.jpg",
-          "width": 3648,
-          "height": 2736,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2007/image109.jpg",
+          "width": 2200,
+          "height": 1650,
           "alt": {
             "en": "P69 photograph 1"
           }
@@ -2594,9 +2594,9 @@
         {
           "id": "P69-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/image110.jpg",
-          "width": 3648,
-          "height": 2736,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2007/image110.jpg",
+          "width": 2200,
+          "height": 1650,
           "alt": {
             "en": "P69 photograph 2"
           }
@@ -2620,7 +2620,7 @@
         {
           "id": "P70-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2007/image111.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2007/image111.jpg",
           "width": 996,
           "height": 765,
           "alt": {
@@ -2646,9 +2646,9 @@
         {
           "id": "P71-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2008/image112.jpg",
-          "width": 2832,
-          "height": 4256,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2008/image112.jpg",
+          "width": 1464,
+          "height": 2200,
           "alt": {
             "en": "P71 photograph 1"
           }
@@ -2656,9 +2656,9 @@
         {
           "id": "P71-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2008/image113.jpg",
-          "width": 3888,
-          "height": 2592,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2008/image113.jpg",
+          "width": 2200,
+          "height": 1467,
           "alt": {
             "en": "P71 photograph 2"
           }
@@ -2682,9 +2682,9 @@
         {
           "id": "P72-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2010/image114.jpg",
-          "width": 4964,
-          "height": 7020,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2010/image114.jpg",
+          "width": 1556,
+          "height": 2200,
           "alt": {
             "en": "P72 photograph 1"
           }
@@ -2708,9 +2708,9 @@
         {
           "id": "P73-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2010/image115.jpg",
-          "width": 2592,
-          "height": 3888,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2010/image115.jpg",
+          "width": 1467,
+          "height": 2200,
           "alt": {
             "en": "P73 photograph 1"
           }
@@ -2734,9 +2734,9 @@
         {
           "id": "P74-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2011/image115.jpg",
-          "width": 5216,
-          "height": 6862,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2011/image115.jpg",
+          "width": 1672,
+          "height": 2200,
           "alt": {
             "en": "P74 photograph 1"
           }
@@ -2744,9 +2744,9 @@
         {
           "id": "P74-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2011/image116.jpg",
-          "width": 5120,
-          "height": 6862,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2011/image116.jpg",
+          "width": 1642,
+          "height": 2200,
           "alt": {
             "en": "P74 photograph 2"
           }
@@ -2770,7 +2770,7 @@
         {
           "id": "P75-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2012/image118.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2012/image118.jpg",
           "width": 878,
           "height": 462,
           "alt": {
@@ -2780,7 +2780,7 @@
         {
           "id": "P75-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2012/image119.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2012/image119.jpg",
           "width": 749,
           "height": 426,
           "alt": {
@@ -2821,9 +2821,9 @@
         {
           "id": "P77-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2014/image120.jpg",
-          "width": 2452,
-          "height": 2360,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2014/image120.jpg",
+          "width": 2200,
+          "height": 2117,
           "alt": {
             "en": "P77 photograph 1"
           }
@@ -2831,9 +2831,9 @@
         {
           "id": "P77-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2014/image121.jpg",
-          "width": 2788,
-          "height": 1944,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2014/image121.jpg",
+          "width": 2200,
+          "height": 1534,
           "alt": {
             "en": "P77 photograph 2"
           }
@@ -2857,7 +2857,7 @@
         {
           "id": "P78-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/image122.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2015/image122.jpg",
           "width": 824,
           "height": 620,
           "alt": {
@@ -2883,7 +2883,7 @@
         {
           "id": "P79-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/image123.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2015/image123.jpg",
           "width": 400,
           "height": 266,
           "alt": {
@@ -2893,7 +2893,7 @@
         {
           "id": "P79-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/image124.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2015/image124.jpg",
           "width": 664,
           "height": 443,
           "alt": {
@@ -2919,7 +2919,7 @@
         {
           "id": "P80-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2015/image125.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2015/image125.jpg",
           "width": 864,
           "height": 620,
           "alt": {
@@ -2945,7 +2945,7 @@
         {
           "id": "P81-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/image126.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2017/image126.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -2986,7 +2986,7 @@
         {
           "id": "P83-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/image127.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2017/image127.jpg",
           "width": 1456,
           "height": 780,
           "alt": {
@@ -3012,7 +3012,7 @@
         {
           "id": "P84-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/image128.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2017/image128.jpg",
           "width": 1491,
           "height": 1061,
           "alt": {
@@ -3038,7 +3038,7 @@
         {
           "id": "P85-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/image129.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2017/image129.jpg",
           "width": 600,
           "height": 400,
           "alt": {
@@ -3048,7 +3048,7 @@
         {
           "id": "P85-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017/image130.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2017/image130.jpg",
           "width": 768,
           "height": 511,
           "alt": {
@@ -3074,7 +3074,7 @@
         {
           "id": "P86-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017-2018/image131.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2017-2018/image131.jpg",
           "width": 1019,
           "height": 620,
           "alt": {
@@ -3084,7 +3084,7 @@
         {
           "id": "P86-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2017-2018/image132.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2017-2018/image132.jpg",
           "width": 1038,
           "height": 620,
           "alt": {
@@ -3110,9 +3110,9 @@
         {
           "id": "P87-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2018/image133.jpg",
-          "width": 4932,
-          "height": 6990,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2018/image133.jpg",
+          "width": 1552,
+          "height": 2200,
           "alt": {
             "en": "P87 photograph 1"
           }
@@ -3120,9 +3120,9 @@
         {
           "id": "P87-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2018/image134.jpg",
-          "width": 4932,
-          "height": 6990,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2018/image134.jpg",
+          "width": 1552,
+          "height": 2200,
           "alt": {
             "en": "P87 photograph 2"
           }
@@ -3146,7 +3146,7 @@
         {
           "id": "P88-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2019-2020/image135.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2019-2020/image135.jpg",
           "width": 1014,
           "height": 582,
           "alt": {
@@ -3156,7 +3156,7 @@
         {
           "id": "P88-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2019-2020/image136.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2019-2020/image136.jpg",
           "width": 510,
           "height": 340,
           "alt": {
@@ -3197,7 +3197,7 @@
         {
           "id": "P90-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2020/image137.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2020/image137.jpg",
           "width": 824,
           "height": 620,
           "alt": {
@@ -3207,7 +3207,7 @@
         {
           "id": "P90-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2020/image138.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2020/image138.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -3233,7 +3233,7 @@
         {
           "id": "P91-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/image139.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2021/image139.jpg",
           "width": 542,
           "height": 620,
           "alt": {
@@ -3243,7 +3243,7 @@
         {
           "id": "P91-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/image140.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2021/image140.jpg",
           "width": 388,
           "height": 620,
           "alt": {
@@ -3269,7 +3269,7 @@
         {
           "id": "P92-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021-2025/image143.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2021-2025/image143.jpg",
           "width": 946,
           "height": 620,
           "alt": {
@@ -3279,7 +3279,7 @@
         {
           "id": "P92-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021-2025/image144.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2021-2025/image144.jpg",
           "width": 2052,
           "height": 1160,
           "alt": {
@@ -3305,7 +3305,7 @@
         {
           "id": "P93-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/image141.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2021/image141.jpg",
           "width": 860,
           "height": 1144,
           "alt": {
@@ -3315,7 +3315,7 @@
         {
           "id": "P93-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2021/image142.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2021/image142.jpg",
           "width": 1724,
           "height": 1146,
           "alt": {
@@ -3341,7 +3341,7 @@
         {
           "id": "P94-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2022/image145.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2022/image145.jpg",
           "width": 928,
           "height": 620,
           "alt": {
@@ -3367,7 +3367,7 @@
         {
           "id": "P95-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2022/image146.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2022/image146.jpg",
           "width": 1024,
           "height": 683,
           "alt": {
@@ -3377,9 +3377,9 @@
         {
           "id": "P95-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2022/image147.jpg",
-          "width": 6000,
-          "height": 4500,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2022/image147.jpg",
+          "width": 2200,
+          "height": 1650,
           "alt": {
             "en": "P95 photograph 2"
           }
@@ -3403,7 +3403,7 @@
         {
           "id": "P96-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/image148.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2023/image148.jpg",
           "width": 792,
           "height": 1076,
           "alt": {
@@ -3413,7 +3413,7 @@
         {
           "id": "P96-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/image149.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2023/image149.jpg",
           "width": 1594,
           "height": 1078,
           "alt": {
@@ -3439,7 +3439,7 @@
         {
           "id": "P97-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/image150.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2023/image150.jpg",
           "width": 918,
           "height": 620,
           "alt": {
@@ -3465,7 +3465,7 @@
         {
           "id": "P98-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2023/image151.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2023/image151.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -3491,7 +3491,7 @@
         {
           "id": "P99-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image152.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image152.jpg",
           "width": 280,
           "height": 358,
           "alt": {
@@ -3501,7 +3501,7 @@
         {
           "id": "P99-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image153.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image153.jpg",
           "width": 2050,
           "height": 1386,
           "alt": {
@@ -3527,7 +3527,7 @@
         {
           "id": "P100-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image154.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image154.jpg",
           "width": 1024,
           "height": 683,
           "alt": {
@@ -3553,7 +3553,7 @@
         {
           "id": "P101-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image155.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image155.jpg",
           "width": 928,
           "height": 620,
           "alt": {
@@ -3563,7 +3563,7 @@
         {
           "id": "P101-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image156.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image156.jpg",
           "width": 1015,
           "height": 620,
           "alt": {
@@ -3589,7 +3589,7 @@
         {
           "id": "P102-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image157.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image157.jpg",
           "width": 406,
           "height": 620,
           "alt": {
@@ -3599,7 +3599,7 @@
         {
           "id": "P102-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image158.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image158.jpg",
           "width": 1100,
           "height": 592,
           "alt": {
@@ -3625,7 +3625,7 @@
         {
           "id": "P103-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image159.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image159.jpg",
           "width": 1100,
           "height": 572,
           "alt": {
@@ -3635,7 +3635,7 @@
         {
           "id": "P103-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image160.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image160.jpg",
           "width": 930,
           "height": 620,
           "alt": {
@@ -3661,7 +3661,7 @@
         {
           "id": "P104-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image161.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image161.jpg",
           "width": 808,
           "height": 604,
           "alt": {
@@ -3671,7 +3671,7 @@
         {
           "id": "P104-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image162.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image162.jpg",
           "width": 826,
           "height": 620,
           "alt": {
@@ -3697,7 +3697,7 @@
         {
           "id": "P105-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image163.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image163.jpg",
           "width": 928,
           "height": 620,
           "alt": {
@@ -3723,7 +3723,7 @@
         {
           "id": "P106-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image164.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image164.jpg",
           "width": 930,
           "height": 620,
           "alt": {
@@ -3749,7 +3749,7 @@
         {
           "id": "P107-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2024/image165.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2024/image165.jpg",
           "width": 822,
           "height": 620,
           "alt": {
@@ -3775,7 +3775,7 @@
         {
           "id": "P108-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/image166.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025/image166.jpg",
           "width": 920,
           "height": 620,
           "alt": {
@@ -3801,7 +3801,7 @@
         {
           "id": "P109-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/image167.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025/image167.jpg",
           "width": 618,
           "height": 620,
           "alt": {
@@ -3811,7 +3811,7 @@
         {
           "id": "P109-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/image168.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025/image168.jpg",
           "width": 926,
           "height": 620,
           "alt": {
@@ -3837,7 +3837,7 @@
         {
           "id": "P111-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/image170.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025/image170.jpg",
           "width": 1272,
           "height": 705,
           "alt": {
@@ -3847,7 +3847,7 @@
         {
           "id": "P111-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/image171.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025/image171.jpg",
           "width": 1091,
           "height": 705,
           "alt": {
@@ -3873,7 +3873,7 @@
         {
           "id": "P112-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/image172.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025/image172.jpg",
           "width": 325,
           "height": 460,
           "alt": {
@@ -3883,7 +3883,7 @@
         {
           "id": "P112-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025/image173.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025/image173.jpg",
           "width": 946,
           "height": 939,
           "alt": {
@@ -3909,7 +3909,7 @@
         {
           "id": "P110-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2025-2026/image169.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2025-2026/image169.jpg",
           "width": 408,
           "height": 620,
           "alt": {
@@ -3935,7 +3935,7 @@
         {
           "id": "P113-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/image170.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026/image170.jpg",
           "width": 4096,
           "height": 2304,
           "alt": {
@@ -3961,9 +3961,9 @@
         {
           "id": "P114-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/image174.jpg",
-          "width": 2220,
-          "height": 1476,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026/image174.jpg",
+          "width": 2200,
+          "height": 1463,
           "alt": {
             "en": "P114 photograph 1"
           }
@@ -3971,9 +3971,9 @@
         {
           "id": "P114-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/image175.jpg",
-          "width": 2306,
-          "height": 1476,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026/image175.jpg",
+          "width": 2200,
+          "height": 1408,
           "alt": {
             "en": "P114 photograph 2"
           }
@@ -3997,7 +3997,7 @@
         {
           "id": "P115-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/image176.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026/image176.jpg",
           "width": 752,
           "height": 620,
           "alt": {
@@ -4007,7 +4007,7 @@
         {
           "id": "P115-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026/image177.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026/image177.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -4033,7 +4033,7 @@
         {
           "id": "P116-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2027/image178.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026-2027/image178.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -4043,7 +4043,7 @@
         {
           "id": "P116-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2027/image179.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026-2027/image179.jpg",
           "width": 1100,
           "height": 620,
           "alt": {
@@ -4084,7 +4084,7 @@
         {
           "id": "P118-photo-1",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image180.jpg",
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026-2031/image180.jpg",
           "width": 2082,
           "height": 1380,
           "alt": {
@@ -4094,9 +4094,9 @@
         {
           "id": "P118-photo-2",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image181.jpg",
-          "width": 2508,
-          "height": 1382,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026-2031/image181.jpg",
+          "width": 2200,
+          "height": 1212,
           "alt": {
             "en": "P118 photograph 2"
           }
@@ -4104,9 +4104,9 @@
         {
           "id": "P118-photo-3",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image182.jpg",
-          "width": 2624,
-          "height": 1566,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026-2031/image182.jpg",
+          "width": 2200,
+          "height": 1313,
           "alt": {
             "en": "P118 photograph 3"
           }
@@ -4114,9 +4114,9 @@
         {
           "id": "P118-photo-4",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image183.jpg",
-          "width": 2840,
-          "height": 1610,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026-2031/image183.jpg",
+          "width": 2200,
+          "height": 1247,
           "alt": {
             "en": "P118 photograph 4"
           }
@@ -4124,9 +4124,9 @@
         {
           "id": "P118-photo-5",
           "kind": "image",
-          "src": "Historical_Timeline_Images/2026-2031/image184.jpg",
-          "width": 2868,
-          "height": 1570,
+          "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026-2031/image184.jpg",
+          "width": 2200,
+          "height": 1204,
           "alt": {
             "en": "P118 photograph 5"
           }

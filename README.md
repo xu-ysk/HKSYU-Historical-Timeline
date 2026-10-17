@@ -1,8 +1,8 @@
 # 香港樹仁大學互動歷史相冊
 
-第二版已接入 Excel 匯出的校史內容及 178 張真實照片，並保留第一版的時間軸互動和照片集版式。產品範圍見 [PRD.md](./PRD.md)，執行計劃見 [spec.md](./spec.md)。
+第二版已接入 Excel 匯出的校史內容及 179 張學校伺服器照片，並保留第一版的時間軸互動和照片集版式。產品範圍見 [PRD.md](./PRD.md)，執行計劃見 [spec.md](./spec.md)。
 
-需要 Node.js 24 和 npm（開發環境為 Node.js 24.15.0、npm 12.0.2）。重新匯入資料另外需要 Python 3 和 Pillow（`python -m pip install Pillow`），用來把高解像度原圖製作成網頁展示副本。
+需要 Node.js 24 和 npm（開發環境為 Node.js 24.15.0、npm 12.0.2）。重新匯入資料另外需要 Python 3 和 Pillow（`python -m pip install Pillow`），用來讀取學校圖片的尺寸，保持照片原有比例。
 
 ```powershell
 Set-Location -LiteralPath 'D:\MyCodingProject\HKSYU Museum Timeline'
@@ -16,25 +16,25 @@ npm run dev
 
 ## 真實資料
 
-正式構建從 `public/timeline.json` 讀取文字與照片資料，並包含 `public/Historical_Timeline_Images/` 中的 178 張照片。原圖鏡像保存在本地的 `Historical_Timeline_Images/`，網頁使用另外生成的展示副本。更新工作簿或照片鏡像後可執行：
+正式構建從 `public/timeline.json` 讀取三語文字與學校圖片網址。照片直接由 `https://umtimeline.hksyu.edu/Historical_Timeline_Images/` 載入，不再依賴本地原圖或 `public` 中的照片副本。
 
 ```powershell
 npm run import:data
-```
-
-匯入程式會讀取工作簿的三個資料表，按年份區間的起始年份定位事件，生成三語文字、照片路徑和尺寸，並在本地原圖缺失時直接報錯。`npm run import:data` 同時把原圖製作成 `public/Historical_Timeline_Images/` 中的網頁展示副本；原圖不會被改動。更新原圖後再執行匯入及正式構建。本地展廳服務會把照片更新到獨立的展示副本，不用重建頁面。`HKSYU Timeline.xlsx` 與原圖目錄均納入 Git；原圖由 Git LFS 管理。首次下載專案後須安裝 Git LFS 並執行 `git lfs pull`，才能取得完整原圖。
-
-### 無需重建的內容更新
-
-職員直接編輯並儲存 `HKSYU Timeline.xlsx` 的三個工作表，不必修改 JSON 或匯出 CSV。首次部署或修改前端程式後執行一次 `npm run build`，然後在展廳電腦啟動：
-
-```powershell
+npm run build
 npm run serve:live
 ```
 
-先關閉同樣使用 4173 端口的 `npm run preview`，再於 `http://127.0.0.1:4173/` 開啟正式頁面。服務每 2 秒檢查工作簿及原圖鏡像，變更時重新匯入、製作展示副本和驗證，並原子替換 `.live-content/timeline.json`；網站從此獨立資料檔讀取，不改動 `dist`。已開啟的頁面每 15 秒檢查新內容，返回可見頁面時亦會檢查。正在查看照片詳情時，更新會等到返回時間軸後才套用，以保留目前閱讀位置。匯入失敗時服務保留上一份有效資料並在終端顯示錯誤；修正工作簿後會自動重試。請讓 `serve:live` 保持運行，並確保 Python 3、Pillow、工作簿和原圖鏡像留在展廳電腦。
+`import:data` 讀取 Excel 三個工作表，保留完整圖片網址及查詢參數，並聯網讀取圖片尺寸。新連結無法讀取時報錯，避免發佈不完整內容。圖片尺寸在服務執行期間按網址快取，改文字不會重新下載全部圖片。
 
-這是本機展廳服務流程；若日後改由學校伺服器發佈，需要把相同的即時資料路徑、照片路徑和自動匯入流程接到該伺服器。展廳服務從本地原圖鏡像生成展示副本後提供照片，照片更新不需要重新構建頁面。
+### 無需重建的內容更新
+
+首次部署或修改前端程式後執行一次 `npm run build`。日常在專案目錄執行 `npm run serve:live`，於 `http://127.0.0.1:4173/` 開啟網頁，保留終端。若已有同端口的 `npm run preview`，先停止它。
+
+職員只需修改並儲存 `HKSYU Timeline.xlsx` 的文字或 `photo-1` 至 `photo-5`。服務每 2 秒檢查 Excel，驗證後原子替換 `.live-content/timeline.json`；網頁每 15 秒及返回前台時檢查，詳情開啟時等返回時間軸再更新。錯誤時保留上一份有效內容，修正 Excel 後自動重試。不需要重新導入、構建、複製照片或下載 Git LFS 原圖。
+
+電腦需聯網，新照片應先上傳到學校圖片伺服器，再把能直接開圖的完整網址填入 Excel。覆蓋遠端同名圖片時，請更換 Excel 中的網址版本參數（例如 `?v=2`）；以新網址觸發圖片檢查和載入。完整演示與部署步驟見 [manual.md](./manual.md)。
+
+正式伺服器可用 `python scripts/publish-static.py --workbook <正式Excel路徑> --output <網站目錄>/timeline.json` 常駐發佈。它不需要 `--photo-root`。舊本地模式可用 `npm run serve:live -- --local-photos`，離線靜態導入可用 `python scripts/import-timeline.py --prepare-photos`。
 
 ## 操作
 
@@ -89,6 +89,6 @@ npm run test:e2e
 
 ## 版本邊界
 
-本地 Excel 是匯入來源，照片鏡像是正式靜態資源；兩者都保留在本地，避免依賴只能由校內電腦訪問的伺服器。第二版使用約 85 寸、1920 × 1080 的橫向展覽觸屏，作業系統、縮放比例和瀏覽器仍待場地確認。
+本地演示以專案中的 Excel 為內容來源，圖片直接使用已開放存取的學校伺服器網址；正式部署後由學校指定正式 Excel 的位置並運行發佈服務。第二版使用約 85 寸、1920 × 1080 的橫向展覽觸屏，作業系統、縮放比例和瀏覽器仍待場地確認。
 
 本輪瀏覽器驗證尺寸為 1280×720、1440×900、1920×1080；已加入粗指標觸控的命中區處理，並按 1920 × 1080 展屏規格驗證輕觸打開照片及禁止長按文字選取。手機和平板不在第二版適配範圍內。

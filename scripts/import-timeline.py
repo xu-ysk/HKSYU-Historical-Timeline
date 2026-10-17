@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build public/timeline.json from the supplied Excel workbook and photo mirror.
+"""Build public/timeline.json from Excel and school-hosted image URLs.
 
 Read the workbook XML directly so the marked editorial corrections can be
 applied without introducing an Excel dependency into the live publisher.
@@ -13,9 +13,12 @@ import json
 import re
 import sys
 import zipfile
+from concurrent.futures import ThreadPoolExecutor
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterable
-from urllib.parse import quote, unquote, urlsplit
+from urllib.parse import quote, unquote, urlsplit, urlunsplit
+from urllib.request import Request, urlopen
 from xml.etree import ElementTree as ET
 
 
@@ -206,6 +209,51 @@ def local_photo_path(photo_root: Path, source: str) -> Path:
     return path
 
 
+def school_photo_url(source: str) -> str:
+    """Keep the actual school URL, including query strings and event folders."""
+    parsed = urlsplit(source.strip().replace("\\", "/"))
+    if (parsed.scheme and parsed.scheme not in {"http", "https"}) or (
+        parsed.netloc and (parsed.hostname != "umtimeline.hksyu.edu"
+                           or parsed.username or parsed.password or parsed.port)
+    ):
+        raise ValueError(f"Unsupported school photo URL: {source!r}")
+    path = unquote(parsed.path)
+    if not path.startswith("/"):
+        path = "/" + path
+    if not path.startswith("/Historical_Timeline_Images/") or any(
+        part in {".", ".."} for part in path.split("/")
+    ):
+        raise ValueError(f"Photo is outside Historical_Timeline_Images: {source!r}")
+    return urlunsplit((parsed.scheme or "https", "umtimeline.hksyu.edu",
+                       quote(path, safe="/()"), parsed.query, ""))
+
+
+@lru_cache(maxsize=1024)
+def remote_photo_size(source: str) -> tuple[int, int]:
+    """Read only enough image header bytes for layout; never save a photo."""
+    from PIL import ImageFile
+
+    request = Request(source, headers={
+        "User-Agent": "HKSYU-Timeline/1.0", "Range": "bytes=0-2097151",
+    })
+    try:
+        with urlopen(request, timeout=15) as response:
+            school_photo_url(response.geturl())
+            parser = ImageFile.Parser()
+            remaining = 2 * 1024 * 1024
+            while remaining > 0:
+                chunk = response.read(min(16384, remaining))
+                if not chunk:
+                    break
+                remaining -= len(chunk)
+                parser.feed(chunk)
+                if parser.image is not None:
+                    return parser.image.size
+    except (OSError, ValueError) as error:
+        raise ValueError(f"Cannot read school photo {source}: {error}") from error
+    raise ValueError(f"Cannot read image dimensions from school photo: {source}")
+
+
 def jpeg_size(path: Path) -> tuple[int, int]:
     """Read a JPEG's pixel dimensions without requiring an image package."""
     sof_markers = {
@@ -251,7 +299,7 @@ def jpeg_size(path: Path) -> tuple[int, int]:
     raise ValueError(f"JPEG dimensions not found: {path}")
 
 
-def photo_entries(row: dict[str, str], photo_root: Path) -> list[dict[str, object]]:
+def photo_entries(row: dict[str, str], photo_root: Path, local_photos: bool = False) -> list[dict[str, object]]:
     entries: list[dict[str, object]] = []
     photo_indices = sorted(
         int(match.group(1))
@@ -264,15 +312,20 @@ def photo_entries(row: dict[str, str], photo_root: Path) -> list[dict[str, objec
         source = text_value(row.get(f"photo-{index}"))
         if not source:
             continue
-        path = local_photo_path(photo_root, source)
-        if not path.is_file():
-            raise FileNotFoundError(f"Photo referenced by {row['id']} is missing: {path}")
-        width, height = jpeg_size(path)
+        if local_photos:
+            path = local_photo_path(photo_root, source)
+            if not path.is_file():
+                raise FileNotFoundError(f"Photo referenced by {row['id']} is missing: {path}")
+            width, height = jpeg_size(path)
+            src = url_path(source).lstrip("/")
+        else:
+            src = school_photo_url(source)
+            width, height = remote_photo_size(src)
         entries.append(
             {
                 "id": f"{row['id']}-photo-{index}",
                 "kind": "image",
-                "src": url_path(source).lstrip("/"),
+                "src": src,
                 "width": width,
                 "height": height,
                 "alt": {"en": f"{row['id']} photograph {index}"},
@@ -281,7 +334,7 @@ def photo_entries(row: dict[str, str], photo_root: Path) -> list[dict[str, objec
     return entries
 
 
-def event(row: dict[str, str], order: int, photo_root: Path, category: str) -> dict[str, object]:
+def event(row: dict[str, str], order: int, photo_root: Path, category: str, local_photos: bool = False) -> dict[str, object]:
     label = text_value(row.get("year"))
     result: dict[str, object] = {
         "id": row["id"],
@@ -292,7 +345,7 @@ def event(row: dict[str, str], order: int, photo_root: Path, category: str) -> d
     title = localized(row, "title")
     body = localized(row, "content")
     if category == "school":
-        photos = photo_entries(row, photo_root)
+        photos = photo_entries(row, photo_root, local_photos)
         if title:
             for photo in photos:
                 photo["alt"] = title
@@ -310,7 +363,7 @@ def event(row: dict[str, str], order: int, photo_root: Path, category: str) -> d
     return result
 
 
-def build(workbook: Path, photo_root: Path, revision: str) -> dict[str, object]:
+def build(workbook: Path, photo_root: Path, revision: str, local_photos: bool = False) -> dict[str, object]:
     with zipfile.ZipFile(workbook) as archive:
         rows = worksheet_rows(archive, shared_strings(archive))
     groups = {"upper": [], "school": [], "education": []}
@@ -326,17 +379,26 @@ def build(workbook: Path, photo_root: Path, revision: str) -> dict[str, object]:
         groups[sheet_categories[sheet_name]].append(row)
     if not groups["school"] or not groups["upper"] or not groups["education"]:
         raise ValueError("Workbook must contain upper, school, and education sheets")
+    if not local_photos:
+        sources = sorted({school_photo_url(value) for row in groups["school"]
+                          for key, value in row.items()
+                          if re.fullmatch(r"photo-\d+", key) and text_value(value)})
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            list(pool.map(remote_photo_size, sources))
     return {
         "schemaVersion": 1,
         "revision": revision,
         "upperRailEvents": [event(row, i, photo_root, "upper") for i, row in enumerate(groups["upper"])],
-        "schoolEvents": [event(row, i, photo_root, "school") for i, row in enumerate(groups["school"])],
+        "schoolEvents": [event(row, i, photo_root, "school", local_photos) for i, row in enumerate(groups["school"])],
         "educationEvents": [event(row, i, photo_root, "education") for i, row in enumerate(groups["education"])],
     }
 
 
-def source_revision(workbook: Path, photo_root: Path) -> str:
+def source_revision(workbook: Path, photo_root: Path, local_photos: bool = False) -> str:
     digest = hashlib.sha256(workbook.read_bytes())
+    digest.update(b"local-v1" if local_photos else b"school-urls-v1")
+    if not local_photos:
+        return f"xlsx-{digest.hexdigest()[:16]}"
     originals = photo_root / "Historical_Timeline_Images"
     for path in sorted(originals.rglob("*")):
         if path.is_file():
@@ -353,8 +415,11 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, default=Path("public/timeline.json"))
     parser.add_argument("--revision")
     parser.add_argument("--prepare-photos", action="store_true")
+    parser.add_argument("--local-photos", action="store_true", help="Use the legacy local photo mirror")
     args = parser.parse_args(argv)
-    data = build(args.workbook, args.photo_root, args.revision or source_revision(args.workbook, args.photo_root))
+    local_photos = args.local_photos or args.prepare_photos
+    data = build(args.workbook, args.photo_root,
+                 args.revision or source_revision(args.workbook, args.photo_root, local_photos), local_photos)
     if args.prepare_photos:
         from photo_assets import sync_photos
 

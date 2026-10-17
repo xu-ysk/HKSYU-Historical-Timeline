@@ -7,6 +7,7 @@ import importlib.util
 import json
 import os
 import threading
+from functools import partial
 from math import isfinite
 from pathlib import Path
 from typing import Callable
@@ -14,14 +15,14 @@ from typing import Callable
 from photo_assets import sync_photos
 
 
-def load_importer() -> Callable[[Path, Path, str], dict[str, object]]:
+def load_importer(local_photos: bool = False) -> Callable[[Path, Path, str], dict[str, object]]:
     path = Path(__file__).with_name("import-timeline.py")
     spec = importlib.util.spec_from_file_location("timeline_importer", path)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Cannot load timeline importer: {path}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return module.build
+    return partial(module.build, local_photos=local_photos)
 
 
 def validate(data: dict[str, object]) -> None:
@@ -92,17 +93,22 @@ class LiveContent:
         output: Path,
         builder: Callable[[Path, Path, str], dict[str, object]] | None = None,
         optimize_photos: bool = False,
+        local_photos: bool = False,
     ) -> None:
         self.workbook = workbook
         self.photo_root = photo_root
         self.output = output
-        self.builder = builder or load_importer()
+        self.local_photos = local_photos or optimize_photos
+        self.builder = builder or load_importer(self.local_photos)
         self.optimize_photos = optimize_photos
         self.signature: str | None = None
         self.last_error: str | None = None
 
     def source_signature(self) -> str:
         digest = hashlib.sha256(self.workbook.read_bytes())
+        digest.update(b"local-v1" if self.local_photos else b"school-urls-v1")
+        if not self.local_photos:
+            return digest.hexdigest()
         photo_dir = self.photo_root / "Historical_Timeline_Images"
         for path in sorted(photo_dir.rglob("*")):
             if path.is_file():

@@ -1,4 +1,4 @@
-import { test, expect } from '../e2e/fixtures';
+import { test, expect } from './fixtures';
 
 test('upper rail displays the newly imported English text', async ({ page }) => {
   await page.goto('/');

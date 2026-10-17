@@ -1,4 +1,4 @@
-import { test, expect } from '../e2e/fixtures';
+import { test, expect } from './fixtures';
 import { themes, themeIds } from '../../src/config/themes';
 
 test.use({ viewport: { width: 1920, height: 1080 } });

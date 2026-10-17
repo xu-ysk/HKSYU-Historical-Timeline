@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Watch school-owned Excel/photos and publish them into a static web root."""
+"""Watch school-owned Excel and publish data referencing school image URLs."""
 
 from __future__ import annotations
 
@@ -13,7 +13,8 @@ from live_content import LiveContent
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workbook", type=Path, required=True)
-    parser.add_argument("--photo-root", type=Path, required=True)
+    parser.add_argument("--photo-root", type=Path)
+    parser.add_argument("--local-photos", action="store_true", help="Use the legacy local photo mirror")
     parser.add_argument("--output", type=Path, required=True,
                         help="The static site's public timeline.json")
     parser.add_argument("--poll-seconds", type=float, default=2.0)
@@ -25,7 +26,8 @@ def main() -> None:
     if args.poll_seconds <= 0:
         parser.error("--poll-seconds must be positive")
 
-    content = LiveContent(args.workbook, args.photo_root, args.output, optimize_photos=True)
+    content = LiveContent(args.workbook, args.photo_root or args.workbook.parent, args.output,
+                          optimize_photos=args.local_photos, local_photos=args.local_photos)
     try:
         if content.refresh():
             print(f"Timeline updated: {args.output}", flush=True)
@@ -36,7 +38,7 @@ def main() -> None:
     if args.once:
         return
 
-    print(f"Watching workbook and photos every {args.poll_seconds:g} seconds", flush=True)
+    print(f"Watching workbook every {args.poll_seconds:g} seconds", flush=True)
     stop = threading.Event()
     try:
         content.watch(stop, args.poll_seconds)

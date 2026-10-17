@@ -754,7 +754,14 @@ export class TimelineController {
       }
       if (el.tabIndex !== tabIndex) el.tabIndex = tabIndex;
       if (el.style.pointerEvents !== pointer) el.style.pointerEvents = pointer;
-      if (el.dataset.extracted !== String(extracted)) el.dataset.extracted = String(extracted);
+      if (el.dataset.extracted !== String(extracted)) {
+        el.dataset.extracted = String(extracted);
+        const image = el.querySelector<HTMLImageElement>('.photo-image');
+        if (image) {
+          image.fetchPriority = extracted ? 'high' : 'low';
+          if (extracted) image.dispatchEvent(new Event('photo-priority'));
+        }
+      }
       if (!visible) continue;
       const width = Number(p.width.toFixed(2)) + 'px',
         height = Number(p.height.toFixed(2)) + 'px',

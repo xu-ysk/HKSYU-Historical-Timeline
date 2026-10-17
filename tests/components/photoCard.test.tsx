@@ -39,7 +39,8 @@ test('real photo slots display the image without placeholder text', () => {
 });
 
 test('a new content revision reloads a photo even when its path stays the same', () => {
-  const event = timeline.schoolEvents.find((item) => item.id === 'P01')! as SchoolEvent;
+  const event = structuredClone(timeline.schoolEvents.find((item) => item.id === 'P01')!) as SchoolEvent;
+  event.photos[0].src = 'Historical_Timeline_Images/1971/image1.jpg';
   const photo = event.photos[0];
   const card = { id: `${event.id}/${photo.id}`, event, photo, slot: 0, countInYear: 2 };
   const pose = { x: 100, y: 100, width: 240, height: 160, ry: 0, rz: 0, scale: 1, z: 1 };
@@ -74,3 +75,20 @@ for (const id of ['P44', 'P76', 'P82', 'P89', 'P113', 'P117']) {
     }
   });
 }
+
+test('school URLs and cache parameters remain exact across text-only revisions', () => {
+  const event = structuredClone(timeline.schoolEvents[0]) as SchoolEvent;
+  event.photos[0].src = 'https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/image1.jpg?token=abc%2Fdef&v=old#photo';
+  const photo = event.photos[0];
+  const card = { id: `${event.id}/${photo.id}`, event, photo, slot: 0, countInYear: 2 };
+  const pose = { x: 0, y: 0, width: 240, height: 160, ry: 0, rz: 0, scale: 1, z: 1 };
+  const view = render(<PhotoCard card={card} locale="en" revision="new revision" pose={pose} />);
+  const src = new URL(screen.getByRole('img').getAttribute('src')!);
+  expect(src.hostname).toBe('umtimeline.hksyu.edu');
+  expect(src.searchParams.get('token')).toBe('abc/def');
+  expect(src.searchParams.getAll('v')).toEqual(['old']);
+  expect(src.hash).toBe('#photo');
+  expect(screen.getByRole('img')).toHaveAttribute('src', photo.src);
+  view.rerender(<PhotoCard card={card} locale="en" revision="another revision" pose={pose} />);
+  expect(screen.getByRole('img')).toHaveAttribute('src', photo.src);
+});

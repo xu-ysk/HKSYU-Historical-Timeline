@@ -1,4 +1,4 @@
-import { test, expect } from '../e2e/fixtures';
+import { test, expect } from './fixtures';
 import type { TimelineDataset } from '../../src/domain/timeline';
 
 test('a text-only school event opens as a centered, readable card and returns', async ({
