@@ -36,6 +36,16 @@ npm run serve:live
 
 正式伺服器可用 `python scripts/publish-static.py --workbook <正式Excel路徑> --output <網站目錄>/timeline.json` 常駐發佈。它不需要 `--photo-root`。舊本地模式可用 `npm run serve:live -- --local-photos`，離線靜態導入可用 `python scripts/import-timeline.py --prepare-photos`。
 
+### Vercel 發佈
+
+Vercel 網站使用上次部署的 `timeline.json`，不會讀取這台電腦上的 Excel。`serve:live` 只更新本地演示；其中的 `.live-content/timeline.json` 不會提交到 Git。一般的 `npm run build` 也不會重新匯入 Excel。
+
+儲存 Excel 後，在本地執行 `npm run prepare:publish`。此命令先檢查並匯出最新 Excel 至 `public/timeline.json`，成功後才構建 `dist`；無效的 Excel 或圖片網址會中止發佈準備並保留原有 JSON。它需要本地 Python 3、Pillow 及網絡連線，不會自動提交、推送或部署。
+
+若 Vercel 已連接 GitHub，將更新後的 Excel 及 `public/timeline.json` 提交、推送到 Vercel 設定的正式分支，等待正式部署成功。Vercel 仍使用 `npm run build`、輸出目錄 `dist`，不用在 Vercel 上執行本地監聽服務。若透過 CLI 發佈，則在準備成功後用原來的正式部署方式發佈最新版本。完整操作見 [manual.md](./manual.md)。
+
+要做到僅儲存 Excel 就自動更新線上站點，需要另接自動上傳／發佈服務。學校開放圖片網址，代表照片可被讀取，並不代表 Excel 的文字及新網址會自動上傳到 Vercel。
+
 ## 操作
 
 - 首次進入頁面會顯示操作指引；點「開始探索」後可操作相冊。連續 3 分鐘沒有點擊、滑動或滾動，指引會再次顯示，方便下一位參觀者。頁首「全覽／瀏覽」右側的「操作指引」按鈕可隨時重開，關閉後保留原本的瀏覽位置。

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-9d61a33ebfa7f46b",
+  "revision": "xlsx-1a566ffce8848c52",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -711,8 +711,8 @@
       "photoGroupId": "P08",
       "title": {},
       "body": {
-        "en": "The Education Department made its first formal visit to Shue Yan's post-secondary campus on Sing Woo Road, Happy Valley.",
-        "zh-Hant": "教育署首次正式到訪樹仁位於跑馬地成和道的專上校舍。",
+        "en": "The Education Department's specialists made its first formal visit to Shue Yan's post-secondary campus on Sing Woo Road, Happy Valley.",
+        "zh-Hant": "教育署首次派專家正式到訪樹仁位於跑馬地成和道的專上校舍。",
         "zh-Hans": "教育署首次正式到访树仁位于跑马地成和道的专上校舍。"
       },
       "photos": [
@@ -747,7 +747,7 @@
       "photoGroupId": "P09",
       "title": {},
       "body": {
-        "en": "Education Department specialists conducted Shue Yan’s first academic assessment, followed by a further inspection by Director K. W. J. Topley.",
+        "en": "Education Department's specialists conducted Shue Yan’s first academic assessment, followed by a further inspection by Director K. W. J. Topley.",
         "zh-Hant": "教育署專家首次評核樹仁學術水平，其後教育署署長 K. W. J. Topley 再次視察。",
         "zh-Hans": "教育署专家首次评核树仁学术水平，其后教育署署长 K. W. J. Topley 再次视察。"
       },
@@ -1051,7 +1051,7 @@
       "photoGroupId": "P18",
       "title": {},
       "body": {
-        "en": "Shue Yan and The University of Alabama in the United States jointly launched their first Master of Social Work programme to meet the demand for professionals in the field.",
+        "en": "Shue Yan and the University of Alabama in the United States jointly launched their first Master of Social Work programme to meet the demand for professionals in the field.",
         "zh-Hant": "樹仁與美國阿拉巴馬大學合辦首個社會工作碩士課程，回應專業人才需求。",
         "zh-Hans": "树仁与美国阿拉巴马大学合办首个社会工作硕士课程，响应专业人才需求。"
       },
@@ -1283,7 +1283,7 @@
       "photoGroupId": "P25",
       "title": {},
       "body": {
-        "en": "A delegation from the State Education Commission visited Shue Yan; Peking University President Ding Shisun addressed the welcoming speech.",
+        "en": "A delegation from the State Education Commission visited Shue Yan; Peking University President Ding Shisun gave the welcoming speech.",
         "zh-Hant": "國家教育委員會代表團訪問樹仁；北京大學校長丁石孫在歡迎會致辭。",
         "zh-Hans": "国家教育委员会代表团访问树仁；北京大学校长丁石孙在欢迎会致辞。"
       },
@@ -2478,7 +2478,7 @@
       "photoGroupId": "P66",
       "title": {},
       "body": {
-        "en": "The  Faculty of Commerce underwent its five-year periodic programme review on 29 and 30 May.",
+        "en": "The Faculty of Commerce underwent its five-year periodic programme review on 29 and 30 May.",
         "zh-Hant": "商學院於5月29至30日進行課程五年定期覆審。",
         "zh-Hans": "商学院于5月29至30日进行课程五年定期复审。"
       },
@@ -2674,8 +2674,8 @@
       "photoGroupId": "P72",
       "title": {},
       "body": {
-        "en": "The University launched its first independently offered master’s degree programme —  the Master of Social Sciences in Counselling Psychology.\n\nSource: Shue Yan Newsletter May 2010 Issue",
-        "zh-Hant": "大學首次獨立開辦碩士學位課程——輔導心理學社會科學碩士。 \n\n來源： 《樹仁簡訊》2010年5月刊",
+        "en": "The University launched its first independently offered master’s degree programme —  the Master of Social Sciences in Counselling Psychology.",
+        "zh-Hant": "大學首次獨立開辦碩士學位課程——輔導心理學社會科學碩士。",
         "zh-Hans": "大学首次独立开办硕士学位课程——辅导心理学社会科学硕士。\n\n來源： 《樹仁簡訊》2010年5月刊"
       },
       "photos": [
@@ -2763,7 +2763,7 @@
       "title": {},
       "body": {
         "en": "Since 2012/13, Shue Yan University has received HK$125.6 million in funding from the Quality Enhancement Support Scheme (QESS) for 13 projects. These initiatives have advanced teaching and learning, digital resources, internships and career development, artificial intelligence education, and student wellbeing.",
-        "zh-Hant": "仁大自2012/13年度起，獲「質素提升支援計劃」資助合共1.256億港元，推展13個項目。這些項目促進了教與學、數碼資源、實習及職涯發展、人工智能教育，以及學生身心健康。",
+        "zh-Hant": "仁大自2012/13年度起，獲「質素提升支援計劃」資助合共1.256億港元，推展13個項目。這些項目促進了教與學、數字資源、實習及職涯發展、人工智能教育，以及學生身心健康。",
         "zh-Hans": "仁大自2012/13年度起，获「质素提升支援计划」资助合共1.256亿港元，推展13个项目。这些项目促进了教与学、数码资源、实习及职涯发展、人工智能教育，以及学生身心健康。"
       },
       "photos": [
@@ -3102,8 +3102,8 @@
       "photoGroupId": "P87",
       "title": {},
       "body": {
-        "en": "Shue Yan enrolled its first cohort of Master of Philosophy and Doctor of Philosophy research students.\n\nSource: Shue Yan Newsletter November 2017 Issue",
-        "zh-Hant": "樹仁招收首屆哲學碩士及哲學博士研究生。 \n\n來源：《樹仁簡訊》2017年11月刊",
+        "en": "Shue Yan enrolled its first cohort of Master of Philosophy and Doctor of Philosophy research students.",
+        "zh-Hant": "樹仁招收首屆哲學碩士及哲學博士研究生。",
         "zh-Hans": "树仁招收首届哲学硕士及哲学博士研究生。 \n\n来源：《树仁简讯》2017年11月刊"
       },
       "photos": [
@@ -3138,7 +3138,7 @@
       "photoGroupId": "P88",
       "title": {},
       "body": {
-        "en": "Shue Yan received HK$20 million  from the iFREE Group to develop a robotics laboratory and big-data facilities.",
+        "en": "Shue Yan received HK$20 million from the iFREE Group to develop a robotics laboratory and big-data facilities.",
         "zh-Hant": "樹仁獲iFREE集團捐款二千萬港元，建設機械人實驗室及大數據設施。",
         "zh-Hans": "树仁获iFREE集团捐款二千万港元，建设机械人实验室及大数据设施。"
       },
@@ -3261,7 +3261,7 @@
       "photoGroupId": "P92",
       "title": {},
       "body": {
-        "en": "The University’s Five-year Strategic Plan   advocates reinventing liberal arts education for the digital era.",
+        "en": "The University’s Five-year Strategic Plan advocates reinventing liberal arts education for the digital era.",
         "zh-Hant": "大學五年策略發展計劃倡議在數字時代重塑博雅教育。",
         "zh-Hans": "大学五年策略发展计划倡议在数字时代重塑博雅教育。"
       },
@@ -3396,7 +3396,7 @@
       "title": {},
       "body": {
         "en": "In 2022/23, Shue Yan received HK$19.5 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSc (Hons) in Digital Solutions for Entertainment and Game Applications.",
-        "zh-Hant": "2022/23 年度，仁大獲批自資專上教育提升及啟動補助金一千九百五十萬元，發展娛樂及遊戲應用數碼方案榮譽理學士課程。",
+        "zh-Hant": "2022/23 年度，仁大獲批自資專上教育提升及啟動補助金一千九百五十萬元，發展娛樂及遊戲應用數字方案榮譽理學士課程。",
         "zh-Hans": "2022/23 年度，仁大获批自资专上教育提升及启动补助金一千九百五十万元，发展娱乐及游戏应用数码方案荣誉理学士课程。"
       },
       "photos": [
@@ -3432,7 +3432,7 @@
       "title": {},
       "body": {
         "en": "The Social Work Department launched a government-commissioned one-stop digital information gateway for carers, improving timely access to support information.",
-        "zh-Hant": "社會工作學系推出政府委託的一站式照顧者數碼資訊閘道，改善支援資訊的及時獲取。",
+        "zh-Hant": "社會工作學系推出政府委託的一站式照顧者數字資訊閘道，改善支援資訊的及時獲取。",
         "zh-Hans": "社会工作学系推出政府委托的一站式照顾者数码资讯闸道，改善支援资讯的及时获取。"
       },
       "photos": [
@@ -3742,7 +3742,7 @@
       "title": {},
       "body": {
         "en": "The Bridging Grey Digital Divide and diversity in older ICT users post-COVID project advanced research on older adults’ use of technology and promoted age-inclusive digital innovation.",
-        "zh-Hant": "跨越灰色數碼鴻溝研究長者科技使用，推動年齡共融的數碼創新。",
+        "zh-Hant": "跨越灰色數字鴻溝研究長者科技使用，推動年齡共融的數字創新。",
         "zh-Hans": "跨越灰色数码鸿沟研究长者科技使用，推动年龄共融的数码创新。"
       },
       "photos": [
@@ -3830,7 +3830,7 @@
       "title": {},
       "body": {
         "en": "Shue Yan University participated in a special exhibition at the Guangdong Museum, creating an extension display on digital architectural heritage art.",
-        "zh-Hant": "仁大參與廣東省博物館特展，策劃數碼建築遺產藝術延伸展區。",
+        "zh-Hant": "仁大參與廣東省博物館特展，策劃數字建築遺產藝術延伸展區。",
         "zh-Hans": "仁大参与广东省博物馆特展，策划数码建筑遗产艺术延伸展区。"
       },
       "photos": [
@@ -3954,7 +3954,7 @@
       "title": {},
       "body": {
         "en": "Shue Yan launched a digital humanities project using a virtual-reality and a mixed-reality platform to digitally document, transmit, and promote Cheung Chau’s Jiao Festival, which is a national intangible cultural heritage.",
-        "zh-Hant": "仁大開展一項數碼人文項目，運用虛擬現實和混合實境平台數字化記錄、傳承並推廣長洲太平清醮這項國家級非物質文化遺產。",
+        "zh-Hant": "仁大開展一項數字人文項目，運用虛擬現實和混合實境平台數字化記錄、傳承並推廣長洲太平清醮這項國家級非物質文化遺產。",
         "zh-Hans": "仁大开展一项数码人文项目，运用虚拟现实和混合实境平台数字化记录、传承并推广长洲太平清醮这项国家级非物质文化遗产。"
       },
       "photos": [
@@ -4062,7 +4062,7 @@
       "title": {},
       "body": {
         "en": "Shue Yan established its fourth Faculty, the Faculty of Communication, Information and Creative Industries. The faculty comprises the Department of Journalism and Communication and the Department of Data Science and Digital Innovation, formerly known as the Department of Applied Data Science.",
-        "zh-Hant": "仁大成立第四個學院——傳播、資訊及創意產業學院。該學院由新聞與傳播學系，以及前稱應用數據科學的數據科學及數碼創新學系組成。",
+        "zh-Hant": "仁大成立第四個學院——傳播、資訊及創意產業學院。該學院由新聞與傳播學系，以及前稱應用數據科學的數據科學及數字創新學系組成。",
         "zh-Hans": "仁大成立第四个学院——传播、资讯及创意产业学院。该学院由新闻与传播学系，以及前称应用数据科学的数据科学及数码创新学系组成。"
       },
       "photos": []
@@ -4076,8 +4076,8 @@
       "photoGroupId": "P118",
       "title": {},
       "body": {
-        "en": "Shue Yan’s 2026-2031 Five-year Strategic Plan: Enhancing global competence through a digitally enabled liberal arts education. The Strategic Plan ADORN aims to amplify digital competence and interdisciplinarity, develop strategic areas of excellence with social impact optimize engagement with communities and professional sectors, renew campus facilities with digital infrastructure and sustainable practices, as well as nurture glocal citizens through cultural education.",
-        "zh-Hant": "仁大的五年(2026-2031)策略計劃是融數字科技於博雅教育中，提升全球競爭力。五年策略計劃 （ADORN）旨在提升數字能力與跨學科發展，培育具社會影響力的策略性卓越領域；加強與社區及專業界別的聯繫；透過數碼基礎設施及可持續實踐更新校園設施；並透過文化教育培養具本土與全球視野的公民。",
+        "en": "Shue Yan’s 2026-2031 Five-year Strategic Plan: Enhancing global competence through a digitally enabled liberal arts education. The Strategic Plan ADORN aims to amplify digital competence and interdisciplinarity, develop strategic areas of excellence with social impact, optimize engagement with communities and professional sectors, renew campus facilities with digital infrastructure and sustainable practices, as well as nurture glocal citizens through cultural education.",
+        "zh-Hant": "仁大的五年(2026-2031)策略計劃是融數字科技於博雅教育中，提升全球競爭力。五年策略計劃 （ADORN）旨在提升數字能力與跨學科發展，培育具社會影響力的策略性卓越領域；加強與社區及專業界別的聯繫；透過數字基礎設施及可持續實踐更新校園設施；並透過文化教育培養具本土與全球視野的公民。",
         "zh-Hans": "仁大的五年(2026-2031)策略计划是融数字科技于博雅教育中，提升全球竞争力。五年策略计划（ADORN）旨在提升数字能力与跨学科发展，培育具社会影响力的策略性卓越领域；加强与社区及专业界别的联系；透过数码基础设施及可持续实践更新校园设施；并透过文化教育培养具本土与全球视野的公民。"
       },
       "photos": [

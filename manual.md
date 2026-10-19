@@ -66,6 +66,39 @@ https://umtimeline.hksyu.edu/Historical_Timeline_Images/1971/image1.jpg
 - Excel 保存过程中可能短暂读不到文件，服务会保留上一份内容并自动重试。
 - 若仍不更新，记录事件 id、工作表、栏位和终端错误，交给管理员。
 
+## Vercel 上的网页如何更新
+
+本地网页和 Vercel 网页是两份独立的发布内容。保存电脑里的 Excel，只会改变电脑里的文件；`npm run serve:live` 只负责本地演示。Vercel 上的网页读取上一次部署时的 `timeline.json`，不能直接读取电脑 D 盘中的 Excel。学校开放图片访问权限，只解决“网页能否打开照片”，不会把修改后的文字、新照片网址自动传到 Vercel。
+
+### 当前可用的发布步骤
+
+1. 修改项目中的 `HKSYU Timeline.xlsx`，结束单元格编辑，按 Ctrl + S 保存。
+2. 在项目目录打开 PowerShell，执行：
+
+```powershell
+Set-Location -LiteralPath 'D:\MyCodingProject\HKSYU Museum Timeline'
+npm run prepare:publish
+```
+
+3. 等命令全部成功。这一步先联网检查照片、验证 Excel 内容，更新 `public/timeline.json`，再生成新的 `dist`。如果报错，修正 Excel 或图片网址并重试；不要继续发布失败的结果。原 Excel 不会被程序修改。
+4. 如果 Vercel 是连接 GitHub 自动部署的，先在 Vercel 项目的 Settings 中确认连接的是本项目仓库，并确认 Production 环境对应的正式分支。当前本地分支是 `main`，但须以 Vercel 项目实际设置为准。用 GitHub Desktop 或熟悉的 Git 工具提交、推送本轮更新；日常至少包括 `HKSYU Timeline.xlsx` 和 `public/timeline.json`。首次使用新命令，也要提交 `package.json` 及操作说明的改动。
+5. 在 Vercel 的 Deployments 页面等新的 Production 部署成功（Ready），再打开正式域名，返回时间轴并刷新检查修改过的事件。Preview 部署有独立预览地址，不一定会更新正式域名。
+
+Vercel 的构建命令保留 `npm run build`，输出目录用 `dist`。`prepare:publish` 是在本地电脑运行的准备命令，不要把 `serve:live` 设置为 Vercel 的构建或启动命令。若你原先用 Vercel CLI 发布，在本地准备成功后按原方式重新执行正式部署，例如已安装并登录 CLI、且项目关联正确时运行 `vercel --prod`。此命令会对外发布，请确认内容后自行执行。
+
+**仅点 Excel 保存、仅重新运行普通 build、仅上传 Excel，或者重新部署仍包含旧 JSON 的版本，都不能让当前网页读取到新内容。** 本地准备命令也不会自动上传或部署。完成一次“生成新 JSON → 发布新版本”，线上内容才会改变。普通刷新或清除缓存不能替代这一步。
+
+可访问正式域名下的 `/timeline.json`，搜索修改过的文字、图片网址，或比较开头的 `revision` 与本地 `public/timeline.json` 是否相同。若线上 JSON 还是旧版，继续检查发布记录、分支及正式域名指向，而不是重复修改 Excel。
+
+### 要做到只按保存，线上也自动更新
+
+需要增加一条发布通道，可以选择：
+
+- 保留电脑里的 Excel：在电脑运行监视及上传程序，保存后自动转换并上传内容到约定的服务器或云存储。电脑必须开机联网、服务一直运行，并配置上传凭据。若采用自动提交和部署的方式，还须等待每次 Vercel 部署完成。
+- 把正式 Excel 放到学校管理的共享位置：由学校服务器读取并生成公开的 `timeline.json`，Vercel 前端改为读取该地址。学校 IT 需要提供正式文件位置、可写的发布位置、访问权限，以及 JSON 的跨域和缓存设置。这样工作人员更新正式 Excel，发布服务就可以自动处理。
+
+目前项目没有配置上述线上发布通道。正式使用哪一种，需要先确定“大家修改的那份正式 Excel 存在哪里”和“转换后的数据上传到哪里”。原来的本地约 15 秒检查机制只负责检查已发布的数据，并不负责上传 Excel。
+
 ## 学校正式部署时给 IT 的说明
 
 本地演示修改本地 Excel；正式上线后，应改为读取学校指定位置的正式 Excel。工作人员下载修改后，要上传覆盖那一份正式文件，本地副本不会自动同步到学校服务器。SFTP 只负责传文件，学校仍需运行内容发布服务。

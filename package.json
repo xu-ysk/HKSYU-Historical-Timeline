@@ -12,6 +12,7 @@
     "test:e2e:ui": "playwright test --ui",
     "build": "npm run typecheck && vite build",
     "import:data": "python scripts/import-timeline.py",
+    "prepare:publish": "python scripts/publish-static.py --workbook \"HKSYU Timeline.xlsx\" --output public/timeline.json --once && npm run build",
     "serve:live": "python scripts/serve-live.py",
     "test:content": "python -m unittest discover -s tests/python -p test_*.py",
     "build:test": "node scripts/build-test.mjs",
