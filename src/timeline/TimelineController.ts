@@ -4,13 +4,13 @@ import { themes, themeIds } from '../config/themes';
 import { sceneConfig } from '../config/scene';
 import {
   anchor,
+  albumYearLabelPosition,
   yearLabelOffsets,
   browseStackZ,
   cardPose,
   chronologicalStackZ,
   direction,
   isOnscreen,
-  lengths,
   trackEndpoints,
   groupPhotoDisplacement,
   normal,
@@ -19,8 +19,8 @@ import {
   type Viewport,
   type Pose,
 } from './layout';
-import { clamp, timeScale, rebaseFocus, shiftBrowseFocus } from './timeScale';
-import { wheelPixels, dragProjection } from './input';
+import { clamp, timeScale, rebaseFocus } from './timeScale';
+import { wheelPixels } from './input';
 import { detailReducer, initialDetail, type DetailState } from './timelineReducer';
 import { detailPhotoRects, detailPose, extractPose, smoothStep } from './detailLayout';
 import {
@@ -37,7 +37,7 @@ export class TimelineController {
   values: SceneValues;
   view: Viewport;
   focusedId: string;
-  mode: 'overview' | 'browse' = 'overview';
+  mode = 'overview' as const;
   blocked = false;
   private disposed = false;
   private dirty = true;
@@ -48,7 +48,6 @@ export class TimelineController {
     id: number;
     x: number;
     y: number;
-    focus: number;
     moved: boolean;
     tappedEventId?: string;
   } | null = null;
@@ -65,7 +64,6 @@ export class TimelineController {
   private lastEventId = '';
   private restoreFrame = 0;
   private positions = new Map<string, number>();
-  private wheelTarget: number | null = null;
   private rendered = new Map<string, Pose>();
   private openingSources = new Map<string, Pose>();
   private closingSources = new Map<string, Pose>();
@@ -89,7 +87,7 @@ export class TimelineController {
     endYear: number,
     overviewYears: readonly number[],
     private onChange: (year: number, eventId: string) => void,
-    private onMode: (mode: 'overview' | 'browse') => void,
+    private onMode: (mode: 'overview') => void,
     private onDetail: (state: DetailState) => void,
   ) {
     this.values = { focus: 0, zoom: 0, endYear, overviewYears };
@@ -190,7 +188,6 @@ export class TimelineController {
     this.resetPhotoZoom();
     this.returnFocus = document.activeElement as HTMLElement;
     gsap.killTweensOf(this.values);
-    this.wheelTarget = null;
     this.root.dataset.targetFocus = String(this.values.focus);
     this.openingSources = new Map(
       this.nodes
@@ -271,23 +268,22 @@ export class TimelineController {
             this.returnFocus?.isConnected &&
             getComputedStyle(this.returnFocus).visibility !== 'hidden'
               ? this.returnFocus
-              : document.querySelector<HTMLElement>('[data-testid="view-browse"]');
+              : document.querySelector<HTMLElement>('[data-testid="view-overview"]');
           target?.focus({ preventScroll: true });
         });
         this.setMode(this.mode);
       },
     });
   }
-  setMode(mode: 'overview' | 'browse') {
+  setMode(mode: 'overview') {
     if (this.blocked) return;
-    if (mode === this.mode && this.values.zoom === (mode === 'browse' ? 1 : 0)) return;
+    if (this.values.zoom === 0) return;
     this.mode = mode;
     this.onMode(mode);
-    this.animate({ zoom: mode === 'browse' ? 1 : 0 }, 0.8);
+    this.animate({ zoom: 0 }, 0.8);
   }
-  startMode(mode: 'overview' | 'browse') {
+  startMode(mode: 'overview') {
     if (this.blocked) return;
-    this.wheelTarget = null;
     gsap.killTweensOf(this.values, 'focus');
     this.values.focus = 0;
     this.root.dataset.targetFocus = '0';
@@ -298,8 +294,6 @@ export class TimelineController {
   }
   navigate(unit: number, id?: string) {
     if (this.blocked) return;
-    this.wheelTarget = null;
-    this.setMode('browse');
     const target = id
       ? timeScale(this.values.endYear).toUnit(this.positions.get(id)!)
       : clamp(unit);
@@ -320,7 +314,6 @@ export class TimelineController {
     this.values.focus = rebaseFocus(this.values.focus, this.values.endYear, endYear);
     this.values.endYear = endYear;
     this.root.dataset.targetFocus = String(this.values.focus);
-    this.wheelTarget = null;
     this.dirty = true;
   }
   private nearest(unit: number) {
@@ -489,22 +482,8 @@ export class TimelineController {
       }
       return;
     }
-    if ((e.target as HTMLElement).closest('.education-panel,.theme-home')) return;
+    // The timeline stays in overview; wheel zoom remains available on detail photos.
     e.preventDefault();
-    this.setMode('browse');
-    const current = this.wheelTarget ?? Number(this.root.dataset.targetFocus ?? this.values.focus);
-    this.wheelTarget = shiftBrowseFocus(
-      current,
-      (wheelPixels(e.deltaX, e.deltaY, e.deltaMode, this.view.height) *
-        sceneConfig.wheelSensitivity) /
-        lengths(this.view).browse,
-      this.values.endYear,
-    );
-    const target = timeScale(this.values.endYear).toUnit(
-      this.positions.get(this.nearest(this.wheelTarget).id)!,
-    );
-    this.root.dataset.targetFocus = String(target);
-    this.animate({ focus: target }, sceneConfig.wheelDuration);
   };
   private down = (e: PointerEvent) => {
     if (this.blocked) {
@@ -518,12 +497,10 @@ export class TimelineController {
       return;
     this.suppressClick = false;
     this.touchClick = null;
-    this.wheelTarget = null;
     this.drag = {
       id: e.pointerId,
       x: e.clientX,
       y: e.clientY,
-      focus: this.values.focus,
       moved: false,
       tappedEventId:
         e.pointerType === 'touch'
@@ -542,17 +519,8 @@ export class TimelineController {
     if (!drag.moved) {
       drag.moved = true;
       this.root.setPointerCapture(e.pointerId);
-      this.setMode('browse');
-      this.root.dataset.phase = 'dragging';
     }
-    gsap.killTweensOf(this.values, 'focus');
-    this.values.focus = shiftBrowseFocus(
-      drag.focus,
-      (-dragProjection(dx, dy) * sceneConfig.dragSensitivity) / lengths(this.view).browse,
-      this.values.endYear,
-    );
-    this.root.dataset.targetFocus = String(this.values.focus);
-    this.dirty = true;
+    // Track movement only to avoid opening a photo after a drag gesture.
   };
   private up = (e: PointerEvent) => {
     if (this.endPhotoPointer(e.pointerId) || this.blocked) return;
@@ -579,7 +547,7 @@ export class TimelineController {
     if (!this.blocked) this.root.dataset.phase = 'idle';
   };
   private click = (e: MouseEvent) => {
-    if (e.target instanceof Element && e.target.closest('.theme-home')) {
+    if (e.target instanceof Element && e.target.closest('.theme-home,.education-dot,.upper-rail-marker')) {
       this.touchClick = null;
       this.suppressClick = false;
       return;
@@ -806,6 +774,11 @@ export class TimelineController {
     ].join(':');
     if (trackPoseKey !== this.lastTrackPoseKey) {
       this.lastTrackPoseKey = trackPoseKey;
+      this.root.querySelectorAll<HTMLElement>('[data-album-year]').forEach((el) => {
+        const point = albumYearLabelPosition(Number(el.dataset.albumYear), this.view, this.values);
+        el.style.left = `${point.x}px`;
+        el.style.top = `${point.y}px`;
+      });
       const upperOffsets = yearLabelOffsets(
         Array.from(this.root.querySelectorAll<HTMLElement>('[data-upper-year]'), (el) =>
           Number(el.dataset.upperYear),

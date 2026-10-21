@@ -3,10 +3,11 @@ import type { TimelineDataset, Locale, ThemeId } from '../domain/timeline';
 import { educationYearLabel, localized, localizedYearLabel } from '../domain/timeline';
 import { toCards } from '../domain/normalizeTimeline';
 import { messages } from '../i18n/messages';
-import { anchor, cardPose, trackEndpoints } from './layout';
+import { albumYearLabelPosition, anchor, cardPose, trackEndpoints } from './layout';
 import { PhotoCard } from './PhotoCard';
 import { TimelineController } from './TimelineController';
 import type { DetailState } from './timelineReducer';
+import type { RailSelection } from '../components/RailEventDetail';
 export function TimelineScene({
   data,
   endYear,
@@ -20,12 +21,13 @@ export function TimelineScene({
   onReturnToOverview,
   homeDisabled,
   onDetail,
+  onRailSelect,
 }: {
   data: TimelineDataset;
   endYear: number;
   locale: Locale;
-  mode: 'overview' | 'browse';
-  onMode: (mode: 'overview' | 'browse') => void;
+  mode: 'overview';
+  onMode: (mode: 'overview') => void;
   onProgress: (year: number, eventId: string) => void;
   controllerRef: React.RefObject<TimelineController | null>;
   focusYear: number;
@@ -33,6 +35,7 @@ export function TimelineScene({
   onReturnToOverview: () => void;
   homeDisabled: boolean;
   onDetail: (state: DetailState) => void;
+  onRailSelect: (selection: RailSelection) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [view] = useState(() => ({ width: window.innerWidth, height: window.innerHeight }));
@@ -119,6 +122,20 @@ export function TimelineScene({
           );
         })}
       </svg>
+      {[1971, 1981, 1991, 2001, 2011, 2021, 2031].map((year) => {
+        const point = albumYearLabelPosition(year, view, values);
+        return (
+          <span
+            key={year}
+            className="album-year-label"
+            data-album-year={year}
+            aria-label={String(year)}
+            style={{ left: point.x, top: point.y }}
+          >
+            {String(year).slice(-2)}'
+          </span>
+        );
+      })}
       {(['upper', 'education'] as const).map((lane) => (
         <div
           key={lane}
@@ -216,7 +233,7 @@ export function TimelineScene({
             title={`${event.year} · ${localized(event.title, locale)}`}
             data-testid={`upper-year-${event.year}`}
             data-upper-year={event.year}
-            onClick={() => controllerRef.current?.goYear(event.year)}
+            onClick={() => onRailSelect({ lane: 'upper', eventId: event.id })}
           >
             <span className="upper-year-label">{event.year}</span>
             <span className="upper-year-dot" aria-hidden="true" />
@@ -227,15 +244,21 @@ export function TimelineScene({
         const p = anchor(event.year, 'education', view, values);
         const firstInYear =
           visibleEducationEvents.findIndex((item) => item.year === event.year) === index;
+        // A single year point opens every education record for that year.
+        if (!firstInYear) return null;
+        const yearTitle = visibleEducationEvents
+          .filter((item) => item.year === event.year)
+          .map((item) => localized(item.title, locale))
+          .join(' / ');
         return (
           <button
             key={event.id}
             className="education-dot"
             style={{ left: p.x, top: p.y }}
-            aria-label={localized(event.title, locale)}
-            title={localized(event.title, locale)}
+            aria-label={yearTitle}
+            title={yearTitle}
             data-education-year={event.year}
-            onClick={() => controllerRef.current?.goYear(event.year)}
+            onClick={() => onRailSelect({ lane: 'education', eventId: event.id })}
           >
             <span className="education-year-dot" aria-hidden="true" />
             {firstInYear && (

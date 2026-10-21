@@ -9,6 +9,7 @@ import { TimelineScene } from '../timeline/TimelineScene';
 import { TimelineController } from '../timeline/TimelineController';
 import { EventDetail } from '../components/EventDetail';
 import { HelpOverlay } from '../components/HelpOverlay';
+import { RailEventDetail, type RailSelection } from '../components/RailEventDetail';
 import { initialDetail } from '../timeline/timelineReducer';
 import { localized, localizedYearLabel } from '../domain/timeline';
 import { detailEventNeighbors } from '../domain/detailNavigation';
@@ -29,15 +30,18 @@ export default function App() {
     [locale, setLocale] = useState<Locale>('zh-Hant'),
     [active, setActive] = useState<ThemeId | null>(null),
     [error, setError] = useState(false);
-  const [mode, setMode] = useState<'overview' | 'browse'>('overview'),
+  const [mode, setMode] = useState<'overview'>('overview'),
     [year, setYear] = useState(1949),
     [eventId, setEventId] = useState('');
   const controllerRef = useRef<TimelineController | null>(null);
   const [detail, setDetail] = useState(initialDetail);
+  const [railSelection, setRailSelection] = useState<RailSelection | null>(null);
+  const railSelectionRef = useRef(railSelection);
   const detailPhaseRef = useRef(detail.phase);
   const returnToOverviewRef = useRef(false);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
   const returnToOverview = useCallback(() => {
+    setRailSelection(null);
     setActive(null);
     controllerRef.current?.setTheme(null);
     if (detailPhaseRef.current === 'idle') {
@@ -55,16 +59,16 @@ export default function App() {
     }
     setHelpOpen(false);
     window.requestAnimationFrame(() =>
-      (document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current)?.focus(),
+      (document.querySelector<HTMLButtonElement>('.rail-detail-home,.detail-close') ?? helpButtonRef.current)?.focus(),
     );
   }, []);
   useLayoutEffect(() => {
     const app = appRef.current;
-    if (app) app.inert = helpOpen;
+    if (app) app.inert = helpOpen || railSelection !== null;
     return () => {
       if (app) app.inert = false;
     };
-  }, [helpOpen]);
+  }, [helpOpen, railSelection]);
   useEffect(() => {
     if (helpOpen) return;
     let idleTimer: number;
@@ -107,7 +111,7 @@ export default function App() {
     setYear(nextYear);
     setEventId(nextEventId);
   }, []);
-  const handleMode = useCallback((nextMode: 'overview' | 'browse') => setMode(nextMode), []);
+  const handleMode = useCallback((nextMode: 'overview') => setMode(nextMode), []);
   const handleTheme = (theme: ThemeId) => {
     if (theme === active) return;
     returnToOverviewRef.current = false;
@@ -120,6 +124,9 @@ export default function App() {
   useEffect(() => {
     detailPhaseRef.current = detail.phase;
   }, [detail.phase]);
+  useEffect(() => {
+    railSelectionRef.current = railSelection;
+  }, [railSelection]);
   const m = messages[locale],
     endYear = useCurrentYear();
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -138,6 +145,14 @@ export default function App() {
   const detailNeighbors = selected && data
     ? detailEventNeighbors(data.schoolEvents, selected, active)
     : null;
+  const railEvent = railSelection && data
+    ? (railSelection.lane === 'upper' ? data.upperRailEvents : data.educationEvents)
+        .find((event) => event.id === railSelection.eventId)
+    : undefined;
+  const railEvents = railSelection && railEvent && data
+    ? (railSelection.lane === 'upper' ? data.upperRailEvents : data.educationEvents)
+        .filter((event) => event.year === railEvent.year)
+    : [];
   useEffect(() => {
     const abort = new AbortController();
     let inFlight = false;
@@ -145,13 +160,13 @@ export default function App() {
     const refresh = async () => {
       if (
         inFlight ||
-        (provider === realProvider && (document.hidden || detailPhaseRef.current !== 'idle'))
+        (provider === realProvider && (document.hidden || detailPhaseRef.current !== 'idle' || railSelectionRef.current))
       )
         return;
       inFlight = true;
       try {
         const result = await provider.load(abort.signal);
-        if (abort.signal.aborted || (provider === realProvider && detailPhaseRef.current !== 'idle'))
+        if (abort.signal.aborted || (provider === realProvider && (detailPhaseRef.current !== 'idle' || railSelectionRef.current)))
           return;
         const nextSnapshot = JSON.stringify(result);
         if (nextSnapshot !== currentSnapshot) {
@@ -199,14 +214,6 @@ export default function App() {
             >
               {m.overview}
             </button>
-            <button
-              disabled={detailActive}
-              data-testid="view-browse"
-              aria-pressed={mode === 'browse'}
-              onClick={() => controllerRef.current?.startMode('browse')}
-            >
-              {m.browse} ↗
-            </button>
           </div>
           <button
             ref={helpButtonRef}
@@ -234,6 +241,7 @@ export default function App() {
           onReturnToOverview={returnToOverview}
           homeDisabled={detailActive}
           onDetail={setDetail}
+          onRailSelect={setRailSelection}
         />
       ) : (
         <div className="loading">
@@ -312,6 +320,16 @@ export default function App() {
         <ThemeSwitcher locale={locale} active={active} onChange={handleTheme} />
       </footer>
       <HelpOverlay open={helpOpen} locale={locale} onClose={closeHelp} onLocaleChange={setLocale} />
+      {railSelection && railEvent && (
+        <RailEventDetail
+          events={railEvents}
+          lane={railSelection.lane}
+          locale={locale}
+          onLocaleChange={setLocale}
+          onHome={returnToOverview}
+          suspended={helpOpen}
+        />
+      )}
     </main>
   );
 }

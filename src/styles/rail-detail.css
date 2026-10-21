@@ -1,0 +1,116 @@
+.rail-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2400;
+  display: flex;
+  padding: clamp(20px, 5vh, 60px) 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgb(247 245 242 / 86%);
+  backdrop-filter: blur(5px);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+.rail-event-detail {
+  width: min(900px, 100%);
+  flex: 0 0 auto;
+  margin: auto;
+  padding: clamp(24px, 4vw, 56px);
+  background: var(--paper);
+  border: 1px solid #d8d2c7;
+  box-shadow: 0 20px 70px rgb(63 53 38 / 12%);
+  color: var(--ink);
+}
+.rail-detail-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid #d8d2c7;
+}
+.rail-detail-home {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 7px;
+  border: 1px solid #cfc8bd;
+  border-radius: 50%;
+  background: transparent;
+}
+.rail-detail-home:hover {
+  background: #eee9df;
+  border-color: #796e5d;
+}
+.rail-detail-home svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rail-detail-section {
+  flex: 1;
+  font-size: clamp(16px, 1.6vw, 21px);
+  letter-spacing: 0.06em;
+}
+.rail-detail-section span {
+  color: #89857a;
+  margin-right: 10px;
+  white-space: nowrap;
+}
+.rail-detail-heading .languages {
+  flex: 0 0 auto;
+}
+.rail-detail-copy {
+  display: grid;
+  grid-template-columns: minmax(100px, auto) minmax(0, 1fr);
+  gap: 32px;
+  padding-top: 30px;
+}
+.rail-detail-year {
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.2;
+  color: #7d7669;
+}
+.rail-detail-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.rail-detail-copy p {
+  margin: 0;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.85;
+  color: #645f55;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.rail-detail-records article + article {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid #ded8cd;
+}
+@media (max-width: 700px) {
+  .rail-detail-overlay {
+    padding: 20px 16px;
+  }
+  .rail-detail-heading {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+  .rail-detail-heading .languages {
+    margin-left: 56px;
+  }
+  .rail-detail-copy {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding-top: 24px;
+  }
+}

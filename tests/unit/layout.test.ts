@@ -46,9 +46,9 @@ test('overview and all browse geometry from 1971 onward retain their original co
           const b = lengths(view).browse * (time.toUnit(year) - time.toUnit(focusYear));
           const q = b + sceneConfig.gap * Math.tanh(b / sceneConfig.gapSoftness);
           for (const [lane, offset] of [
-            ['upper', -110],
+            ['upper', -135],
             ['school', -20],
-            ['education', 70],
+            ['education', 95],
           ] as const) {
             const pose = anchor(year, lane, view, {
               focus: time.toUnit(focusYear),

@@ -27,6 +27,20 @@ button {
 .museum-app:not([data-active-theme='all']) {
   --page-background: color-mix(in srgb, var(--theme-accent) 22%, var(--paper));
 }
+.museum-app:not([data-active-theme='all']) :is(
+  [data-track='upper'],
+  [data-track='education'],
+  .upper-rail-marker,
+  .education-dot,
+  .year-tick,
+  .album-year-label,
+  .upper-rail-panel,
+  .education-panel,
+  .swipe-guide > span,
+  .swipe-guide-arrow
+) {
+  display: none;
+}
 .masthead {
   position: absolute;
   inset: 28px 42px auto;
@@ -133,6 +147,30 @@ h1 {
   position: absolute;
   inset: 0;
   pointer-events: none;
+}
+.album-year-label {
+  position: absolute;
+  z-index: 1100;
+  transform: translate(-50%, -50%);
+  font-size: clamp(13px, 1.1vw, 18px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #7d7669;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.museum-app[data-detail-active='true'] .album-year-label {
+  display: none;
+}
+.album-year-label::before {
+  content: '';
+  position: absolute;
+  right: calc(100% + 6px);
+  top: 50%;
+  width: 5px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translateY(-50%) rotate(45deg);
 }
 .swipe-guide {
   position: absolute;

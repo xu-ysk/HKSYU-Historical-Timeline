@@ -99,12 +99,24 @@ export function anchor(year: number, lane: TimelineLane, view: Viewport, values:
   const a = length.overview * (overviewUnit(year, values.endYear, values.overviewYears) - 0.5),
     b = length.browse * (browse.toUnit(year) - browse.toUnit(focusYear));
   const q = lerp(a, b + config.gap * Math.tanh(b / config.gapSoftness), values.zoom);
-  // Keep the drawn photo axis on the school card centers, midway between the
-  // upper history rail (-110) and the education rail (70).
-  const offset = lane === 'upper' ? -110 : lane === 'education' ? 70 : -20;
+  // Widen the two history lanes symmetrically around the unchanged photo axis.
+  const offset = lane === 'upper' ? -135 : lane === 'education' ? 95 : -20;
   return {
     x: view.width * 0.47 + direction.x * q + normal.x * offset,
     y: view.height * 0.49 + direction.y * q + normal.y * offset,
+  };
+}
+/** Place decade captions below the album without changing its year scale. */
+export function albumYearLabelPosition(year: number, view: Viewport, values: SceneValues) {
+  const end = Math.min(year, values.endYear);
+  const point = anchor(end, 'school', view, values);
+  // Continue the final interval for future captions such as the 2031 plan end.
+  const previous = anchor(end - 1, 'school', view, values);
+  const extra = Math.max(0, year - values.endYear);
+  const clearance = 55;
+  return {
+    x: point.x + (point.x - previous.x) * extra + normal.x * clearance,
+    y: point.y + (point.y - previous.y) * extra + normal.y * clearance,
   };
 }
 /** Extend the drawn rails beyond the markers to the screen edges in overview. */
