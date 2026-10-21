@@ -12,7 +12,7 @@ import { toCards } from '../../src/domain/normalizeTimeline';
 test('photo group offsets align with the shared timeline during theme filtering', () => {
   for (const zoom of [0, 0.5, 1])
     for (const count of [1, 2])
-      for (const scale of [0.35, 1])
+      for (const scale of [0.35, 1, 1.25])
         for (let index = 0; index < count; index++) {
           const offset = groupPhotoDisplacement(index, count, zoom, scale, 1);
           expect(offset.x * normal.x + offset.y * normal.y).toBeCloseTo(0, 6);
@@ -24,7 +24,7 @@ test('base chronology keeps older photos ahead of newer ones at either size', ()
   const older = cards.find((card) => card.event.year === 1953)!;
   const newer = cards.find((card) => card.event.year === 1997)!;
   const view = { width: 1440, height: 900 };
-  for (const scale of [0.35, 1]) {
+  for (const scale of [0.35, 1, 1.25]) {
     const oldPose = cardPose(older, view, { focus: 0.5, zoom: 0, endYear: 2026 });
     const newPose = cardPose(newer, view, { focus: 0.5, zoom: 0, endYear: 2026 });
     oldPose.scale = newPose.scale = scale;

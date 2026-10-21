@@ -9,11 +9,66 @@ import {
   lengths,
   trackEndpoints,
   groupPhotoOffset,
+  normal,
 } from '../../src/timeline/layout';
+import { timeScale } from '../../src/timeline/timeScale';
+import { sceneConfig } from '../../src/config/scene';
 import timeline from '../../public/timeline.json';
 import { createMockTimeline } from '../../src/data/mockTimeline';
 import { toCards } from '../../src/domain/normalizeTimeline';
 import { eventPositions } from '../../src/timeline/albumTrack';
+
+test('early browse rails fit the screenshot range without changing lane spacing', () => {
+  const view = { width: 1920, height: 869 };
+  const values = { focus: 0, zoom: 1, endYear: 2026 };
+  const gaps = (['upper', 'school', 'education'] as const).map((lane) => {
+    const first = anchor(1949, lane, view, values);
+    const last = anchor(1971, lane, view, values);
+    return Math.hypot(last.x - first.x, last.y - first.y);
+  });
+  for (const gap of gaps) {
+    expect(gap).toBeGreaterThan(580);
+    expect(gap).toBeLessThan(610);
+  }
+  expect(gaps[0]).toBeCloseTo(gaps[1], 8);
+  expect(gaps[1]).toBeCloseTo(gaps[2], 8);
+});
+
+test('overview and all browse geometry from 1971 onward retain their original coordinates', () => {
+  for (const view of [
+    { width: 1280, height: 720 },
+    { width: 1920, height: 869 },
+  ]) {
+    for (const endYear of [2026, 2035]) {
+      const time = timeScale(endYear);
+      for (const focusYear of [1971, 1982, 1997, endYear]) {
+        for (const year of [1971, 1971.24, 1981, 1997, endYear]) {
+          const b = lengths(view).browse * (time.toUnit(year) - time.toUnit(focusYear));
+          const q = b + sceneConfig.gap * Math.tanh(b / sceneConfig.gapSoftness);
+          for (const [lane, offset] of [
+            ['upper', -110],
+            ['school', -20],
+            ['education', 70],
+          ] as const) {
+            const pose = anchor(year, lane, view, {
+              focus: time.toUnit(focusYear),
+              zoom: 1,
+              endYear,
+            });
+            expect(pose.x).toBeCloseTo(view.width * 0.47 + direction.x * q + normal.x * offset, 8);
+            expect(pose.y).toBeCloseTo(view.height * 0.49 + direction.y * q + normal.y * offset, 8);
+          }
+        }
+      }
+      for (const year of [1949, 1966, 1971, 1997, endYear]) {
+        const q = lengths(view).overview * (overviewUnit(year, endYear) - 0.5);
+        const pose = anchor(year, 'school', view, { focus: 0.4, zoom: 0, endYear });
+        expect(pose.x).toBeCloseTo(view.width * 0.47 + direction.x * q - normal.x * 20, 8);
+        expect(pose.y).toBeCloseTo(view.height * 0.49 + direction.y * q - normal.y * 20, 8);
+      }
+    }
+  }
+});
 
 test('every rail year retains a label through zoom, focus and resize', () => {
   const years = [

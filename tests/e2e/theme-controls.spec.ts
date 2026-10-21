@@ -37,10 +37,8 @@ for (const size of [
       await expect(button).toHaveCSS('border-top-color', color);
       await button.click();
       await expect(button).toHaveAttribute('aria-pressed', 'true');
-      await expect(page.locator(`.photo-card:not([data-theme="${id}"])`).first()).toHaveAttribute(
-        'style',
-        /scale\(0.35\)/,
-      );
+      await expect(page.locator(`.photo-card:not([data-theme="${id}"])`).first()).toHaveCSS('visibility', 'hidden');
+      await expect(page.locator(`.photo-card:not([data-theme="${id}"]):visible`)).toHaveCount(0);
       await button.click();
       await expect(button).toHaveAttribute('aria-pressed', 'false');
       await expect(panel.locator('[aria-pressed=true]')).toHaveCount(0);

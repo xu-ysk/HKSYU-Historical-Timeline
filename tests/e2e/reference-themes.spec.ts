@@ -1,7 +1,7 @@
 import { test, expect } from './fixtures';
 
 for (const mode of ['overview', 'browse'])
-  test(`T2: ${mode} interleaves theme sizes on one chronological photo lane`, async ({ page }) => {
+  test(`T2: ${mode} shows only the enlarged theme on one chronological photo lane`, async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto('/');
     await expect(page.getByTestId('scene')).toBeVisible();
@@ -17,10 +17,10 @@ for (const mode of ['overview', 'browse'])
       await page.getByTestId('theme-' + theme).click();
       await expect(
         page.locator(`.photo-card[data-theme="${theme}"]`).filter({ visible: true }).first(),
-      ).toHaveAttribute('style', /scale\(1\)/);
+      ).toHaveAttribute('style', /scale\(1.25\)/);
       await expect(
-        page.locator(`.photo-card:not([data-theme="${theme}"])`).filter({ visible: true }).first(),
-      ).toHaveAttribute('style', /scale\(0.35\)/);
+        page.locator(`.photo-card:not([data-theme="${theme}"]):visible`),
+      ).toHaveCount(0);
       const result = await page.locator('.photo-card').evaluateAll((els, active) => {
         const visible = els.filter(
           (el) => getComputedStyle(el).visibility === 'visible',
@@ -43,13 +43,7 @@ for (const mode of ['overview', 'browse'])
         );
         return {
           selected: visible.filter((el) => el.dataset.theme === active).length,
-          reduced: visible.filter((el) => el.dataset.theme !== active).length,
-          sizeTransitions: visible
-            .slice(1)
-            .filter(
-              (el, index) =>
-                (visible[index].dataset.theme === active) !== (el.dataset.theme === active),
-            ).length,
+          otherThemes: visible.filter((el) => el.dataset.theme !== active).length,
           chronological: visible.every(
             (el, index) => index === 0 || +visible[index - 1].style.zIndex > +el.style.zIndex,
           ),
@@ -67,8 +61,7 @@ for (const mode of ['overview', 'browse'])
         };
       }, theme);
       expect(result.selected).toBeGreaterThan(0);
-      expect(result.reduced).toBeGreaterThan(0);
-      expect(result.sizeTransitions).toBeGreaterThan(0);
+      expect(result.otherThemes).toBe(0);
       expect(result.chronological).toBe(true);
       expect(result.maxLineDistance).toBeLessThan(0.1);
       expect(result.widthsCorrect).toBe(true);
@@ -82,7 +75,7 @@ for (const mode of ['overview', 'browse'])
     );
   });
 
-test('T2: rapid retargeting scales continuously and leaves every photograph available', async ({
+test('T2: rapid toggles scale continuously and restore all photographs after filtering', async ({
   page,
 }) => {
   test.setTimeout(60_000);
@@ -102,12 +95,13 @@ test('T2: rapid retargeting scales continuously and leaves every photograph avai
         t: performance.now() - start,
         scale: Number((el as HTMLElement).style.transform.match(/scale\(([^)]+)\)/)?.[1]),
       });
-      if (performance.now() - start < 2500) requestAnimationFrame(frame);
+      if (performance.now() - start < 3000) requestAnimationFrame(frame);
       else capture.done = true;
     };
     requestAnimationFrame(frame);
   });
-  for (const id of ['B', 'A', 'E', 'A', 'C']) {
+  // Toggle A against the full album so its visible scale remains continuous.
+  for (const id of ['A', 'A', 'A', 'A', 'C']) {
     await page.getByTestId('theme-' + id).click();
     await page.waitForTimeout(220);
   }
@@ -125,10 +119,16 @@ test('T2: rapid retargeting scales continuously and leaves every photograph avai
     .evaluate(
       (el) => (el as HTMLElement & { themeCapture: { values: { t: number; scale: number }[] } }).themeCapture.values,
     );
-  expect(scales.filter((sample) => sample.scale > 0.4 && sample.scale < 0.95).length).toBeGreaterThan(5);
+  expect(scales.filter((sample) => sample.scale > 1.01 && sample.scale < 1.24).length).toBeGreaterThan(5);
   expect(Math.max(...scales.slice(1).map((sample, i) =>
     Math.abs(sample.scale - scales[i].scale) / Math.max(1, sample.t - scales[i].t),
   ))).toBeLessThan(0.005);
   await expect(cards).toHaveCount(count);
   await expect(page.getByTestId('theme-C')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.photo-card:not([data-theme="C"]):visible')).toHaveCount(0);
+  await page.getByTestId('theme-C').click();
+  await expect.poll(() => cards.evaluateAll((elements) => elements.every((element) =>
+    getComputedStyle(element).visibility === 'visible' &&
+    (element as HTMLElement).style.transform.endsWith('scale(1)'),
+  ))).toBe(true);
 });

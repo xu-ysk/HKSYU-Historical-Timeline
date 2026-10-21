@@ -166,7 +166,7 @@ test('T3: a mid-opening reversal and theme change never teleport or strand a lin
   await expect(page.locator('[data-extracted=true]')).toHaveCount(0);
   const pair = page.locator('.photo-card[data-event-id="school-1953-3"]');
   await expect(pair).toHaveCount(2);
-  for (const card of await pair.all()) await expect(card).toHaveAttribute('style', /scale\(0.35\)/);
+  for (const card of await pair.all()) await expect(card).toHaveCSS('visibility', 'hidden');
   await page.getByTestId('theme-E').click();
   await page.getByTestId('open-focused').click();
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');

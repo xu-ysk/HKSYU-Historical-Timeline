@@ -1,6 +1,6 @@
 import type { DisplayCard, TimelineLane } from '../domain/timeline';
 import { sceneConfig as config } from '../config/scene';
-import { clamp, timeScale } from './timeScale';
+import { browseScale, clamp, timeScale } from './timeScale';
 export interface Viewport {
   width: number;
   height: number;
@@ -93,10 +93,11 @@ export function overviewUnit(year: number, endYear: number, years?: readonly num
   return unit <= pivot ? (unit * 0.18) / pivot : 0.18 + ((unit - pivot) * 0.82) / (1 - pivot);
 }
 export function anchor(year: number, lane: TimelineLane, view: Viewport, values: SceneValues) {
-  const u = timeScale(values.endYear).toUnit(year),
+  const browse = browseScale(values.endYear),
+    focusYear = timeScale(values.endYear).toYear(values.focus),
     length = lengths(view);
   const a = length.overview * (overviewUnit(year, values.endYear, values.overviewYears) - 0.5),
-    b = length.browse * (u - values.focus);
+    b = length.browse * (browse.toUnit(year) - browse.toUnit(focusYear));
   const q = lerp(a, b + config.gap * Math.tanh(b / config.gapSoftness), values.zoom);
   // Keep the drawn photo axis on the school card centers, midway between the
   // upper history rail (-110) and the education rail (70).

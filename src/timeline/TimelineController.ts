@@ -19,7 +19,7 @@ import {
   type Viewport,
   type Pose,
 } from './layout';
-import { clamp, timeScale, rebaseFocus } from './timeScale';
+import { clamp, timeScale, rebaseFocus, shiftBrowseFocus } from './timeScale';
 import { wheelPixels, dragProjection } from './input';
 import { detailReducer, initialDetail, type DetailState } from './timelineReducer';
 import { detailPhotoRects, detailPose, extractPose, smoothStep } from './detailLayout';
@@ -141,6 +141,7 @@ export class TimelineController {
   }
   setTheme(theme: ThemeId | null) {
     this.activeTheme = theme;
+    this.dirty = true;
     const target = Object.fromEntries(
       themeIds.map((id) => [
         id,
@@ -492,11 +493,12 @@ export class TimelineController {
     e.preventDefault();
     this.setMode('browse');
     const current = this.wheelTarget ?? Number(this.root.dataset.targetFocus ?? this.values.focus);
-    this.wheelTarget = clamp(
-      current +
-        (wheelPixels(e.deltaX, e.deltaY, e.deltaMode, this.view.height) *
-          sceneConfig.wheelSensitivity) /
-          lengths(this.view).browse,
+    this.wheelTarget = shiftBrowseFocus(
+      current,
+      (wheelPixels(e.deltaX, e.deltaY, e.deltaMode, this.view.height) *
+        sceneConfig.wheelSensitivity) /
+        lengths(this.view).browse,
+      this.values.endYear,
     );
     const target = timeScale(this.values.endYear).toUnit(
       this.positions.get(this.nearest(this.wheelTarget).id)!,
@@ -544,9 +546,10 @@ export class TimelineController {
       this.root.dataset.phase = 'dragging';
     }
     gsap.killTweensOf(this.values, 'focus');
-    this.values.focus = clamp(
-      drag.focus -
-        (dragProjection(dx, dy) * sceneConfig.dragSensitivity) / lengths(this.view).browse,
+    this.values.focus = shiftBrowseFocus(
+      drag.focus,
+      (-dragProjection(dx, dy) * sceneConfig.dragSensitivity) / lengths(this.view).browse,
+      this.values.endYear,
     );
     this.root.dataset.targetFocus = String(this.values.focus);
     this.dirty = true;
@@ -743,8 +746,8 @@ export class TimelineController {
         p.x += direction.x * retreat;
         p.y += direction.y * retreat;
       }
-      const visible = extracted || isOnscreen(p, this.view);
       const themeVisible = !this.activeTheme || card.event.themeId === this.activeTheme,
+        visible = themeVisible && (extracted || isOnscreen(p, this.view)),
         visibility = visible ? 'visible' : 'hidden',
         tabIndex = visible && themeVisible && !this.blocked ? 0 : -1,
         pointer = (this.blocked && !(extracted && this.detailState.phase === 'detail' && card.photo?.kind === 'image')) || !themeVisible ? 'none' : '';

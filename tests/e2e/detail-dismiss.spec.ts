@@ -14,8 +14,8 @@ test('only the home button closes detail without changing underlying controls', 
   const theme = await source.getAttribute('data-theme');
   await page.getByTestId(`theme-${theme}`).click();
   await expect(
-    page.locator(`.photo-card:not([data-theme="${theme}"])`).filter({ visible: true }).first(),
-  ).toHaveAttribute('style', /scale\(0.35\)/);
+    page.locator(`.photo-card:not([data-theme="${theme}"])`).first(),
+  ).toHaveCSS('visibility', 'hidden');
   const focus = await page.getByTestId('scene').getAttribute('data-focus');
   const originalTransform = await source.evaluate((el) => (el as HTMLElement).style.transform);
   for (const region of ['blank', 'photo', 'text', 'view', 'language', 'theme']) {
