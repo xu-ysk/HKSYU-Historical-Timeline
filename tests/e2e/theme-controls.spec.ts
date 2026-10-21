@@ -5,7 +5,7 @@ for (const size of [
   { width: 1440, height: 900 },
   { width: 1920, height: 1080 },
 ])
-  test(`theme controls stay bottom-right and toggle back to normal at ${size.width}px`, async ({
+  test(`theme controls stay bottom-right and home restores the overview at ${size.width}px`, async ({
     page,
   }) => {
     await page.setViewportSize(size);
@@ -40,6 +40,9 @@ for (const size of [
       await expect(page.locator(`.photo-card:not([data-theme="${id}"])`).first()).toHaveCSS('visibility', 'hidden');
       await expect(page.locator(`.photo-card:not([data-theme="${id}"]):visible`)).toHaveCount(0);
       await button.click();
+      await expect(button).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', id);
+      await page.getByTestId('theme-home-upper').click();
       await expect(button).toHaveAttribute('aria-pressed', 'false');
       await expect(panel.locator('[aria-pressed=true]')).toHaveCount(0);
       await expect

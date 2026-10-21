@@ -17,7 +17,7 @@ test('selected theme returns to the full overview after three minutes', async ({
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '0.0000');
 });
 
-test('switching themes restarts the timer and clicking the active theme cancels it', async ({ page }) => {
+test('switching themes restarts the timer and home cancels it', async ({ page }) => {
   await page.clock.install();
   await page.goto('/');
   await page.getByTestId('view-browse').click();
@@ -29,10 +29,12 @@ test('switching themes restarts the timer and clicking the active theme cancels 
   await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'B');
   await expect(page.locator('.museum-app')).toHaveAttribute('data-mode', 'browse');
   await page.getByTestId('theme-B').click();
+  await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'B');
+  await page.getByTestId('theme-home-education').click();
   await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'all');
 
   await page.clock.fastForward(190_000);
-  await expect(page.locator('.museum-app')).toHaveAttribute('data-mode', 'browse');
+  await expect(page.locator('.museum-app')).toHaveAttribute('data-mode', 'overview');
 });
 
 test('theme timeout closes an open detail before returning to overview', async ({ page }) => {
@@ -47,4 +49,16 @@ test('theme timeout closes an open detail before returning to overview', async (
   await expect(page.getByTestId('event-detail')).toHaveCount(0);
   await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'all');
   await expect(page.locator('.museum-app')).toHaveAttribute('data-mode', 'overview');
+});
+
+test('repeating the active theme keeps the original three-minute deadline', async ({ page }) => {
+  await page.clock.install();
+  await page.goto('/');
+  await page.getByTestId('theme-C').click();
+  await page.clock.fastForward(170_000);
+  await page.getByTestId('theme-C').click();
+  await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'C');
+  await page.clock.fastForward(10_000);
+  await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'all');
+  await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '0.0000');
 });

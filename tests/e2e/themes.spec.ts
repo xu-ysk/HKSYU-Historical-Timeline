@@ -43,7 +43,7 @@ test('all themes show only enlarged matching photos without changing time', asyn
     /scale\(1.25\)/,
   );
   await page.screenshot({ path: test.info().outputPath('stage4-theme-A.png') });
-  await page.getByTestId('theme-A').click();
+  await page.getByTestId('theme-home-upper').click();
   await expect(cards.first()).toHaveAttribute('style', /scale\(1\)/);
 });
 test('language and rapid theme changes preserve current browsing position', async ({ page }) => {

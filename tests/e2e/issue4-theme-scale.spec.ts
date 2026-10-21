@@ -22,7 +22,7 @@ test('each selected theme enlarges photos by 25 percent and hides other themes',
     const afterWidth = (await selected.boundingBox())!.width;
     expect(afterWidth / beforeWidth).toBeCloseTo(1.25, 2);
     await expect(cards).toHaveCount(total);
-    await page.getByTestId(`theme-${theme}`).click();
+    await page.getByTestId('theme-home-upper').click();
     await expect(selected).toHaveAttribute('style', /scale\(1\)/);
     expect((await selected.boundingBox())!.width).toBeCloseTo(beforeWidth, 2);
   }

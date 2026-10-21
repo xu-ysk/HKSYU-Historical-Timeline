@@ -17,6 +17,8 @@ export function TimelineScene({
   controllerRef,
   focusYear,
   activeTheme,
+  onReturnToOverview,
+  homeDisabled,
   onDetail,
 }: {
   data: TimelineDataset;
@@ -28,6 +30,8 @@ export function TimelineScene({
   controllerRef: React.RefObject<TimelineController | null>;
   focusYear: number;
   activeTheme: ThemeId | null;
+  onReturnToOverview: () => void;
+  homeDisabled: boolean;
   onDetail: (state: DetailState) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -118,18 +122,32 @@ export function TimelineScene({
       {(['upper', 'education'] as const).map((lane) => (
         <div
           key={lane}
-          className={`swipe-guide swipe-guide-${lane}`}
+          className={`swipe-guide swipe-guide-${lane}${activeTheme ? ' swipe-guide-with-home' : ''}`}
           data-swipe-guide={lane}
-          aria-hidden="true"
         >
+          {activeTheme && (
+            <button
+              type="button"
+              className="theme-home"
+              data-testid={`theme-home-${lane}`}
+              aria-label={m.returnToOverview}
+              title={m.returnToOverview}
+              disabled={homeDisabled}
+              onClick={onReturnToOverview}
+            >
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M5 14.5 16 6l11 8.5M8 13.5V26h16V13.5M13 26v-8h6v8" />
+              </svg>
+            </button>
+          )}
           {lane === 'education' && (
-            <svg viewBox="0 0 54 16" aria-hidden="true">
+            <svg className="swipe-guide-arrow" viewBox="0 0 54 16" aria-hidden="true">
               <path d="M53 8H2m0 0 7-6M2 8l7 6" />
             </svg>
           )}
-          <span>{m.swipeBlank}</span>
+          <span aria-hidden="true">{m.swipeBlank}</span>
           {lane === 'upper' && (
-            <svg viewBox="0 0 54 16" aria-hidden="true">
+            <svg className="swipe-guide-arrow" viewBox="0 0 54 16" aria-hidden="true">
               <path d="M1 8h51m0 0-7-6m7 6-7 6" />
             </svg>
           )}

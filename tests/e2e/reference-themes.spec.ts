@@ -68,7 +68,7 @@ for (const mode of ['overview', 'browse'])
       await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
     }
     await page.screenshot({ path: test.info().outputPath(`T2-${mode}.png`) });
-    await page.getByTestId('theme-E').click();
+    await page.getByTestId('theme-home-upper').click();
     await expect(page.locator('.photo-card').filter({ visible: true }).first()).toHaveAttribute(
       'style',
       /scale\(1\)/,
@@ -100,9 +100,11 @@ test('T2: rapid toggles scale continuously and restore all photographs after fil
     };
     requestAnimationFrame(frame);
   });
-  // Toggle A against the full album so its visible scale remains continuous.
+  // Alternate A with the home button so its visible scale remains continuous.
   for (const id of ['A', 'A', 'A', 'A', 'C']) {
-    await page.getByTestId('theme-' + id).click();
+    if (await page.getByTestId('theme-' + id).getAttribute('aria-pressed') === 'true')
+      await page.getByTestId('theme-home-upper').click();
+    else await page.getByTestId('theme-' + id).click();
     await page.waitForTimeout(220);
   }
   await expect
@@ -126,7 +128,7 @@ test('T2: rapid toggles scale continuously and restore all photographs after fil
   await expect(cards).toHaveCount(count);
   await expect(page.getByTestId('theme-C')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.photo-card:not([data-theme="C"]):visible')).toHaveCount(0);
-  await page.getByTestId('theme-C').click();
+  await page.getByTestId('theme-home-education').click();
   await expect.poll(() => cards.evaluateAll((elements) => elements.every((element) =>
     getComputedStyle(element).visibility === 'visible' &&
     (element as HTMLElement).style.transform.endsWith('scale(1)'),

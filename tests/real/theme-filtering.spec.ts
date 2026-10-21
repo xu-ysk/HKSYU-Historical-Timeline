@@ -31,6 +31,7 @@ for (const mode of ['overview', 'browse']) {
           const { focus, targetFocus } = (element as HTMLElement).dataset;
           return Math.abs(Number(focus) - Number(targetFocus));
         })).toBeLessThan(0.000001);
+        await page.locator('.museum-app').evaluate((element) => { element.scrollTop = 0; });
       }
       const focus = await scene.getAttribute('data-focus');
       const source = page.locator(`.photo-card[data-event-id="${sample.event}"]`).first();
@@ -54,11 +55,14 @@ for (const mode of ['overview', 'browse']) {
       await expect(page.getByTestId('event-detail')).toHaveCount(0);
       await expect(page.locator(`.photo-card:not([data-theme="${sample.theme}"]):visible`)).toHaveCount(0);
 
-      await button.click();
+      await page.getByTestId('theme-home-upper').click();
       await expect(source).toHaveAttribute('style', /scale\(1\)/);
       await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'all');
       await expect(cards).toHaveCount(total);
-      expect((await source.boundingBox())!.width).toBeCloseTo(normalWidth, 2);
+      await expect(scene).toHaveAttribute('data-zoom', '0.0000');
+      await expect(scene).toHaveAttribute('data-focus', '0.000000');
+      await expect(source).toHaveCSS('width', '42px');
+      if (mode === 'overview') expect((await source.boundingBox())!.width).toBeCloseTo(normalWidth, 2);
       await expect(page.locator('.photo-card:visible:not([data-theme="' + sample.theme + '"])').first()).toBeVisible();
     }
     expect(errors).toEqual([]);

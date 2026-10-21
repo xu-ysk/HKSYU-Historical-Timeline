@@ -45,7 +45,7 @@ test('all theme backgrounds stay softly tinted through photo detail and reset', 
 
   await page.getByTestId('year-slider').fill('2021');
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '1.0000');
-  const photo = page.locator('.photo-card[data-event-id="P91"]').first();
+  const photo = page.locator('.photo-card[data-event-id="P92"]').first();
   await photo.focus();
   await photo.press('Enter');
   await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
@@ -57,7 +57,7 @@ test('all theme backgrounds stay softly tinted through photo detail and reset', 
   await page.getByTestId('close-detail').click();
   await expect(page.getByTestId('event-detail')).toHaveCount(0);
   await expectColor(paper.map((channel, i) => Math.round(channel * 0.78 + colorE[i] * 0.22)));
-  await page.getByTestId('theme-E').click();
+  await page.getByTestId('theme-home-upper').click();
   await expect(app).toHaveAttribute('data-active-theme', 'all');
   await expectColor(paper);
 });

@@ -37,6 +37,16 @@ export default function App() {
   const detailPhaseRef = useRef(detail.phase);
   const returnToOverviewRef = useRef(false);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
+  const returnToOverview = useCallback(() => {
+    setActive(null);
+    controllerRef.current?.setTheme(null);
+    if (detailPhaseRef.current === 'idle') {
+      controllerRef.current?.startMode('overview');
+    } else {
+      returnToOverviewRef.current = true;
+      controllerRef.current?.close();
+    }
+  }, []);
   const closeHelp = useCallback(() => {
     try {
       window.sessionStorage.setItem('museum-help-seen', 'true');
@@ -85,18 +95,9 @@ export default function App() {
   }, [detail.eventId, closeDetail]);
   useEffect(() => {
     if (!active) return;
-    const timer = window.setTimeout(() => {
-      setActive(null);
-      controllerRef.current?.setTheme(null);
-      if (detailPhaseRef.current === 'idle') {
-        controllerRef.current?.startMode('overview');
-      } else {
-        returnToOverviewRef.current = true;
-        controllerRef.current?.close();
-      }
-    }, 3 * 60 * 1000);
+    const timer = window.setTimeout(returnToOverview, 3 * 60 * 1000);
     return () => window.clearTimeout(timer);
-  }, [active]);
+  }, [active, returnToOverview]);
   useEffect(() => {
     if (detail.phase !== 'idle' || !returnToOverviewRef.current) return;
     returnToOverviewRef.current = false;
@@ -107,7 +108,8 @@ export default function App() {
     setEventId(nextEventId);
   }, []);
   const handleMode = useCallback((nextMode: 'overview' | 'browse') => setMode(nextMode), []);
-  const handleTheme = (theme: ThemeId | null) => {
+  const handleTheme = (theme: ThemeId) => {
+    if (theme === active) return;
     returnToOverviewRef.current = false;
     setActive(theme);
     controllerRef.current?.setTheme(theme);
@@ -229,6 +231,8 @@ export default function App() {
           controllerRef={controllerRef}
           focusYear={year}
           activeTheme={active}
+          onReturnToOverview={returnToOverview}
+          homeDisabled={detailActive}
           onDetail={setDetail}
         />
       ) : (

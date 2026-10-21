@@ -33,7 +33,7 @@ export function ThemeSwitcher({
 }: {
   locale: Locale;
   active: ThemeId | null;
-  onChange: (id: ThemeId | null) => void;
+  onChange: (id: ThemeId) => void;
 }) {
   const m = messages[locale];
   return (
@@ -45,7 +45,7 @@ export function ThemeSwitcher({
             className="theme-button"
             data-testid={'theme-' + id}
             aria-pressed={active === id}
-            onClick={() => onChange(active === id ? null : id)}
+            onClick={() => onChange(id)}
             style={{ '--swatch': themes[id].color } as React.CSSProperties}
           >
             <span>{themes[id].label[locale]}</span>

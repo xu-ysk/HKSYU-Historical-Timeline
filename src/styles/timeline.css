@@ -161,12 +161,51 @@ h1 {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.timeline-scene[data-phase='idle'] .swipe-guide {
+.theme-home {
+  position: absolute;
+  top: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 5px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #cfc8bd;
+  border-radius: 50%;
+  background: var(--page-surface);
+  color: #796e5d;
+  transform: translateY(-50%) rotate(32deg);
+  pointer-events: auto;
+}
+.swipe-guide-upper .theme-home {
+  right: calc(100% + 8px);
+}
+.swipe-guide-education .theme-home {
+  left: calc(100% + 8px);
+}
+.theme-home svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.7;
+}
+.theme-home:hover {
+  border-color: #796e5d;
+  background: #fffdf9;
+}
+.timeline-scene[data-phase='idle'] .swipe-guide:not(.swipe-guide-with-home),
+.timeline-scene[data-phase='idle'] .swipe-guide-with-home > span,
+.timeline-scene[data-phase='idle'] .swipe-guide-with-home > .swipe-guide-arrow {
   animation: swipe-guide-pulse 4.2s ease-in-out infinite;
   will-change: opacity;
 }
 .timeline-scene:is([data-phase='opening'], [data-phase='detail'], [data-phase='closing'], [data-phase='dragging']) .swipe-guide {
   opacity: 0;
+  visibility: hidden;
+}
+@media (pointer: coarse) {
+  .theme-home {
+    width: 44px;
+    height: 44px;
+  }
 }
 @keyframes swipe-guide-pulse {
   0%,

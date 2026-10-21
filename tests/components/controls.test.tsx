@@ -10,7 +10,7 @@ test('language controls identify the current language and emit the requested loc
   await userEvent.click(screen.getByRole('button', { name: 'EN' }));
   expect(onChange).toHaveBeenCalledWith('en');
 });
-test('all five English themes remain present when selecting one or restoring all', async () => {
+test('all five English themes remain present and repeating the selected theme keeps it selected', async () => {
   const onChange = vi.fn();
   const { rerender } = render(<ThemeSwitcher locale="en" active="B" onChange={onChange} />);
   expect(screen.getAllByRole('button')).toHaveLength(5);
@@ -19,7 +19,8 @@ test('all five English themes remain present when selecting one or restoring all
   expect(onChange).toHaveBeenLastCalledWith('E');
   rerender(<ThemeSwitcher locale="en" active="E" onChange={onChange} />);
   await userEvent.click(screen.getByTestId('theme-E'));
-  expect(onChange).toHaveBeenLastCalledWith(null);
+  expect(onChange).toHaveBeenLastCalledWith('E');
+  expect(screen.getByTestId('theme-E')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('theme buttons keep their Chinese labels and colors without letters or a separate reset', () => {
