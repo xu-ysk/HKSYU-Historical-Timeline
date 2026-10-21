@@ -1,0 +1,225 @@
+.album-reset > span {
+  animation: none !important;
+}
+
+.dual-timeline-scene {
+  position: absolute;
+  inset: 100px 42px 48px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 96px clamp(120px, 22vh, 240px) 96px minmax(0, 1fr);
+  overflow: clip;
+  touch-action: pan-y;
+  outline-offset: -2px;
+  user-select: none;
+}
+
+.dual-rail-heading {
+  margin: 0;
+  padding: 0 0 4px;
+  font: 400 clamp(15px, 1.2vw, 20px) / 1.5 var(--font-family);
+  letter-spacing: 2px;
+  color: var(--ink);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.dual-rail-heading span {
+  color: #9a9388;
+  margin-right: 12px;
+}
+
+.dual-rail {
+  position: relative;
+  min-width: 0;
+  /* A hidden-overflow scroller can move one rail when Chrome focuses a year. */
+  overflow: clip;
+  touch-action: none;
+}
+
+.dual-rail-line {
+  position: absolute;
+  top: 50%;
+  inset-inline: 0;
+  height: 1px;
+  background: #cfc8bd;
+  pointer-events: none;
+}
+
+.dual-rail-content {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.dual-year-marker {
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background: transparent;
+  color: #817a6d;
+  touch-action: manipulation;
+}
+
+.dual-year-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #938777;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--page-background);
+}
+
+.dual-year-label {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.dual-year-marker[data-label-row='1'] .dual-year-label {
+  top: 50px;
+}
+
+.dual-year-marker:is(:hover, :focus-visible, [aria-pressed='true']) {
+  color: var(--ink);
+}
+
+.dual-year-marker:is(:hover, :focus-visible, [aria-pressed='true']) .dual-year-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--theme-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--theme-accent) 12%, transparent);
+}
+
+.dual-year-tick {
+  position: absolute;
+  top: calc(50% + 26px);
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: #8f877a;
+}
+
+.dual-middle {
+  position: relative;
+  min-height: 0;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.dual-timeline-scene[data-phase='dragging'],
+.dual-timeline-scene[data-phase='dragging'] .dual-middle {
+  cursor: grabbing;
+}
+
+.dual-history-row {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 72px);
+  align-items: start;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.dual-history-row-upper {
+  padding-top: 8px;
+}
+
+.dual-history-row-education {
+  padding-top: 12px;
+}
+
+.dual-history-panel {
+  display: flex;
+  gap: 20px;
+  max-height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 8px 10px 0;
+  scrollbar-width: thin;
+  pointer-events: auto;
+  cursor: default;
+}
+
+.dual-history-panel[data-has-event='false'] {
+  visibility: hidden;
+}
+
+.dual-panel-year {
+  flex: none;
+  font-size: clamp(24px, 2vw, 32px);
+  color: #7d7669;
+}
+
+.dual-history-panel h2 {
+  margin: 2px 0 10px;
+  font-size: clamp(14px, 1.1vw, 18px);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.dual-history-panel p {
+  margin: 0;
+  font-size: clamp(12px, 0.85vw, 15px);
+  line-height: 1.85;
+  color: #89857a;
+  white-space: pre-line;
+}
+
+.dual-swipe-guide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: #777166;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.dual-focus-year {
+  border-left: 1px solid #cfc8bd;
+  padding-left: 16px;
+  color: #7d7669;
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dual-reset {
+  padding: 8px 12px;
+  border: 1px solid #cfc8bd;
+  border-radius: 7px;
+  background: var(--page-surface);
+  pointer-events: auto;
+}
+
+@media (max-width: 1320px) {
+  .dual-timeline-scene {
+    inset-inline: 32px;
+  }
+}
+
+@media (max-height: 760px) {
+  .dual-timeline-scene {
+    top: 84px;
+    bottom: 32px;
+    grid-template-rows: minmax(0, 1fr) 80px clamp(120px, 22vh, 240px) 80px minmax(0, 1fr);
+  }
+  .dual-history-panel {
+    gap: 12px;
+    padding-top: 0;
+  }
+}

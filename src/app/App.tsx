@@ -5,8 +5,11 @@ import { mockProvider } from '../data/mockProvider';
 import { realProvider } from '../data/realProvider';
 import { messages } from '../i18n/messages';
 import { LanguageSwitcher, ThemeSwitcher } from '../components/Controls';
+import { TapButton } from '../components/TapButton';
 import { TimelineScene } from '../timeline/TimelineScene';
+import { DualTimelineScene } from '../timeline/DualTimelineScene';
 import { TimelineController } from '../timeline/TimelineController';
+import { themes } from '../config/themes';
 import { EventDetail } from '../components/EventDetail';
 import { HelpOverlay } from '../components/HelpOverlay';
 import { initialDetail } from '../timeline/timelineReducer';
@@ -39,6 +42,7 @@ export default function App() {
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
   const returnToOverview = useCallback(() => {
     setActive(null);
+    setMode('overview');
     controllerRef.current?.setTheme(null);
     if (detailPhaseRef.current === 'idle') {
       controllerRef.current?.startMode('overview');
@@ -55,7 +59,9 @@ export default function App() {
     }
     setHelpOpen(false);
     window.requestAnimationFrame(() =>
-      (document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current)?.focus(),
+      (
+        document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current
+      )?.focus(),
     );
   }, []);
   useLayoutEffect(() => {
@@ -107,7 +113,6 @@ export default function App() {
     setYear(nextYear);
     setEventId(nextEventId);
   }, []);
-  const handleMode = useCallback((nextMode: 'overview' | 'browse') => setMode(nextMode), []);
   const handleTheme = (theme: ThemeId) => {
     if (theme === active) return;
     returnToOverviewRef.current = false;
@@ -135,9 +140,8 @@ export default function App() {
         localizedYearLabel(focused, locale)
       : '—',
     detailActive = detail.phase !== 'idle';
-  const detailNeighbors = selected && data
-    ? detailEventNeighbors(data.schoolEvents, selected, active)
-    : null;
+  const detailNeighbors =
+    selected && data ? detailEventNeighbors(data.schoolEvents, selected, active) : null;
   useEffect(() => {
     const abort = new AbortController();
     let inFlight = false;
@@ -151,7 +155,10 @@ export default function App() {
       inFlight = true;
       try {
         const result = await provider.load(abort.signal);
-        if (abort.signal.aborted || (provider === realProvider && detailPhaseRef.current !== 'idle'))
+        if (
+          abort.signal.aborted ||
+          (provider === realProvider && detailPhaseRef.current !== 'idle')
+        )
           return;
         const nextSnapshot = JSON.stringify(result);
         if (nextSnapshot !== currentSnapshot) {
@@ -185,28 +192,29 @@ export default function App() {
       data-mode={mode}
       data-detail-active={detailActive}
       data-active-theme={active ?? 'all'}
+      style={{ '--theme-accent': active ? themes[active].color : '#796e5d' } as React.CSSProperties}
       onContextMenu={(event) => event.preventDefault()}
     >
       <header className="masthead">
         <div className="header-top">
           <LanguageSwitcher locale={locale} onChange={setLocale} />
           <div className="view-switch" data-testid="view-switch">
-            <button
+            <TapButton
               disabled={detailActive}
               data-testid="view-overview"
               aria-pressed={mode === 'overview'}
-              onClick={() => controllerRef.current?.startMode('overview')}
+              onActivate={() => setMode('overview')}
             >
               {m.overview}
-            </button>
-            <button
+            </TapButton>
+            <TapButton
               disabled={detailActive}
               data-testid="view-browse"
               aria-pressed={mode === 'browse'}
-              onClick={() => controllerRef.current?.startMode('browse')}
+              onActivate={() => setMode('browse')}
             >
-              {m.browse} ↗
-            </button>
+              {m.browse}
+            </TapButton>
           </div>
           <button
             ref={helpButtonRef}
@@ -219,22 +227,33 @@ export default function App() {
           </button>
         </div>
       </header>
-      {error && data && <p className="sync-warning" role="status">{m.updateError}</p>}
+      {error && data && (
+        <p className="sync-warning" role="status">
+          {m.updateError}
+        </p>
+      )}
       {data ? (
-        <TimelineScene
-          data={data}
-          endYear={endYear}
-          locale={locale}
-          mode={mode}
-          onMode={handleMode}
-          onProgress={handleProgress}
-          controllerRef={controllerRef}
-          focusYear={year}
-          activeTheme={active}
-          onReturnToOverview={returnToOverview}
-          homeDisabled={detailActive}
-          onDetail={setDetail}
-        />
+        mode === 'overview' ? (
+          <TimelineScene
+            data={data}
+            endYear={endYear}
+            locale={locale}
+            onProgress={handleProgress}
+            controllerRef={controllerRef}
+            activeTheme={active}
+            onReturnToOverview={returnToOverview}
+            homeDisabled={detailActive}
+            onDetail={setDetail}
+          />
+        ) : (
+          <DualTimelineScene
+            data={data}
+            endYear={endYear}
+            locale={locale}
+            activeTheme={active}
+            onReturnToOverview={returnToOverview}
+          />
+        )
       ) : (
         <div className="loading">
           <p>{error ? m.error : m.loading}</p>
@@ -248,69 +267,79 @@ export default function App() {
           onLocaleChange={setLocale}
           phase={detail.phase}
           onClose={closeDetail}
-          onPrevious={detailNeighbors?.previous
-            ? () => controllerRef.current?.switchDetail(detailNeighbors.previous!.id)
-            : undefined}
-          onNext={detailNeighbors?.next
-            ? () => controllerRef.current?.switchDetail(detailNeighbors.next!.id)
-            : undefined}
+          onPrevious={
+            detailNeighbors?.previous
+              ? () => controllerRef.current?.switchDetail(detailNeighbors.previous!.id)
+              : undefined
+          }
+          onNext={
+            detailNeighbors?.next
+              ? () => controllerRef.current?.switchDetail(detailNeighbors.next!.id)
+              : undefined
+          }
         />
       )}
-      <footer className="bottom-panel">
-        <div className="navigation-panel" data-testid="navigation-panel">
-          <div className="current-year" data-testid="current-year">
-            {year}
-            <span>— {endYear}</span>
+      {mode === 'overview' && (
+        <footer className="bottom-panel">
+          <div
+            className="navigation-panel"
+            data-testid="navigation-panel"
+            hidden={mode !== 'overview'}
+          >
+            <div className="current-year" data-testid="current-year">
+              {year}
+              <span>— {endYear}</span>
+            </div>
+            <input
+              disabled={detailActive}
+              aria-label={m.timeline}
+              data-testid="year-slider"
+              className="year-slider"
+              type="range"
+              min="1949"
+              max={endYear}
+              step="1"
+              value={year}
+              onChange={(e) => controllerRef.current?.goYear(Number(e.target.value))}
+            />
+            <div className="event-navigation">
+              <button
+                disabled={detailActive}
+                aria-label={m.previous}
+                data-testid="previous-event"
+                onClick={() => controllerRef.current?.step(-1)}
+              >
+                ←
+              </button>
+              <button
+                disabled={detailActive}
+                className="open-focused"
+                data-testid="open-focused"
+                onClick={() => focused && controllerRef.current?.open(focused.id)}
+              >
+                {focusedLabel} ↗
+              </button>
+              <button
+                disabled={detailActive}
+                aria-label={m.next}
+                data-testid="next-event"
+                onClick={() => controllerRef.current?.step(1)}
+              >
+                →
+              </button>
+            </div>
+            <p>{m.hint}</p>
+            <span className="demo-label">
+              <i />
+              {m.demo}
+            </span>
+            <span className="sr-only" data-testid="focused-event">
+              {eventId}
+            </span>
           </div>
-          <input
-            disabled={detailActive}
-            aria-label={m.timeline}
-            data-testid="year-slider"
-            className="year-slider"
-            type="range"
-            min="1949"
-            max={endYear}
-            step="1"
-            value={year}
-            onChange={(e) => controllerRef.current?.goYear(Number(e.target.value))}
-          />
-          <div className="event-navigation">
-            <button
-              disabled={detailActive}
-              aria-label={m.previous}
-              data-testid="previous-event"
-              onClick={() => controllerRef.current?.step(-1)}
-            >
-              ←
-            </button>
-            <button
-              disabled={detailActive}
-              className="open-focused"
-              data-testid="open-focused"
-              onClick={() => focused && controllerRef.current?.open(focused.id)}
-            >
-              {focusedLabel} ↗
-            </button>
-            <button
-              disabled={detailActive}
-              aria-label={m.next}
-              data-testid="next-event"
-              onClick={() => controllerRef.current?.step(1)}
-            >
-              →
-            </button>
-          </div>
-          <p>{m.hint}</p>
-          <span className="demo-label">
-            <i />
-            {m.demo}
-          </span>
-          <span className="sr-only" data-testid="focused-event">
-            {eventId}
-          </span>
-        </div>
-        <ThemeSwitcher locale={locale} active={active} onChange={handleTheme} />
-      </footer>
+          <ThemeSwitcher locale={locale} active={active} onChange={handleTheme} />
+        </footer>
+      )}
       <HelpOverlay open={helpOpen} locale={locale} onClose={closeHelp} onLocaleChange={setLocale} />
     </main>
   );

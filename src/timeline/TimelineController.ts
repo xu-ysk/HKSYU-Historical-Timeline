@@ -10,7 +10,6 @@ import {
   chronologicalStackZ,
   direction,
   isOnscreen,
-  lengths,
   trackEndpoints,
   groupPhotoDisplacement,
   normal,
@@ -19,8 +18,8 @@ import {
   type Viewport,
   type Pose,
 } from './layout';
-import { clamp, timeScale, rebaseFocus, shiftBrowseFocus } from './timeScale';
-import { wheelPixels, dragProjection } from './input';
+import { clamp, timeScale, rebaseFocus } from './timeScale';
+import { wheelPixels } from './input';
 import { detailReducer, initialDetail, type DetailState } from './timelineReducer';
 import { detailPhotoRects, detailPose, extractPose, smoothStep } from './detailLayout';
 import {
@@ -299,7 +298,6 @@ export class TimelineController {
   navigate(unit: number, id?: string) {
     if (this.blocked) return;
     this.wheelTarget = null;
-    this.setMode('browse');
     const target = id
       ? timeScale(this.values.endYear).toUnit(this.positions.get(id)!)
       : clamp(unit);
@@ -489,22 +487,8 @@ export class TimelineController {
       }
       return;
     }
-    if ((e.target as HTMLElement).closest('.education-panel,.theme-home')) return;
+    // The album stays fixed; wheel zoom is handled only inside photo details above.
     e.preventDefault();
-    this.setMode('browse');
-    const current = this.wheelTarget ?? Number(this.root.dataset.targetFocus ?? this.values.focus);
-    this.wheelTarget = shiftBrowseFocus(
-      current,
-      (wheelPixels(e.deltaX, e.deltaY, e.deltaMode, this.view.height) *
-        sceneConfig.wheelSensitivity) /
-        lengths(this.view).browse,
-      this.values.endYear,
-    );
-    const target = timeScale(this.values.endYear).toUnit(
-      this.positions.get(this.nearest(this.wheelTarget).id)!,
-    );
-    this.root.dataset.targetFocus = String(target);
-    this.animate({ focus: target }, sceneConfig.wheelDuration);
   };
   private down = (e: PointerEvent) => {
     if (this.blocked) {
@@ -542,17 +526,9 @@ export class TimelineController {
     if (!drag.moved) {
       drag.moved = true;
       this.root.setPointerCapture(e.pointerId);
-      this.setMode('browse');
       this.root.dataset.phase = 'dragging';
     }
-    gsap.killTweensOf(this.values, 'focus');
-    this.values.focus = shiftBrowseFocus(
-      drag.focus,
-      (-dragProjection(dx, dy) * sceneConfig.dragSensitivity) / lengths(this.view).browse,
-      this.values.endYear,
-    );
-    this.root.dataset.targetFocus = String(this.values.focus);
-    this.dirty = true;
+    // Remember movement to suppress accidental clicks, without moving or zooming the album.
   };
   private up = (e: PointerEvent) => {
     if (this.endPhotoPointer(e.pointerId) || this.blocked) return;

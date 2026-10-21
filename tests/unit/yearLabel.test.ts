@@ -3,8 +3,8 @@ import timeline from '../../public/timeline.json';
 import { educationYearLabel, localizedYearLabel } from '../../src/domain/timeline';
 
 test('English year labels translate decade suffixes without changing Chinese labels', () => {
-  const first = timeline.educationEvents.find((event) => event.id === 'B01')!;
-  const nineties = timeline.educationEvents.find((event) => event.id === 'B11')!;
+  const first = { year: 1949, yearLabel: '1949–1950年代' };
+  const nineties = { year: 1990, yearLabel: '1990年代' };
   expect(localizedYearLabel(first, 'en')).toBe('1949–1950s');
   expect(localizedYearLabel(nineties, 'en')).toBe('1990s');
   expect(localizedYearLabel(first, 'zh-Hant')).toBe(first.yearLabel);

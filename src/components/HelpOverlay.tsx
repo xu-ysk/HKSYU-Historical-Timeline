@@ -9,13 +9,15 @@ const copy = {
     eyebrow: '參觀指引 / HOW TO EXPLORE',
     dialogLabel: '操作指引',
     moveTitle: '移動時間軸',
-    move: '用一根手指沿箭頭方向滑動時間軸，瀏覽不同年份。滑動時請在時間線兩側的空白區域操作，避免誤觸相片集而造成卡頓；輕觸時間線上的年份，可直接跳到那一年。',
+    move: '在「雙時間軸」頁面，用一根手指在兩條時間線中間的空白區域左右滑動，即可同步瀏覽不同年份；輕觸任一時間線上的年份，可直接跳到那一年。',
     viewTitle: '選擇視角',
-    view: '輕觸「全覽」看完整相冊，輕觸「瀏覽」近距離觀看。',
+    view: '輕觸「校史照片」查看相冊，輕觸「雙時間軸」查看上下排列的樹仁校史與香港教育史。照片集不再隨拖動或滾動拉近。',
     photoTitle: '細看相片',
-    photo: '輕觸相片打開詳情。用雙指張開或捏合來放大、縮小相片，放大後用一根手指移動；輕觸詳情中的左右箭頭切換事件，或輕觸小房子返回時間軸。',
+    photo:
+      '輕觸相片打開詳情。用雙指張開或捏合來放大、縮小相片，放大後用一根手指移動；輕觸詳情中的左右箭頭切換事件，或輕觸小房子返回校史照片。',
     personalizeTitle: '主題切換',
-    personalize: '輕觸右下角彩色圓形按鈕篩選主題；輕觸「請滑動空白區域」旁的小房子，即可恢復全部內容並返回全覽。',
+    personalize:
+      '在「校史照片」頁，輕觸右下角彩色圓形按鈕篩選主題。校史照片頁的小房子或雙時間軸頁的「全部主題」按鈕，可恢復全部內容並返回校史照片。',
     footer: '隨時可輕觸頁首「操作指引」再次查看。',
     start: '開始探索',
     dismiss: '關閉操作指引',
@@ -25,13 +27,15 @@ const copy = {
     eyebrow: '参观指引 / HOW TO EXPLORE',
     dialogLabel: '操作指引',
     moveTitle: '移动时间轴',
-    move: '用一根手指沿箭头方向滑动时间轴，浏览不同年份。滑动时请在时间线两侧的空白区域操作，避免误触照片集而造成卡顿；轻触时间线上的年份，可直接跳到那一年。',
+    move: '在“双时间轴”页面，用一根手指在两条时间线中间的空白区域左右滑动，即可同步浏览不同年份；轻触任一时间线上的年份，可直接跳到那一年。',
     viewTitle: '选择视角',
-    view: '轻触“全览”看完整相册，轻触“浏览”近距离观看。',
+    view: '轻触“校史照片”查看相册，轻触“双时间轴”查看上下排列的树仁校史与香港教育史。照片集不再随拖动或滚动拉近。',
     photoTitle: '细看照片',
-    photo: '轻触照片打开详情。用双指张开或捏合来放大、缩小照片，放大后用一根手指移动；轻触详情中的左右箭头切换事件，或轻触小房子返回时间轴。',
+    photo:
+      '轻触照片打开详情。用双指张开或捏合来放大、缩小照片，放大后用一根手指移动；轻触详情中的左右箭头切换事件，或轻触小房子返回校史照片。',
     personalizeTitle: '主题切换',
-    personalize: '轻触右下角彩色圆形按钮筛选主题；轻触“请滑动空白区域”旁的小房子，即可恢复全部内容并返回全览。',
+    personalize:
+      '在“校史照片”页，轻触右下角彩色圆形按钮筛选主题。校史照片页的小房子或双时间轴页的“全部主题”按钮，可恢复全部内容并返回校史照片。',
     footer: '随时可轻触页首“操作指引”再次查看。',
     start: '开始探索',
     dismiss: '关闭操作指引',
@@ -41,14 +45,16 @@ const copy = {
     eyebrow: 'VISITOR GUIDE / HOW TO EXPLORE',
     dialogLabel: 'Visitor guide',
     moveTitle: 'Move along the timeline',
-    move: 'Swipe along the arrows with one finger to explore different years. Swipe the empty space on either side of the timeline to avoid accidentally touching photographs and slowing the display. Tap a year on the timeline to jump there.',
+    move: 'On Dual Timelines, swipe left or right in the empty space between the two timelines to move them together. Tap a year on either timeline to jump there.',
     viewTitle: 'Choose a view',
-    view: 'Tap Overview to see the whole album or Explore to look closer.',
+    view: 'Tap History Photos to see the album, or Dual Timelines for Shue Yan history above Hong Kong education history. Dragging or scrolling no longer moves or enlarges the album.',
     photoTitle: 'Look closer',
-    photo: 'Tap a photograph to open it. Spread or pinch two fingers to zoom; move the enlarged image with one finger. Tap the detail arrows to switch events, or tap the home button to return to the timeline.',
+    photo:
+      'Tap a photograph to open it. Spread or pinch two fingers to zoom; move the enlarged image with one finger. Tap the detail arrows to switch events, or tap the home button to return to History Photos.',
     personalizeTitle: 'Switch themes',
-    personalize: 'Tap a coloured circle at the bottom right to filter by theme; tap either home beside “Swipe on empty space” to show everything and return to Overview.',
-    footer: 'Tap Guide beside Overview and Explore to see these instructions again.',
+    personalize:
+      'On History Photos, tap a coloured circle at the bottom right to filter by theme. Use a home button on History Photos or All themes on Dual Timelines to show everything and return to History Photos.',
+    footer: 'Tap Guide beside History Photos and Dual Timelines to see these instructions again.',
     start: 'Start exploring',
     dismiss: 'Close guide',
     language: 'Guide language',
@@ -106,28 +112,45 @@ export function HelpOverlay({
           <span>{c.eyebrow}</span>
           <label className="help-language">
             <span>{c.language}</span>
-            <select value={locale} onChange={(event) => onLocaleChange(event.target.value as Locale)}>
+            <select
+              value={locale}
+              onChange={(event) => onLocaleChange(event.target.value as Locale)}
+            >
               <option value="zh-Hant">繁</option>
               <option value="zh-Hans">简</option>
               <option value="en">EN</option>
             </select>
           </label>
-          <button ref={closeRef} type="button" className="help-close" aria-label={c.dismiss} onClick={onClose}>
+          <button
+            ref={closeRef}
+            type="button"
+            className="help-close"
+            aria-label={c.dismiss}
+            onClick={onClose}
+          >
             ×
           </button>
         </div>
         <div className="help-body">
           <div className="help-guide">
             <div className="help-step">
-              <span className="help-visual help-swipe" aria-hidden="true">↗ ↙</span>
-              <div><h3>{c.moveTitle}</h3><p>{c.move}</p></div>
+              <span className="help-visual help-swipe" aria-hidden="true">
+                ← →
+              </span>
+              <div>
+                <h3>{c.moveTitle}</h3>
+                <p>{c.move}</p>
+              </div>
             </div>
             <div className="help-step">
               <span className="help-visual help-views" aria-hidden="true">
                 <span>{messages[locale].overview}</span>
                 <span>{messages[locale].browse}</span>
               </span>
-              <div><h3>{c.viewTitle}</h3><p>{c.view}</p></div>
+              <div>
+                <h3>{c.viewTitle}</h3>
+                <p>{c.view}</p>
+              </div>
             </div>
             <div className="help-step">
               <span className="help-visual help-photo" aria-hidden="true">
@@ -135,7 +158,10 @@ export function HelpOverlay({
                 <span className="help-photo-left">←</span>
                 <span className="help-photo-right">→</span>
               </span>
-              <div><h3>{c.photoTitle}</h3><p>{c.photo}</p></div>
+              <div>
+                <h3>{c.photoTitle}</h3>
+                <p>{c.photo}</p>
+              </div>
             </div>
             <div className="help-step">
               <span className="help-visual help-themes" aria-hidden="true">
@@ -143,13 +169,18 @@ export function HelpOverlay({
                   <i key={id} style={{ backgroundColor: themes[id].color }} />
                 ))}
               </span>
-              <div><h3>{c.personalizeTitle}</h3><p>{c.personalize}</p></div>
+              <div>
+                <h3>{c.personalizeTitle}</h3>
+                <p>{c.personalize}</p>
+              </div>
             </div>
           </div>
         </div>
         <div className="help-actions">
           <p>{c.footer}</p>
-          <button type="button" className="help-start" onClick={onClose}>{c.start} <span aria-hidden="true">↗</span></button>
+          <button type="button" className="help-start" onClick={onClose}>
+            {c.start} <span aria-hidden="true">↗</span>
+          </button>
         </div>
       </section>
     </div>,

@@ -65,9 +65,9 @@ test('only the home button closes detail without reaching underlying actions', a
   const close = screen.getByTestId('close-detail');
   expect(close).toHaveFocus();
   expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true');
-  expect(close).toHaveAttribute('aria-label', '返回时间轴');
+  expect(close).toHaveAttribute('aria-label', '返回校史照片');
   expect(close.querySelector('path')).toHaveAttribute('d', expect.stringContaining('M5 14.5 16 6'));
-  expect(screen.getByText('点击小房子返回时间轴，或使用左右箭头切换事件；三分钟后自动返回。')).toHaveClass('sr-only');
+  expect(screen.getByText('点击小房子返回校史照片，或使用左右箭头切换事件；三分钟后自动返回。')).toHaveClass('sr-only');
   await userEvent.click(screen.getByTestId('detail-body'));
   await userEvent.click(screen.getByRole('dialog'));
   expect(onClose).not.toHaveBeenCalled();
@@ -96,8 +96,7 @@ test('event arrows switch records without closing and remain keyboard accessible
   const next = screen.getByRole('button', { name: '下一事件' });
   expect(previous).toBeVisible();
   expect(next).toBeVisible();
-  await userEvent.tab();
-  expect(screen.getByTestId('detail-body')).toHaveFocus();
+  expect(screen.getByRole('dialog')).toHaveAttribute('aria-describedby', 'detail-body detail-dismiss-hint');
   await userEvent.tab();
   expect(previous).toHaveFocus();
   await userEvent.keyboard('{Enter}');
@@ -128,15 +127,17 @@ test('a boundary year displays only its available arrow', () => {
   expect(screen.queryByTestId('detail-next')).not.toBeInTheDocument();
 });
 
-test('keyboard focus stays on the arrow and description while Escape does not close', async () => {
+test('keyboard focus stays on controls, the description is announced, and Escape does not close', async () => {
   const onClose = vi.fn();
   const realEvent = timeline.schoolEvents.find((item) => item.id === 'P01')! as SchoolEvent;
   const { unmount } = render(
     <EventDetail event={realEvent} locale="en" phase="detail" onClose={onClose} />,
   );
   expect(screen.getByTestId('close-detail')).toHaveFocus();
+  expect(screen.getByRole('dialog')).toHaveAttribute('aria-describedby', 'detail-body detail-dismiss-hint');
+  expect(screen.getByTestId('detail-body')).not.toHaveAttribute('tabindex');
   await userEvent.tab();
-  expect(screen.getByTestId('detail-body')).toHaveFocus();
+  expect(screen.getByTestId('close-detail')).toHaveFocus();
   await userEvent.tab({ shift: true });
   expect(screen.getByTestId('close-detail')).toHaveFocus();
   await userEvent.keyboard('{Escape}');
