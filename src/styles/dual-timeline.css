@@ -198,14 +198,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.dual-reset {
-  padding: 8px 12px;
-  border: 1px solid #cfc8bd;
-  border-radius: 7px;
-  background: var(--page-surface);
-  pointer-events: auto;
-}
-
 @media (max-width: 1320px) {
   .dual-timeline-scene {
     inset-inline: 32px;

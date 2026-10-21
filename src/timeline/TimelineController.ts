@@ -1,17 +1,13 @@
 import gsap from 'gsap';
 import type { DisplayCard, SchoolEvent, ThemeId } from '../domain/timeline';
-import { themes, themeIds } from '../config/themes';
+import { themes } from '../config/themes';
 import { sceneConfig } from '../config/scene';
 import {
   anchor,
   yearLabelOffsets,
-  browseStackZ,
-  cardPose,
-  chronologicalStackZ,
   direction,
   isOnscreen,
   trackEndpoints,
-  groupPhotoDisplacement,
   normal,
   transform,
   type SceneValues,
@@ -31,6 +27,7 @@ import {
   type PhotoZoomState,
 } from './photoZoom';
 import { eventPositions } from './albumTrack';
+import { flatAlbumLayout, unfoldProgress } from './flatAlbum';
 
 export class TimelineController {
   values: SceneValues;
@@ -41,7 +38,8 @@ export class TimelineController {
   private disposed = false;
   private dirty = true;
   private nodes: { card: DisplayCard; el: HTMLButtonElement }[];
-  private stackIndices = new Map<string, number>();
+  private album: ReturnType<typeof flatAlbumLayout>;
+  private albumSizeKey = '';
   private observer: ResizeObserver;
   private drag: {
     id: number;
@@ -56,7 +54,6 @@ export class TimelineController {
   private lastYear = -1;
   private reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   private events: SchoolEvent[];
-  private themeScales: Record<ThemeId, number> = { A: 1, B: 1, C: 1, D: 1, E: 1 };
   private activeTheme: ThemeId | null = null;
   private detailState: DetailState = initialDetail;
   private detail = { progress: 0 };
@@ -90,9 +87,12 @@ export class TimelineController {
     private onChange: (year: number, eventId: string) => void,
     private onMode: (mode: 'overview' | 'browse') => void,
     private onDetail: (state: DetailState) => void,
+    initialTheme: ThemeId | null = null,
   ) {
+    this.activeTheme = initialTheme;
     this.values = { focus: 0, zoom: 0, endYear, overviewYears };
     this.view = { width: root.clientWidth, height: root.clientHeight };
+    this.album = flatAlbumLayout(cards, this.view, initialTheme);
     this.events = [...new Map(cards.map((c) => [c.event.id, c.event])).values()];
     this.positions = eventPositions(this.events, endYear);
     this.focusedId = this.events[0].id;
@@ -103,7 +103,6 @@ export class TimelineController {
       ]),
     );
     this.nodes = cards.map((card) => ({ card, el: elements.get(card.id)! }));
-    this.stackIndices = new Map(cards.map((card, index) => [card.id, index]));
     this.observer = new ResizeObserver(() => {
       gsap.to(this.view, {
         width: root.clientWidth,
@@ -141,24 +140,15 @@ export class TimelineController {
   setTheme(theme: ThemeId | null) {
     this.activeTheme = theme;
     this.dirty = true;
-    const target = Object.fromEntries(
-      themeIds.map((id) => [
-        id,
-        theme === null ? 1 : id === theme ? sceneConfig.themeLarge : sceneConfig.themeSmall,
-      ]),
-    );
-    gsap.to(this.themeScales, {
-      ...target,
-      duration: this.reduced.matches ? 0 : 0.7,
-      ease: 'power2.inOut',
-      overwrite: true,
-      onUpdate: () => {
-        this.dirty = true;
-      },
-    });
+    this.albumSizeKey = '';
     this.root
       .closest<HTMLElement>('.museum-app')
       ?.style.setProperty('--theme-accent', theme ? themes[theme].color : '#796e5d');
+    this.tick();
+  }
+  refresh() {
+    this.dirty = true;
+    this.tick();
   }
   updateData(cards: DisplayCard[], endYear: number, overviewYears: readonly number[]) {
     if (this.values.endYear !== endYear) this.rebase(endYear);
@@ -172,7 +162,7 @@ export class TimelineController {
       ]),
     );
     this.nodes = cards.map((card) => ({ card, el: elements.get(card.id)! }));
-    this.stackIndices = new Map(cards.map((card, index) => [card.id, index]));
+    this.albumSizeKey = '';
     this.lastTrackPoseKey = '';
     this.dirty = true;
   }
@@ -181,7 +171,8 @@ export class TimelineController {
       this.blocked ||
       this.drag?.moved ||
       !this.events.some((e) => e.id === eventId) ||
-      (this.activeTheme && this.events.find((event) => event.id === eventId)?.themeId !== this.activeTheme)
+      (this.activeTheme &&
+        this.events.find((event) => event.id === eventId)?.themeId !== this.activeTheme)
     )
       return;
     const next = detailReducer(this.detailState, { type: 'open', eventId });
@@ -204,7 +195,7 @@ export class TimelineController {
     const token = next.token;
     gsap.to(this.detail, {
       progress: 1,
-      duration: this.reduced.matches ? 0 : 1.05,
+      duration: this.reduced.matches ? 0 : 1.65,
       ease: 'none',
       overwrite: true,
       onUpdate: () => {
@@ -226,7 +217,8 @@ export class TimelineController {
       !event ||
       event.id === this.detailState.eventId ||
       (this.activeTheme && event.themeId !== this.activeTheme)
-    ) return;
+    )
+      return;
     this.resetPhotoZoom();
     this.detailState = { ...this.detailState, eventId, token: this.detailState.token + 1 };
     this.onDetail(this.detailState);
@@ -386,7 +378,8 @@ export class TimelineController {
       start: { ...(this.photoZooms.get(cardId) ?? initialPhotoZoom) },
       centerX: center.x,
       centerY: center.y,
-      distance: points.length === 2 ? Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y) : 0,
+      distance:
+        points.length === 2 ? Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y) : 0,
     };
   }
   private startPhotoPointer(e: PointerEvent) {
@@ -412,7 +405,9 @@ export class TimelineController {
     const size = card && this.photoSize(card);
     const gesture = this.photoGesture;
     if (!card || !size || !gesture || gesture.cardId !== pointer.cardId) return true;
-    const points = [...this.photoPointers.values()].filter((point) => point.cardId === pointer.cardId);
+    const points = [...this.photoPointers.values()].filter(
+      (point) => point.cardId === pointer.cardId,
+    );
     const center = this.photoAnchor(
       card,
       points.reduce((sum, point) => sum + point.x, 0) / points.length,
@@ -477,7 +472,8 @@ export class TimelineController {
           card,
           zoomPhotoAt(
             previous,
-            previous.scale * Math.exp(-wheelPixels(0, e.deltaY, e.deltaMode, this.view.height) * 0.002),
+            previous.scale *
+              Math.exp(-wheelPixels(0, e.deltaY, e.deltaMode, this.view.height) * 0.002),
             anchor.x,
             anchor.y,
             size,
@@ -497,7 +493,9 @@ export class TimelineController {
     }
     if (
       e.button !== 0 ||
-      (e.target as HTMLElement).closest('.education-panel,.education-dot,.upper-rail-marker,.theme-home')
+      (e.target as HTMLElement).closest(
+        '.education-panel,.education-dot,.upper-rail-marker,.theme-home',
+      )
     )
       return;
     this.suppressClick = false;
@@ -574,28 +572,19 @@ export class TimelineController {
     }
   };
   private albumPose(card: DisplayCard): Pose {
-    const position = this.positions.get(card.event.id)!;
-    const p = cardPose(card, this.view, this.values, position);
-    p.scale = this.themeScales[card.event.themeId];
-    const smallestScale = Math.min(...themeIds.map((id) => this.themeScales[id]));
-    const lineMix = clamp((1 - smallestScale) / (1 - sceneConfig.themeSmall));
-    if (card.event.photos.length > 1 && card.photo) {
-      const index = card.event.photos.findIndex((photo) => photo.id === card.photo!.id);
-      const displacement = groupPhotoDisplacement(
-        index,
-        card.event.photos.length,
-        this.values.zoom,
-        p.scale,
-        lineMix,
-      );
-      p.x += displacement.x;
-      p.y += displacement.y;
-    }
-    if (this.values.zoom > 0.01) {
-      p.z = browseStackZ(card, timeScale(this.values.endYear).toYear(this.values.focus), position);
-    }
-    if (lineMix > 0) p.z = chronologicalStackZ(this.stackIndices.get(card.id)!);
-    return p;
+    return {
+      ...(this.album.poses.get(card.id) ?? {
+        x: -1000,
+        y: -1000,
+        width: 1,
+        height: 1,
+        ry: 0,
+        rz: 0,
+        scale: 1,
+        skew: 0,
+        z: 0,
+      }),
+    };
   }
   private placeUpperYearLabels() {
     const markers = Array.from(this.root.querySelectorAll<HTMLElement>('[data-upper-year]'));
@@ -635,14 +624,17 @@ export class TimelineController {
         };
         if (box.top < 0 || box.bottom > this.view.height) continue;
         if (placedLabels.some((other) => overlaps(box, other))) continue;
-        if (nearby.some(({ el }) => {
-          let cardBox = cardBoxes.get(el);
-          if (!cardBox) {
-            cardBox = el.getBoundingClientRect();
-            cardBoxes.set(el, cardBox);
-          }
-          return overlaps(box, cardBox);
-        })) continue;
+        if (
+          nearby.some(({ el }) => {
+            let cardBox = cardBoxes.get(el);
+            if (!cardBox) {
+              cardBox = el.getBoundingClientRect();
+              cardBoxes.set(el, cardBox);
+            }
+            return overlaps(box, cardBox);
+          })
+        )
+          continue;
         placedLabels.push(box);
         placed = true;
         updates.push({ marker, offset, visible: true });
@@ -660,6 +652,30 @@ export class TimelineController {
   private tick = () => {
     if (!this.dirty || this.disposed) return;
     this.dirty = false;
+    const albumSizeKey = `${this.view.width}:${this.view.height}:${this.activeTheme}`;
+    if (albumSizeKey !== this.albumSizeKey) {
+      this.albumSizeKey = albumSizeKey;
+      this.album = flatAlbumLayout(
+        this.nodes.map(({ card }) => card),
+        this.view,
+        this.activeTheme,
+      );
+      this.root.dataset.albumColumns = String(this.album.columns);
+      this.root.dataset.albumRows = String(this.album.rows);
+      this.root.dataset.albumGroups = String(this.album.groups.length);
+      this.root.querySelector('[data-album-path]')?.setAttribute('d', this.album.path);
+      const groups = new Map(this.album.groups.map((group) => [group.id, group]));
+      this.root.querySelectorAll<HTMLElement>('[data-album-group]').forEach((label) => {
+        const group = groups.get(label.dataset.albumGroup!);
+        label.hidden = !group;
+        if (!group) return;
+        label.style.left = `${group.x}px`;
+        label.style.top = `${group.y + group.height / 2 + group.width * 0.08 + 12}px`;
+        label.style.fontSize = `${Math.min(14, Math.max(9, group.width * 0.1))}px`;
+        label.dataset.albumRow = String(group.row);
+        label.dataset.albumColumn = String(group.column);
+      });
+    }
     this.root.dataset.focus = this.values.focus.toFixed(6);
     this.root.dataset.zoom = this.values.zoom.toFixed(4);
     this.focusedId = this.nearest(this.values.focus).id;
@@ -696,10 +712,19 @@ export class TimelineController {
       );
     if (rects.length && selectedEvent) {
       const app = this.root.closest<HTMLElement>('.museum-app');
-      app?.style.setProperty('--detail-photo-left', `${Math.min(...rects.map((rect) => rect.x))}px`);
-      app?.style.setProperty('--detail-photo-right', `${Math.max(...rects.map((rect) => rect.x + rect.width))}px`);
+      app?.style.setProperty(
+        '--detail-photo-left',
+        `${Math.min(...rects.map((rect) => rect.x))}px`,
+      );
+      app?.style.setProperty(
+        '--detail-photo-right',
+        `${Math.max(...rects.map((rect) => rect.x + rect.width))}px`,
+      );
       app?.style.setProperty('--detail-photo-top', `${Math.min(...rects.map((rect) => rect.y))}px`);
-      app?.style.setProperty('--detail-photo-bottom', `${Math.max(...rects.map((rect) => rect.y + rect.height))}px`);
+      app?.style.setProperty(
+        '--detail-photo-bottom',
+        `${Math.max(...rects.map((rect) => rect.y + rect.height))}px`,
+      );
     }
     const scrim = this.root.querySelector<HTMLElement>('.detail-scrim');
     if (scrim) scrim.hidden = !this.blocked;
@@ -715,7 +740,9 @@ export class TimelineController {
           p = extractPose(
             this.openingSources.get(card.id)!,
             detailPose(rects[selectedIndex]),
-            this.detail.progress,
+            this.reduced.matches
+              ? this.detail.progress
+              : unfoldProgress(this.detail.progress, selectedIndex, selected.length),
           );
         }
       } else if (selected.length) {
@@ -731,7 +758,12 @@ export class TimelineController {
         visible = themeVisible && (extracted || isOnscreen(p, this.view)),
         visibility = visible ? 'visible' : 'hidden',
         tabIndex = visible && themeVisible && !this.blocked ? 0 : -1,
-        pointer = (this.blocked && !(extracted && this.detailState.phase === 'detail' && card.photo?.kind === 'image')) || !themeVisible ? 'none' : '';
+        pointer =
+          (this.blocked &&
+            !(extracted && this.detailState.phase === 'detail' && card.photo?.kind === 'image')) ||
+          !themeVisible
+            ? 'none'
+            : '';
       if (el.style.visibility !== visibility) {
         el.style.visibility = visibility;
         el.style.willChange = visible ? 'transform' : 'auto';
@@ -757,7 +789,10 @@ export class TimelineController {
         const size = this.photoSize(el);
         if (size) {
           const adjusted = constrainPhotoPan(
-            { ...zoom, scale: Math.min(zoom.scale, maxSharpScale(size, window.devicePixelRatio || 1)) },
+            {
+              ...zoom,
+              scale: Math.min(zoom.scale, maxSharpScale(size, window.devicePixelRatio || 1)),
+            },
             size,
           );
           if (adjusted.scale !== zoom.scale || adjusted.x !== zoom.x || adjusted.y !== zoom.y)
@@ -766,7 +801,10 @@ export class TimelineController {
       }
       el.style.transform = transform(p);
       this.rendered.set(card.id, { ...p });
-      const zIndex = extracted && this.detailState.phase === 'detail' && card.photo?.kind === 'image' ? 2075 : p.z;
+      const zIndex =
+        extracted && this.detailState.phase === 'detail' && card.photo?.kind === 'image'
+          ? 2075
+          : p.z;
       if (el.style.zIndex !== String(zIndex)) el.style.zIndex = String(zIndex);
       if (el.style.getPropertyValue('--letter-size') !== letter)
         el.style.setProperty('--letter-size', letter);
@@ -844,9 +882,8 @@ export class TimelineController {
         // Place the hints in the open diagonal corridors beside the rails.
         // On the narrower display, keep them clear of the header and theme buttons.
         const screenScale = clamp((this.view.width - 920) / 1000);
-        const railX = this.view.width * (upper
-          ? 0.5 - 0.086 * screenScale
-          : 0.478 + 0.105 * screenScale);
+        const railX =
+          this.view.width * (upper ? 0.5 - 0.086 * screenScale : 0.478 + 0.105 * screenScale);
         const railY = rail.y + ((railX - rail.x) * direction.y) / direction.x;
         const offset = upper ? -115 - 115 * screenScale : 110 + 100 * screenScale;
         const narrowClearance = (upper ? 65 : 75) * (1 - screenScale);
@@ -863,7 +900,6 @@ export class TimelineController {
     gsap.killTweensOf(this.view);
     gsap.killTweensOf(this.detail);
     gsap.killTweensOf(this.values);
-    gsap.killTweensOf(this.themeScales);
     gsap.killTweensOf(this.root.closest('.museum-app'));
     gsap.ticker.remove(this.tick);
     this.observer.disconnect();

@@ -30,7 +30,7 @@ export default function App() {
   const helpButtonRef = useRef<HTMLButtonElement>(null);
   const [data, setData] = useState<TimelineDataset | null>(null),
     [locale, setLocale] = useState<Locale>('zh-Hant'),
-    [active, setActive] = useState<ThemeId | null>(null),
+    [active, setActive] = useState<ThemeId>('A'),
     [error, setError] = useState(false);
   const [mode, setMode] = useState<'overview' | 'browse'>('overview'),
     [year, setYear] = useState(1949),
@@ -41,9 +41,9 @@ export default function App() {
   const returnToOverviewRef = useRef(false);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
   const returnToOverview = useCallback(() => {
-    setActive(null);
+    setActive('A');
     setMode('overview');
-    controllerRef.current?.setTheme(null);
+    controllerRef.current?.setTheme('A');
     if (detailPhaseRef.current === 'idle') {
       controllerRef.current?.startMode('overview');
     } else {
@@ -241,18 +241,10 @@ export default function App() {
             onProgress={handleProgress}
             controllerRef={controllerRef}
             activeTheme={active}
-            onReturnToOverview={returnToOverview}
-            homeDisabled={detailActive}
             onDetail={setDetail}
           />
         ) : (
-          <DualTimelineScene
-            data={data}
-            endYear={endYear}
-            locale={locale}
-            activeTheme={active}
-            onReturnToOverview={returnToOverview}
-          />
+          <DualTimelineScene data={data} endYear={endYear} locale={locale} activeTheme={active} />
         )
       ) : (
         <div className="loading">

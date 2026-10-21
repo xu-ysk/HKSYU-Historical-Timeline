@@ -1,0 +1,31 @@
+.flat-album-scene .track-lines,
+.flat-album-years {
+  opacity: calc(1 - var(--detail-progress, 0));
+  pointer-events: none;
+}
+
+.flat-album-scene .track-lines {
+  color: #b7afa2;
+}
+
+.flat-album-scene .photo-card:not([data-extracted='true']) {
+  border-radius: 6px;
+  box-shadow: 1px 2px 5px #4f463422;
+}
+
+.flat-album-scene .photo-card:not([data-extracted='true']) .photo-paper {
+  border-radius: 5px;
+}
+
+.flat-album-year {
+  position: absolute;
+  transform: translateX(-50%);
+  color: #7d7669;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  line-height: 18px;
+}
+
+.flat-album-year[hidden] {
+  display: none;
+}

@@ -103,8 +103,16 @@ for (const [name, data] of [
         ),
       ).toEqual(poses);
       await openTimelines(page);
-      await expect(page.locator('[data-upper-year]')).toHaveCount(data.upperRailEvents.length);
-      await expect(page.locator('[data-education-year]')).toHaveCount(data.educationEvents.length);
+      await expect(page.locator('[data-upper-year]')).toHaveCount(
+        data.upperRailEvents.filter((event) =>
+          data.schoolEvents.some((school) => school.themeId === 'A' && school.year === event.year),
+        ).length,
+      );
+      await expect(page.locator('[data-education-year]')).toHaveCount(
+        data.educationEvents.filter((event) =>
+          data.schoolEvents.some((school) => school.themeId === 'A' && school.year === event.year),
+        ).length,
+      );
       await expect(page.locator('.dual-rail-heading')).toHaveText([
         '01 | 樹仁校史',
         '02 | 香港教育史',
@@ -173,15 +181,18 @@ test('both timelines share gestures, year clicks, endpoints and three-language c
   await openTimelines(page);
   await expect(page.getByTestId('theme-panel')).toHaveCount(0);
   const scene = page.getByTestId('dual-timeline-scene');
-  // The education-only year must remain directly reachable without any matching photo event.
-  await page.locator('[data-education-year="1952"]').click();
-  await expect(scene).toHaveAttribute('data-year', '1952');
-  await expect(page.getByTestId('education-panel')).toHaveAttribute('data-event-year', '1952');
+  // The selected theme retains its education year and matching content.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (let index = 0; index < 5; index++) await scene.press('ArrowRight');
+  await page.locator('[data-education-year="1984"]').click();
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect(scene).toHaveAttribute('data-year', '1984');
+  await expect(page.getByTestId('education-panel')).toHaveAttribute('data-event-year', '1984');
   for (const locale of ['zh-Hans', 'en', 'zh-Hant'] as const) {
     await page.getByTestId(`language-${locale}`).click();
-    await expect(scene).toHaveAttribute('data-year', '1952');
+    await expect(scene).toHaveAttribute('data-year', '1984');
     await expect(page.getByTestId('education-panel')).toContainText(
-      real.educationEvents.find((event) => event.year === 1952)!.title[locale]!,
+      real.educationEvents.find((event) => event.year === 1984)!.title[locale]!,
     );
   }
   await keyYear(page, 'Home', 1949);
@@ -196,7 +207,7 @@ test('both timelines share gestures, year clicks, endpoints and three-language c
   await expect(scene).toHaveAttribute('data-phase', 'idle');
   expect(await scene.getAttribute('data-year')).not.toBe('1949');
   await keyYear(page, 'End', 2026);
-  await keyYear(page, 'ArrowLeft', 2023);
+  await keyYear(page, 'ArrowLeft', 2004);
   await keyYear(page, 'Home', 1949);
   await page.mouse.move(drag.x + drag.width / 2, drag.y + drag.height - 20);
   await page.mouse.wheel(0, 5000);
@@ -213,8 +224,8 @@ test('both timelines share gestures, year clicks, endpoints and three-language c
       .toBe(await scene.getAttribute('data-target-year'));
   }
   const current = Number(await scene.getAttribute('data-year'));
-  const target = page.locator('[data-upper-year="2000"]');
-  if (current > 2000) await keyYear(page, 'Home', 1949);
+  const target = page.locator('[data-upper-year="2004"]');
+  if (current > 2004) await keyYear(page, 'Home', 1949);
   // Traverse via keyboard so no hidden offscreen marker needs a forced click.
   while (!(await target.isVisible())) {
     await scene.press('ArrowRight');
@@ -223,10 +234,10 @@ test('both timelines share gestures, year clicks, endpoints and three-language c
       .toBe(await scene.getAttribute('data-target-year'));
   }
   await target.click();
-  await expect(scene).toHaveAttribute('data-year', '2000');
-  await expect(page.getByTestId('upper-rail-panel')).toHaveAttribute('data-event-year', '2000');
-  await expect(page.getByTestId('education-panel')).toHaveAttribute('data-event-year', '2000');
-  const both = await page.locator('[data-timeline-year="2000"]').evaluateAll((markers) =>
+  await expect(scene).toHaveAttribute('data-year', '2004');
+  await expect(page.getByTestId('upper-rail-panel')).toHaveAttribute('data-event-year', '2004');
+  await expect(page.getByTestId('education-panel')).toHaveAttribute('data-event-year', '2004');
+  const both = await page.locator('[data-timeline-year="2004"]').evaluateAll((markers) =>
     markers.map((marker) => {
       const rect = marker.getBoundingClientRect();
       return rect.x + rect.width / 2;
@@ -239,9 +250,7 @@ test('both timelines share gestures, year clicks, endpoints and three-language c
   expect(errors).toEqual([]);
 });
 
-test('theme and language survive page switches and reset restores all content', async ({
-  page,
-}) => {
+test('theme and language survive page switches without an all-themes entry', async ({ page }) => {
   const errors = await prepare(page, real);
   await page.getByTestId('language-en').click();
   await page.getByTestId('theme-C').click();
@@ -262,11 +271,12 @@ test('theme and language survive page switches and reset restores all content', 
         .first()
         .evaluate((card) => (card as HTMLElement).style.transform),
     )
-    .toContain('scale(1.25)');
+    .toContain('scale(1)');
   await openTimelines(page);
-  await page.getByRole('button', { name: 'Return to history photos' }).click();
+  await expect(page.locator('.dual-reset')).toHaveCount(0);
+  await page.getByTestId('view-overview').click();
   await expect(page.getByTestId('scene')).toBeVisible();
-  await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'all');
+  await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'C');
   expect(errors).toEqual([]);
 });
 
@@ -284,8 +294,20 @@ for (const size of [
       ...new Set([
         1949,
         2026,
-        ...real.upperRailEvents.map((event) => event.year),
-        ...real.educationEvents.map((event) => event.year),
+        ...real.upperRailEvents
+          .filter((event) =>
+            real.schoolEvents.some(
+              (school) => school.themeId === 'A' && school.year === event.year,
+            ),
+          )
+          .map((event) => event.year),
+        ...real.educationEvents
+          .filter((event) =>
+            real.schoolEvents.some(
+              (school) => school.themeId === 'A' && school.year === event.year,
+            ),
+          )
+          .map((event) => event.year),
       ]),
     ].sort((a, b) => a - b);
     const scene = page.getByTestId('dual-timeline-scene');
@@ -300,7 +322,11 @@ for (const size of [
         ['education-panel', 'education-history-row', real.educationEvents],
       ] as const) {
         const panel = page.getByTestId(id);
-        const event = events.find((item) => item.year === year);
+        const event = events.find(
+          (item) =>
+            item.year === year &&
+            real.schoolEvents.some((school) => school.themeId === 'A' && school.year === year),
+        );
         await expect(panel).toHaveAttribute('data-has-event', String(Boolean(event)));
         if (!event) continue;
         await expect(panel).toContainText(event.body.en!);
@@ -319,8 +345,8 @@ for (const size of [
         expect(reading.horizontalOverflow).toBe(false);
         expect(reading.overflowY).toBe('auto');
       }
-      if (year === 2000)
-        await page.screenshot({ path: test.info().outputPath(`english-2000-${size.width}.png`) });
+      if (year === 2004)
+        await page.screenshot({ path: test.info().outputPath(`english-2004-${size.width}.png`) });
     }
     expect(errors).toEqual([]);
   });
@@ -330,7 +356,12 @@ test('photo details retain year navigation, wheel zoom, close and page-switch bl
   page,
 }) => {
   const errors = await prepare(page, real);
+  await page.getByTestId('theme-E').click();
   const source = page.locator('.photo-card[data-event-id="P118"]').first();
+  await expect(source).toBeVisible();
+  await expect
+    .poll(() => source.locator('img').evaluate((img) => (img as HTMLImageElement).naturalWidth))
+    .toBeGreaterThan(0);
   await source.focus();
   await source.press('Enter');
   const detail = page.getByTestId('event-detail');
@@ -347,6 +378,12 @@ test('photo details retain year navigation, wheel zoom, close and page-switch bl
   await expect
     .poll(async () => Number(await photo.getAttribute('data-photo-scale')))
     .toBeGreaterThan(1);
+  const image = photo.locator('img');
+  const beforePan = await image.evaluate((element) => element.style.transform);
+  await page.mouse.down();
+  await page.mouse.move(rect.x + rect.width / 2 + 40, rect.y + rect.height / 2, { steps: 3 });
+  await page.mouse.up();
+  expect(await image.evaluate((element) => element.style.transform)).not.toBe(beforePan);
   await page.getByTestId('detail-previous').click();
   await expect(detail).not.toHaveAttribute('data-event', 'P118');
   await page.getByTestId('close-detail').click();

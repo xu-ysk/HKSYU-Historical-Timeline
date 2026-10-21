@@ -12,13 +12,11 @@ export function DualTimelineScene({
   endYear,
   locale,
   activeTheme,
-  onReturnToOverview,
 }: {
   data: TimelineDataset;
   endYear: number;
   locale: Locale;
   activeTheme: ThemeId | null;
-  onReturnToOverview: () => void;
 }) {
   const rootRef = useRef<HTMLElement>(null);
   const controllerRef = useRef<HorizontalTimelineController | null>(null);
@@ -143,16 +141,6 @@ export function DualTimelineScene({
       </div>
       <div className="dual-middle" data-testid="dual-drag-area">
         <div className="dual-swipe-guide" data-testid="dual-swipe-guide">
-          {activeTheme && (
-            <TapButton
-              type="button"
-              className="dual-reset"
-              onActivate={onReturnToOverview}
-              aria-label={m.returnToOverview}
-            >
-              {m.all} ↗
-            </TapButton>
-          )}
           <span aria-hidden="true">←</span>
           <span>{m.swipeBlank}</span>
           <span aria-hidden="true">→</span>
