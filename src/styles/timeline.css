@@ -812,7 +812,7 @@ h1 {
   pointer-events: none;
 }
 .photo-hint {
-  left: 18%;
+  left: 12%;
   top: 86%;
   transform: translate(-50%, -50%);
 }
