@@ -214,7 +214,7 @@ for (const size of [
         .filter((event) => event.themeId === theme)
         .reduce((sum, event) => sum + Math.max(1, event.photos.length), 0);
       await expect(selected).toHaveCount(count);
-      await expect(selected.last()).toHaveAttribute('style', /scale\(1.8\)/);
+      await expect(selected.last()).toHaveAttribute('style', /scale\(2.2\)/);
       const boxes = await selected.evaluateAll((nodes) => nodes.map((node) => {
         const box = node.getBoundingClientRect();
         return { x: box.x + box.width / 2, y: box.y + box.height / 2,

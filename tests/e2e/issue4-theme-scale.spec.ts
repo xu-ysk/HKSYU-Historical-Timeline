@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures';
 
-test('each selected theme enlarges photos by 80 percent and hides other themes', async ({
+test('each selected theme enlarges photos by 120 percent and hides other themes', async ({
   page,
 }) => {
   await page.goto('/');
@@ -11,7 +11,7 @@ test('each selected theme enlarges photos by 80 percent and hides other themes',
     const selected = page.locator(`.photo-card[data-theme="${theme}"]`).first();
     const beforeWidth = (await selected.boundingBox())!.width;
     await page.getByTestId(`theme-${theme}`).click();
-    await expect(selected).toHaveAttribute('style', /scale\(1.8\)/);
+    await expect(selected).toHaveAttribute('style', /scale\(2.2\)/);
     await expect(
       page.locator(`.photo-card:not([data-theme="${theme}"])`).first(),
     ).toHaveCSS('visibility', 'hidden');
@@ -20,7 +20,7 @@ test('each selected theme enlarges photos by 80 percent and hides other themes',
       (element as HTMLButtonElement).tabIndex === -1 && getComputedStyle(element).pointerEvents === 'none',
     ))).toBe(true);
     const afterWidth = (await selected.boundingBox())!.width;
-    expect(afterWidth / beforeWidth).toBeCloseTo(1.8, 2);
+    expect(afterWidth / beforeWidth).toBeCloseTo(2.2, 2);
     await expect(cards).toHaveCount(total);
     await page.getByTestId('theme-home-upper').click();
     await expect(selected).toHaveAttribute('style', /scale\(1\)/);

@@ -17,7 +17,7 @@ for (const mode of ['overview', 'browse'])
       await page.getByTestId('theme-' + theme).click();
       await expect(
         page.locator(`.photo-card[data-theme="${theme}"]`).filter({ visible: true }).first(),
-      ).toHaveAttribute('style', /scale\(1.8\)/);
+      ).toHaveAttribute('style', /scale\(2.2\)/);
       await expect(
         page.locator(`.photo-card:not([data-theme="${theme}"]):visible`),
       ).toHaveCount(0);
