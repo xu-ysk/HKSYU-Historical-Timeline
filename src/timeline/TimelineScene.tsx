@@ -110,6 +110,7 @@ export function TimelineScene({
       data-mode={mode}
       data-locale={locale}
     >
+      <p className="photo-hint">{m.photoHint}</p>
       <svg className="track-lines" width="100%" height="100%" aria-hidden="true">
         {(['upper', 'education'] as const).map((lane) => {
           const { first: a, last: b } = trackEndpoints(lane, view, values);

@@ -878,6 +878,12 @@ export class TimelineController {
       });
       this.root.querySelectorAll<HTMLElement>('[data-swipe-guide]').forEach((el) => {
         const upper = el.dataset.swipeGuide === 'upper';
+        if (this.activeTheme) {
+          // Keep the two return controls in the open spaces beside the theme album.
+          el.style.left = `${this.view.width * (upper ? 0.4 : 0.5825)}px`;
+          el.style.top = `${this.view.height * (upper ? 0.288 : 0.566)}px`;
+          return;
+        }
         const lane = upper ? 'upper' : 'education';
         const rail = anchor(1949, lane, this.view, this.values);
         // Place the hints in the open diagonal corridors beside the rails.

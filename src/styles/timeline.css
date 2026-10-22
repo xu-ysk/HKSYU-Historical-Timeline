@@ -221,6 +221,18 @@ h1 {
 .swipe-guide-education .theme-home {
   left: calc(100% + 8px);
 }
+.swipe-guide-with-home {
+  padding: 0;
+  background: transparent;
+  transform: translate(-50%, -50%);
+}
+.swipe-guide-with-home .theme-home {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+}
 .theme-home svg {
   width: 24px;
   height: 24px;
@@ -781,11 +793,36 @@ h1 {
   grid-column: 2;
 }
 .theme-list {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(4px, 0.4vw, 8px);
   width: min(100%, 850px);
   margin-left: auto;
+}
+.photo-hint,
+.theme-hint {
+  position: absolute;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(14px, 1vw, 18px);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.photo-hint {
+  left: 18%;
+  top: 86%;
+  transform: translate(-50%, -50%);
+}
+.theme-hint {
+  left: 38%;
+  bottom: calc(100% + 18px);
+  transform: translateX(-50%);
+}
+.museum-app[data-detail-active='true'] :is(.photo-hint, .theme-hint) {
+  visibility: hidden;
 }
 .theme-button {
   display: flex;

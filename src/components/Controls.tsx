@@ -39,6 +39,7 @@ export function ThemeSwitcher({
   return (
     <section className="theme-panel" data-testid="theme-panel" aria-label={m.themes}>
       <div className="theme-list">
+        <p className="theme-hint">{m.themeHint}</p>
         {themeIds.map((id) => (
           <button
             key={id}
