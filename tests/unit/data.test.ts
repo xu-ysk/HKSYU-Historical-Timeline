@@ -89,5 +89,8 @@ describe('time and content contracts', () => {
       "Council's, College's, and University's",
     );
     expect(localized({ 'zh-Hans': '中文说明', en: 'College’s' }, 'zh-Hans')).toBe('中文说明');
+    expect(
+      localized({ en: 'The Students’ Union supports older adults’ use of technology.' }, 'en'),
+    ).toBe("The Students' Union supports older adults' use of technology.");
   });
 });

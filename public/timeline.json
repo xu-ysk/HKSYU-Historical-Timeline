@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-1a566ffce8848c52",
+  "revision": "xlsx-b224ce21ec3b68be",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -30,8 +30,8 @@
       },
       "body": {
         "en": "Around 1955, Dr. Hu Hung-lick and Dr. Chung Chi-yung moved to Hong Kong, where they devoted themselves respectively to law, public service, and Chinese post-secondary education. This gradually shaped the social commitment and educational vision that would later lead to the founding of Shue Yan.",
-        "zh-Hant": "1955年前後，胡鴻烈博士與鍾期榮博士移居香港，分別投身法律、公共服務與中文專上教育，逐步形成日後創辦樹仁的社會關懷與教育視野。",
-        "zh-Hans": "1955年前后，胡鸿烈博士与钟期荣博士移居香港，分别投身法律、公共服务与中文专上教育，逐步形成日后创办树仁的社会关怀与教育视野。"
+        "zh-Hant": "1955年，胡鴻烈博士與鍾期榮博士移居香港，分別投身法律、公共服務與中文專上教育，逐步形成日後創辦樹仁的社會關懷與教育視野。",
+        "zh-Hans": "1955年，胡鸿烈博士与钟期荣博士移居香港，分别投身法律、公共服务与中文专上教育，逐步形成日后创办树仁的社会关怀与教育视野。"
       }
     },
     {
@@ -105,8 +105,8 @@
       "orderInYear": 6,
       "title": {
         "en": "Relocation to Wan Chai's Monmouth Path; Braemar Hill Campus Site Approved",
-        "zh-Hant": "遷往灣仔萬茂徑，獲批寶馬山校址",
-        "zh-Hans": "迁往湾仔万茂径，获批宝马山校址"
+        "zh-Hant": "遷往灣仔萬茂里，獲批寶馬山校址",
+        "zh-Hans": "迁往湾仔万茂里，获批宝马山校址"
       },
       "body": {
         "en": "Shue Yan relocated to Monmouth Path in Wan Chai and, after years of application, was granted a permanent campus site at Braemar Hill, laying the foundation for long-term campus development.",
@@ -185,8 +185,8 @@
       "orderInYear": 11,
       "title": {
         "en": "New Campus Foundation Stone Laid: The Construction Challenge of Building on a Steep Slope",
-        "zh-Hant": "新校奠基：陡坡建校的工程考驗",
-        "zh-Hans": "新校奠基：陡坡建校的工程考验"
+        "zh-Hant": "新校舍奠基：陡坡建校的工程考驗",
+        "zh-Hans": "新校舍奠基：陡坡建校的工程考验"
       },
       "body": {
         "en": "In 1983, the foundation stone-laying ceremony for the new Braemar Hill campus was held. Because the site was located on a steep hillside, the university had to spend nearly six and a half years driving 176 concrete piles to establish a solid foundation for the building.",
@@ -440,12 +440,12 @@
       "yearLabel": "2007",
       "orderInYear": 27,
       "title": {
-        "en": "New University Name Officially Adopted: Entering a New Stage of University Development",
+        "en": "University Title Officially Adopted: Entering a New Stage of University Development",
         "zh-Hant": "新校名正式啟用：進入大學發展階段",
         "zh-Hans": "新校名正式启用：进入大学发展阶段"
       },
       "body": {
-        "en": "In February 2007, Hong Kong Shue Yan University held its inauguration ceremony, officially adopting its new name and marking Shue Yan's transition from a post-secondary college to a new stage of university development.",
+        "en": "In February 2007, Hong Kong Shue Yan University held its inauguration ceremony, officially adopting its title and marking Shue Yan's transition from a post-secondary college to a new stage of university development.",
         "zh-Hant": "2007年2月，香港樹仁大學舉行正名典禮，新校名正式啟用，標誌樹仁由專上學院進入大學發展的新階段。",
         "zh-Hans": "2007年2月，香港树仁大学举行正名典礼，新校名正式启用，标志树仁由专上学院进入大学发展的新阶段。"
       }
@@ -3225,7 +3225,7 @@
       "photoGroupId": "P91",
       "title": {},
       "body": {
-        "en": "The University celebrated President Dr. Hu Hung-lick’s 101st birthday, honouring his lifelong service.",
+        "en": "The University celebrated President Dr. Henry Hu Hung-lick’s 101st birthday, honouring his lifelong service.",
         "zh-Hant": "大學為校監胡鴻烈一百零一歲壽辰舉行小型慶祝會，表揚其畢生服務。",
         "zh-Hans": "大学为校监胡鸿烈一百零一岁寿辰举行小型庆祝会，表扬其毕生服务。"
       },
@@ -3789,7 +3789,7 @@
       "year": 2025,
       "yearLabel": "2025",
       "orderInYear": 108,
-      "themeId": "E",
+      "themeId": "B",
       "photoGroupId": "P109",
       "title": {},
       "body": {
@@ -3936,8 +3936,8 @@
           "id": "P113-photo-1",
           "kind": "image",
           "src": "https://umtimeline.hksyu.edu/Historical_Timeline_Images/2026/image170.jpg",
-          "width": 4096,
-          "height": 2304,
+          "width": 2200,
+          "height": 1238,
           "alt": {
             "en": "P113 photograph 1"
           }
@@ -4147,7 +4147,7 @@
       },
       "body": {
         "en": "Rapid population growth after WWII increased demand for Chinese-medium secondary and post-secondary education opportunities.",
-        "zh-Hant": "戰後从内地进入到香港人口迅速增加，中文中學及專上教育需求大幅上升。",
+        "zh-Hant": "從戰後内地進入到香港人口迅速增加，中文中學及專上教育需求大幅上升。",
         "zh-Hans": "战后从内地进入到香港人口迅速增加，中文中学及专上教育需求大幅上升。"
       }
     },
@@ -4387,7 +4387,7 @@
       },
       "body": {
         "en": "Proposed in the 2004 Policy Address, advanced by a 2006 cross bureau steering committee, and reaffirmed in 2007, the regional education hub initiative raised the non-local student quota for UGC-funded universities from 10% to 20%, eased entry rules, offered scholarships, and promoted Hong Kong education overseas.",
-        "zh-Hant": "2004年《施政報告》首提，2006年設跨局委員會，2007年重申。主要措施包括：教資會資助院校非本地學生學額上限由10%提高至20%、放寬入境、提供獎學金及海外推廣。",
+        "zh-Hant": "區域教育中心計畫於 2004 年在施政報告中提出，2006 年由跨部門督導委員會推進，2007 年再次確認，該計畫將大學教育資助委員會資助大學的非本地學生配額從 10% 提高到 20%，放寬入學規則，提供獎學金，並促進香港教育走向海外。",
         "zh-Hans": "2004年《施政报告》首提，2006年设跨局委员会，2007年重申。主要措施包括：教资会资助院校非本地学生学额上限由10%提高至20%、放宽入境、提供奖学金及海外推广。"
       }
     },

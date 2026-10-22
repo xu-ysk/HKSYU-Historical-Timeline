@@ -26,7 +26,11 @@ export const themes: Record<ThemeId, { color: string; label: Record<Locale, stri
   },
   E: {
     color: '#005BEA',
-    label: { 'zh-Hant': '重塑博雅教育', 'zh-Hans': '重塑博雅教育', en: 'Reinventing liberal arts' },
+    label: {
+      'zh-Hant': '重塑博雅教育',
+      'zh-Hans': '重塑博雅教育',
+      en: 'Reinventing liberal arts education',
+    },
   },
 };
 export const themeIds = Object.keys(themes) as ThemeId[];
