@@ -1,6 +1,6 @@
 :root {
   --theme-accent: #796e5d;
-  --paper: #f7f5f2;
+  --paper: #F5F5F5;
   --ink: #34352f;
   --muted: #89887f;
 }
@@ -70,7 +70,8 @@ button {
   display: flex;
   gap: 0;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--theme-accent) 36%, #eee9df);
+  border: 1px solid;
+  border-color: color-mix(in srgb, var(--theme-accent) 65%, #eee9df);
   border-radius: 7px;
   pointer-events: auto;
 }
@@ -82,7 +83,7 @@ button {
   color: #8e8b82;
 }
 .languages button + button {
-  border-left: 1px solid color-mix(in srgb, var(--theme-accent) 28%, #eee9df);
+  border-left: 1px solid color-mix(in srgb, var(--theme-accent) 58%, #eee9df);
 }
 .languages button[aria-pressed='true'] {
   color: var(--ink);
@@ -693,7 +694,8 @@ h1 {
   align-items: center;
   gap: 7px;
   padding: 7px 10px;
-  border: 1px solid #cfc8bd;
+  border: 1px solid;
+  border-color: color-mix(in srgb, var(--theme-accent) 65%, #eee9df);
   border-radius: 2px;
   background: color-mix(in srgb, var(--paper) 85%, transparent);
   color: var(--ink);
@@ -702,7 +704,7 @@ h1 {
   pointer-events: auto;
 }
 .help-trigger:hover {
-  border-color: #786f61;
+  border-color: color-mix(in srgb, var(--theme-accent) 65%, #eee9df);
   background: #fffdf9;
 }
 .help-trigger span {
@@ -795,7 +797,8 @@ h1 {
   min-height: 0;
   aspect-ratio: 1;
   padding: clamp(2px, 0.2vw, 4px);
-  border: 2px solid var(--swatch);
+  border: 2px solid;
+  border-color: color-mix(in srgb, var(--swatch) 55%, var(--page-background));
   border-radius: 50%;
   background: color-mix(in srgb, var(--page-background) 91%, transparent);
   text-align: center;
@@ -815,7 +818,6 @@ html[lang='en'] .theme-button {
 }
 .theme-button[aria-pressed='true'] {
   background: color-mix(in srgb, var(--swatch) 12%, var(--page-background));
-  border-color: var(--swatch);
 }
 .loading {
   position: absolute;

@@ -25,16 +25,22 @@ for (const size of [
     const focus = await page.getByTestId('scene').getAttribute('data-focus');
     const count = await page.locator('.photo-card').count();
     const themes = [
-      ['A', '校園發展', 'rgb(184, 92, 95)'],
-      ['B', '榮譽、服務和緬懷', 'rgb(193, 164, 107)'],
-      ['C', '從書院到大學', 'rgb(125, 106, 142)'],
-      ['D', '校務拓展', 'rgb(107, 142, 122)'],
-      ['E', '重塑博雅教育', 'rgb(92, 110, 132)'],
+      ['A', '校園發展', 'rgb(226, 142, 150)'],
+      ['B', '榮譽、服務和緬懷', 'rgb(242, 217, 147)'],
+      ['C', '從書院到大學', 'rgb(178, 167, 241)'],
+      ['D', '校務拓展', 'rgb(133, 171, 164)'],
+      ['E', '重塑博雅教育', 'rgb(110, 160, 239)'],
     ];
     for (const [id, label, color] of themes) {
       const button = page.getByTestId('theme-' + id);
       await expect(button).toHaveText(label);
-      await expect(button).toHaveCSS('border-top-color', color);
+      await expect.poll(() => button.evaluate((element) => {
+        const context = document.createElement('canvas').getContext('2d')!;
+        context.fillStyle = getComputedStyle(element).borderTopColor;
+        context.fillRect(0, 0, 1, 1);
+        const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
+        return `rgb(${r}, ${g}, ${b})`;
+      })).toBe(color);
       await button.click();
       await expect(button).toHaveAttribute('aria-pressed', 'true');
       await expect(page.locator(`.photo-card:not([data-theme="${id}"])`).first()).toHaveCSS('visibility', 'hidden');

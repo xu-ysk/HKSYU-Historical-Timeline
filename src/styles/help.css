@@ -15,7 +15,7 @@
   flex-direction: column;
   overflow: hidden;
   border: 1px solid #d4cbbc;
-  background: #f8f6f1;
+  background: var(--paper);
   color: #38372f;
   box-shadow: 0 24px 80px rgb(21 21 19 / 24%);
 }

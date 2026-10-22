@@ -3,7 +3,7 @@ import { themes, themeIds } from '../../src/config/themes';
 
 test.use({ viewport: { width: 1920, height: 1080 } });
 
-const paper = [247, 245, 242];
+const paper = [245, 245, 245];
 
 test('all theme backgrounds stay softly tinted through photo detail and reset', async ({ page }) => {
   test.setTimeout(60000);

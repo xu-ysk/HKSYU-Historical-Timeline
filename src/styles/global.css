@@ -12,7 +12,7 @@
   --font-family: 'Noto Sans SC', sans-serif;
   font-family: var(--font-family);
   color: #36352f;
-  background: #f7f5f2;
+  background: #F5F5F5;
   font-synthesis: none;
 }
 body {
@@ -33,7 +33,7 @@ button {
 }
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid #5c6e84;
+  outline: 2px solid #005BEA;
   outline-offset: 5px;
 }
 button:disabled {

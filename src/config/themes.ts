@@ -1,11 +1,11 @@
 import type { Locale, ThemeId } from '../domain/timeline';
 export const themes: Record<ThemeId, { color: string; label: Record<Locale, string> }> = {
   A: {
-    color: '#B85C5F',
+    color: '#D33A48',
     label: { 'zh-Hant': '校園發展', 'zh-Hans': '校园发展', en: 'Campus development' },
   },
   B: {
-    color: '#C1A46B',
+    color: '#F0C243',
     label: {
       'zh-Hant': '榮譽、服務和緬懷',
       'zh-Hans': '荣誉、服务和缅怀',
@@ -13,7 +13,7 @@ export const themes: Record<ThemeId, { color: string; label: Record<Locale, stri
     },
   },
   C: {
-    color: '#7D6A8E',
+    color: '#7B68EE',
     label: {
       'zh-Hant': '從書院到大學',
       'zh-Hans': '从书院到大学',
@@ -21,11 +21,11 @@ export const themes: Record<ThemeId, { color: string; label: Record<Locale, stri
     },
   },
   D: {
-    color: '#6B8E7A',
+    color: '#2A6F62',
     label: { 'zh-Hant': '校務拓展', 'zh-Hans': '校务拓展', en: 'Institutional advancement' },
   },
   E: {
-    color: '#5C6E84',
+    color: '#005BEA',
     label: { 'zh-Hant': '重塑博雅教育', 'zh-Hans': '重塑博雅教育', en: 'Reinventing liberal arts' },
   },
 };

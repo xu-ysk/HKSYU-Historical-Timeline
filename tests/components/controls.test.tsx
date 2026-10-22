@@ -26,7 +26,7 @@ test('all five English themes remain present and repeating the selected theme ke
 test('theme buttons keep their Chinese labels and colors without letters or a separate reset', () => {
   const { container } = render(<ThemeSwitcher locale="zh-Hans" active={null} onChange={vi.fn()} />);
   const labels = ['校园发展', '荣誉、服务和缅怀', '从书院到大学', '校务拓展', '重塑博雅教育'];
-  const colors = ['#B85C5F', '#C1A46B', '#7D6A8E', '#6B8E7A', '#5C6E84'];
+  const colors = ['#D33A48', '#F0C243', '#7B68EE', '#2A6F62', '#005BEA'];
   for (const [index, button] of screen.getAllByRole('button').entries()) {
     expect(button).toHaveTextContent(new RegExp('^' + labels[index] + '$'));
     expect(button.style.getPropertyValue('--swatch')).toBe(colors[index]);
