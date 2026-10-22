@@ -50,10 +50,9 @@ export interface DisplayCard {
   countInYear: number;
 }
 export const localized = (text: LocalizedText, locale: Locale) =>
-  (text[locale] ?? text.en ?? text['zh-Hant'] ?? text['zh-Hans'] ?? '').replace(
-    /[‘’']\s*(?=s\b)/g,
-    "'",
-  );
+  (text[locale] ?? text.en ?? text['zh-Hant'] ?? text['zh-Hans'] ?? '')
+    .replace(/[‘’']\s*(?=s\b)/g, "'")
+    .replace(/(?<=[A-Za-z]s)[‘’](?=\s+[A-Za-z])/g, "'");
 
 export const localizedYearLabel = (event: { year: number; yearLabel?: string }, locale: Locale) => {
   const label = event.yearLabel ?? String(event.year);
