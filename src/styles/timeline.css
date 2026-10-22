@@ -966,13 +966,13 @@ html[lang='en'] .theme-button {
     font-size: 14px;
   }
   .upper-rail-marker {
-    width: 44px;
-    height: 44px;
+    width: var(--rail-hit-size, 44px);
+    height: var(--rail-hit-size, 44px);
   }
   .education-dot {
-    width: 44px;
-    height: 44px;
-    padding: 19px;
+    width: var(--rail-hit-size, 44px);
+    height: var(--rail-hit-size, 44px);
+    padding: calc((var(--rail-hit-size, 44px) - 6px) / 2);
   }
   .year-slider {
     height: 8px;

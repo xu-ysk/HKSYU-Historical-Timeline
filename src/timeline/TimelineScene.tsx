@@ -71,6 +71,11 @@ export function TimelineScene({
       );
     else controllerRef.current.updateData(cards, endYear, overviewYears);
   }, [cards, controllerRef, endYear, overviewYears, onMode, onProgress, onDetail]);
+  useLayoutEffect(() => {
+    // Theme filtering replaces rail markers. Position the committed nodes with
+    // the controller's current viewport before the browser paints them.
+    controllerRef.current?.refreshLayout();
+  }, [activeTheme, controllerRef]);
   useLayoutEffect(
     () => () => {
       controllerRef.current?.destroy();

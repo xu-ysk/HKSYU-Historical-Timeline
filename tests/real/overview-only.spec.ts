@@ -5,6 +5,34 @@ import { educationYearLabel, localized } from '../../src/domain/timeline';
 
 const data = JSON.parse(readFileSync('public/timeline.json', 'utf8')) as TimelineDataset;
 
+test('the 1949 education point and label stay visible and tappable on exhibition screens', async ({ page }) => {
+  test.setTimeout(60000);
+  for (const size of [
+    { width: 1280, height: 720 },
+    { width: 1440, height: 900 },
+    { width: 1920, height: 1080 },
+    { width: 3840, height: 2160 },
+  ]) {
+    await page.setViewportSize(size);
+    await page.goto('/');
+    const point = page.locator('[data-education-year="1949"]');
+    await expect(point).toBeVisible();
+    for (const element of [point, point.locator('.education-year-label')]) {
+      await expect(element).toBeInViewport({ ratio: 1 });
+    }
+    await point.tap();
+    await expect(page.getByTestId('rail-event-detail')).toHaveAttribute('data-lane', 'education');
+    await expect(page.getByTestId('rail-event-detail').locator('.rail-detail-year')).toHaveText('1949–1950');
+    await page.getByTestId('rail-detail-home').tap();
+    await page.getByTestId('theme-A').click();
+    await page.getByTestId('theme-home-education').click();
+    await expect(point).toBeInViewport({ ratio: 1 });
+    await point.tap();
+    await expect(page.getByTestId('rail-event-detail')).toHaveAttribute('data-lane', 'education');
+    await page.getByTestId('rail-detail-home').tap();
+  }
+});
+
 test('wheel, mouse drag and touch swipe leave the overview geometry unchanged', async ({ page }) => {
   await page.goto('/');
   const scene = page.getByTestId('scene');
@@ -36,7 +64,8 @@ test('wheel, mouse drag and touch swipe leave the overview geometry unchanged', 
 });
 
 test('every point opens exactly its own history and the home returns to overview', async ({ page }) => {
-  test.setTimeout(60000);
+  // Opening and closing every real-data point includes each panel's animation.
+  test.setTimeout(120000);
   await page.goto('/');
   await expect(page.locator('[data-upper-year]')).toHaveCount(data.upperRailEvents.length);
   for (const lane of ['upper', 'education'] as const) {
@@ -122,8 +151,9 @@ for (const size of [
   { width: 1280, height: 720 },
   { width: 1440, height: 900 },
   { width: 1920, height: 869 },
+  { width: 1920, height: 1080 },
 ]) {
-  test(`theme collections have even spacing and stay centred at ${size.width}`, async ({ page }) => {
+  test(`theme collections have even spacing and align with the home album at ${size.width}x${size.height}`, async ({ page }) => {
     test.setTimeout(60000);
     await page.setViewportSize(size);
     await page.goto('/', { waitUntil: 'domcontentloaded' });
@@ -131,6 +161,14 @@ for (const size of [
     await expect(cards).toHaveCount(data.schoolEvents.reduce((sum, event) => sum + Math.max(1, event.photos.length), 0));
     await expect(cards.first()).toHaveAttribute('style', /scale\(1\)/);
     const overview = await cards.evaluateAll((nodes) => nodes.map((node) => (node as HTMLElement).style.transform));
+    const homeAxisY = await page.locator('[data-track="upper"],[data-track="education"]').evaluateAll((lines) => {
+      const heights = lines.map((line) => {
+        const x1 = Number(line.getAttribute('x1')), y1 = Number(line.getAttribute('y1'));
+        const x2 = Number(line.getAttribute('x2')), y2 = Number(line.getAttribute('y2'));
+        return y1 + (window.innerWidth / 2 - x1) * (y2 - y1) / (x2 - x1);
+      });
+      return (heights[0] + heights[1]) / 2;
+    });
     for (const theme of ['A', 'B', 'C', 'D', 'E']) {
       await page.getByTestId(`theme-${theme}`).click();
       const selected = page.locator(`.photo-card[data-theme="${theme}"]:visible`);
@@ -149,7 +187,7 @@ for (const size of [
       expect(Math.min(...gaps)).toBeGreaterThan(15);
       expect(Math.max(...gaps)).toBeLessThanOrEqual(52.1);
       expect(Math.abs((boxes[0].x + boxes.at(-1)!.x) / 2 - size.width / 2)).toBeLessThan(1);
-      expect(Math.abs((boxes[0].y + boxes.at(-1)!.y) / 2 - size.height / 2)).toBeLessThan(1);
+      expect(Math.abs((boxes[0].y + boxes.at(-1)!.y) / 2 - homeAxisY)).toBeLessThan(1);
       expect(boxes.every((box) => box.left > 0 && box.top > 0 && box.right < size.width && box.bottom < size.height)).toBe(true);
       await selected.first().click();
       await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
@@ -196,4 +234,53 @@ test('theme filtering, photo detail and return controls remain usable', async ({
   await page.getByTestId('rail-detail-home').tap();
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '0.0000');
   await expect(page.getByTestId('theme-A')).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('both history rails restore their dots and year labels after every theme return', async ({ page }) => {
+  test.setTimeout(60000);
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  const markers = page.locator('[data-upper-year],[data-education-year],[data-education-label]');
+  const geometry = () => markers.evaluateAll((nodes) => nodes.map((node) => {
+    const el = node as HTMLElement;
+    return {
+      year: el.dataset.upperYear ?? el.dataset.educationYear ?? el.dataset.educationLabel,
+      left: el.style.left,
+      top: el.style.top,
+      labelX: el.style.getPropertyValue('--year-label-x'),
+      labelY: el.style.getPropertyValue('--year-label-y'),
+      visibility: el.style.visibility,
+    };
+  }));
+  const distances = () => page.locator('[data-upper-year],[data-education-year]').evaluateAll((nodes) =>
+    nodes.map((node) => {
+      const lane = node.hasAttribute('data-upper-year') ? 'upper' : 'education';
+      const line = document.querySelector<SVGLineElement>(`[data-track="${lane}"]`)!;
+      const matrix = line.getScreenCTM()!;
+      const start = new DOMPoint(line.x1.baseVal.value, line.y1.baseVal.value).matrixTransform(matrix);
+      const end = new DOMPoint(line.x2.baseVal.value, line.y2.baseVal.value).matrixTransform(matrix);
+      const box = node.getBoundingClientRect();
+      const x = box.x + box.width / 2, y = box.y + box.height / 2;
+      return Math.abs((end.x - start.x) * (y - start.y) - (end.y - start.y) * (x - start.x)) /
+        Math.hypot(end.x - start.x, end.y - start.y);
+    }),
+  );
+  await expect.poll(async () => (await geometry()).every((marker) => marker.labelY !== '')).toBe(true);
+  for (const size of [{ width: 1920, height: 1080 }, { width: 1440, height: 900 }]) {
+    await page.setViewportSize(size);
+    // Wait for the ResizeObserver's viewport animation before recording the home layout.
+    await page.waitForTimeout(350);
+    const before = await geometry();
+    await expect.poll(async () => Math.max(...await distances())).toBeLessThan(0.1);
+    for (const [index, theme] of ['A', 'B', 'C', 'D', 'E'].entries()) {
+      await page.getByTestId(`theme-${theme}`).click();
+      await expect(page.locator('[data-track="upper"]')).toBeHidden();
+      await page.getByTestId(`theme-home-${index % 2 ? 'education' : 'upper'}`).click();
+      await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'all');
+      await expect.poll(geometry, { message: `restore all year labels after ${theme} at ${size.width}` }).toEqual(before);
+      await expect.poll(async () => Math.max(...await distances()), {
+        message: `keep every history dot on its rail after ${theme} at ${size.width}`,
+      }).toBeLessThan(0.1);
+    }
+  }
 });

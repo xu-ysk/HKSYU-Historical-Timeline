@@ -65,13 +65,16 @@ export function lengths(view: Viewport) {
   };
 }
 /** Fit a selected theme in chronological order with a consistent sleeve spacing. */
-export function themeAlbumPosition(index: number, count: number, view: Viewport) {
+export function themeAlbumPosition(index: number, count: number, view: Viewport, values: SceneValues) {
   const intervals = Math.max(0, count - 1);
   const span = Math.min(intervals * 52, lengths(view).overview * 0.88);
   const distance = intervals ? (index / intervals - 0.5) * span : 0;
+  const home = anchor(1971, 'school', view, { ...values, zoom: 0 });
+  // Lift the collection onto the homepage's photo axis while keeping it horizontally centred.
+  const centerY = home.y + ((view.width / 2 - home.x) * direction.y) / direction.x;
   return {
     x: view.width / 2 + direction.x * distance,
-    y: view.height / 2 + direction.y * distance,
+    y: centerY + direction.y * distance,
   };
 }
 /** Spread every marked year across the overview rail while preserving chronology. */
@@ -106,8 +109,22 @@ export function anchor(year: number, lane: TimelineLane, view: Viewport, values:
   const browse = browseScale(values.endYear),
     focusYear = timeScale(values.endYear).toYear(values.focus),
     length = lengths(view);
-  const a = length.overview * (overviewUnit(year, values.endYear, values.overviewYears) - 0.5),
-    b = length.browse * (browse.toUnit(year) - browse.toUnit(focusYear));
+  const unit = overviewUnit(year, values.endYear, values.overviewYears);
+  let a = length.overview * (unit - 0.5);
+  if (year < 1971) {
+    // Reserve room for the education rail's first touch target and year label,
+    // and for the upper rail's leftmost target. Compress only the early section
+    // along the shared axis so 1971 onward and the photo collection stay put.
+    const inset = 32;
+    const first = Math.max(
+      -length.overview / 2,
+      (inset - view.width * 0.47 - normal.x * -135) / direction.x,
+      (view.height - inset - view.height * 0.49 - normal.y * 95) / direction.y,
+    );
+    const pivot = overviewUnit(1971, values.endYear, values.overviewYears);
+    a += (first + length.overview / 2) * (1 - unit / pivot);
+  }
+  const b = length.browse * (browse.toUnit(year) - browse.toUnit(focusYear));
   const q = lerp(a, b + config.gap * Math.tanh(b / config.gapSoftness), values.zoom);
   // Widen the two history lanes symmetrically around the unchanged photo axis.
   const offset = lane === 'upper' ? -135 : lane === 'education' ? 95 : -20;

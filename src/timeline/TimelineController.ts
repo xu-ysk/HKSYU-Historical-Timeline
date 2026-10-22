@@ -169,6 +169,11 @@ export class TimelineController {
         .map(({ card }, index) => [card.id, index]),
     );
   }
+  refreshLayout() {
+    this.lastTrackPoseKey = '';
+    this.dirty = true;
+    this.tick();
+  }
   updateData(cards: DisplayCard[], endYear: number, overviewYears: readonly number[]) {
     if (this.values.endYear !== endYear) this.rebase(endYear);
     this.values.overviewYears = overviewYears;
@@ -582,7 +587,7 @@ export class TimelineController {
     p.scale = this.themeScales[card.event.themeId];
     const themeIndex = this.themeIndices.get(card.id);
     if (themeIndex !== undefined) {
-      const point = themeAlbumPosition(themeIndex, this.themeIndices.size, this.view);
+      const point = themeAlbumPosition(themeIndex, this.themeIndices.size, this.view, this.values);
       p.x = point.x;
       p.y = point.y;
       p.z = chronologicalStackZ(this.stackIndices.get(card.id)!);
@@ -842,6 +847,15 @@ export class TimelineController {
           const visible = p.x >= 0 && p.x <= this.view.width && p.y >= 0 && p.y <= this.view.height;
           el.style.visibility = visible ? 'visible' : 'hidden';
           const interactive = Boolean(el.dataset.upperYear || el.dataset.educationYear);
+          if (interactive && year < 1971) {
+            const years = lane === 'upper' ? upperOffsets.keys() : educationOffsets.keys();
+            const nearestX = Math.min(...Array.from(years)
+              .filter((other) => other !== year)
+              .map((other) => Math.abs(anchor(other, lane, this.view, this.values).x - p.x)));
+            // Early years share a compact section. Keep enlarged touch areas
+            // from covering the centres of neighbouring year points.
+            el.style.setProperty('--rail-hit-size', `${Math.min(44, nearestX * 1.8)}px`);
+          }
           el.tabIndex = interactive && visible && !this.blocked ? 0 : -1;
           el.style.pointerEvents = this.blocked ? 'none' : '';
         });

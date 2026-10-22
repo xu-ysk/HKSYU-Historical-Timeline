@@ -34,7 +34,7 @@ test('early browse rails fit the screenshot range without changing lane spacing'
   expect(gaps[1]).toBeCloseTo(gaps[2], 8);
 });
 
-test('overview and all browse geometry from 1971 onward retain their original coordinates', () => {
+test('overview from 1971 onward and all browse geometry retain their original coordinates', () => {
   for (const view of [
     { width: 1280, height: 720 },
     { width: 1920, height: 869 },
@@ -60,12 +60,37 @@ test('overview and all browse geometry from 1971 onward retain their original co
           }
         }
       }
-      for (const year of [1949, 1966, 1971, 1997, endYear]) {
+      for (const year of [1971, 1997, endYear]) {
         const q = lengths(view).overview * (overviewUnit(year, endYear) - 0.5);
         const pose = anchor(year, 'school', view, { focus: 0.4, zoom: 0, endYear });
         expect(pose.x).toBeCloseTo(view.width * 0.47 + direction.x * q - normal.x * 20, 8);
         expect(pose.y).toBeCloseTo(view.height * 0.49 + direction.y * q - normal.y * 20, 8);
       }
+    }
+  }
+});
+
+test('early overview years fit both history rails without changing their shared chronology', () => {
+  const overviewYears = [...new Set(
+    [...timeline.upperRailEvents, ...timeline.educationEvents].map((event) => event.year),
+  )].sort((a, b) => a - b);
+  for (const view of [
+    { width: 1280, height: 720 },
+    { width: 1440, height: 900 },
+    { width: 1920, height: 1080 },
+    { width: 3840, height: 2160 },
+  ]) {
+    const values = { focus: 0, zoom: 0, endYear: 2026, overviewYears };
+    for (const lane of ['upper', 'education'] as const) {
+      const points = [1949, 1952, 1957, 1959, 1960, 1966, 1971].map((year) => anchor(year, lane, view, values));
+      for (const point of points) {
+        expect(point.x).toBeGreaterThanOrEqual(32);
+        expect(point.y).toBeLessThanOrEqual(view.height - 32);
+      }
+      points.slice(1).forEach((point, index) => {
+        expect(point.x).toBeGreaterThan(points[index].x);
+        expect(point.y).toBeLessThan(points[index].y);
+      });
     }
   }
 });
@@ -180,8 +205,10 @@ test('overview spaces every marked year across the full rail without changing br
   const points = years.map((year) => anchor(year, 'upper', view, marked));
   const minimum = (0.78 * lengths(view).overview) / years.length;
   points.slice(1).forEach((point, index) => {
+    // The early section now reserves space for the first education marker.
+    // Keep its labels at least one label-width apart; later gaps stay unchanged.
     expect(Math.hypot(point.x - points[index].x, point.y - points[index].y)).toBeGreaterThanOrEqual(
-      minimum,
+      years[index] < 1971 ? 29 : minimum,
     );
   });
   expect(anchor(2000, 'upper', view, { ...browse, overviewYears: years })).toEqual(
