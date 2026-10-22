@@ -84,19 +84,44 @@
   white-space: nowrap;
 }
 .help-visual span { color: #8e7555; }
-.help-swipe { font-size: 31px; }
-.help-views {
-  flex-direction: row;
-  gap: 8px;
-  font-size: 12px;
+.help-timeline {
+  position: relative;
   letter-spacing: 0;
 }
-.help-views span {
-  flex: 0 0 auto;
-  padding: 5px 7px;
-  border: 1px solid #c2b9ac;
-  background: #f9f7f2;
-  color: #514d44;
+.help-timeline-line {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 44%;
+  height: 1px;
+  background: currentColor;
+}
+.help-timeline-point {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+.help-timeline-year {
+  position: absolute;
+  left: 50%;
+  top: calc(44% - 25px);
+  transform: translateX(-50%);
+  font-size: 13px;
+  line-height: 18px;
+}
+.help-timeline-finger {
+  position: absolute;
+  left: 50%;
+  top: calc(44% + 3px);
+  transform: translateX(-50%);
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 28px;
+  line-height: 1;
 }
 .help-photo {
   display: grid;
@@ -169,8 +194,6 @@
   .help-body { padding: 18px 17px; }
   .help-step { grid-template-columns: 94px minmax(0, 1fr); gap: 12px; }
   .help-visual { min-height: 62px; font-size: 13px; }
-  .help-views { gap: 4px; font-size: 10px; }
-  .help-views span { padding: 6px 3px; }
   .help-themes { gap: 4px; }
   .help-themes i { width: 13px; height: 13px; }
   .help-step h3 { font-size: 13px; }

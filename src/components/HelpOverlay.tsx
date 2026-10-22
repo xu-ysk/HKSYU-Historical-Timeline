@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import type { Locale } from '../domain/timeline';
 import { themes, themeIds } from '../config/themes';
-import { messages } from '../i18n/messages';
 
 const copy = {
   'zh-Hant': {
@@ -10,8 +9,6 @@ const copy = {
     dialogLabel: '操作指引',
     moveTitle: '查看歷史節點',
     move: '輕觸兩條時間線上的任一圓點，對應的樹仁校史或香港教育史會放大顯示在中央；輕觸 01／02 左邊的小房子返回全覽。',
-    viewTitle: '全覽時間軸',
-    view: '完整相冊保持全覽顯示，拖曳或滾動不會改變時間軸的位置或視角。',
     photoTitle: '細看相片',
     photo: '輕觸相片打開詳情。用雙指張開或捏合來放大、縮小相片，放大後用一根手指移動；輕觸詳情中的左右箭頭切換事件，或輕觸小房子返回時間軸。',
     personalizeTitle: '主題切換',
@@ -26,8 +23,6 @@ const copy = {
     dialogLabel: '操作指引',
     moveTitle: '查看历史节点',
     move: '轻触两条时间线上的任意圆点，对应的树仁校史或香港教育史会放大显示在中央；轻触 01／02 左边的小房子返回全览。',
-    viewTitle: '全览时间轴',
-    view: '完整相册保持全览显示，拖曳或滚动不会改变时间轴的位置或视角。',
     photoTitle: '细看照片',
     photo: '轻触照片打开详情。用双指张开或捏合来放大、缩小照片，放大后用一根手指移动；轻触详情中的左右箭头切换事件，或轻触小房子返回时间轴。',
     personalizeTitle: '主题切换',
@@ -42,8 +37,6 @@ const copy = {
     dialogLabel: 'Visitor guide',
     moveTitle: 'Read the history',
     move: 'Tap any point on either timeline to open its Shue Yan or Hong Kong education history in the centre. Tap the home button to the left of 01 or 02 to return to Overview.',
-    viewTitle: 'The complete timeline',
-    view: 'The album stays in Overview. Scrolling and dragging do not move or zoom the timeline.',
     photoTitle: 'Look closer',
     photo: 'Tap a photograph to open it. Spread or pinch two fingers to zoom; move the enlarged image with one finger. Tap the detail arrows to switch events, or tap the home button to return to the timeline.',
     personalizeTitle: 'Switch themes',
@@ -119,14 +112,13 @@ export function HelpOverlay({
         <div className="help-body">
           <div className="help-guide">
             <div className="help-step">
-              <span className="help-visual help-swipe" aria-hidden="true">01 / 02</span>
-              <div><h3>{c.moveTitle}</h3><p>{c.move}</p></div>
-            </div>
-            <div className="help-step">
-              <span className="help-visual help-views" aria-hidden="true">
-                <span>{messages[locale].overview}</span>
+              <span className="help-visual help-timeline" aria-hidden="true">
+                <span className="help-timeline-line" />
+                <span className="help-timeline-point" />
+                <span className="help-timeline-year">1971</span>
+                <span className="help-timeline-finger">👆</span>
               </span>
-              <div><h3>{c.viewTitle}</h3><p>{c.view}</p></div>
+              <div><h3>{c.moveTitle}</h3><p>{c.move}</p></div>
             </div>
             <div className="help-step">
               <span className="help-visual help-photo" aria-hidden="true">
