@@ -145,14 +145,21 @@ export default function App() {
   const detailNeighbors = selected && data
     ? detailEventNeighbors(data.schoolEvents, selected, active)
     : null;
-  const railEvent = railSelection && data
+  const railTimeline = railSelection && data
     ? (railSelection.lane === 'upper' ? data.upperRailEvents : data.educationEvents)
-        .find((event) => event.id === railSelection.eventId)
-    : undefined;
-  const railEvents = railSelection && railEvent && data
-    ? (railSelection.lane === 'upper' ? data.upperRailEvents : data.educationEvents)
-        .filter((event) => event.year === railEvent.year)
     : [];
+  const railEvent = railSelection
+    ? railTimeline.find((event) => event.id === railSelection.eventId)
+    : undefined;
+  const railEvents = railEvent
+    ? railTimeline.filter((event) => event.year === railEvent.year)
+    : [];
+  const railPrevious = railEvent
+    ? [...railTimeline].reverse().find((event) => event.year < railEvent.year)
+    : undefined;
+  const railNext = railEvent
+    ? railTimeline.find((event) => event.year > railEvent.year)
+    : undefined;
   useEffect(() => {
     const abort = new AbortController();
     let inFlight = false;
@@ -327,6 +334,12 @@ export default function App() {
           locale={locale}
           onLocaleChange={setLocale}
           onHome={returnToOverview}
+          onPrevious={railPrevious
+            ? () => setRailSelection({ lane: railSelection.lane, eventId: railPrevious.id })
+            : undefined}
+          onNext={railNext
+            ? () => setRailSelection({ lane: railSelection.lane, eventId: railNext.id })
+            : undefined}
           suspended={helpOpen}
         />
       )}

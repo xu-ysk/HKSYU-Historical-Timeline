@@ -17,6 +17,8 @@ export function RailEventDetail({
   locale,
   onLocaleChange,
   onHome,
+  onPrevious,
+  onNext,
   suspended,
 }: {
   events: readonly (UpperRailEvent | EducationEvent)[];
@@ -24,6 +26,8 @@ export function RailEventDetail({
   locale: Locale;
   onLocaleChange: (locale: Locale) => void;
   onHome: () => void;
+  onPrevious?: () => void;
+  onNext?: () => void;
   suspended: boolean;
 }) {
   const dialogRef = useRef<HTMLElement>(null);
@@ -43,6 +47,13 @@ export function RailEventDetail({
     };
   }, []);
 
+  useLayoutEffect(() => {
+    const focused = document.activeElement;
+    if (focused instanceof HTMLButtonElement && focused.disabled && dialogRef.current?.contains(focused)) {
+      homeRef.current?.focus({ preventScroll: true });
+    }
+  }, [event.id]);
+
   return createPortal(
     <div className="rail-detail-overlay" inert={suspended}>
       <section
@@ -57,7 +68,7 @@ export function RailEventDetail({
         data-year={event.year}
         onKeyDown={(e) => {
           if (e.key !== 'Tab') return;
-          const buttons = Array.from(dialogRef.current?.querySelectorAll('button') ?? []);
+          const buttons = Array.from(dialogRef.current?.querySelectorAll<HTMLButtonElement>('button:not(:disabled)') ?? []);
           const index = buttons.indexOf(document.activeElement as HTMLButtonElement);
           e.preventDefault();
           buttons[(index + (e.shiftKey ? buttons.length - 1 : 1)) % buttons.length]?.focus();
@@ -94,6 +105,32 @@ export function RailEventDetail({
               </article>
             ))}
           </div>
+        </div>
+        <div className="rail-detail-navigation" role="group" aria-label={m.yearNavigation}>
+          <button
+            type="button"
+            data-testid="rail-detail-previous"
+            aria-label={m.previousYear}
+            title={m.previousYear}
+            disabled={!onPrevious}
+            onClick={onPrevious}
+          >
+            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M25 16H7m0 0 7-7m-7 7 7 7" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            data-testid="rail-detail-next"
+            aria-label={m.nextYear}
+            title={m.nextYear}
+            disabled={!onNext}
+            onClick={onNext}
+          >
+            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M7 16h18m0 0-7-7m7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </section>
     </div>,

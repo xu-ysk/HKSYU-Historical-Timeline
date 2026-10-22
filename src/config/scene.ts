@@ -14,7 +14,7 @@ export const sceneConfig = {
   dragSensitivity: 0.75,
   wheelDuration: 0.8,
   // Enlarge the selected theme; the controller hides photos from other themes.
-  themeLarge: 1.25,
+  themeLarge: 1.8,
   themeSmall: 0.35,
   duration: 0.75,
 };

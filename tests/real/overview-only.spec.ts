@@ -138,12 +138,50 @@ for (const size of [
       }
       await page.getByTestId('rail-detail-home').focus();
       await page.keyboard.press('Shift+Tab');
-      await expect(page.getByTestId('rail-language-zh-Hans')).toBeFocused();
+      await expect(page.getByTestId('rail-detail-next')).toBeFocused();
       await page.keyboard.press('Tab');
       await expect(page.getByTestId('rail-detail-home')).toBeFocused();
       await page.getByTestId('rail-detail-home').tap();
       await expect(dialog).toHaveCount(0);
     }
+  });
+}
+
+for (const lane of ['upper', 'education'] as const) {
+  test(`history arrows traverse distinct years on ${lane} and stop at both ends`, async ({ page }) => {
+    test.setTimeout(120000); // Traverse every real-data year in both directions using native touch.
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.goto('/');
+    const dialog = page.getByTestId('rail-event-detail');
+    const previous = page.getByTestId('rail-detail-previous');
+    const next = page.getByTestId('rail-detail-next');
+    const events = lane === 'upper' ? data.upperRailEvents : data.educationEvents;
+    const years = [...new Set(events.map((event) => event.year))].sort((a, b) => a - b);
+    await page.locator(lane === 'upper' ? '[data-upper-year]' : '[data-education-year]').first().tap();
+    await expect(previous).toBeDisabled();
+    for (const [index, year] of years.entries()) {
+      await expect(dialog).toHaveAttribute('data-lane', lane);
+      await expect(dialog).toHaveAttribute('data-year', String(year));
+      await expect(dialog.locator('[data-rail-record]')).toHaveCount(events.filter((event) => event.year === year).length);
+      for (const record of events.filter((event) => event.year === year)) {
+        await expect(dialog.locator(`[data-rail-record="${record.id}"] p`)).toHaveText(localized(record.body, 'zh-Hant'));
+      }
+      await expect(previous).toBeInViewport({ ratio: 1 });
+      await expect(next).toBeInViewport({ ratio: 1 });
+      if (index < years.length - 1) await next.tap();
+    }
+    await expect(next).toBeDisabled();
+    await page.getByTestId('rail-detail-home').focus();
+    await page.keyboard.press('Shift+Tab');
+    await expect(previous).toBeFocused();
+    for (const year of years.slice(0, -1).reverse()) {
+      await previous.tap();
+      await expect(dialog).toHaveAttribute('data-year', String(year));
+    }
+    await expect(previous).toBeDisabled();
+    await page.getByTestId('rail-detail-home').tap();
+    await expect(dialog).toHaveCount(0);
+    await expect(page.locator('.museum-app')).toHaveJSProperty('inert', false);
   });
 }
 
@@ -176,7 +214,7 @@ for (const size of [
         .filter((event) => event.themeId === theme)
         .reduce((sum, event) => sum + Math.max(1, event.photos.length), 0);
       await expect(selected).toHaveCount(count);
-      await expect(selected.last()).toHaveAttribute('style', /scale\(1.25\)/);
+      await expect(selected.last()).toHaveAttribute('style', /scale\(1.8\)/);
       const boxes = await selected.evaluateAll((nodes) => nodes.map((node) => {
         const box = node.getBoundingClientRect();
         return { x: box.x + box.width / 2, y: box.y + box.height / 2,

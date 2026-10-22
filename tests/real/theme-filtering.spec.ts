@@ -38,9 +38,9 @@ for (const mode of ['overview', 'browse']) {
       const normalWidth = (await source.boundingBox())!.width;
       const button = page.getByTestId(`theme-${sample.theme}`);
       await button.click();
-      await expect(source).toHaveAttribute('style', /scale\(1.25\)/);
+      await expect(source).toHaveAttribute('style', /scale\(1.8\)/);
       await expect(page.locator(`.photo-card:not([data-theme="${sample.theme}"]):visible`)).toHaveCount(0);
-      expect((await source.boundingBox())!.width / normalWidth).toBeCloseTo(1.25, 2);
+      expect((await source.boundingBox())!.width / normalWidth).toBeCloseTo(1.8, 2);
       await expect(scene).toHaveAttribute('data-focus', focus!);
       expect(await page.locator(`.photo-card:not([data-theme="${sample.theme}"])`).evaluateAll((elements) =>
         elements.every((element) => (element as HTMLButtonElement).tabIndex === -1 &&

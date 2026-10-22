@@ -15,7 +15,7 @@ test('all themes show only enlarged matching photos without changing time', asyn
     await page.getByTestId('theme-' + theme).click();
     await expect(page.locator('.photo-card[data-theme="' + theme + '"]').first()).toHaveAttribute(
       'style',
-      /scale\(1.25\)/,
+      /scale\(1.8\)/,
     );
     await expect(
       page.locator('.photo-card:not([data-theme="' + theme + '"])').first(),
@@ -40,7 +40,7 @@ test('all themes show only enlarged matching photos without changing time', asyn
   await page.getByTestId('theme-A').click();
   await expect(page.locator('.photo-card[data-theme="A"]').first()).toHaveAttribute(
     'style',
-    /scale\(1.25\)/,
+    /scale\(1.8\)/,
   );
   await page.screenshot({ path: test.info().outputPath('stage4-theme-A.png') });
   await page.getByTestId('theme-home-upper').click();
@@ -61,7 +61,7 @@ test('language and rapid theme changes preserve current browsing position', asyn
   await expect(page.getByTestId('theme-E')).toHaveAttribute('aria-pressed', 'true');
   await expect(
     page.locator('.photo-card[data-theme="E"]').filter({ visible: true }).first(),
-  ).toHaveAttribute('style', /scale\(1.25\)/);
+  ).toHaveAttribute('style', /scale\(1.8\)/);
   await expect(page.getByTestId('scene')).toHaveAttribute('data-focus', focus!);
   await page.getByTestId('language-en').click();
   await page.screenshot({ path: test.info().outputPath('stage4-english.png') });
