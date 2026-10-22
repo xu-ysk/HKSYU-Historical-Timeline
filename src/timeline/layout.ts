@@ -64,6 +64,16 @@ export function lengths(view: Viewport) {
     browse: config.browseLength * Math.max(0.8, view.width / 1440),
   };
 }
+/** Fit a selected theme in chronological order with a consistent sleeve spacing. */
+export function themeAlbumPosition(index: number, count: number, view: Viewport) {
+  const intervals = Math.max(0, count - 1);
+  const span = Math.min(intervals * 52, lengths(view).overview * 0.88);
+  const distance = intervals ? (index / intervals - 0.5) * span : 0;
+  return {
+    x: view.width / 2 + direction.x * distance,
+    y: view.height / 2 + direction.y * distance,
+  };
+}
 /** Spread every marked year across the overview rail while preserving chronology. */
 export function overviewUnit(year: number, endYear: number, years?: readonly number[]) {
   if (years?.length) {

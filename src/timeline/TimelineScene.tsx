@@ -106,7 +106,7 @@ export function TimelineScene({
       data-locale={locale}
     >
       <svg className="track-lines" width="100%" height="100%" aria-hidden="true">
-        {(['axis', 'upper', 'education'] as const).map((lane) => {
+        {(['upper', 'education'] as const).map((lane) => {
           const { first: a, last: b } = trackEndpoints(lane, view, values);
           return (
             <line
@@ -116,7 +116,7 @@ export function TimelineScene({
               y1={a.y}
               x2={b.x}
               y2={b.y}
-              stroke={lane === 'axis' ? '#c4bfb5' : '#ded9d1'}
+              stroke="#ded9d1"
               strokeWidth="1"
             />
           );
@@ -156,17 +156,6 @@ export function TimelineScene({
                 <path d="M5 14.5 16 6l11 8.5M8 13.5V26h16V13.5M13 26v-8h6v8" />
               </svg>
             </button>
-          )}
-          {lane === 'education' && (
-            <svg className="swipe-guide-arrow" viewBox="0 0 54 16" aria-hidden="true">
-              <path d="M53 8H2m0 0 7-6M2 8l7 6" />
-            </svg>
-          )}
-          <span aria-hidden="true">{m.swipeBlank}</span>
-          {lane === 'upper' && (
-            <svg className="swipe-guide-arrow" viewBox="0 0 54 16" aria-hidden="true">
-              <path d="M1 8h51m0 0-7-6m7 6-7 6" />
-            </svg>
           )}
         </div>
       ))}

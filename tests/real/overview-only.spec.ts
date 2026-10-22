@@ -118,6 +118,51 @@ for (const size of [
   });
 }
 
+for (const size of [
+  { width: 1280, height: 720 },
+  { width: 1440, height: 900 },
+  { width: 1920, height: 869 },
+]) {
+  test(`theme collections have even spacing and stay centred at ${size.width}`, async ({ page }) => {
+    test.setTimeout(60000);
+    await page.setViewportSize(size);
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const cards = page.locator('.photo-card');
+    await expect(cards).toHaveCount(data.schoolEvents.reduce((sum, event) => sum + Math.max(1, event.photos.length), 0));
+    await expect(cards.first()).toHaveAttribute('style', /scale\(1\)/);
+    const overview = await cards.evaluateAll((nodes) => nodes.map((node) => (node as HTMLElement).style.transform));
+    for (const theme of ['A', 'B', 'C', 'D', 'E']) {
+      await page.getByTestId(`theme-${theme}`).click();
+      const selected = page.locator(`.photo-card[data-theme="${theme}"]:visible`);
+      const count = data.schoolEvents
+        .filter((event) => event.themeId === theme)
+        .reduce((sum, event) => sum + Math.max(1, event.photos.length), 0);
+      await expect(selected).toHaveCount(count);
+      await expect(selected.last()).toHaveAttribute('style', /scale\(1.25\)/);
+      const boxes = await selected.evaluateAll((nodes) => nodes.map((node) => {
+        const box = node.getBoundingClientRect();
+        return { x: box.x + box.width / 2, y: box.y + box.height / 2,
+          left: box.left, right: box.right, top: box.top, bottom: box.bottom };
+      }));
+      const gaps = boxes.slice(1).map((box, index) => Math.hypot(box.x - boxes[index].x, box.y - boxes[index].y));
+      expect(Math.max(...gaps) - Math.min(...gaps)).toBeLessThan(0.1);
+      expect(Math.min(...gaps)).toBeGreaterThan(15);
+      expect(Math.max(...gaps)).toBeLessThanOrEqual(52.1);
+      expect(Math.abs((boxes[0].x + boxes.at(-1)!.x) / 2 - size.width / 2)).toBeLessThan(1);
+      expect(Math.abs((boxes[0].y + boxes.at(-1)!.y) / 2 - size.height / 2)).toBeLessThan(1);
+      expect(boxes.every((box) => box.left > 0 && box.top > 0 && box.right < size.width && box.bottom < size.height)).toBe(true);
+      await selected.first().click();
+      await expect(page.getByTestId('event-detail')).toHaveAttribute('data-phase', 'detail');
+      await page.getByTestId('close-detail').click();
+      await expect(page.getByTestId('event-detail')).toHaveCount(0);
+      await page.getByTestId('theme-home-upper').click();
+      await expect(page.locator('.museum-app')).toHaveAttribute('data-active-theme', 'all');
+      await expect(cards.first()).toHaveAttribute('style', /scale\(1\)/);
+      expect(await cards.evaluateAll((nodes) => nodes.map((node) => (node as HTMLElement).style.transform))).toEqual(overview);
+    }
+  });
+}
+
 test('theme filtering, photo detail and return controls remain usable', async ({ page }) => {
   await page.goto('/');
   const historyElements = page.locator(

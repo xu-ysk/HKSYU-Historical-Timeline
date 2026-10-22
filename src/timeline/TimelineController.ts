@@ -12,6 +12,7 @@ import {
   direction,
   isOnscreen,
   trackEndpoints,
+  themeAlbumPosition,
   groupPhotoDisplacement,
   normal,
   transform,
@@ -58,6 +59,7 @@ export class TimelineController {
   private events: SchoolEvent[];
   private themeScales: Record<ThemeId, number> = { A: 1, B: 1, C: 1, D: 1, E: 1 };
   private activeTheme: ThemeId | null = null;
+  private themeIndices = new Map<string, number>();
   private detailState: DetailState = initialDetail;
   private detail = { progress: 0 };
   private returnFocus: HTMLElement | null = null;
@@ -139,6 +141,7 @@ export class TimelineController {
   }
   setTheme(theme: ThemeId | null) {
     this.activeTheme = theme;
+    this.updateThemeIndices();
     this.dirty = true;
     const target = Object.fromEntries(
       themeIds.map((id) => [
@@ -159,6 +162,13 @@ export class TimelineController {
       .closest<HTMLElement>('.museum-app')
       ?.style.setProperty('--theme-accent', theme ? themes[theme].color : '#796e5d');
   }
+  private updateThemeIndices() {
+    this.themeIndices = new Map(
+      this.nodes
+        .filter(({ card }) => card.event.themeId === this.activeTheme)
+        .map(({ card }, index) => [card.id, index]),
+    );
+  }
   updateData(cards: DisplayCard[], endYear: number, overviewYears: readonly number[]) {
     if (this.values.endYear !== endYear) this.rebase(endYear);
     this.values.overviewYears = overviewYears;
@@ -172,6 +182,7 @@ export class TimelineController {
     );
     this.nodes = cards.map((card) => ({ card, el: elements.get(card.id)! }));
     this.stackIndices = new Map(cards.map((card, index) => [card.id, index]));
+    this.updateThemeIndices();
     this.lastTrackPoseKey = '';
     this.dirty = true;
   }
@@ -569,6 +580,14 @@ export class TimelineController {
     const position = this.positions.get(card.event.id)!;
     const p = cardPose(card, this.view, this.values, position);
     p.scale = this.themeScales[card.event.themeId];
+    const themeIndex = this.themeIndices.get(card.id);
+    if (themeIndex !== undefined) {
+      const point = themeAlbumPosition(themeIndex, this.themeIndices.size, this.view);
+      p.x = point.x;
+      p.y = point.y;
+      p.z = chronologicalStackZ(this.stackIndices.get(card.id)!);
+      return p;
+    }
     const smallestScale = Math.min(...themeIds.map((id) => this.themeScales[id]));
     const lineMix = clamp((1 - smallestScale) / (1 - sceneConfig.themeSmall));
     if (card.event.photos.length > 1 && card.photo) {
@@ -829,6 +848,15 @@ export class TimelineController {
       this.root.querySelectorAll<SVGLineElement>('[data-track]').forEach((el) => {
         const lane = el.dataset.track as 'axis' | 'upper' | 'education',
           { first: a, last: b } = trackEndpoints(lane, this.view, this.values);
+        if (this.activeTheme && lane === 'axis') {
+          // Keep the photo rail aligned with the centred selected collection.
+          const dx = this.view.width * 0.03;
+          const dy = this.view.height * 0.01;
+          a.x += dx;
+          b.x += dx;
+          a.y += dy;
+          b.y += dy;
+        }
         el.setAttribute('x1', String(a.x));
         el.setAttribute('y1', String(a.y));
         el.setAttribute('x2', String(b.x));
