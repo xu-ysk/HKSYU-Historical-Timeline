@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-328d78ccf88e1f91",
+  "revision": "xlsx-eb5e05aef80f32c2",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -461,12 +461,12 @@
       "photoGroupId": "P01",
       "title": {
         "en": "Dr. Henry Hu Hung-lick and Dr. Chung Chi-yung founded Hong Kong Shue Yan College on Sing Woo Road, Happy Valley, to address the shortage of places in local post-secondary education.",
-        "zh-Hant": "胡鴻烈與鍾期榮在跑馬地成和道創辦香港樹仁書院，以回應本地專上教育學額不足。",
-        "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以响应本地专上教育学额不足。"
+        "zh-Hant": "胡鴻烈與鍾期榮在跑馬地成和道創辦香港樹仁書院，以應對本地專上教育學額不足。",
+        "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以应对本地专上教育学额不足的问题。"
       },
       "body": {
-        "en": "Shue Yan established its Board of Governors, bringing together prominent leaders to advance university affairs and campus development. The Board of Governors included Chairman Wilfred Wong Sien-bing, and other members such as Sir Run Run Shaw, Ms. Aw Sian from Sing Tao Daily, Mr. Ngan Shing-kwan, founder of China Motor Corporation, Mr. Ting Hsiung-chao, one of the founders of the Hong Kong Plastics Manufacturers Association, Dr. Maurice J. Anderson, Mr. T. K. Ann, Bishop Gilbert Baker, Barrister Brook Bernacchi, Mr. Cha Chi Ming, Mr. Chan Po Fun, Mr. Chen Chan-yen, Dr. Dr. Chung Chi-yung, Rev. Fergus Cronin, Mr. Dr. Henry Hu Hung-lick, Mr. Huo Pao-tsai, Barrister Henry Litton, Mr. Liu Han-tang, Mr. Y. B. Loo, Mr. Peter P. K. Ng, Mr. Shum Choi Sang, Mr. Shum Wai-yau, Mr. Peter H. M. Tsang, Mr. C. S. Wan, and Mr. Yuen Ngan Ming.",
-        "zh-Hant": "樹仁成立校董會，匯聚賢達，推動校務與校舍建設。校董會成員包括主席黃宣平議員，校董成員包括邵逸夫先生、來自《星島日報》的胡仙女士、中華汽車創辦人顏成坤議員、香港塑膠業廠商會創會人之一丁熊照先生、晏務理博士、安子介議員、白約翰主教、貝納祺御用大律師、查濟民先生、陳普芬議員、陳存仁先生、鍾期榮博士、龔樂年神父、胡鴻烈議員、霍寶材先生、烈顯倫御用大律師、劉漢棟先生、陸蔭百先生、伍秉堅議員、岑才生先生、岑維休先生、曾漢文先生、萬春先先生、阮雁鳴先生",
+        "en": "Shue Yan established its Board of Governors, bringing together prominent leaders to advance university affairs and campus development. The Board of Governors included Chairman Wilfred Wong Sien-bing, and other members such as Sir Run Run Shaw, Ms. Aw Sian from Sing Tao Daily, Mr. Ngan Shing-kwan, founder of China Motor Bus Company, Limited, Mr. Ting Hsiung-chao, one of the founders of the Hong Kong Plastics Manufacturers Association, Dr. Maurice J. Anderson, Mr. T. K. Ann, Bishop Gilbert Baker, Barrister Brook Bernacchi, Mr. Cha Chi Ming, Mr. Chan Po Fun, Mr. Chen Chan-yen, Dr. Chung Chi-yung, Rev. Fergus Cronin, Dr. Henry Hu Hung-lick, Mr. Huo Pao-tsai, Barrister Henry Litton, Mr. Liu Han-tang, Mr. Y. B. Loo, Mr. Peter P. K. Ng, Mr. Shum Choi Sang, Mr. Shum Wai-yau, Mr. Peter H. M. Tsang, Mr. C. S. Wan, and Mr. Yuen Ngan Ming.",
+        "zh-Hant": "樹仁成立校董會，匯聚賢達，推動校務與校舍建設。校董會成員包括主席黃宣平議員，校董成員包括邵逸夫先生、來自《星島日報》的胡仙女士、中華汽車創辦人顏成坤議員、香港塑膠業廠商會創會人之一丁熊照先生、晏務理博士、安子介議員、白約翰主教、貝納祺御用大律師、查濟民先生、陳普芬議員、陳存仁先生、鍾期榮博士、龔樂年神父、胡鴻烈議員、霍寶材先生、烈顯倫御用大律師、劉漢棟先生、陸蔭百先生、伍秉堅議員、岑才生先生、岑維休先生、曾漢文先生、萬春先先生、阮雁鳴先生。",
         "zh-Hans": "树仁成立校董会，汇聚贤达，推动校务与校舍建设。校董会成员包括主席黄宣平议员，校董成员包括邵逸夫先生、来自《星岛日报》的胡仙女士、中华汽车创办人颜成坤议员、香港塑料业厂商会创会人之一丁熊照先生、晏务理博士、安子介议员、白约翰主教、贝纳祺御用大律师、查济民先生、陈普芬议员、陈存仁先生、钟期荣博士、龚乐年神父、胡鸿烈议员、霍宝材先生、烈显伦御用大律师、刘汉栋先生、陆荫百先生、伍秉坚议员、岑才生先生、岑维休先生、曾汉文先生、万春先先生、阮雁鸣先生。"
       },
       "photos": [
@@ -478,8 +478,8 @@
           "height": 617,
           "alt": {
             "en": "Dr. Henry Hu Hung-lick and Dr. Chung Chi-yung founded Hong Kong Shue Yan College on Sing Woo Road, Happy Valley, to address the shortage of places in local post-secondary education.",
-            "zh-Hant": "胡鴻烈與鍾期榮在跑馬地成和道創辦香港樹仁書院，以回應本地專上教育學額不足。",
-            "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以响应本地专上教育学额不足。"
+            "zh-Hant": "胡鴻烈與鍾期榮在跑馬地成和道創辦香港樹仁書院，以應對本地專上教育學額不足。",
+            "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以应对本地专上教育学额不足的问题。"
           }
         },
         {
@@ -490,8 +490,8 @@
           "height": 827,
           "alt": {
             "en": "Dr. Henry Hu Hung-lick and Dr. Chung Chi-yung founded Hong Kong Shue Yan College on Sing Woo Road, Happy Valley, to address the shortage of places in local post-secondary education.",
-            "zh-Hant": "胡鴻烈與鍾期榮在跑馬地成和道創辦香港樹仁書院，以回應本地專上教育學額不足。",
-            "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以响应本地专上教育学额不足。"
+            "zh-Hant": "胡鴻烈與鍾期榮在跑馬地成和道創辦香港樹仁書院，以應對本地專上教育學額不足。",
+            "zh-Hans": "胡鸿烈与钟期荣在跑马地成和道创办香港树仁书院，以应对本地专上教育学额不足的问题。"
           }
         }
       ]
@@ -747,9 +747,9 @@
       "photoGroupId": "P09",
       "title": {},
       "body": {
-        "en": "Education Department's specialists conducted Shue Yan’s first academic assessment, followed by a further inspection by Director K. W. J. Topley.",
-        "zh-Hant": "教育署專家首次評核樹仁學術水平，其後教育署署長 K. W. J. Topley 再次視察。",
-        "zh-Hans": "教育署专家首次评核树仁学术水平，其后教育署署长 K. W. J. Topley 再次视察。"
+        "en": "The Education Department's specialists conducted Shue Yan’s first academic assessment, followed by a further inspection by Director K. W. J. Topley.",
+        "zh-Hant": "教育署專家首次評核樹仁學術水平，其後教育司陶建（K. W. J. Topley）再次視察。",
+        "zh-Hans": "教育署专家首次评核树仁学术水平，其后教育司陶建（K. W. J. Topley）再次视察。"
       },
       "photos": [
         {
@@ -980,8 +980,8 @@
       "title": {},
       "body": {
         "en": "Student representatives presented the Director of Education, K. W. J. Topley, with a campus-wide petition defending Shue Yan’s four-year curriculum.",
-        "zh-Hant": "學生代表向教育署署長 K. W. J. Topley 遞交全校聯署，捍衛樹仁四年制課程。",
-        "zh-Hans": "学生代表向教育署署长 K. W. J. Topley 递交全校联署，捍卫树仁四年制课程。"
+        "zh-Hant": "學生代表向教育司陶建（K. W. J. Topley）遞交全校聯署，捍衛樹仁四年制課程。",
+        "zh-Hans": "学生代表向教育司陶建（K. W. J. Topley）递交全校联署，捍卫树仁四年制课程。"
       },
       "photos": [
         {
@@ -1309,7 +1309,7 @@
       "photoGroupId": "P26",
       "title": {},
       "body": {
-        "en": "Dr. Henry Hu Hung-lick Hung-lick was appointed a member of the sixth National Committee of the Chinese People’s Political Consultative Conference in 1987. He subsequently served on the Seventh National Committee and, from 1993, as a Standing Committee member of the Eighth and Ninth National Committees.",
+        "en": "Dr. Henry Hu Hung-lick was appointed a member of the sixth National Committee of the Chinese People’s Political Consultative Conference in 1987. He subsequently served on the Seventh National Committee and, from 1993, as a Standing Committee member of the Eighth and Ninth National Committees.",
         "zh-Hant": "胡鴻烈於1987年獲委任為第六屆全國政協委員，後續任第七屆委員，並於1993年起出任第八、九屆全國政協常委。",
         "zh-Hans": "胡鸿烈于1987年获委任为第六届全国政协委员，后续任第七届委员，并于1993年起出任第八、九届全国政协常委。"
       },
@@ -2375,7 +2375,7 @@
       "title": {},
       "body": {
         "en": "The Department of English Language and Literature underwent a validation from 27 to 29 April.",
-        "zh-Hant": "英文語文學系於4月27至29日進行課程評審",
+        "zh-Hant": "英文語文學系於4月27至29日進行課程評審。",
         "zh-Hans": "英文语文学系于4月27至29日进行课程评审。"
       },
       "photos": [
@@ -2401,7 +2401,7 @@
       "title": {},
       "body": {
         "en": "Shue Yan College underwent an institutional review from 10 to 12 May, preparing for university status accreditation.",
-        "zh-Hant": "樹仁學院於5月10至12日進行院校評審，為升格大學作準備",
+        "zh-Hant": "樹仁學院於5月10至12日進行院校評審，為升格大學作準備。",
         "zh-Hans": "树仁学院于5月10至12日进行院校评审，为升格大学作准备。"
       },
       "photos": [
@@ -2676,7 +2676,7 @@
       "body": {
         "en": "The University launched its first independently offered master’s degree programme —  the Master of Social Sciences in Counselling Psychology.",
         "zh-Hant": "大學首次獨立開辦碩士學位課程——輔導心理學社會科學碩士。",
-        "zh-Hans": "大学首次独立开办硕士学位课程——辅导心理学社会科学硕士。\n\n來源： 《樹仁簡訊》2010年5月刊"
+        "zh-Hans": "大学首次独立开办硕士学位课程——辅导心理学社会科学硕士。\n\n来源：《樹仁簡訊》2010年5月刊"
       },
       "photos": [
         {
@@ -2849,7 +2849,7 @@
       "photoGroupId": "P78",
       "title": {},
       "body": {
-        "en": "A HK$6.75 million grant from the  Research Grants Council‘s Institutional Development Scheme was received to establish Shue Yan’s first interdisciplinary research platform and strengthen its research capacity.",
+        "en": "A HK$6.75 million grant from the  Research Grants Council’s Institutional Development Scheme was received to establish Shue Yan’s first interdisciplinary research platform and strengthen its research capacity.",
         "zh-Hant": "仁大獲研究資助局的院校發展計劃撥款六百七十五萬港元，建立校內首個跨學科研究平台並提升研究能力。",
         "zh-Hans": "仁大获研究资助局的院校发展计划拨款六百七十五万港元，建立校内首个跨学科研究平台并提升研究能力。"
       },
@@ -2963,7 +2963,7 @@
       "photoGroupId": "P82",
       "title": {},
       "body": {
-        "en": "A HK$6.2-million grant was received from the Research Grant Council’s  Institutional Development Scheme to expand interdisciplinary infrastructure for evidence-based practice and research.",
+        "en": "A HK$6.2-million grant was received from the Research Grants Council’s  Institutional Development Scheme to expand interdisciplinary infrastructure for evidence-based practice and research.",
         "zh-Hant": "仁大獲研究資助局的院校發展計劃撥款六百二十萬港元擴充循證實踐及研究的跨學科基礎設施。",
         "zh-Hans": "仁大获研究资助局的院校发展计划拨款六百二十万港元扩充循证实践及研究的跨学科基础设施。"
       },
@@ -3298,8 +3298,8 @@
       "title": {},
       "body": {
         "en": "In 2020/21, HKSYU received HK$16.4 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSocSc (Hons) in Arts, Culture and Technology.",
-        "zh-Hant": "2020/21 年, 樹仁獲自資專上教育提升及啟動補助金 一千六百四十萬元，發展藝術、文化及科技榮譽社會科學學士課程。",
-        "zh-Hans": "2020/21 年, 树仁获自资专上教育提升及启动补助金 一千六百四十万元，发展艺术、文化及科技荣誉社会科学学士课程。"
+        "zh-Hant": "2020/21年，樹仁獲自資專上教育提升及啟動補助金一千六百四十萬元，發展藝術、文化及科技榮譽社會科學學士課程。",
+        "zh-Hans": "2020/21年，树仁获自资专上教育提升及启动补助金 一千六百四十万元，发展艺术、文化及科技荣誉社会科学学士课程。"
       },
       "photos": [
         {
@@ -3396,7 +3396,7 @@
       "title": {},
       "body": {
         "en": "In 2022/23, Shue Yan received HK$19.5 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSc (Hons) in Digital Solutions for Entertainment and Game Applications.",
-        "zh-Hant": "2022/23 年度，仁大獲批自資專上教育提升及啟動補助金一千九百五十萬元，發展娛樂及遊戲應用數字方案榮譽理學士課程。",
+        "zh-Hant": "2022/23 年度，仁大獲批自資專上教育提升及啟動補助金一千九百五十萬元，發展娛樂及遊戲應用數碼方案榮譽理學士課程。",
         "zh-Hans": "2022/23 年度，仁大获批自资专上教育提升及启动补助金一千九百五十万元，发展娱乐及游戏应用数码方案荣誉理学士课程。"
       },
       "photos": [
@@ -3483,7 +3483,7 @@
       "photoGroupId": "P99",
       "title": {},
       "body": {
-        "en": "In 2023/24, Shue Yan received HK$14. 6 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSocSc (Hons) in Forensic and Investigative Psychology.",
+        "en": "In 2023/24, Shue Yan received HK$14.6 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop the BSocSc (Hons) in Forensic and Investigative Psychology.",
         "zh-Hant": "2023/24年，仁大獲批自資專上教育提升及啟動補助一千四百六十萬元，發展法證及偵緝心理學榮譽社會科學學士課程。",
         "zh-Hans": "2023/24年，仁大获批自资专上教育提升及启动补助一千四百六十万元，发展法证及侦缉心理学荣誉社会科学学士课程。"
       },
@@ -3741,7 +3741,7 @@
       "photoGroupId": "P107",
       "title": {},
       "body": {
-        "en": "The Bridging Grey Digital Divide and diversity in older ICT users post-COVID project advanced research on older adults’ use of technology and promoted age-inclusive digital innovation.",
+        "en": "The project “Mapping the grey digital divide and diversity in older ICT users post-COVID” advanced research on older adults’ use of technology and promoted age-inclusive digital innovation.",
         "zh-Hant": "跨越灰色數字鴻溝研究長者科技使用，推動年齡共融的數字創新。",
         "zh-Hans": "跨越灰色数码鸿沟研究长者科技使用，推动年龄共融的数码创新。"
       },
@@ -3927,7 +3927,7 @@
       "photoGroupId": "P113",
       "title": {},
       "body": {
-        "en": "In 2024/25, Shue Yan University received HK$25.1 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary education to develop an applied degree in Surveying and Dispute Resolution.",
+        "en": "In 2024/25, Shue Yan University received HK$25.1 million from the Enhancement and Start-up Grant Scheme for Self-financing Post-secondary Education to develop an applied degree in Surveying and Dispute Resolution.",
         "zh-Hant": "2024/2025年，仁大獲批自資專上教育提升及啟動補助金兩千五百一十萬元，發展測量及爭議解決學應用學位課程。",
         "zh-Hans": "2024/2025年，仁大获批自资专上教育提升及启动补助金两千五百一十万元，发展测量及争议解决学应用学位课程。"
       },
@@ -4070,15 +4070,15 @@
     {
       "id": "P118",
       "year": 2026,
-      "yearLabel": "2026-2031",
+      "yearLabel": "2026-2030",
       "orderInYear": 117,
       "themeId": "E",
       "photoGroupId": "P118",
       "title": {},
       "body": {
-        "en": "Shue Yan’s 2026-2031 Five-year Strategic Plan: Enhancing global competence through a digitally enabled liberal arts education. The Strategic Plan ADORN aims to amplify digital competence and interdisciplinarity, develop strategic areas of excellence with social impact, optimize engagement with communities and professional sectors, renew campus facilities with digital infrastructure and sustainable practices, as well as nurture glocal citizens through cultural education.",
-        "zh-Hant": "仁大的五年(2026-2031)策略計劃是融數字科技於博雅教育中，提升全球競爭力。五年策略計劃 （ADORN）旨在提升數字能力與跨學科發展，培育具社會影響力的策略性卓越領域；加強與社區及專業界別的聯繫；透過數字基礎設施及可持續實踐更新校園設施；並透過文化教育培養具本土與全球視野的公民。",
-        "zh-Hans": "仁大的五年(2026-2031)策略计划是融数字科技于博雅教育中，提升全球竞争力。五年策略计划（ADORN）旨在提升数字能力与跨学科发展，培育具社会影响力的策略性卓越领域；加强与社区及专业界别的联系；透过数码基础设施及可持续实践更新校园设施；并透过文化教育培养具本土与全球视野的公民。"
+        "en": "Shue Yan’s 2026-2030 Five-year Strategic Plan: Enhancing global competence through a digitally enabled liberal arts education. The Strategic Plan ADORN aims to amplify digital competence and interdisciplinarity, develop strategic areas of excellence with social impact, optimize engagement with communities and professional sectors, renew campus facilities with digital infrastructure and sustainable practices, as well as nurture glocal citizens through cultural education.",
+        "zh-Hant": "仁大的五年(2026-2030)策略計劃是融數字科技於博雅教育中，提升全球競爭力。五年策略計劃 （ADORN）旨在提升數字能力與跨學科發展，培育具社會影響力的策略性卓越領域；加強與社區及專業界別的聯繫；透過數字基礎設施及可持續實踐更新校園設施；並透過文化教育培養具本土與全球視野的公民。",
+        "zh-Hans": "仁大的五年(2026-2030)策略计划是融数字科技于博雅教育中，提升全球竞争力。五年策略计划（ADORN）旨在提升数字能力与跨学科发展，培育具社会影响力的策略性卓越领域；加强与社区及专业界别的联系；透过数码基础设施及可持续实践更新校园设施；并透过文化教育培养具本土与全球视野的公民。"
       },
       "photos": [
         {
@@ -4142,8 +4142,8 @@
       "orderInYear": 0,
       "title": {
         "en": "Post-WWII Population Growth and Rising Demand for Higher Education",
-        "zh-Hant": "戰後人口增長與中文高等教育需求上升",
-        "zh-Hans": "战后人口增长与中文高等教育需求上升"
+        "zh-Hant": "戰後，由內地遷入香港的人口迅速增加",
+        "zh-Hans": "战后，由内地迁入香港的人口迅速增加"
       },
       "body": {
         "en": "Rapid population growth after WWII increased demand for Chinese-medium secondary and post-secondary education opportunities.",
@@ -4253,7 +4253,7 @@
       "yearLabel": "1984",
       "orderInYear": 7,
       "title": {
-        "en": "Sino-British Joint Declaration signed on 19 Sept 1984",
+        "en": "Sino-British Joint Declaration signed on 19 December 1984",
         "zh-Hant": "《中英聯合聲明》簽署",
         "zh-Hans": "《中英联合声明》签署"
       },
@@ -4270,11 +4270,11 @@
       "orderInYear": 8,
       "title": {
         "en": "Education Commission Report No. 3",
-        "zh-Hant": "港府發表《教育委員會第三號報告書》",
-        "zh-Hans": "港府发表《教育委员会第三号报告书》"
+        "zh-Hant": "港府發表《教育統籌委員會第三號報告書》",
+        "zh-Hans": "港府发表《教育统筹委员会第三号报告书》"
       },
       "body": {
-        "en": "Report No. 3 in 1988 standardised Hong Kong's undergraduate degrees to three years, to be preceded by two years of A-levels (S6-7).",
+        "en": "Report No. 3 in 1988 standardised Hong Kong's undergraduate degrees to three years, admission after completion of two years of A-levels (S6-7).",
         "zh-Hant": "報告提出「四改三」，統一香港高等教育學制為三年制課程，入學資格則統一為兩年制預科（中六、中七）畢業。",
         "zh-Hans": "报告提出「四改三」，统一香港高等教育学制为三年制课程，入学资格则统一为两年制预科（中六、中七）毕业。"
       }
