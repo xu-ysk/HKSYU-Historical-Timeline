@@ -475,6 +475,8 @@ h1 {
   height: 1em;
   font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   font-size: clamp(26px, 2vw, 36px);
+  color: #A59B8B;
+  filter: url('#education-tap-hint-gray');
   line-height: 1;
   transform: translate(-50%, -50%) rotate(-40deg);
   pointer-events: none;
@@ -792,6 +794,9 @@ h1 {
   top: 86%;
   transform: translate(-50%, -50%);
 }
+.museum-app:not([data-active-theme='all']) .photo-hint {
+  top: 94%;
+}
 .theme-hint {
   left: 38%;
   bottom: calc(100% + 18px);
@@ -811,7 +816,7 @@ h1 {
   aspect-ratio: 1;
   padding: clamp(2px, 0.2vw, 4px);
   border: 2px solid;
-  border-color: color-mix(in srgb, var(--swatch) 55%, var(--page-background));
+  border-color: color-mix(in srgb, var(--swatch) 80%, var(--page-background));
   border-radius: 50%;
   background: color-mix(in srgb, var(--page-background) 91%, transparent);
   text-align: center;

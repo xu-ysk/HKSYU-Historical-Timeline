@@ -69,7 +69,13 @@ export function RailHistoryPanel({ events, lane, locale, visible }: {
               {events.map((record) => (
                 <article key={record.id} data-rail-record={record.id}>
                   {localized(record.title, locale) && <h2 data-testid={`${prefix}-title`}>{localized(record.title, locale)}</h2>}
-                  {localized(record.body, locale) && <p data-testid={`${prefix}-body`}>{localized(record.body, locale)}</p>}
+                  {localized(record.body, locale) && (
+                    <p data-testid={`${prefix}-body`}>
+                      {localized(record.body, locale).split(/(\(S6-7\))/).map((part, index) =>
+                        part === '(S6-7)' ? <span className="rail-no-wrap" key={index}>{part}</span> : part,
+                      )}
+                    </p>
+                  )}
                 </article>
               ))}
             </div>

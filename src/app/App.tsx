@@ -167,10 +167,7 @@ export default function App() {
               disabled={detailActive}
               data-testid="view-overview"
               aria-pressed={mode === 'overview'}
-              onClick={() => {
-                setRailSelections({});
-                controllerRef.current?.startMode('overview');
-              }}
+              onClick={returnToOverview}
             >
               {m.overview}
             </button>

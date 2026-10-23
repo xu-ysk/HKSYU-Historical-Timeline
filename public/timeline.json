@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-93bd0a2503a326b2",
+  "revision": "xlsx-eb04e99437c1c2d4",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -4147,7 +4147,7 @@
       },
       "body": {
         "en": "Rapid population growth after WWII increased demand for Chinese-medium secondary and post-secondary education opportunities.",
-        "zh-Hant": "從戰後内地進入到香港人口迅速增加，中文中學及專上教育需求大幅上升。",
+        "zh-Hant": "戰後從内地進入到香港人口迅速增加，中文中學及專上教育需求大幅上升。",
         "zh-Hans": "战后从内地进入到香港人口迅速增加，中文中学及专上教育需求大幅上升。"
       }
     },

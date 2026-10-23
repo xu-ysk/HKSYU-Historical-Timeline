@@ -72,9 +72,63 @@
 .rail-side-records article + article {
   margin-top: 12px;
 }
+.rail-side-records .rail-no-wrap {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
 .timeline-scene[data-locale='en'] .rail-side-panel .eyebrow {
   font-size: clamp(14px, 1.2vw, 18px);
   letter-spacing: 0.04em;
+}
+/* Keep both policy records readable within the available corner space. */
+.timeline-scene[data-mode='overview'] .education-panel[data-event-year='2000'] {
+  width: clamp(320px, 23vw, 540px);
+  transform: scale(0.9);
+  transform-origin: bottom right;
+}
+.education-panel[data-event-year='2000'] .eyebrow {
+  margin-bottom: 10px;
+}
+.education-panel[data-event-year='2000'] .rail-side-copy {
+  gap: 6px;
+}
+.education-panel[data-event-year='2000'] .rail-side-year {
+  font-size: calc(clamp(20px, 1.25vw, 27px) * var(--rail-copy-scale));
+  line-height: 1.25;
+}
+.education-panel[data-event-year='2000'] .rail-side-records h2 {
+  margin-bottom: 5px;
+  font-size: calc(clamp(14px, 0.9vw, 20px) * var(--rail-copy-scale));
+  line-height: 1.35;
+}
+.education-panel[data-event-year='2000'] .rail-side-records p {
+  font-size: calc(clamp(11px, 0.7vw, 16px) * var(--rail-copy-scale));
+  line-height: 1.45;
+}
+.education-panel[data-event-year='2000'] .rail-side-records article + article {
+  margin-top: 8px;
+}
+@media (min-width: 1441px) and (min-height: 801px) {
+  .timeline-scene[data-mode='overview'] .education-panel[data-event-year='2000'] {
+    width: clamp(320px, 23.9vw, 600px);
+  }
+  .education-panel[data-event-year='2000'] .eyebrow {
+    margin-bottom: 14px;
+  }
+  .education-panel[data-event-year='2000'] .rail-side-year {
+    font-size: calc(clamp(22px, 1.4vw, 30px) * var(--rail-copy-scale));
+  }
+  .education-panel[data-event-year='2000'] .rail-side-records h2 {
+    font-size: calc(clamp(16px, 1vw, 23px) * var(--rail-copy-scale));
+  }
+  .education-panel[data-event-year='2000'] .rail-side-records p {
+    line-height: 1.6;
+  }
+}
+@media (max-height: 800px), (max-width: 1440px) {
+  .timeline-scene[data-mode='overview'] .education-panel[data-event-year='2000'] {
+    transform: scale(0.8);
+  }
 }
 @media (max-height: 760px) {
   .timeline-scene .rail-side-panel .eyebrow { margin-bottom: 10px; }

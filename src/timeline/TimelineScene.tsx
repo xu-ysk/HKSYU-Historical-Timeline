@@ -114,6 +114,12 @@ export function TimelineScene({
     >
       <p className="photo-hint">{m.photoHint}</p>
       <svg className="track-lines" width="100%" height="100%" aria-hidden="true">
+        <defs>
+          <filter id="education-tap-hint-gray" colorInterpolationFilters="sRGB">
+            <feFlood floodColor="#A59B8B" />
+            <feComposite in2="SourceAlpha" operator="in" />
+          </filter>
+        </defs>
         {(['upper', 'education'] as const).map((lane) => {
           const { first: a, last: b } = trackEndpoints(lane, view, values);
           return (
