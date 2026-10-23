@@ -9,13 +9,11 @@ export interface RailSelection {
   eventId: string;
 }
 
-export function RailHistoryPanel({ events, lane, locale, visible, onPrevious, onNext }: {
+export function RailHistoryPanel({ events, lane, locale, visible }: {
   events: readonly (UpperRailEvent | EducationEvent)[];
   lane: RailSelection['lane'];
   locale: Locale;
   visible: boolean;
-  onPrevious?: () => void;
-  onNext?: () => void;
 }) {
   const panelRef = useRef<HTMLElement>(null);
   const headingId = useId();
@@ -76,10 +74,6 @@ export function RailHistoryPanel({ events, lane, locale, visible, onPrevious, on
               ))}
             </div>
           </div>
-          <nav className="rail-side-navigation" aria-label={`${lane === 'upper' ? m.school : m.education}: ${m.yearNavigation}`}>
-            <button type="button" data-testid={`${prefix}-previous`} aria-label={m.previousYear} title={m.previousYear} disabled={!onPrevious} onClick={onPrevious}>←</button>
-            <button type="button" data-testid={`${prefix}-next`} aria-label={m.nextYear} title={m.nextYear} disabled={!onNext} onClick={onNext}>→</button>
-          </nav>
         </>
       )}
     </aside>

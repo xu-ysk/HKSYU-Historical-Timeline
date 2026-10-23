@@ -103,10 +103,6 @@ export function TimelineScene({
       !best || Math.abs(event.year - focusYear) < Math.abs(best.year - focusYear) ? event : best,
     undefined,
   );
-  const upperPrevious = upperRail && [...visibleUpperRailEvents].reverse().find((event) => event.year < upperRail.year);
-  const upperNext = upperRail && visibleUpperRailEvents.find((event) => event.year > upperRail.year);
-  const educationPrevious = education && [...visibleEducationEvents].reverse().find((event) => event.year < education.year);
-  const educationNext = education && visibleEducationEvents.find((event) => event.year > education.year);
   return (
     <div
       ref={ref}
@@ -176,12 +172,6 @@ export function TimelineScene({
         locale={locale}
         events={visibleUpperRailEvents.filter((event) => event.year === upperRail?.year)}
         visible={!!upperRail && (upperRail.id === railSelections.upper || upperRail.year === focusYear)}
-        onPrevious={upperPrevious
-          ? () => onRailSelect({ lane: 'upper', eventId: upperPrevious.id })
-          : undefined}
-        onNext={upperNext
-          ? () => onRailSelect({ lane: 'upper', eventId: upperNext.id })
-          : undefined}
       />
       {cards.map((card) => (
         <PhotoCard
@@ -267,12 +257,6 @@ export function TimelineScene({
         locale={locale}
         events={visibleEducationEvents.filter((event) => event.year === education?.year)}
         visible={!!education && (education.id === railSelections.education || education.year === focusYear)}
-        onPrevious={educationPrevious
-          ? () => onRailSelect({ lane: 'education', eventId: educationPrevious.id })
-          : undefined}
-        onNext={educationNext
-          ? () => onRailSelect({ lane: 'education', eventId: educationNext.id })
-          : undefined}
       />
     </div>
   );

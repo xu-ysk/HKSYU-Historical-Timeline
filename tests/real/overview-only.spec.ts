@@ -109,30 +109,20 @@ for (const size of [
 }
 
 for (const lane of ['upper', 'education'] as const) {
-  test(`inline arrows traverse distinct years on ${lane} and stop at both ends`, async ({ page }) => {
-    test.setTimeout(90000);
+  test(`inline ${lane} text has no arrows and still updates from timeline points`, async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto('/');
     const panel = page.getByTestId(`${prefix(lane)}-panel`);
-    const previous = page.getByTestId(`${prefix(lane)}-previous`);
-    const next = page.getByTestId(`${prefix(lane)}-next`);
     const events = lane === 'upper' ? data.upperRailEvents : data.educationEvents;
     const years = [...new Set(events.map(event => event.year))].sort((a, b) => a - b);
-    await page.locator(lane === 'upper' ? '[data-upper-year]' : '[data-education-year]').first().tap();
-    await expect(previous).toBeDisabled();
-    for (const [index, year] of years.entries()) {
+    for (const year of [years[0], years[Math.floor(years.length / 2)], years.at(-1)!]) {
+      await page.locator(lane === 'upper' ? `[data-upper-year="${year}"]` : `[data-education-year="${year}"]`).first().tap();
+      await expect(panel).toBeVisible();
       await expect(panel).toHaveAttribute('data-event-year', String(year));
       await expect(panel.locator('[data-rail-record]')).toHaveCount(events.filter(event => event.year === year).length);
-      await expect(previous).toBeInViewport({ ratio: 1 });
-      await expect(next).toBeInViewport({ ratio: 1 });
-      if (index < years.length - 1) await next.tap();
+      await expect(panel.locator('button, nav')).toHaveCount(0);
+      await expect(page.locator('.rail-side-navigation')).toHaveCount(0);
     }
-    await expect(next).toBeDisabled();
-    for (const year of years.slice(0, -1).reverse()) {
-      await previous.tap();
-      await expect(panel).toHaveAttribute('data-event-year', String(year));
-    }
-    await expect(previous).toBeDisabled();
     await expect(page.getByTestId('rail-event-detail')).toHaveCount(0);
     await page.getByTestId('language-en').focus();
     await page.keyboard.press('Enter');

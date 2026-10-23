@@ -65,37 +65,10 @@
 .rail-side-records article + article {
   margin-top: 12px;
 }
-.rail-side-navigation {
-  display: flex;
-  justify-content: space-between;
-  margin: 8px 0 0;
-}
-.rail-side-navigation button {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 30px;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  font-size: 22px;
-  color: #7d7669;
-}
-.rail-side-navigation button:hover:not(:disabled),
-.rail-side-navigation button:focus-visible {
-  color: var(--ink);
-}
-.rail-side-navigation button:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
 .timeline-scene[data-locale='en'] .rail-side-panel .eyebrow {
   letter-spacing: 0.04em;
 }
 @media (max-height: 760px) {
   .timeline-scene .rail-side-panel .eyebrow { margin-bottom: 10px; }
   .rail-side-records p { line-height: 1.55; }
-}
-@media (pointer: coarse) {
-  .rail-side-navigation button { min-width: 44px; min-height: 40px; }
 }
