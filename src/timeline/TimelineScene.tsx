@@ -3,7 +3,7 @@ import type { TimelineDataset, Locale, ThemeId } from '../domain/timeline';
 import { localized } from '../domain/timeline';
 import { toCards } from '../domain/normalizeTimeline';
 import { messages } from '../i18n/messages';
-import { albumYearLabelPosition, anchor, cardPose, trackEndpoints } from './layout';
+import { anchor, cardPose, trackEndpoints } from './layout';
 import { PhotoCard } from './PhotoCard';
 import { TimelineController } from './TimelineController';
 import type { DetailState } from './timelineReducer';
@@ -124,26 +124,12 @@ export function TimelineScene({
               y1={a.y}
               x2={b.x}
               y2={b.y}
-              stroke="#ded9d1"
-              strokeWidth="1"
+              stroke={lane === 'upper' ? '#32CD32' : '#4169E1'}
+              strokeWidth="2.5"
             />
           );
         })}
       </svg>
-      {[1971, 1981, 1991, 2001, 2011, 2021, 2031].map((year) => {
-        const point = albumYearLabelPosition(year, view, values);
-        return (
-          <span
-            key={year}
-            className="album-year-label"
-            data-album-year={year}
-            aria-label={String(year)}
-            style={{ left: point.x, top: point.y }}
-          >
-            {String(year).slice(-2)}'
-          </span>
-        );
-      })}
       {(['upper', 'education'] as const).map((lane) => (
         <div
           key={lane}

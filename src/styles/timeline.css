@@ -25,7 +25,7 @@ button {
   -webkit-touch-callout: none;
 }
 .museum-app:not([data-active-theme='all']) {
-  --page-background: color-mix(in srgb, var(--theme-accent) 22%, var(--paper));
+  --page-background: color-mix(in srgb, var(--theme-accent) 35%, var(--paper));
 }
 .museum-app:not([data-active-theme='all']) :is(
   [data-track='upper'],
@@ -33,7 +33,6 @@ button {
   .upper-rail-marker,
   .education-dot,
   .year-tick,
-  .album-year-label,
   .upper-rail-panel,
   .education-panel,
   .swipe-guide > span,
@@ -148,30 +147,6 @@ h1 {
   position: absolute;
   inset: 0;
   pointer-events: none;
-}
-.album-year-label {
-  position: absolute;
-  z-index: 1100;
-  transform: translate(-50%, -50%);
-  font-size: clamp(13px, 1.1vw, 18px);
-  line-height: 1;
-  letter-spacing: 0.04em;
-  color: #7d7669;
-  white-space: nowrap;
-  pointer-events: none;
-}
-.museum-app[data-detail-active='true'] .album-year-label {
-  display: none;
-}
-.album-year-label::before {
-  content: '';
-  position: absolute;
-  right: calc(100% + 6px);
-  top: 50%;
-  width: 5px;
-  height: 1.5px;
-  background: currentColor;
-  transform: translateY(-50%) rotate(45deg);
 }
 .swipe-guide {
   position: absolute;
@@ -436,7 +411,7 @@ h1 {
   transform: translate(-50%, -50%);
   font:
     10px var(--font-family);
-  color: #8f877a;
+  color: #776f63;
   white-space: nowrap;
   line-height: 12px;
 }
@@ -448,10 +423,10 @@ h1 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #bcb3a4;
+  background: #a59b8b;
 }
 .upper-rail-marker:hover .upper-year-dot,
 .upper-rail-marker:focus-visible .upper-year-dot {
@@ -462,17 +437,21 @@ h1 {
   transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
-  padding: 7px;
+  padding: 0;
   background: transparent;
   border: 0;
   z-index: 1100;
 }
 .education-year-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: block;
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #bcb3a4;
+  background: #a59b8b;
 }
 .education-dot:hover .education-year-dot {
   background: var(--theme-accent);
@@ -484,7 +463,7 @@ h1 {
   transform: translate(-50%, -50%);
   font: 10px var(--font-family);
   line-height: 12px;
-  color: #8f877a;
+  color: #776f63;
   white-space: nowrap;
   pointer-events: none;
 }
@@ -994,7 +973,6 @@ html[lang='en'] .theme-button {
   .education-dot {
     width: var(--rail-hit-size, 44px);
     height: var(--rail-hit-size, 44px);
-    padding: calc((var(--rail-hit-size, 44px) - 6px) / 2);
   }
   .year-slider {
     height: 8px;
