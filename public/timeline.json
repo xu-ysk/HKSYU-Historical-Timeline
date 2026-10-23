@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-eb5e05aef80f32c2",
+  "revision": "xlsx-93bd0a2503a326b2",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -8,7 +8,7 @@
       "yearLabel": "1949",
       "orderInYear": 0,
       "title": {
-        "en": "Hu Hung-lick and Chung Chi-yung Studied in Europe: From Law to Educational Commitment",
+        "en": "Henry Hu Hung-lick and Chung Chi-yung Studied in Europe: From Law to Educational Commitment",
         "zh-Hant": "胡鴻烈、鍾期榮赴歐深造：從法律走向教育關懷",
         "zh-Hans": "胡鸿烈、钟期荣赴欧深造：从法律走向教育关怀"
       },
@@ -110,8 +110,8 @@
       },
       "body": {
         "en": "Shue Yan relocated to Monmouth Path in Wan Chai and, after years of application, was granted a permanent campus site at Braemar Hill, laying the foundation for long-term campus development.",
-        "zh-Hant": "樹仁遷往灣仔萬茂徑，並在經過多年申請後獲批寶馬山永久校址，為長遠校園建設奠定基礎。",
-        "zh-Hans": "树仁迁往湾仔万茂径，并在经过多年申请后获批宝马山永久校址，为长远校园建设奠定基础。"
+        "zh-Hant": "樹仁遷往灣仔萬茂里，並在經過多年申請後獲批寶馬山永久校址，為長遠校園建設奠定基礎。",
+        "zh-Hans": "树仁迁往湾仔万茂里，并在经过多年申请后获批宝马山永久校址，为长远校园建设奠定基础。"
       }
     },
     {
@@ -3901,7 +3901,7 @@
       "photoGroupId": "P110",
       "title": {},
       "body": {
-        "en": "Hong Kong Shue Yan University appointed long-serving Deputy President Hu fai-chung as President.",
+        "en": "Hong Kong Shue Yan University appointed long-serving Deputy President Hu Fai-chung as President.",
         "zh-Hant": "香港樹仁大學委任長期服務的常務副校監胡懷中出任校長。",
         "zh-Hans": "香港树仁大学委任长期服务的常务副校监胡怀中出任校长。"
       },
@@ -4274,7 +4274,7 @@
         "zh-Hans": "港府发表《教育统筹委员会第三号报告书》"
       },
       "body": {
-        "en": "Report No. 3 in 1988 standardised Hong Kong's undergraduate degrees to three years, admission after completion of two years of A-levels (S6-7).",
+        "en": "Report No. 3 in 1988 standardised Hong Kong's undergraduate degrees to three years, after completion of two years of A-levels (S6-7).",
         "zh-Hant": "報告提出「四改三」，統一香港高等教育學制為三年制課程，入學資格則統一為兩年制預科（中六、中七）畢業。",
         "zh-Hans": "报告提出「四改三」，统一香港高等教育学制为三年制课程，入学资格则统一为两年制预科（中六、中七）毕业。"
       }
