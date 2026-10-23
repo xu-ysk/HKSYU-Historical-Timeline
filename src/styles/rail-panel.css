@@ -22,10 +22,10 @@
   letter-spacing: 0.1em;
 }
 .timeline-scene .rail-side-panel[data-lane='upper'] .eyebrow {
-  color: #32CD32;
+  color: #52BA0F;
 }
 .timeline-scene .rail-side-panel[data-lane='education'] .eyebrow {
-  color: #4169E1;
+  color: #0F52BA;
 }
 .rail-side-panel .eyebrow span {
   color: inherit;

@@ -124,7 +124,7 @@ export function TimelineScene({
               y1={a.y}
               x2={b.x}
               y2={b.y}
-              stroke={lane === 'upper' ? '#32CD32' : '#4169E1'}
+              stroke={lane === 'upper' ? '#52BA0F' : '#0F52BA'}
               strokeWidth="2.5"
             />
           );
