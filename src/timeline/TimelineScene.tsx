@@ -1,13 +1,13 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { TimelineDataset, Locale, ThemeId } from '../domain/timeline';
-import { educationYearLabel, localized, localizedYearLabel } from '../domain/timeline';
+import { localized } from '../domain/timeline';
 import { toCards } from '../domain/normalizeTimeline';
 import { messages } from '../i18n/messages';
 import { albumYearLabelPosition, anchor, cardPose, trackEndpoints } from './layout';
 import { PhotoCard } from './PhotoCard';
 import { TimelineController } from './TimelineController';
 import type { DetailState } from './timelineReducer';
-import type { RailSelection } from '../components/RailEventDetail';
+import { RailHistoryPanel, type RailSelection } from '../components/RailHistoryPanel';
 export function TimelineScene({
   data,
   endYear,
@@ -21,6 +21,7 @@ export function TimelineScene({
   onReturnToOverview,
   homeDisabled,
   onDetail,
+  railSelections,
   onRailSelect,
 }: {
   data: TimelineDataset;
@@ -35,6 +36,7 @@ export function TimelineScene({
   onReturnToOverview: () => void;
   homeDisabled: boolean;
   onDetail: (state: DetailState) => void;
+  railSelections: Partial<Record<RailSelection['lane'], string>>;
   onRailSelect: (selection: RailSelection) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -91,16 +93,20 @@ export function TimelineScene({
   const visibleUpperRailEvents = activeThemeYears
     ? data.upperRailEvents.filter((event) => activeThemeYears.has(event.year))
     : data.upperRailEvents;
-  const education = visibleEducationEvents.reduce<(typeof data.educationEvents)[number] | undefined>(
+  const education = visibleEducationEvents.find((event) => event.id === railSelections.education) ?? visibleEducationEvents.reduce<(typeof data.educationEvents)[number] | undefined>(
     (best, event) =>
       !best || Math.abs(event.year - focusYear) < Math.abs(best.year - focusYear) ? event : best,
     undefined,
   );
-  const upperRail = visibleUpperRailEvents.reduce<(typeof data.upperRailEvents)[number] | undefined>(
+  const upperRail = visibleUpperRailEvents.find((event) => event.id === railSelections.upper) ?? visibleUpperRailEvents.reduce<(typeof data.upperRailEvents)[number] | undefined>(
     (best, event) =>
       !best || Math.abs(event.year - focusYear) < Math.abs(best.year - focusYear) ? event : best,
     undefined,
   );
+  const upperPrevious = upperRail && [...visibleUpperRailEvents].reverse().find((event) => event.year < upperRail.year);
+  const upperNext = upperRail && visibleUpperRailEvents.find((event) => event.year > upperRail.year);
+  const educationPrevious = education && [...visibleEducationEvents].reverse().find((event) => event.year < education.year);
+  const educationNext = education && visibleEducationEvents.find((event) => event.year > education.year);
   return (
     <div
       ref={ref}
@@ -165,30 +171,18 @@ export function TimelineScene({
           )}
         </div>
       ))}
-      <aside
-        className="upper-rail-panel"
-        data-testid="upper-rail-panel"
-        data-event-year={upperRail?.year}
-        data-has-event={upperRail?.year === focusYear}
-        aria-hidden={upperRail?.year !== focusYear}
-      >
-        <div className="eyebrow">
-          <span>01/</span> {locale === 'en' ? 'Shue Yan history' : m.school}
-        </div>
-        {upperRail ? (
-          <div className="upper-rail-copy">
-            <span className="upper-rail-year" data-testid="upper-rail-year">
-              {localizedYearLabel(upperRail, locale)}
-            </span>
-            <div>
-              <h2 data-testid="upper-rail-title">{localized(upperRail.title, locale)}</h2>
-              <p data-testid="upper-rail-body">{localized(upperRail.body, locale)}</p>
-            </div>
-          </div>
-        ) : (
-          <p>{m.empty}</p>
-        )}
-      </aside>
+      <RailHistoryPanel
+        lane="upper"
+        locale={locale}
+        events={visibleUpperRailEvents.filter((event) => event.year === upperRail?.year)}
+        visible={!!upperRail && (upperRail.id === railSelections.upper || upperRail.year === focusYear)}
+        onPrevious={upperPrevious
+          ? () => onRailSelect({ lane: 'upper', eventId: upperPrevious.id })
+          : undefined}
+        onNext={upperNext
+          ? () => onRailSelect({ lane: 'upper', eventId: upperNext.id })
+          : undefined}
+      />
       {cards.map((card) => (
         <PhotoCard
           key={card.id}
@@ -228,6 +222,8 @@ export function TimelineScene({
             title={`${event.year} · ${localized(event.title, locale)}`}
             data-testid={`upper-year-${event.year}`}
             data-upper-year={event.year}
+            aria-pressed={upperRail?.year === event.year}
+            aria-controls="upper-history-panel"
             onClick={() => onRailSelect({ lane: 'upper', eventId: event.id })}
           >
             <span className="upper-year-label">{event.year}</span>
@@ -253,6 +249,8 @@ export function TimelineScene({
             aria-label={yearTitle}
             title={yearTitle}
             data-education-year={event.year}
+            aria-pressed={education?.year === event.year}
+            aria-controls="education-history-panel"
             onClick={() => onRailSelect({ lane: 'education', eventId: event.id })}
           >
             <span className="education-year-dot" aria-hidden="true" />
@@ -264,28 +262,18 @@ export function TimelineScene({
           </button>
         );
       })}
-      <aside
-        className="education-panel"
-        data-testid="education-panel"
-        data-event-year={education?.year}
-        data-has-event={education?.year === focusYear}
-        aria-hidden={education?.year !== focusYear}
-      >
-        <div className="eyebrow">
-          <span>02 /</span> {m.education}
-        </div>
-        {education ? (
-          <div className="education-copy">
-            <span className="education-year">{educationYearLabel(education, locale)}</span>
-            <div>
-              <h2>{localized(education.title, locale)}</h2>
-              <p>{localized(education.body, locale)}</p>
-            </div>
-          </div>
-        ) : (
-          <p>{m.empty}</p>
-        )}
-      </aside>
+      <RailHistoryPanel
+        lane="education"
+        locale={locale}
+        events={visibleEducationEvents.filter((event) => event.year === education?.year)}
+        visible={!!education && (education.id === railSelections.education || education.year === focusYear)}
+        onPrevious={educationPrevious
+          ? () => onRailSelect({ lane: 'education', eventId: educationPrevious.id })
+          : undefined}
+        onNext={educationNext
+          ? () => onRailSelect({ lane: 'education', eventId: educationNext.id })
+          : undefined}
+      />
     </div>
   );
 }

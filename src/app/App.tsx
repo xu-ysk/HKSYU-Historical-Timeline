@@ -9,7 +9,7 @@ import { TimelineScene } from '../timeline/TimelineScene';
 import { TimelineController } from '../timeline/TimelineController';
 import { EventDetail } from '../components/EventDetail';
 import { HelpOverlay } from '../components/HelpOverlay';
-import { RailEventDetail, type RailSelection } from '../components/RailEventDetail';
+import type { RailSelection } from '../components/RailHistoryPanel';
 import { initialDetail } from '../timeline/timelineReducer';
 import { localized, localizedYearLabel } from '../domain/timeline';
 import { detailEventNeighbors } from '../domain/detailNavigation';
@@ -35,13 +35,15 @@ export default function App() {
     [eventId, setEventId] = useState('');
   const controllerRef = useRef<TimelineController | null>(null);
   const [detail, setDetail] = useState(initialDetail);
-  const [railSelection, setRailSelection] = useState<RailSelection | null>(null);
-  const railSelectionRef = useRef(railSelection);
+  const [railSelections, setRailSelections] = useState<Partial<Record<RailSelection['lane'], string>>>({});
+  const selectRailEvent = useCallback((selection: RailSelection) => {
+    setRailSelections((previous) => ({ ...previous, [selection.lane]: selection.eventId }));
+  }, []);
   const detailPhaseRef = useRef(detail.phase);
   const returnToOverviewRef = useRef(false);
   const closeDetail = useCallback(() => controllerRef.current?.close(), []);
   const returnToOverview = useCallback(() => {
-    setRailSelection(null);
+    setRailSelections({});
     setActive(null);
     controllerRef.current?.setTheme(null);
     if (detailPhaseRef.current === 'idle') {
@@ -59,16 +61,16 @@ export default function App() {
     }
     setHelpOpen(false);
     window.requestAnimationFrame(() =>
-      (document.querySelector<HTMLButtonElement>('.rail-detail-home,.detail-close') ?? helpButtonRef.current)?.focus(),
+      (document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current)?.focus(),
     );
   }, []);
   useLayoutEffect(() => {
     const app = appRef.current;
-    if (app) app.inert = helpOpen || railSelection !== null;
+    if (app) app.inert = helpOpen;
     return () => {
       if (app) app.inert = false;
     };
-  }, [helpOpen, railSelection]);
+  }, [helpOpen]);
   useEffect(() => {
     if (helpOpen) return;
     let idleTimer: number;
@@ -124,9 +126,6 @@ export default function App() {
   useEffect(() => {
     detailPhaseRef.current = detail.phase;
   }, [detail.phase]);
-  useEffect(() => {
-    railSelectionRef.current = railSelection;
-  }, [railSelection]);
   const m = messages[locale],
     endYear = useCurrentYear();
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -145,21 +144,6 @@ export default function App() {
   const detailNeighbors = selected && data
     ? detailEventNeighbors(data.schoolEvents, selected, active)
     : null;
-  const railTimeline = railSelection && data
-    ? (railSelection.lane === 'upper' ? data.upperRailEvents : data.educationEvents)
-    : [];
-  const railEvent = railSelection
-    ? railTimeline.find((event) => event.id === railSelection.eventId)
-    : undefined;
-  const railEvents = railEvent
-    ? railTimeline.filter((event) => event.year === railEvent.year)
-    : [];
-  const railPrevious = railEvent
-    ? [...railTimeline].reverse().find((event) => event.year < railEvent.year)
-    : undefined;
-  const railNext = railEvent
-    ? railTimeline.find((event) => event.year > railEvent.year)
-    : undefined;
   useEffect(() => {
     const abort = new AbortController();
     let inFlight = false;
@@ -167,13 +151,13 @@ export default function App() {
     const refresh = async () => {
       if (
         inFlight ||
-        (provider === realProvider && (document.hidden || detailPhaseRef.current !== 'idle' || railSelectionRef.current))
+        (provider === realProvider && (document.hidden || detailPhaseRef.current !== 'idle'))
       )
         return;
       inFlight = true;
       try {
         const result = await provider.load(abort.signal);
-        if (abort.signal.aborted || (provider === realProvider && (detailPhaseRef.current !== 'idle' || railSelectionRef.current)))
+        if (abort.signal.aborted || (provider === realProvider && detailPhaseRef.current !== 'idle'))
           return;
         const nextSnapshot = JSON.stringify(result);
         if (nextSnapshot !== currentSnapshot) {
@@ -217,7 +201,10 @@ export default function App() {
               disabled={detailActive}
               data-testid="view-overview"
               aria-pressed={mode === 'overview'}
-              onClick={() => controllerRef.current?.startMode('overview')}
+              onClick={() => {
+                setRailSelections({});
+                controllerRef.current?.startMode('overview');
+              }}
             >
               {m.overview}
             </button>
@@ -248,7 +235,8 @@ export default function App() {
           onReturnToOverview={returnToOverview}
           homeDisabled={detailActive}
           onDetail={setDetail}
-          onRailSelect={setRailSelection}
+          railSelections={railSelections}
+          onRailSelect={selectRailEvent}
         />
       ) : (
         <div className="loading">
@@ -327,22 +315,6 @@ export default function App() {
         <ThemeSwitcher locale={locale} active={active} onChange={handleTheme} />
       </footer>
       <HelpOverlay open={helpOpen} locale={locale} onClose={closeHelp} onLocaleChange={setLocale} />
-      {railSelection && railEvent && (
-        <RailEventDetail
-          events={railEvents}
-          lane={railSelection.lane}
-          locale={locale}
-          onLocaleChange={setLocale}
-          onHome={returnToOverview}
-          onPrevious={railPrevious
-            ? () => setRailSelection({ lane: railSelection.lane, eventId: railPrevious.id })
-            : undefined}
-          onNext={railNext
-            ? () => setRailSelection({ lane: railSelection.lane, eventId: railNext.id })
-            : undefined}
-          suspended={helpOpen}
-        />
-      )}
     </main>
   );
 }

@@ -1,0 +1,101 @@
+/* History is read in the two quiet corners of the overview, not in a dialog. */
+.timeline-scene .rail-side-panel {
+  --rail-copy-scale: 1;
+  box-sizing: border-box;
+  background: var(--page-background);
+  padding: 12px;
+  margin: -12px;
+  color: var(--ink);
+}
+.timeline-scene[data-mode='overview'] .rail-side-panel.upper-rail-panel {
+  width: clamp(320px, 24vw, 620px);
+}
+.timeline-scene[data-mode='overview'] .rail-side-panel.education-panel {
+  width: clamp(320px, 23vw, 600px);
+}
+.timeline-scene .rail-side-panel .eyebrow {
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: clamp(13px, 0.85vw, 18px);
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+}
+.rail-side-panel .eyebrow span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.rail-side-copy {
+  display: grid;
+  grid-template-columns: minmax(54px, 0.24fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(12px, 1vw, 20px);
+}
+.rail-side-panel .rail-side-year {
+  font-size: calc(clamp(24px, 1.7vw, 38px) * var(--rail-copy-scale));
+  line-height: 1.35;
+  overflow-wrap: normal;
+}
+.rail-side-records {
+  min-width: 0;
+}
+.rail-side-panel[data-multiple-records='true'] .rail-side-copy {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+.rail-side-panel[data-multiple-records='true'] .rail-side-year {
+  font-size: calc(clamp(21px, 1.4vw, 30px) * var(--rail-copy-scale));
+}
+.rail-side-records h2 {
+  margin: 0 0 7px;
+  font-size: calc(clamp(15px, 1vw, 23px) * var(--rail-copy-scale));
+  font-weight: 400;
+  line-height: 1.45;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.rail-side-records p {
+  margin: 0;
+  font-size: calc(clamp(12px, 0.78vw, 18px) * var(--rail-copy-scale));
+  line-height: 1.65;
+  color: #78756d;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+.rail-side-records article + article {
+  margin-top: 12px;
+}
+.rail-side-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0 0;
+}
+.rail-side-navigation button {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+  color: #7d7669;
+}
+.rail-side-navigation button:hover:not(:disabled),
+.rail-side-navigation button:focus-visible {
+  color: var(--ink);
+}
+.rail-side-navigation button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.timeline-scene[data-locale='en'] .rail-side-panel .eyebrow {
+  letter-spacing: 0.04em;
+}
+@media (max-height: 760px) {
+  .timeline-scene .rail-side-panel .eyebrow { margin-bottom: 10px; }
+  .rail-side-records p { line-height: 1.55; }
+}
+@media (pointer: coarse) {
+  .rail-side-navigation button { min-width: 44px; min-height: 40px; }
+}

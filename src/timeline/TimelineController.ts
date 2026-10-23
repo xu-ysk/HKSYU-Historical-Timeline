@@ -508,7 +508,7 @@ export class TimelineController {
     }
     if (
       e.button !== 0 ||
-      (e.target as HTMLElement).closest('.education-panel,.education-dot,.upper-rail-marker,.theme-home')
+      (e.target as HTMLElement).closest('.upper-rail-panel,.education-panel,.education-dot,.upper-rail-marker,.theme-home')
     )
       return;
     this.suppressClick = false;
@@ -563,7 +563,7 @@ export class TimelineController {
     if (!this.blocked) this.root.dataset.phase = 'idle';
   };
   private click = (e: MouseEvent) => {
-    if (e.target instanceof Element && e.target.closest('.theme-home,.education-dot,.upper-rail-marker')) {
+    if (e.target instanceof Element && e.target.closest('.upper-rail-panel,.education-panel,.theme-home,.education-dot,.upper-rail-marker')) {
       this.touchClick = null;
       this.suppressClick = false;
       return;

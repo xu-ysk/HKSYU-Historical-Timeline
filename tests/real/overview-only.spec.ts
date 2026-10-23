@@ -4,34 +4,141 @@ import type { TimelineDataset } from '../../src/domain/timeline';
 import { educationYearLabel, localized } from '../../src/domain/timeline';
 
 const data = JSON.parse(readFileSync('public/timeline.json', 'utf8')) as TimelineDataset;
+const locales = ['en', 'zh-Hans', 'zh-Hant'] as const;
+const prefix = (lane: 'upper' | 'education') => lane === 'upper' ? 'upper-rail' : 'education';
+test.use({ hasTouch: true });
 
-test('the 1949 education point and label stay visible and tappable on exhibition screens', async ({ page }) => {
+test('the 1949 education point stays visible and updates its inline panel on exhibition screens', async ({ page }) => {
   test.setTimeout(60000);
   for (const size of [
-    { width: 1280, height: 720 },
-    { width: 1440, height: 900 },
-    { width: 1920, height: 1080 },
-    { width: 3840, height: 2160 },
+    { width: 1280, height: 720 }, { width: 1440, height: 900 },
+    { width: 1920, height: 1080 }, { width: 3840, height: 2160 },
   ]) {
     await page.setViewportSize(size);
     await page.goto('/');
     const point = page.locator('[data-education-year="1949"]');
     await expect(point).toBeVisible();
-    for (const element of [point, point.locator('.education-year-label')]) {
+    for (const element of [point, point.locator('.education-year-label')])
       await expect(element).toBeInViewport({ ratio: 1 });
-    }
     await point.tap();
-    await expect(page.getByTestId('rail-event-detail')).toHaveAttribute('data-lane', 'education');
-    await expect(page.getByTestId('rail-event-detail').locator('.rail-detail-year')).toHaveText('1949–1950');
-    await page.getByTestId('rail-detail-home').tap();
+    await expect(page.getByTestId('education-panel')).toBeVisible();
+    await expect(page.getByTestId('education-year')).toHaveText('1949–1950');
+    await expect(page.getByTestId('rail-event-detail')).toHaveCount(0);
+    await expect(page.locator('.museum-app')).toHaveJSProperty('inert', false);
     await page.getByTestId('theme-A').click();
     await page.getByTestId('theme-home-education').click();
     await expect(point).toBeInViewport({ ratio: 1 });
     await point.tap();
-    await expect(page.getByTestId('rail-event-detail')).toHaveAttribute('data-lane', 'education');
-    await page.getByTestId('rail-detail-home').tap();
+    await expect(page.getByTestId('education-year')).toHaveText('1949–1950');
   }
 });
+
+test('every real point updates its own panel in all languages without moving the album or blocking the other lane', async ({ page }) => {
+  test.setTimeout(120000);
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  await expect(page.locator('[data-upper-year]')).toHaveCount(data.upperRailEvents.length);
+  const geometry = () => page.locator('.photo-card,[data-track]').evaluateAll(nodes => nodes.map(node =>
+    node instanceof SVGLineElement ? [node.getAttribute('x1'), node.getAttribute('y1'), node.getAttribute('x2'), node.getAttribute('y2')] : (node as HTMLElement).style.transform));
+  const before = await geometry();
+  for (const lane of ['upper', 'education'] as const) {
+    const events = lane === 'upper' ? data.upperRailEvents : data.educationEvents;
+    const years = [...new Set(events.map(event => event.year))];
+    const panel = page.getByTestId(`${prefix(lane)}-panel`);
+    const other = page.getByTestId(lane === 'upper' ? 'education-panel' : 'upper-rail-panel');
+    const otherText = await other.textContent();
+    for (const year of years) {
+      await page.locator(lane === 'upper' ? `[data-upper-year="${year}"]` : `[data-education-year="${year}"]`).first().click();
+      await expect(panel).toBeVisible();
+      await expect(panel).toHaveAttribute('data-event-year', String(year));
+      const records = events.filter(event => event.year === year);
+      await expect(panel.locator('[data-rail-record]')).toHaveCount(records.length);
+      for (const locale of locales) {
+        await page.getByTestId(`language-${locale}`).click();
+        for (const record of records) {
+          const article = panel.locator(`[data-rail-record="${record.id}"]`);
+          if (localized(record.title, locale)) await expect(article.locator('h2')).toHaveText(localized(record.title, locale));
+          if (localized(record.body, locale)) await expect(article.locator('p')).toHaveText(localized(record.body, locale));
+        }
+      }
+      await expect(page.getByTestId('rail-event-detail')).toHaveCount(0);
+      await expect(page.locator('.museum-app')).toHaveJSProperty('inert', false);
+      expect(await other.textContent()).toBe(otherText);
+    }
+  }
+  expect(await geometry()).toEqual(before);
+});
+
+for (const size of [
+  { width: 1280, height: 720 }, { width: 1440, height: 900 },
+  { width: 1920, height: 869 }, { width: 1920, height: 1080 }, { width: 3840, height: 2160 },
+]) {
+  test(`inline history copy fits the side regions in all languages at ${size.width}x${size.height}`, async ({ page }) => {
+    test.setTimeout(90000);
+    await page.setViewportSize(size);
+    await page.goto('/');
+    for (const lane of ['upper', 'education'] as const) {
+      const events = lane === 'upper' ? data.upperRailEvents : data.educationEvents;
+      const targets = lane === 'upper' ? ['T01', 'T17', 'T28'] : ['B03', 'B14', 'B16', 'B20'];
+      const panel = page.getByTestId(`${prefix(lane)}-panel`);
+      for (const id of targets) {
+        const event = events.find(item => item.id === id)!;
+        await page.locator(lane === 'upper' ? `[data-upper-year="${event.year}"]` : `[data-education-year="${event.year}"]`).first().tap();
+        for (const locale of locales) {
+          await page.getByTestId(`language-${locale}`).click();
+          await expect(panel).toBeVisible();
+          await expect(panel.locator(`[data-rail-record="${id}"] p`)).toHaveText(localized(event.body, locale));
+          if (lane === 'education') await expect(panel.locator('.rail-side-year')).toHaveText(educationYearLabel(event, locale));
+          await expect(panel).toBeInViewport({ ratio: 1 });
+          const box = (await panel.boundingBox())!;
+          if (lane === 'upper') expect(box.x + box.width).toBeLessThan(size.width / 2);
+          else expect(box.x).toBeGreaterThan(size.width / 2);
+          const heading = (await panel.locator('.eyebrow').boundingBox())!;
+          const copy = (await panel.locator('.rail-side-copy').boundingBox())!;
+          expect(copy.y).toBeGreaterThanOrEqual(heading.y + heading.height);
+          expect(await panel.evaluate(el => el.scrollWidth <= el.clientWidth + 1 && el.scrollHeight <= el.clientHeight + 1)).toBe(true);
+          const theme = (await page.locator('.theme-list').boundingBox())!;
+          if (lane === 'education') expect(box.y + box.height + 12).toBeLessThan(theme.y);
+          const text = panel.locator(`[data-rail-record="${id}"] p`);
+          expect(Number.parseFloat(await text.evaluate(el => getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(10);
+        }
+      }
+    }
+    await page.screenshot({ path: test.info().outputPath('inline-history.png') });
+  });
+}
+
+for (const lane of ['upper', 'education'] as const) {
+  test(`inline arrows traverse distinct years on ${lane} and stop at both ends`, async ({ page }) => {
+    test.setTimeout(90000);
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.goto('/');
+    const panel = page.getByTestId(`${prefix(lane)}-panel`);
+    const previous = page.getByTestId(`${prefix(lane)}-previous`);
+    const next = page.getByTestId(`${prefix(lane)}-next`);
+    const events = lane === 'upper' ? data.upperRailEvents : data.educationEvents;
+    const years = [...new Set(events.map(event => event.year))].sort((a, b) => a - b);
+    await page.locator(lane === 'upper' ? '[data-upper-year]' : '[data-education-year]').first().tap();
+    await expect(previous).toBeDisabled();
+    for (const [index, year] of years.entries()) {
+      await expect(panel).toHaveAttribute('data-event-year', String(year));
+      await expect(panel.locator('[data-rail-record]')).toHaveCount(events.filter(event => event.year === year).length);
+      await expect(previous).toBeInViewport({ ratio: 1 });
+      await expect(next).toBeInViewport({ ratio: 1 });
+      if (index < years.length - 1) await next.tap();
+    }
+    await expect(next).toBeDisabled();
+    for (const year of years.slice(0, -1).reverse()) {
+      await previous.tap();
+      await expect(panel).toHaveAttribute('data-event-year', String(year));
+    }
+    await expect(previous).toBeDisabled();
+    await expect(page.getByTestId('rail-event-detail')).toHaveCount(0);
+    await page.getByTestId('language-en').focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByTestId('language-en')).toHaveAttribute('aria-pressed', 'true');
+  });
+}
 
 test('wheel, mouse drag and touch swipe leave the overview geometry unchanged', async ({ page }) => {
   await page.goto('/');
@@ -62,128 +169,6 @@ test('wheel, mouse drag and touch swipe leave the overview geometry unchanged', 
   expect(await geometry()).toEqual(before);
   await expect(page.getByTestId('event-detail')).toHaveCount(0);
 });
-
-test('every point opens exactly its own history and the home returns to overview', async ({ page }) => {
-  // Opening and closing every real-data point includes each panel's animation.
-  test.setTimeout(120000);
-  await page.goto('/');
-  await expect(page.locator('[data-upper-year]')).toHaveCount(data.upperRailEvents.length);
-  for (const lane of ['upper', 'education'] as const) {
-    const events = lane === 'upper' ? data.upperRailEvents : data.educationEvents;
-    const points = events.filter((event, index) => events.findIndex((item) => item.year === event.year) === index);
-    for (let index = 0; index < points.length; index++) {
-      const event = points[index];
-      const marker = page.locator(lane === 'upper' ? '[data-upper-year]' : '[data-education-year]').nth(index);
-      await marker.click();
-      const dialog = page.getByTestId('rail-event-detail');
-      await expect.poll(() => dialog.evaluate((el) => ({
-        event: el.getAttribute('data-event'),
-        lane: el.getAttribute('data-lane'),
-        records: Array.from(el.querySelectorAll('[data-rail-record]'), (record) => ({
-          id: record.getAttribute('data-rail-record'),
-          title: record.querySelector('h2')?.textContent,
-          body: record.querySelector('p')?.textContent,
-        })),
-        backgroundInert: document.querySelector<HTMLElement>('.museum-app')?.inert,
-        zoom: document.querySelector('.timeline-scene')?.getAttribute('data-zoom'),
-      }))).toEqual({
-        event: event.id,
-        lane,
-        records: events.filter((item) => item.year === event.year).map((record) => ({
-          id: record.id,
-          title: localized(record.title, 'zh-Hant'),
-          body: localized(record.body, 'zh-Hant'),
-        })),
-        backgroundInert: true,
-        zoom: '0.0000',
-      });
-      await page.getByTestId('rail-detail-home').click();
-      await expect(dialog).toHaveCount(0);
-      await expect(page.locator('.museum-app')).toHaveJSProperty('inert', false);
-    }
-  }
-});
-
-for (const size of [
-  { width: 1920, height: 1080 },
-  { width: 1440, height: 900 },
-  { width: 1150, height: 835 },
-]) {
-  test(`history panels are centred, readable and focus stays inside at ${size.width}`, async ({ page }) => {
-    test.setTimeout(90000);
-    await page.setViewportSize(size);
-    await page.goto('/');
-    for (const lane of ['upper', 'education'] as const) {
-      const event = lane === 'upper'
-        ? data.upperRailEvents.find((e) => e.year === 1971)!
-        : data.educationEvents.find((e) => e.id === 'B14')!;
-      await page.locator(lane === 'upper' ? `[data-upper-year="${event.year}"]` : `[data-education-year="${event.year}"]`).tap();
-      const dialog = page.getByTestId('rail-event-detail');
-      for (const locale of ['en', 'zh-Hans', 'zh-Hant'] as const) {
-        await page.getByTestId(`rail-language-${locale}`).click();
-        await expect(dialog.locator(`[data-rail-record="${event.id}"] p`)).toHaveText(localized(event.body, locale));
-        if (lane === 'education')
-          await expect(dialog.locator('.rail-detail-year')).toHaveText(educationYearLabel(event, locale));
-        const box = (await dialog.boundingBox())!;
-        expect(Math.abs(box.x + box.width / 2 - size.width / 2)).toBeLessThan(2);
-        if (box.height <= size.height - 100)
-          expect(Math.abs(box.y + box.height / 2 - size.height / 2)).toBeLessThan(2);
-        else expect(box.y).toBeGreaterThanOrEqual(20);
-        const home = (await page.getByTestId('rail-detail-home').boundingBox())!;
-        const section = (await dialog.locator('.rail-detail-section').boundingBox())!;
-        expect(home.x + home.width).toBeLessThan(section.x);
-        expect(await dialog.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
-        if (locale === 'en')
-          await page.screenshot({ path: test.info().outputPath(`${lane}-${locale}.png`) });
-      }
-      await page.getByTestId('rail-detail-home').focus();
-      await page.keyboard.press('Shift+Tab');
-      await expect(page.getByTestId('rail-detail-next')).toBeFocused();
-      await page.keyboard.press('Tab');
-      await expect(page.getByTestId('rail-detail-home')).toBeFocused();
-      await page.getByTestId('rail-detail-home').tap();
-      await expect(dialog).toHaveCount(0);
-    }
-  });
-}
-
-for (const lane of ['upper', 'education'] as const) {
-  test(`history arrows traverse distinct years on ${lane} and stop at both ends`, async ({ page }) => {
-    test.setTimeout(120000); // Traverse every real-data year in both directions using native touch.
-    await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/');
-    const dialog = page.getByTestId('rail-event-detail');
-    const previous = page.getByTestId('rail-detail-previous');
-    const next = page.getByTestId('rail-detail-next');
-    const events = lane === 'upper' ? data.upperRailEvents : data.educationEvents;
-    const years = [...new Set(events.map((event) => event.year))].sort((a, b) => a - b);
-    await page.locator(lane === 'upper' ? '[data-upper-year]' : '[data-education-year]').first().tap();
-    await expect(previous).toBeDisabled();
-    for (const [index, year] of years.entries()) {
-      await expect(dialog).toHaveAttribute('data-lane', lane);
-      await expect(dialog).toHaveAttribute('data-year', String(year));
-      await expect(dialog.locator('[data-rail-record]')).toHaveCount(events.filter((event) => event.year === year).length);
-      for (const record of events.filter((event) => event.year === year)) {
-        await expect(dialog.locator(`[data-rail-record="${record.id}"] p`)).toHaveText(localized(record.body, 'zh-Hant'));
-      }
-      await expect(previous).toBeInViewport({ ratio: 1 });
-      await expect(next).toBeInViewport({ ratio: 1 });
-      if (index < years.length - 1) await next.tap();
-    }
-    await expect(next).toBeDisabled();
-    await page.getByTestId('rail-detail-home').focus();
-    await page.keyboard.press('Shift+Tab');
-    await expect(previous).toBeFocused();
-    for (const year of years.slice(0, -1).reverse()) {
-      await previous.tap();
-      await expect(dialog).toHaveAttribute('data-year', String(year));
-    }
-    await expect(previous).toBeDisabled();
-    await page.getByTestId('rail-detail-home').tap();
-    await expect(dialog).toHaveCount(0);
-    await expect(page.locator('.museum-app')).toHaveJSProperty('inert', false);
-  });
-}
 
 for (const size of [
   { width: 1280, height: 720 },
@@ -269,7 +254,8 @@ test('theme filtering, photo detail and return controls remain usable', async ({
   await expect(page.locator('[data-track="education"]')).toBeVisible();
   await expect(page.locator('[data-education-year="2000"]')).toBeVisible();
   await page.locator('[data-upper-year="1971"]').tap();
-  await page.getByTestId('rail-detail-home').tap();
+  await expect(page.getByTestId('upper-rail-panel')).toHaveAttribute('data-event-year', '1971');
+  await expect(page.getByTestId('rail-event-detail')).toHaveCount(0);
   await expect(page.getByTestId('scene')).toHaveAttribute('data-zoom', '0.0000');
   await expect(page.getByTestId('theme-A')).toHaveAttribute('aria-pressed', 'false');
 });
