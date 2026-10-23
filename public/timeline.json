@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "xlsx-5379d6ae0b3434c6",
+  "revision": "xlsx-328d78ccf88e1f91",
   "upperRailEvents": [
     {
       "id": "T01",
@@ -264,14 +264,14 @@
       "yearLabel": "1990",
       "orderInYear": 16,
       "title": {
-        "en": "Student Petitions and the Continuation of the Four-Year Principle",
+        "en": "Student Petitions and Upholding the 4-Year Principle",
         "zh-Hant": "學生請願與四年制原則的延續",
         "zh-Hans": "学生请愿与四年制原则的延续"
       },
       "body": {
-        "en": "Around 1990, students' campaigns for government funding reflected the tuition pressures and fairness issues facing private post-secondary education, while Shue Yan continued to make the maintenance of four-year education a precondition for accepting funding.",
-        "zh-Hant": "1990年前後，學生爭取政府資助的行動反映私立專上教育的學費壓力與公平問題，而樹仁仍以維持四年制教育作為接受資助的前提。",
-        "zh-Hans": "1990年前后，学生争取政府资助的行动反映私立专上教育的学费压力与公平问题，而树仁仍以维持四年制教育作为接受资助的前提。"
+        "en": "Shue Yan consistently upheld the preservation of its four-year educational system and rejection to changing it as a precondition for receiving government funding. Students’ appeals for government support around 1990 revealed the challenges of tuition affordability and educational equity faced by the private post-secondary education sector.",
+        "zh-Hant": "樹仁始終堅持以維持四年制教育為接受政府資助的前提，而1990年前後學生爭取政府資助的訴求，則揭示了私立專上教育所面對的學費負擔與教育公平挑戰。",
+        "zh-Hans": "树仁始终坚持以维持四年制教育为接受政府资助的前提，而1990年前后学生争取政府资助的诉求，则揭示了私立专上教育所面对的学费负担与教育公平挑战。"
       }
     },
     {
@@ -397,9 +397,9 @@
         "zh-Hans": "经济学课程通过评审"
       },
       "body": {
-        "en": "In 2004, the Department of Economics was approved to offer an honours bachelor's degree programme, marking the continued refinement of Shue Yan's business and social science programme system.",
-        "zh-Hant": "2004年，經濟學系獲准開辦榮譽學士課程，標誌樹仁的商科與社會科學課程體系繼續完善。",
-        "zh-Hans": "2004年，经济学系获准开办荣誉学士课程，标志树仁的商科与社会科学课程体系继续完善。"
+        "en": "In 2004, the Department of Economics was approved to offer an honours bachelor's degree programme, marking the continued refinement of Shue Yan's business programme system.",
+        "zh-Hant": "2004年，經濟學系獲准開辦榮譽學士課程，標誌樹仁的商科課程體系繼續完善。",
+        "zh-Hans": "2004年，经济学系获准开办荣誉学士课程，标志树仁的商科课程体系继续完善。"
       }
     },
     {
@@ -429,7 +429,7 @@
         "zh-Hans": "正名为香港树仁大学：香港首间私立大学"
       },
       "body": {
-        "en": "In 2006, Shue Yan was approved by the Chief Executive-in-Council to be retitled as change its title to Hong Kong Shue Yan University, becoming Hong Kong's first private university.",
+        "en": "In 2006, Shue Yan was approved by the Chief Executive-in-Council to change its title to Hong Kong Shue Yan University, becoming Hong Kong's first private university.",
         "zh-Hant": "2006年，樹仁獲行政長官會同行政會議批准正名為香港樹仁大學，成為香港首間私立大學。",
         "zh-Hans": "2006年，树仁获行政长官会同行政会议批准正名为香港树仁大学，成为香港首间私立大学。"
       }
@@ -1496,7 +1496,7 @@
       "title": {},
       "body": {
         "en": "The first cohort of 81 graduates from Shue Yan and Peking University’s joint Bachelor of Laws programme received their degrees in Beijing.",
-        "zh-Hant": "樹仁與北京大學合辦法律學士課程首屆八十一名畢業生在北京獲頒學位。",
+        "zh-Hant": "樹仁與北京大學合辦法律學士課程，首屆八十一名畢業生在北京獲頒學位。",
         "zh-Hans": "树仁与北京大学合办法律学士课程首届八十一名毕业生在北京获颁学位。"
       },
       "photos": [
@@ -3894,8 +3894,8 @@
     },
     {
       "id": "P110",
-      "year": 2025,
-      "yearLabel": "2025-2026",
+      "year": 2026,
+      "yearLabel": "2026",
       "orderInYear": 111,
       "themeId": "D",
       "photoGroupId": "P110",
@@ -4243,7 +4243,7 @@
       },
       "body": {
         "en": "Changes to the civil service salary structure enhanced the status of degree holders and affected the recognition of post-secondary diplomas.",
-        "zh-Hant": "公務員薪酬制度調整，提高大学學位持有人的待遇，影響專上学院文憑的認受性。",
+        "zh-Hant": "公務員薪酬制度調整，提高大學學位持有人的待遇，影響專上學院文憑的認受性。",
         "zh-Hans": "公务员薪酬制度调整，提高大学学位持有人的待遇，影响专上学院文凭的认受性。"
       }
     },
@@ -4274,7 +4274,7 @@
         "zh-Hans": "港府发表《教育委员会第三号报告书》"
       },
       "body": {
-        "en": "1988 Report No. 3 standardised Hong Kong's undergraduate degrees to three years and entry to two years of A-level (S6–7).",
+        "en": "Report No. 3 in 1988 standardised Hong Kong's undergraduate degrees to three years, to be preceded by two years of A-levels (S6-7).",
         "zh-Hant": "報告提出「四改三」，統一香港高等教育學制為三年制課程，入學資格則統一為兩年制預科（中六、中七）畢業。",
         "zh-Hans": "报告提出「四改三」，统一香港高等教育学制为三年制课程，入学资格则统一为两年制预科（中六、中七）毕业。"
       }
@@ -4387,8 +4387,8 @@
       },
       "body": {
         "en": "Proposed in the 2004 Policy Address, advanced by a 2006 cross bureau steering committee, and reaffirmed in 2007, the regional education hub initiative raised the non-local student quota for UGC-funded universities from 10% to 20%, eased entry rules, offered scholarships, and promoted Hong Kong education overseas.",
-        "zh-Hant": "區域教育中心計畫於 2004 年在施政報告中提出，2006 年由跨部門督導委員會推進，2007 年再次確認，該計畫將大學教育資助委員會資助大學的非本地學生配額從 10% 提高到 20%，放寬入學規則，提供獎學金，並促進香港教育走向海外。",
-        "zh-Hans": "2004年《施政报告》首提，2006年设跨局委员会，2007年重申。主要措施包括：教资会资助院校非本地学生学额上限由10%提高至20%、放宽入境、提供奖学金及海外推广。"
+        "zh-Hant": "區域教育中心計劃於 2004 年在施政報告中提出，2006 年由跨部門督導委員會推進，2007 年再次確認，該計劃將大學教育資助委員會資助大學的非本地學生配額從 10% 提高到 20%，放寬入學規則，提供獎學金，並促進香港教育走向海外。",
+        "zh-Hans": "区域教育中心计划于 2004 年在施政报告中提出，2006 年由跨部门督导委员会推进，2007 年再次确认，该计划将大学教育资助委员会资助大学的非本地学生配额从 10% 提高到 20%，放宽入学规则，提供奖学金，并促进香港教育走向海外。"
       }
     },
     {
