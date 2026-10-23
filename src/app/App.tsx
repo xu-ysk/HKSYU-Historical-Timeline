@@ -17,13 +17,7 @@ import '../styles/timeline.css';
 import '../styles/detail.css';
 import '../styles/help.css';
 export default function App() {
-  const [helpOpen, setHelpOpen] = useState(() => {
-    try {
-      return window.sessionStorage.getItem('museum-help-seen') !== 'true';
-    } catch {
-      return true;
-    }
-  });
+  const [helpOpen, setHelpOpen] = useState(false);
   const appRef = useRef<HTMLElement>(null);
   const helpButtonRef = useRef<HTMLButtonElement>(null);
   const [data, setData] = useState<TimelineDataset | null>(null),
@@ -54,11 +48,6 @@ export default function App() {
     }
   }, []);
   const closeHelp = useCallback(() => {
-    try {
-      window.sessionStorage.setItem('museum-help-seen', 'true');
-    } catch {
-      // The guide remains usable when browser storage is unavailable.
-    }
     setHelpOpen(false);
     window.requestAnimationFrame(() =>
       (document.querySelector<HTMLButtonElement>('.detail-close') ?? helpButtonRef.current)?.focus(),
@@ -69,29 +58,6 @@ export default function App() {
     if (app) app.inert = helpOpen;
     return () => {
       if (app) app.inert = false;
-    };
-  }, [helpOpen]);
-  useEffect(() => {
-    if (helpOpen) return;
-    let idleTimer: number;
-    const restart = () => {
-      window.clearTimeout(idleTimer);
-      idleTimer = window.setTimeout(() => setHelpOpen(true), 3 * 60 * 1000);
-    };
-    const onPointerMove = (event: PointerEvent) => {
-      if (event.buttons) restart();
-    };
-    window.addEventListener('pointerdown', restart);
-    window.addEventListener('pointermove', onPointerMove);
-    window.addEventListener('wheel', restart);
-    window.addEventListener('keydown', restart);
-    restart();
-    return () => {
-      window.clearTimeout(idleTimer);
-      window.removeEventListener('pointerdown', restart);
-      window.removeEventListener('pointermove', onPointerMove);
-      window.removeEventListener('wheel', restart);
-      window.removeEventListener('keydown', restart);
     };
   }, [helpOpen]);
   useEffect(() => {

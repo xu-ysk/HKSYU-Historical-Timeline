@@ -235,6 +235,9 @@ export function TimelineScene({
                 {event.year}
               </span>
             )}
+            {event.year === 2000 && !activeTheme && (
+              <span className="education-tap-hint" aria-hidden="true">👆</span>
+            )}
           </button>
         );
       })}

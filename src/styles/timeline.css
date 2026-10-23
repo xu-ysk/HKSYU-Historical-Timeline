@@ -467,6 +467,18 @@ h1 {
   white-space: nowrap;
   pointer-events: none;
 }
+.education-tap-hint {
+  position: absolute;
+  left: calc(50% + 0.55em);
+  top: calc(50% + 0.75em);
+  width: 1em;
+  height: 1em;
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: clamp(26px, 2vw, 36px);
+  line-height: 1;
+  transform: translate(-50%, -50%) rotate(-40deg);
+  pointer-events: none;
+}
 .education-panel {
   position: absolute;
   width: 380px;
